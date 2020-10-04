@@ -10,7 +10,7 @@ namespace AO2Sharp
         public IPAddress IpAddress { get; private set; }
         public string HardwareId { get; private set; }
 
-        public Client(IPAddress ip, string hwid)
+        public Client(IPAddress ip, string hwid = null)
         {
             IpAddress = ip;
             HardwareId = hwid;
