@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using AO2Sharp.Helpers;
+using AO2Sharp.Protocol;
 using NetCoreServer;
 
 namespace AO2Sharp
@@ -14,12 +15,12 @@ namespace AO2Sharp
 
         public ClientSession(TcpServer server) : base(server)
         {
-            Client = new Client(IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
         }
 
         protected override void OnConnected()
         {
             Console.WriteLine("Session connected: " + this.Socket.RemoteEndPoint);
+            Client = new Client(IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
 
             // fuck fantaencrypt
             SendAsync(AOPacket.CreatePacket("decryptor", "NOENCRYPT"));
@@ -34,6 +35,8 @@ namespace AO2Sharp
         {
             string msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + msg);
+
+            MessageHandler.HandleMessage(Server as Server, msg);
         }
     }
 }
