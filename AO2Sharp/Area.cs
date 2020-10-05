@@ -89,5 +89,16 @@ namespace AO2Sharp
             AreaUpdate(AreaUpdateType.CourtManager, client);
             AreaUpdate(AreaUpdateType.Locked, client);
         }
+
+        internal void UpdateTakenCharacters()
+        {
+            List<string> takenData = new List<string>(Server.CharactersList.Length);
+            for (var i = 0; i < Server.CharactersList.Length; i++)
+            {
+                takenData.Add(TakenCharacters[i] ? "-1" : "0");
+            }
+
+            Broadcast(new AOPacket("CharsCheck", takenData.ToArray()));
+        }
     }
 }
