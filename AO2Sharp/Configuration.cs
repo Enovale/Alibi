@@ -48,13 +48,9 @@ namespace AO2Sharp
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new IPConverter());
-            var json = JObject.Parse(File.ReadAllText(path));
-            json.Merge(new Configuration(), new JsonMergeSettings()
-            {
-                MergeArrayHandling = MergeArrayHandling.Replace,
-                MergeNullValueHandling = MergeNullValueHandling.Merge
-            });
-            return JsonConvert.DeserializeObject<Configuration>(json.ToString(), jsonSettings);
+            var conf = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path), jsonSettings);
+            File.WriteAllText(path, JsonConvert.SerializeObject(conf, jsonSettings));
+            return conf;
         }
     }
 }
