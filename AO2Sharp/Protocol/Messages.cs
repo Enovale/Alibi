@@ -71,14 +71,27 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RD")]
         internal static void Ready(Client client, AOPacket packet)
         {
+            client.Connected = true;
             client.Send(new AOPacket("DONE"));
         }
 
         [MessageHandler("CH")]
         internal static void KeepAlive(Client client, AOPacket packet)
         {
-            client.LastAlive = DateTime.Now;
             client.Send(new AOPacket("CHECK"));
+        }
+
+        [MessageHandler("PW")]
+        internal static void CharacterPassword(Client client, AOPacket packet)
+        {
+            client.Password = packet.Objects.First();
+        }
+
+        [MessageHandler("CC")]
+        internal static void ChangeCharacter(Client client, AOPacket packet)
+        {
+            // TODO: Need areas to be setup to do this
+            // stub
         }
     }
 }

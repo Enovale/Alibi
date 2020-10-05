@@ -45,6 +45,7 @@ namespace AO2Sharp
                 Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + packet);
                 MessageHandler.HandleMessage(Client, AOPacket.FromMessage(packet));
             }
+            Client.LastAlive = DateTime.Now;
         }
     }
 }

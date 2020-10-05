@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using AO2Sharp.Helpers;
 using NetCoreServer;
 
 namespace AO2Sharp
@@ -61,15 +64,28 @@ namespace AO2Sharp
         {
             while (true)
             {
-                var delayTask = Task.Delay(10000);
+                var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000);
                 Console.WriteLine("!DEBUG: Checking for corpses and disconnecting them.");
-                foreach (var client in ClientsConnected)
+                var clientQueue = new Queue<Client>(ClientsConnected);
+                while (clientQueue.Any())
                 {
-                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) > DateTime.Now)
+                    var client = clientQueue.Dequeue();
+                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
                         // Forcibly kick.
                         client.Session.Disconnect();
                 }
                 await delayTask; // wait until at least 10s elapsed since delayTask created
+            }
+        }
+
+        public void Broadcast(AOPacket message)
+        {
+            var clientQueue = new Queue<Client>(ClientsConnected);
+            while (clientQueue.Any())
+            {
+                var client = clientQueue.Dequeue();
+                if (client.Connected)
+                    client.Send(message);
             }
         }
 
