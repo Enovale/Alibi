@@ -16,7 +16,9 @@ namespace AO2Sharp
         public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal  set; }
         public string HardwareId { get; internal set; }
+        public Area Area { get; internal set; }
         public string Password { get; internal set; }
+        public int Character { get; internal set; }
 
         public Client(Server server, ClientSession session, IPAddress ip)
         {
