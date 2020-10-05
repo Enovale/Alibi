@@ -11,7 +11,9 @@ namespace AO2Sharp
         {
             if(!File.Exists(configPath))
                 new Configuration().SaveToFile(configPath);
-            new Server(Configuration.LoadFromFile(configPath)).Start();
+            var server = new Server(Configuration.LoadFromFile(configPath));
+            Server.ServerConfiguration.SaveToFile(configPath);
+            server.Start();
 
             while (true) ;
         }

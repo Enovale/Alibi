@@ -1,20 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 
 namespace AO2Sharp.Helpers
 {
-    internal static class AOPacket
+    internal class AOPacket
     {
-        public static string CreatePacket(string name, object obj)
+        public string Type;
+        public string[] Objects;
+
+        public AOPacket(string type, string[] objects)
         {
-            return CreatePacket(name, new[] {obj});
+            Type = type;
+            Objects = objects;
         }
 
-        public static string CreatePacket(string name, object[] data)
+        public AOPacket(string type, string obj)
         {
-            string final = name + "#";
-            foreach (var o in data)
+            Type = type;
+            Objects = new[] {obj};
+        }
+
+        public AOPacket(string message)
+        {
+            string[] split = message.Split("#");
+            Type = split.First();
+
+            Objects = new string[split.Length - 2];
+            for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
+            {
+                Objects[i - 1] = split[i];
+            }
+        }
+
+        public static implicit operator string(AOPacket pkt)
+        {
+            string final = pkt.Type + "#";
+            foreach (var o in pkt.Objects)
             {
                 final += o + "#";
             }

@@ -11,7 +11,7 @@ namespace AO2Sharp
 {
     internal class ClientSession : TcpSession
     {
-        public Client Client;
+        public Client Client { get; private set; }
 
         public ClientSession(TcpServer server) : base(server)
         {
@@ -19,16 +19,20 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
-            Console.WriteLine("Session connected: " + this.Socket.RemoteEndPoint);
-            Client = new Client(IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
+            Console.WriteLine("Session connected: " + Socket.RemoteEndPoint);
+            Client = new Client(Server as Server, this, IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
 
             // fuck fantaencrypt
-            SendAsync(AOPacket.CreatePacket("decryptor", "NOENCRYPT"));
+            SendAsync(new AOPacket("decryptor", "NOENCRYPT"));
         }
 
         protected override void OnDisconnected()
         {
             Console.WriteLine("Session terminated.");
+
+            ((Server)Server).ClientsConnected.Remove(Client);
+            if(Client.Connected)
+                ((Server)Server).ConnectedPlayers--;
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
@@ -36,7 +40,7 @@ namespace AO2Sharp
             string msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + msg);
 
-            MessageHandler.HandleMessage(Server as Server, msg);
+            MessageHandler.HandleMessage(Client, new AOPacket(msg));
         }
     }
 }

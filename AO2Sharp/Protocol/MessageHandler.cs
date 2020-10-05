@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AO2Sharp.Helpers;
 
 namespace AO2Sharp.Protocol
 {
@@ -9,24 +10,22 @@ namespace AO2Sharp.Protocol
     {
         private static readonly Dictionary<string, Handler> _handlers = new Dictionary<string, Handler>();
 
-        internal delegate void Handler(Server server, string message);
+        internal delegate void Handler(Client client, AOPacket packet);
 
         static MessageHandler()
         {
             AddHandlers();
         }
 
-        public static void HandleMessage(Server server, string message)
+        public static void HandleMessage(Client client, AOPacket packet)
         {
-            string messageType = message.Split("#").First();
-
-            if (_handlers.ContainsKey(messageType))
+            if (_handlers.ContainsKey(packet.Type))
             {
-                _handlers[messageType](server, message);
+                _handlers[packet.Type](client, packet);
             }
             else
             {
-                Console.WriteLine($"Dispatcher: Unknown client message '{messageType}'");
+                Console.WriteLine($"Dispatcher: Unknown client message '{packet.Type}'");
             }
         }
 
