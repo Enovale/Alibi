@@ -15,7 +15,7 @@ namespace AO2Sharp
         public string ServerName { get; private set; } = "Test Server";
         public string ServerDescription { get; private set; } = "Gamer description\n\n\nCum";
 
-        public IPAddress BoundIpAddress { get; private set; } = IPAddress.Parse("127.0.0.1");
+        public IPAddress BoundIpAddress { get; private set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; private set; } = 27016;
         public int WebsocketPort { get; private set; } = 27017;
         public string MasterServerAddress { get; private set; } = "master.aceattorneyonline.com";
