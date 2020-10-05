@@ -65,7 +65,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RM")]
         internal static void RequestMusic(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("SM", Server.MusicList));
+            client.Send(new AOPacket("SM", client.Server.AreaNames.Concat(Server.MusicList).ToArray()));
         }
 
         [MessageHandler("RD")]

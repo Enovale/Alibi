@@ -37,12 +37,6 @@ namespace AO2Sharp
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
             ServerConfiguration = config;
-            if (!File.Exists(MusicPath))
-                File.Create(MusicPath).Close();
-            if (!File.Exists(CharactersPath))
-                File.Create(CharactersPath).Close();
-            if (!File.Exists(AreasPath))
-                File.Create(AreasPath).Close();
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
@@ -72,8 +66,19 @@ namespace AO2Sharp
 
         public void ReloadConfig()
         {
+            EnsureConfigFiles();
             MusicList = File.ReadAllLines(MusicPath);
             CharactersList = File.ReadAllLines(CharactersPath);
+        }
+
+        private void EnsureConfigFiles()
+        {
+            if (!File.Exists(MusicPath) || string.IsNullOrWhiteSpace(File.ReadAllText(MusicPath)))
+                File.WriteAllText(MusicPath, "Announce The Truth (AA).opus");
+            if (!File.Exists(CharactersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(CharactersPath)))
+                File.WriteAllText(CharactersPath, "Apollo");
+            if (!File.Exists(AreasPath))
+                File.Create(AreasPath).Close();
         }
 
         private async void CheckCorpses()
