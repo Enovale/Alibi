@@ -36,6 +36,7 @@ namespace AO2Sharp
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new IPConverter());
+            jsonSettings.Formatting = Formatting.Indented;
             File.WriteAllText(path, JsonConvert.SerializeObject(this, jsonSettings));
         }
 
