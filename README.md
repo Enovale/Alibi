@@ -11,6 +11,7 @@ These packets are implemented:
 - [X] RE
 - [X] RM
 - [X] RD
+- [X] PW
 - [ ] CC
 - [ ] MS
 - [ ] MC
@@ -27,6 +28,7 @@ These packets are implemented:
 # TODO
 Some shit that needs to get done
 
+- [ ] Areas
 - [ ] Logging architecture
 - [ ] Database
 - [ ] Console logging system
