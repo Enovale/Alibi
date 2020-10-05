@@ -5,14 +5,12 @@ namespace AO2Sharp
 {
     class Program
     {
-        private static string configPath = "config.json";
-
         static void Main(string[] args)
         {
-            if(!File.Exists(configPath))
-                new Configuration().SaveToFile(configPath);
-            var server = new Server(Configuration.LoadFromFile(configPath));
-            Server.ServerConfiguration.SaveToFile(configPath);
+            if(!File.Exists(Server.ConfigPath))
+                new Configuration().SaveToFile(Server.ConfigPath);
+            var server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
+            Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
             server.Start();
 
             while (true) ;

@@ -19,20 +19,37 @@ namespace AO2Sharp.Helpers
             Objects = new[] {obj};
         }
 
-        public AOPacket(string message)
+        public AOPacket(string header)
         {
-            string[] split = message.Split("#");
-            Type = split.First();
+            Type = header;
+        }
 
-            Objects = new string[split.Length - 2];
+        private AOPacket()
+        {
+        }
+
+        public static AOPacket FromMessage(string message)
+        {
+            var packet = new AOPacket();
+            string[] split = message.Split("#");
+            packet.Type = split.First();
+
+            packet.Objects = new string[split.Length - 2];
             for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
             {
-                Objects[i - 1] = split[i];
+                packet.Objects[i - 1] = split[i];
             }
+
+            return packet;
         }
 
         public static implicit operator string(AOPacket pkt)
         {
+            if (pkt.Objects == null)
+            {
+                return pkt.Type + "#%";
+            }
+
             string final = pkt.Type + "#";
             foreach (var o in pkt.Objects)
             {

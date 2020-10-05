@@ -6,11 +6,11 @@ These packets are implemented:
 
 - [X] HI
 - [X] ID
-- [ ] askchaa
-- [ ] RC
-- [ ] RE
-- [ ] RM
-- [ ] RD
+- [X] askchaa
+- [X] RC
+- [X] RE
+- [X] RM
+- [X] RD
 - [ ] CC
 - [ ] MS
 - [ ] MC
@@ -29,5 +29,5 @@ Some shit that needs to get done
 
 - [ ] Logging architecture
 - [ ] Database
-- [ ] Console loggin system
+- [ ] Console logging system
 - [ ] More shit lol
