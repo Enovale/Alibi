@@ -72,6 +72,7 @@ namespace AO2Sharp.Protocol
         internal static void Ready(Client client, AOPacket packet)
         {
             client.Connected = true;
+            client.Area = client.Server.Areas.First();
             client.Send(new AOPacket("DONE"));
         }
 

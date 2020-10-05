@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AO2Sharp.Helpers;
 using NetCoreServer;
+using Newtonsoft.Json;
 
 namespace AO2Sharp
 {
@@ -42,7 +43,6 @@ namespace AO2Sharp
                 File.Create(CharactersPath).Close();
             if (!File.Exists(AreasPath))
                 File.Create(AreasPath).Close();
-            ReloadConfig();
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
@@ -50,6 +50,20 @@ namespace AO2Sharp
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
             if(ServerConfiguration.Advertise)
                 _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
+            
+            Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
+            if (Areas == null || Areas.Length == 0)
+            {
+                Console.WriteLine("At least one area is required to start the server, writing default area...");
+                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] {Area.Default}, Formatting.Indented));
+                Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
+            }
+            foreach (var area in Areas)
+            {
+                area.Server = this;
+                area.TakenCharacters = new bool[ClientsConnected.Count];
+            }
+            ReloadConfig();
 
             CheckCorpses();
         }
