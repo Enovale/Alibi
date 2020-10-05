@@ -23,7 +23,7 @@ namespace AO2Sharp
 
         public bool Advertise { get; private set; } = true;
         public int MaxPlayers { get; private set; } = 100;
-        public int TimeoutSeconds { get; private set; } = 10;
+        public int TimeoutSeconds { get; private set; } = 60;
 
         public string[] FeatureList { get; private set; } =
         {
