@@ -17,7 +17,8 @@ These packets are implemented:
 - [ ] MS
 - [ ] MC
 - [ ] RT
-- [ ] CT
+- [X] CT
+- [X] HP
 - [ ] PE
 - [ ] DE
 - [ ] EE
@@ -30,6 +31,7 @@ These packets are implemented:
 Some shit that needs to get done
 
 - [X] Areas
+- [ ] Commands
 - [ ] Logging architecture
 - [ ] Database
 - [ ] Console logging system
