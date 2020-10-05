@@ -13,6 +13,7 @@ namespace AO2Sharp
         public Server Server { get; internal set; }
 
         public bool Connected { get; internal set; }
+        public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal  set; }
         public string HardwareId { get; internal set; }
 
