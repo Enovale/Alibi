@@ -21,6 +21,7 @@ namespace AO2Sharp
         {
             Console.WriteLine("Session connected: " + Socket.RemoteEndPoint);
             Client = new Client(Server as Server, this, IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
+            Client.LastAlive = DateTime.Now;
 
             // fuck fantaencrypt
             SendAsync(new AOPacket("decryptor", "NOENCRYPT"));
@@ -38,9 +39,12 @@ namespace AO2Sharp
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
             string msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
-            Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + msg);
-
-            MessageHandler.HandleMessage(Client, AOPacket.FromMessage(msg));
+            string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
+            foreach (var packet in packets)
+            {
+                Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + packet);
+                MessageHandler.HandleMessage(Client, AOPacket.FromMessage(packet));
+            }
         }
     }
 }

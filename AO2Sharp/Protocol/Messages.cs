@@ -73,5 +73,12 @@ namespace AO2Sharp.Protocol
         {
             client.Send(new AOPacket("DONE"));
         }
+
+        [MessageHandler("CH")]
+        internal static void KeepAlive(Client client, AOPacket packet)
+        {
+            client.LastAlive = DateTime.Now;
+            client.Send(new AOPacket("CHECK"));
+        }
     }
 }

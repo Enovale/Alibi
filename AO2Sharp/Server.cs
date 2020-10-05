@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using NetCoreServer;
 
 namespace AO2Sharp
@@ -46,12 +47,30 @@ namespace AO2Sharp
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
             if(ServerConfiguration.Advertise)
                 _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
+
+            CheckCorpses();
         }
 
         public void ReloadConfig()
         {
             MusicList = File.ReadAllLines(MusicPath);
             CharactersList = File.ReadAllLines(CharactersPath);
+        }
+
+        private async void CheckCorpses()
+        {
+            while (true)
+            {
+                var delayTask = Task.Delay(10000);
+                Console.WriteLine("!DEBUG: Checking for corpses and disconnecting them.");
+                foreach (var client in ClientsConnected)
+                {
+                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) > DateTime.Now)
+                        // Forcibly kick.
+                        client.Session.Disconnect();
+                }
+                await delayTask; // wait until at least 10s elapsed since delayTask created
+            }
         }
 
         protected override TcpSession CreateSession()
