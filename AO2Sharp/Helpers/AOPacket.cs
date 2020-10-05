@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace AO2Sharp.Helpers
 {
@@ -30,17 +31,25 @@ namespace AO2Sharp.Helpers
 
         public static AOPacket FromMessage(string message)
         {
-            var packet = new AOPacket();
-            string[] split = message.Split("#");
-            packet.Type = split.First();
-
-            packet.Objects = new string[split.Length - 2];
-            for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
+            try
             {
-                packet.Objects[i - 1] = split[i];
-            }
+                var packet = new AOPacket();
+                string[] split = message.Split("#");
+                packet.Type = split.First();
 
-            return packet;
+                packet.Objects = new string[split.Length - 2];
+                for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
+                {
+                    packet.Objects[i - 1] = split[i];
+                }
+
+                return packet;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new AOPacket("NULL");
+            }
         }
 
         public static implicit operator string(AOPacket pkt)
