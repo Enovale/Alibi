@@ -41,7 +41,7 @@ namespace AO2Sharp.Protocol
             {
                 Server.CharactersList.Length.ToString(),
                 client.Server.EvidenceList.Count.ToString(),
-                Server.MusicList.Length.ToString()
+                (client.Server.Areas.Length + Server.MusicList.Length).ToString()
             }));
         }
 
