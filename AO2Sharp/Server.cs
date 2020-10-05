@@ -25,7 +25,8 @@ namespace AO2Sharp
             Version = fileVersionInfo.ProductVersion;
 
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
-            _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
+            if(ServerConfiguration.Advertise)
+                _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
         }
 
         protected override TcpSession CreateSession()
