@@ -71,8 +71,30 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RD")]
         internal static void Ready(Client client, AOPacket packet)
         {
-            client.Connected = true;
+            if (string.IsNullOrWhiteSpace(client.HardwareId))
+            {
+                client.Session.Disconnect();
+                return;
+            }
+
+            if (client.Connected)
+                return;
+            
+
             client.Area = client.Server.Areas.First();
+            client.Connected = true;
+            client.Server.ConnectedPlayers++;
+            client.Area.PlayerCount++;
+            client.Area.FullUpdate(client);
+            // Tell all the other clients that someone has joined
+            client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
+
+            client.Send(new AOPacket("HP", new []{"0", client.Area.DefendantHp.ToString()}));
+            client.Send(new AOPacket("HP", new []{"1", client.Area.ProsecutorHp.ToString()}));
+            client.Send(new AOPacket("FA", client.Server.AreaNames));
+            client.Send(new AOPacket("BN", client.Area.Background));
+            // TODO: Determine if this is needed because it's retarded
+            client.Send(new AOPacket("OPPASS", Server.ServerConfiguration.ModPassword));
             client.Send(new AOPacket("DONE"));
         }
 

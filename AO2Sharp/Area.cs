@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AO2Sharp.Helpers;
@@ -44,6 +45,49 @@ namespace AO2Sharp
                 if (client.Connected && client.Area == this)
                     client.Send(packet);
             }
+        }
+
+        /// <summary>
+        /// Sends an area update to the client specified, all clients if null
+        /// </summary>
+        /// <param name="client"></param>
+        internal void AreaUpdate(AreaUpdateType type, Client client = null)
+        {
+            List<string> updateData = new List<string>();
+            updateData.Add(((int)type).ToString());
+            foreach (var area in Server.Areas)
+            {
+                switch (type)
+                {
+                    case AreaUpdateType.PlayerCount:
+                        updateData.Add(PlayerCount.ToString());
+                        break;
+                    case AreaUpdateType.Status:
+                        updateData.Add(Status);
+                        break;
+                    case AreaUpdateType.CourtManager:
+                        updateData.Add(CurrentCourtManager);
+                        break;
+                    case AreaUpdateType.Locked:
+                        updateData.Add(Locked ? "LOCKED" : "FREE");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+            }
+
+            if(client == null)
+                Server.Broadcast(new AOPacket("ARUP", updateData.ToArray()));
+            else
+                client.Send(new AOPacket("ARUP", updateData.ToArray()));
+        }
+
+        internal void FullUpdate(Client client = null)
+        {
+            AreaUpdate(AreaUpdateType.PlayerCount, client);
+            AreaUpdate(AreaUpdateType.Status, client);
+            AreaUpdate(AreaUpdateType.CourtManager, client);
+            AreaUpdate(AreaUpdateType.Locked, client);
         }
     }
 }
