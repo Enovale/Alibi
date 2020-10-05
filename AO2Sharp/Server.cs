@@ -116,6 +116,11 @@ namespace AO2Sharp
             }
         }
 
+        public void BroadcastOocMessage(string message)
+        {
+            Broadcast(new AOPacket("CT", new []{"Server", message, "1"}));
+        }
+
         protected override TcpSession CreateSession()
         {
             return new ClientSession(this);

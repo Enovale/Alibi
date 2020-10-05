@@ -135,5 +135,54 @@ namespace AO2Sharp.Protocol
                 client.Send(new AOPacket("PV", new []{"111111", "CID", charId.ToString()}));
             }
         }
+
+        [MessageHandler("MC")]
+        internal static void ChangeMusic(Client client, AOPacket packet)
+        {
+            string song = packet.Objects[0];
+
+            foreach (var m in Server.MusicList)
+            {
+                if (song == m)
+                {
+                    client.Area.Broadcast(packet);
+                    return;
+                }
+            }
+
+            for (var i = 0; i < client.Server.AreaNames.Length; i++)
+            {
+                if (song == client.Server.AreaNames[i])
+                    client.ChangeArea(i);
+            }
+        }
+
+        [MessageHandler("CT")]
+        internal static void OocMessage(Client client, AOPacket packet)
+        {
+            // TODO: Sanitization and cleaning (especially Zalgo)
+            string message = packet.Objects[1];
+            if (message.StartsWith("/"))
+            {
+                // command shit
+            }
+
+            client.Area.Broadcast(packet);
+        }
+
+        [MessageHandler("HP")]
+        internal static void UpdateHealthBar(Client client, AOPacket packet)
+        {
+            int hp;
+            if (int.TryParse(packet.Objects[1], out hp))
+            {
+                if (packet.Objects[0] == "1")
+                    client.Area.DefendantHp = Math.Max(0, Math.Min(hp, 10));
+                else if(packet.Objects[0] == "2")
+                    client.Area.ProsecutorHp = Math.Max(0, Math.Min(hp, 10));
+
+                client.Area.Broadcast(packet);
+            }
+        }
     }
 }

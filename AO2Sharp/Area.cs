@@ -47,6 +47,11 @@ namespace AO2Sharp
             }
         }
 
+        internal void BroadcastOocMessage(string message)
+        {
+            Broadcast(new AOPacket("CT", new []{"Server", message, "1"}));
+        }
+
         /// <summary>
         /// Sends an area update to the client specified, all clients if null
         /// </summary>

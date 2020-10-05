@@ -36,8 +36,11 @@ namespace AO2Sharp
             {
                 ((Server) Server).ConnectedPlayers--;
                 Client.Area.PlayerCount--;
+                if (Client.Character != null)
+                    Client.Area.TakenCharacters[(int)Client.Character] = false;
+                Client.Area.UpdateTakenCharacters();
+                Client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
             }
-
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
