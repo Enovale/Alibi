@@ -28,8 +28,8 @@ namespace AO2Sharp
 
         public readonly List<Client> ClientsConnected;
         public int ConnectedPlayers = 0;
-        // TODO: Make this exist
-        public Area[] Areas;
+        public readonly Area[] Areas;
+        public readonly string[] AreaNames;
         public List<Evidence> EvidenceList = new List<Evidence>();
 
         private Advertiser _advertiser;
@@ -58,8 +58,10 @@ namespace AO2Sharp
                 File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] {Area.Default}, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }
+            AreaNames = new string[Areas.Length];
             foreach (var area in Areas)
             {
+                AreaNames[Array.IndexOf(Areas, area)] = area.Name;
                 area.Server = this;
                 area.TakenCharacters = new bool[ClientsConnected.Count];
             }

@@ -32,8 +32,12 @@ namespace AO2Sharp
             Console.WriteLine("Session terminated.");
 
             ((Server)Server).ClientsConnected.Remove(Client);
-            if(Client.Connected)
-                ((Server)Server).ConnectedPlayers--;
+            if (Client.Connected)
+            {
+                ((Server) Server).ConnectedPlayers--;
+                Client.Area.PlayerCount--;
+            }
+
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)

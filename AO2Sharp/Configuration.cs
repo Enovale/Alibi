@@ -14,6 +14,7 @@ namespace AO2Sharp
     {
         public string ServerName { get; private set; } = "Test Server";
         public string ServerDescription { get; private set; } = "Example server description.";
+        public string ModPassword { get; private set; } = "ChangeThis";
 
         public IPAddress BoundIpAddress { get; private set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; private set; } = 27016;
