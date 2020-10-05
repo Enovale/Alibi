@@ -44,6 +44,7 @@ namespace AO2Sharp
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
             if(ServerConfiguration.Advertise)
                 _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
+            ReloadConfig();
             
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (Areas == null || Areas.Length == 0)
@@ -57,9 +58,8 @@ namespace AO2Sharp
             {
                 AreaNames[Array.IndexOf(Areas, area)] = area.Name;
                 area.Server = this;
-                area.TakenCharacters = new bool[ClientsConnected.Count];
+                area.TakenCharacters = new bool[CharactersList.Length];
             }
-            ReloadConfig();
 
             CheckCorpses();
         }
@@ -68,13 +68,19 @@ namespace AO2Sharp
         {
             EnsureConfigFiles();
             MusicList = File.ReadAllLines(MusicPath);
+            if (MusicList[0].Contains("."))
+            {
+                var tmp = new List<string>(MusicList);
+                tmp.Insert(0, "==Music==");
+                MusicList = tmp.ToArray();
+            }
             CharactersList = File.ReadAllLines(CharactersPath);
         }
 
         private void EnsureConfigFiles()
         {
             if (!File.Exists(MusicPath) || string.IsNullOrWhiteSpace(File.ReadAllText(MusicPath)))
-                File.WriteAllText(MusicPath, "Announce The Truth (AA).opus");
+                File.WriteAllText(MusicPath, "==Music==\nAnnounce The Truth (AA).opus");
             if (!File.Exists(CharactersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(CharactersPath)))
                 File.WriteAllText(CharactersPath, "Apollo");
             if (!File.Exists(AreasPath))

@@ -12,7 +12,8 @@ These packets are implemented:
 - [X] RM
 - [X] RD
 - [X] PW
-- [ ] CC
+- [X] CharsCheck
+- [X] CC
 - [ ] MS
 - [ ] MC
 - [ ] RT
@@ -23,12 +24,12 @@ These packets are implemented:
 - [ ] SETCASE
 - [ ] CASEA
 - [ ] ZZ
-- [ ] CH
+- [X] CH
 
 # TODO
 Some shit that needs to get done
 
-- [ ] Areas
+- [X] Areas
 - [ ] Logging architecture
 - [ ] Database
 - [ ] Console logging system

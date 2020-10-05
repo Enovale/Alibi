@@ -89,8 +89,8 @@ namespace AO2Sharp.Protocol
             // Tell all the other clients that someone has joined
             client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
 
-            client.Send(new AOPacket("HP", new []{"0", client.Area.DefendantHp.ToString()}));
-            client.Send(new AOPacket("HP", new []{"1", client.Area.ProsecutorHp.ToString()}));
+            client.Send(new AOPacket("HP", new []{"1", client.Area.DefendantHp.ToString()}));
+            client.Send(new AOPacket("HP", new []{"2", client.Area.ProsecutorHp.ToString()}));
             client.Send(new AOPacket("FA", client.Server.AreaNames));
             client.Send(new AOPacket("BN", client.Area.Background));
             // TODO: Determine if this is needed because it's retarded
@@ -113,8 +113,27 @@ namespace AO2Sharp.Protocol
         [MessageHandler("CC")]
         internal static void ChangeCharacter(Client client, AOPacket packet)
         {
-            // TODO: Need areas to be setup to do this
-            // stub
+            int charId;
+            if (int.TryParse(packet.Objects[1], out charId))
+            {
+                if (client.Character != null)
+                    client.Area.TakenCharacters[(int)client.Character] = false;
+
+                if (charId > Server.CharactersList.Length)
+                    return;
+                if (charId < 0)
+                    return;
+
+                string charToTake = Server.CharactersList[charId];
+                if (client.Area.TakenCharacters[charId] || charToTake == "")
+                    return;
+
+                client.Area.TakenCharacters[charId] = true;
+                client.Character = charId;
+                client.Area.UpdateTakenCharacters();
+
+                client.Send(new AOPacket("PV", new []{"111111", "CID", charId.ToString()}));
+            }
         }
     }
 }
