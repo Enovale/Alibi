@@ -12,21 +12,21 @@ namespace AO2Sharp
     [Serializable]
     internal class Configuration
     {
-        public readonly string ServerName = "Test Server";
-        public readonly string ServerDescription = "Example server description.";
-        public readonly string ModPassword = "ChangeThis";
+        public string ServerName = "Test Server";
+        public string ServerDescription = "Example server description.";
+        public string ModPassword = "ChangeThis";
 
-        public readonly IPAddress BoundIpAddress = IPAddress.Parse("0.0.0.0");
-        public readonly int Port = 27016;
-        public readonly int WebsocketPort = 27017;
-        public readonly string MasterServerAddress = "master.aceattorneyonline.com";
-        public readonly int MasterServerPort = 27016;
+        public IPAddress BoundIpAddress = IPAddress.Parse("0.0.0.0");
+        public int Port = 27016;
+        public int WebsocketPort = 27017;
+        public string MasterServerAddress = "master.aceattorneyonline.com";
+        public int MasterServerPort = 27016;
 
-        public readonly bool Advertise = true;
-        public readonly int MaxPlayers = 100;
-        public readonly int TimeoutSeconds = 60;
+        public bool Advertise = true;
+        public int MaxPlayers = 100;
+        public int TimeoutSeconds = 60;
 
-        public readonly string[] FeatureList =
+        public string[] FeatureList =
         {
             "yellowtext", "prezoom", "flipping", "customobjections",
             "deskmod", "evidence", "cccc_ic_support",
