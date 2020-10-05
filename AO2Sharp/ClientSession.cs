@@ -40,7 +40,7 @@ namespace AO2Sharp
             string msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + msg);
 
-            MessageHandler.HandleMessage(Client, new AOPacket(msg));
+            MessageHandler.HandleMessage(Client, AOPacket.FromMessage(msg));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace AO2Sharp
     internal class Configuration
     {
         public string ServerName { get; private set; } = "Test Server";
-        public string ServerDescription { get; private set; } = "Gamer description\n\n\nCum";
+        public string ServerDescription { get; private set; } = "Example server description.";
 
         public IPAddress BoundIpAddress { get; private set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; private set; } = 27016;
@@ -34,6 +34,8 @@ namespace AO2Sharp
 
         public void SaveToFile(string path)
         {
+            if (!Directory.Exists(Server.ConfigFolder))
+                Directory.CreateDirectory(Server.ConfigFolder);
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new IPConverter());
             jsonSettings.Formatting = Formatting.Indented;

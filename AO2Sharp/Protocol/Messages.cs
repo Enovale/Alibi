@@ -35,9 +35,43 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("askchaa")]
+        internal static void RequestResourceCounts(Client client, AOPacket packet)
+        {
+            client.Send(new AOPacket("SI", new []
+            {
+                Server.CharactersList.Length.ToString(),
+                client.Server.EvidenceList.Count.ToString(),
+                Server.MusicList.Length.ToString()
+            }));
+        }
+
+        [MessageHandler("RC")]
         internal static void RequestCharacters(Client client, AOPacket packet)
         {
+            client.Send(new AOPacket("SC", Server.CharactersList));
+        }
 
+        [MessageHandler("RE")]
+        internal static void RequestEvidence(Client client, AOPacket packet)
+        {
+            string evidenceList = "";
+            client.Server.EvidenceList.ForEach(e =>
+            {
+                evidenceList += e.ToPacket();
+            });
+            client.Send(new AOPacket("LE", evidenceList));
+        }
+
+        [MessageHandler("RM")]
+        internal static void RequestMusic(Client client, AOPacket packet)
+        {
+            client.Send(new AOPacket("SM", Server.MusicList));
+        }
+
+        [MessageHandler("RD")]
+        internal static void Ready(Client client, AOPacket packet)
+        {
+            client.Send(new AOPacket("DONE"));
         }
     }
 }
