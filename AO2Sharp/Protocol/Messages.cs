@@ -157,6 +157,16 @@ namespace AO2Sharp.Protocol
             }
         }
 
+        [MessageHandler("MS")]
+        internal static void IcMessage(Client client, AOPacket packet)
+        {
+            AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
+            if (validPacket.Type == "INVALID")
+                return;
+
+            client.Area.Broadcast(validPacket);
+        }
+
         [MessageHandler("CT")]
         internal static void OocMessage(Client client, AOPacket packet)
         {
