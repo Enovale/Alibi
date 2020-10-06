@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AO2Sharp.Helpers;
+using AO2Sharp.WebSocket;
 using NetCoreServer;
 using Newtonsoft.Json;
 
@@ -33,6 +35,7 @@ namespace AO2Sharp
         public List<Evidence> EvidenceList = new List<Evidence>();
 
         private Advertiser _advertiser;
+        private WebSocketProxy _wsProxy;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
@@ -60,6 +63,9 @@ namespace AO2Sharp
                 area.Server = this;
                 area.TakenCharacters = new bool[CharactersList.Length];
             }
+
+            _wsProxy = new WebSocketProxy(IPAddress.Loopback, ServerConfiguration.WebsocketPort);
+            _wsProxy.Start();
 
             CheckCorpses();
         }
