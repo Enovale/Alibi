@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using AO2Sharp.Helpers;
 using NetCoreServer;
 
 namespace AO2Sharp.WebSocket
@@ -15,29 +16,19 @@ namespace AO2Sharp.WebSocket
             _session = wsSession;
         }
 
-        public override long Send(string text)
-        {
-            return base.Send(text);
-        }
-
-        public override bool SendAsync(string text)
-        {
-            return base.SendAsync(text);
-        }
-
         protected override void OnConnected()
         {
-            base.OnConnected();
+            Send(new AOPacket("WSIP", (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address.ToString()));
         }
 
         protected override void OnDisconnected()
         {
-            base.OnDisconnected();
+            _session.Disconnect();
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            _session.SendAsync(buffer, offset, size);
+            _session.SendTextAsync(buffer, offset, size);
         }
     }
 }

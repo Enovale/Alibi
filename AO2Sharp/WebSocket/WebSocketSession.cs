@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using NetCoreServer;
 
@@ -11,18 +12,27 @@ namespace AO2Sharp.WebSocket
 
         public WebSocketSession(WsServer server) : base(server)
         {
-            _tcpSocket = new TcpProxy(this, server.Endpoint.Address, AO2Sharp.Server.ServerConfiguration.Port);
+            _tcpSocket = new TcpProxy(this, IPAddress.Loopback, AO2Sharp.Server.ServerConfiguration.Port);
+        }
+
+        public override void OnWsConnected(HttpRequest request)
+        {
             _tcpSocket.ConnectAsync();
         }
 
-        public override long Send(string text)
+        public override void OnWsDisconnected()
         {
-            return _tcpSocket.Send(text);
+            _tcpSocket.DisconnectAsync();
         }
 
-        public override bool SendAsync(string text)
+        public override void OnWsError(string error)
         {
-            return _tcpSocket.SendAsync(text);
+            Console.WriteLine(error);
+        }
+
+        public override void OnWsReceived(byte[] buffer, long offset, long size)
+        {
+            _tcpSocket.SendAsync(buffer, offset, size);
         }
     }
 }
