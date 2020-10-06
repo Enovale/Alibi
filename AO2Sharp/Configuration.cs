@@ -21,6 +21,7 @@ namespace AO2Sharp
         public int WebsocketPort = 27017;
         public string MasterServerAddress = "master.aceattorneyonline.com";
         public int MasterServerPort = 27016;
+        public int LogBufferSize = 500;
 
         public bool Advertise = true;
         public int MaxPlayers = 100;
