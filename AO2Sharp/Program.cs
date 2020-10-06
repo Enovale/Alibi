@@ -13,7 +13,7 @@ namespace AO2Sharp
             Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
             server.Start();
 
-            while (true) ;
+            while (true);
         }
     }
 }

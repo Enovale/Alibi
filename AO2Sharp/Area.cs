@@ -14,13 +14,15 @@ namespace AO2Sharp
             Name = "Test Area",
             Background = "gs4",
             BackgroundLocked = false,
-            Locked = false
+            Locked = false,
+            IniSwappingAllowed = true
         };
 
         public string Name;
         public string Background;
         public bool Locked;
         public bool BackgroundLocked;
+        public bool IniSwappingAllowed;
         [NonSerialized]
         public int PlayerCount;
         [NonSerialized]
@@ -65,16 +67,16 @@ namespace AO2Sharp
                 switch (type)
                 {
                     case AreaUpdateType.PlayerCount:
-                        updateData.Add(PlayerCount.ToString());
+                        updateData.Add(area.PlayerCount.ToString());
                         break;
                     case AreaUpdateType.Status:
-                        updateData.Add(Status);
+                        updateData.Add(area.Status);
                         break;
                     case AreaUpdateType.CourtManager:
-                        updateData.Add(CurrentCourtManager);
+                        updateData.Add(area.CurrentCourtManager);
                         break;
                     case AreaUpdateType.Locked:
-                        updateData.Add(Locked ? "LOCKED" : "FREE");
+                        updateData.Add(area.Locked ? "LOCKED" : "FREE");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
