@@ -64,7 +64,7 @@ namespace AO2Sharp
                 area.TakenCharacters = new bool[CharactersList.Length];
             }
 
-            _wsProxy = new WebSocketProxy(IPAddress.Loopback, ServerConfiguration.WebsocketPort);
+            _wsProxy = new WebSocketProxy(IPAddress.Any, ServerConfiguration.WebsocketPort);
             _wsProxy.Start();
 
             CheckCorpses();

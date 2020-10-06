@@ -16,15 +16,5 @@ namespace AO2Sharp.WebSocket
         {
             return new WebSocketSession(this);
         }
-
-        protected override void OnConnected(TcpSession session)
-        {
-            base.OnConnected(session);
-        }
-
-        protected override void OnDisconnected(TcpSession session)
-        {
-            base.OnDisconnected(session);
-        }
     }
 }

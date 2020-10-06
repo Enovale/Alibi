@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using AO2Sharp.Helpers;
 
@@ -16,19 +17,19 @@ namespace AO2Sharp.Protocol
 
             // Check if this player is hardware banned and kick them if so
             // Also probably check if the max players is reached and kick them
-            client.Send(new AOPacket("ID", new [] {"111111", "AO2Sharp", Server.Version}));
+            client.Send(new AOPacket("ID", new[] { "111111", "AO2Sharp", Server.Version }));
         }
 
         [MessageHandler("ID")]
         internal static void SoftwareId(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("PN", new []
+            client.Send(new AOPacket("PN", new[]
                 {
                     client.Server.ConnectedPlayers.ToString(),
                     Server.ServerConfiguration.MaxPlayers.ToString()
                 }
             ));
-            client.Send(new AOPacket("FL", new []
+            client.Send(new AOPacket("FL", new[]
             {
                 "noencryption", "fastloading"
             }.Concat(Server.ServerConfiguration.FeatureList).ToArray()));
@@ -37,7 +38,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("askchaa")]
         internal static void RequestResourceCounts(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("SI", new []
+            client.Send(new AOPacket("SI", new[]
             {
                 Server.CharactersList.Length.ToString(),
                 client.Server.EvidenceList.Count.ToString(),
@@ -79,7 +80,7 @@ namespace AO2Sharp.Protocol
 
             if (client.Connected)
                 return;
-            
+
 
             client.Area = client.Server.Areas.First();
             client.Connected = true;
@@ -89,8 +90,8 @@ namespace AO2Sharp.Protocol
             // Tell all the other clients that someone has joined
             client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
 
-            client.Send(new AOPacket("HP", new []{"1", client.Area.DefendantHp.ToString()}));
-            client.Send(new AOPacket("HP", new []{"2", client.Area.ProsecutorHp.ToString()}));
+            client.Send(new AOPacket("HP", new[] { "1", client.Area.DefendantHp.ToString() }));
+            client.Send(new AOPacket("HP", new[] { "2", client.Area.ProsecutorHp.ToString() }));
             client.Send(new AOPacket("FA", client.Server.AreaNames));
             client.Send(new AOPacket("BN", client.Area.Background));
             // TODO: Determine if this is needed because it's retarded
@@ -132,7 +133,7 @@ namespace AO2Sharp.Protocol
                 client.Character = charId;
                 client.Area.UpdateTakenCharacters();
 
-                client.Send(new AOPacket("PV", new []{"111111", "CID", charId.ToString()}));
+                client.Send(new AOPacket("PV", new[] { "111111", "CID", charId.ToString() }));
             }
         }
 
@@ -188,10 +189,21 @@ namespace AO2Sharp.Protocol
             {
                 if (packet.Objects[0] == "1")
                     client.Area.DefendantHp = Math.Max(0, Math.Min(hp, 10));
-                else if(packet.Objects[0] == "2")
+                else if (packet.Objects[0] == "2")
                     client.Area.ProsecutorHp = Math.Max(0, Math.Min(hp, 10));
 
                 client.Area.Broadcast(packet);
+            }
+        }
+
+        [MessageHandler("WSIP")]
+        internal static void UpdateWebsocketIp(Client client, AOPacket packet)
+        {
+            // TODO: Need to recheck ban
+            IPAddress ip = IPAddress.Parse(packet.Objects[0]);
+            if (IPAddress.IsLoopback(ip))
+            {
+                client.IpAddress = ip;
             }
         }
     }

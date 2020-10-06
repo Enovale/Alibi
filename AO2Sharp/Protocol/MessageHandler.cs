@@ -25,7 +25,7 @@ namespace AO2Sharp.Protocol
             }
             else
             {
-                Console.WriteLine($"Dispatcher: Unknown client message '{packet.Type}'");
+                Console.WriteLine($"Unknown client message: '{packet.Type}'");
             }
         }
 
