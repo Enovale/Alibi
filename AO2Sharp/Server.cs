@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using AO2Sharp.Helpers;
+using AO2Sharp.WebSocket;
+using NetCoreServer;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using AO2Sharp.Helpers;
-using AO2Sharp.WebSocket;
-using NetCoreServer;
-using Newtonsoft.Json;
 
 namespace AO2Sharp
 {
@@ -45,15 +43,15 @@ namespace AO2Sharp
             Version = fileVersionInfo.ProductVersion;
 
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
-            if(ServerConfiguration.Advertise)
+            if (ServerConfiguration.Advertise)
                 _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
             ReloadConfig();
-            
+
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (Areas == null || Areas.Length == 0)
             {
                 Console.WriteLine("At least one area is required to start the server, writing default area...");
-                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] {Area.Default}, Formatting.Indented));
+                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] { Area.Default }, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }
             AreaNames = new string[Areas.Length];
@@ -64,8 +62,11 @@ namespace AO2Sharp
                 area.TakenCharacters = new bool[CharactersList.Length];
             }
 
-            _wsProxy = new WebSocketProxy(IPAddress.Any, ServerConfiguration.WebsocketPort);
-            _wsProxy.Start();
+            if (ServerConfiguration.WebsocketPort > -1)
+            {
+                _wsProxy = new WebSocketProxy(IPAddress.Any, ServerConfiguration.WebsocketPort);
+                _wsProxy.Start();
+            }
 
             CheckCorpses();
         }
@@ -124,7 +125,7 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", new []{"Server", message, "1"}));
+            Broadcast(new AOPacket("CT", new[] { "Server", message, "1" }));
         }
 
         protected override TcpSession CreateSession()

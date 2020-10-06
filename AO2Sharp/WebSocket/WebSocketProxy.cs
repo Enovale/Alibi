@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NetCoreServer;
 using System.Net;
-using System.Text;
-using NetCoreServer;
 
 namespace AO2Sharp.WebSocket
 {

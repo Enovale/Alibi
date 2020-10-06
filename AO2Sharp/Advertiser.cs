@@ -1,11 +1,9 @@
-﻿using System;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using AO2Sharp.Helpers;
-using NetCoreServer;
 
 namespace AO2Sharp
 {
@@ -30,7 +28,7 @@ namespace AO2Sharp
             }
         }
 
-        private void OnConnect(IAsyncResult ar) 
+        private void OnConnect(IAsyncResult ar)
         {
             ((Socket)ar.AsyncState).EndConnect(ar);
 

@@ -1,8 +1,6 @@
-﻿using System;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
-using AO2Sharp.Helpers;
 
 namespace AO2Sharp.Protocol
 {
@@ -171,7 +169,7 @@ namespace AO2Sharp.Protocol
                 if (sfxLoop != 0 && sfxLoop != 1)
                     return invalid;
                 validatedObjects.Add(sfxLoop.ToString());
-                
+
                 // Make sure screenshake is 1 or 0
                 int screenshake = packet.Objects[20].ToIntOrZero();
                 if (screenshake != 0 && screenshake != 1)
@@ -186,7 +184,7 @@ namespace AO2Sharp.Protocol
 
                 // Frames to sfx; spec not available as well
                 validatedObjects.Add(packet.Objects[23]);
-                
+
                 // Make sure additive is 1 or 0
                 int additive = packet.Objects[24].ToIntOrZero();
                 if (additive != 0 && additive != 1)

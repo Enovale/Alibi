@@ -1,15 +1,14 @@
-﻿using System;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using AO2Sharp.Helpers;
 
 namespace AO2Sharp
 {
     public class Area
     {
-        [NonSerialized] public static readonly Area Default = new Area()
+        [NonSerialized]
+        public static readonly Area Default = new Area()
         {
             Name = "Test Area",
             Background = "gs4",
@@ -51,7 +50,7 @@ namespace AO2Sharp
 
         internal void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", new []{"Server", message, "1"}));
+            Broadcast(new AOPacket("CT", new[] { "Server", message, "1" }));
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace AO2Sharp
                 }
             }
 
-            if(client == null)
+            if (client == null)
                 Server.Broadcast(new AOPacket("ARUP", updateData.ToArray()));
             else
                 client.Send(new AOPacket("ARUP", updateData.ToArray()));
