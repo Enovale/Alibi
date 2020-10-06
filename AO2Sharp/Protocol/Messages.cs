@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Linq;
 using System.Net;
-using System.Text;
-using AO2Sharp.Helpers;
 
 namespace AO2Sharp.Protocol
 {

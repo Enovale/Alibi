@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AO2Sharp
+﻿namespace AO2Sharp
 {
     public enum LogSeverity
     {

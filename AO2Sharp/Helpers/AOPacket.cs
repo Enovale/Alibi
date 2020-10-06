@@ -17,7 +17,7 @@ namespace AO2Sharp.Helpers
         public AOPacket(string type, string obj)
         {
             Type = type;
-            Objects = new[] {obj};
+            Objects = new[] { obj };
         }
 
         public AOPacket(string header)

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using AO2Sharp.Helpers;
+﻿using AO2Sharp.Helpers;
 using AO2Sharp.Protocol;
 using NetCoreServer;
+using System;
+using System.Net;
+using System.Text;
 
 namespace AO2Sharp
 {
@@ -20,7 +18,7 @@ namespace AO2Sharp
         protected override void OnConnected()
         {
             Console.WriteLine("Session connected: " + Socket.RemoteEndPoint);
-            Client = new Client(Server as Server, this, IPAddress.Parse (((IPEndPoint)Socket.RemoteEndPoint).Address.ToString ()));
+            Client = new Client(Server as Server, this, IPAddress.Parse(((IPEndPoint)Socket.RemoteEndPoint).Address.ToString()));
             Client.LastAlive = DateTime.Now;
 
             // fuck fantaencrypt
@@ -34,7 +32,7 @@ namespace AO2Sharp
             ((Server)Server).ClientsConnected.Remove(Client);
             if (Client.Connected)
             {
-                ((Server) Server).ConnectedPlayers--;
+                ((Server)Server).ConnectedPlayers--;
                 Client.Area.PlayerCount--;
                 if (Client.Character != null)
                     Client.Area.TakenCharacters[(int)Client.Character] = false;
@@ -45,7 +43,7 @@ namespace AO2Sharp
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            string msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
+            string msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {

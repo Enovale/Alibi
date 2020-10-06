@@ -1,8 +1,7 @@
-﻿using System;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using AO2Sharp.Helpers;
 
 namespace AO2Sharp.Protocol
 {
@@ -34,7 +33,7 @@ namespace AO2Sharp.Protocol
             if (!_handlers.ContainsKey(messageName))
                 _handlers.Add(messageName, handler);
 
-            _handlers[messageName] = handler;;
+            _handlers[messageName] = handler; ;
         }
 
         public static void AddHandlers()

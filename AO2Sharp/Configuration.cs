@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AO2Sharp.Helpers;
+using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Net;
-using System.Text;
-using AO2Sharp.Helpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace AO2Sharp
 {

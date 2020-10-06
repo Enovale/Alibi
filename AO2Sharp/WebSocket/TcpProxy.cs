@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using AO2Sharp.Helpers;
+﻿using AO2Sharp.Helpers;
 using NetCoreServer;
+using System.Net;
 
 namespace AO2Sharp.WebSocket
 {
@@ -18,7 +15,9 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnConnected()
         {
-            Send(new AOPacket("WSIP", (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address.ToString()));
+            IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
+            if (IPAddress.IsLoopback(ip))
+                Send(new AOPacket("WSIP", ip.ToString()));
         }
 
         protected override void OnDisconnected()
