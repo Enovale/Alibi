@@ -47,7 +47,7 @@ namespace AO2Sharp.Helpers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Server.Logger.Log(LogSeverity.Error, e.Message);
                 return new AOPacket("NULL");
             }
         }

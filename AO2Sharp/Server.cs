@@ -21,6 +21,7 @@ namespace AO2Sharp
         public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
 
+        public static Logger Logger;
         public static Configuration ServerConfiguration;
         public static string[] MusicList;
         public static string[] CharactersList;
@@ -38,6 +39,7 @@ namespace AO2Sharp
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
             ServerConfiguration = config;
+            Logger = new Logger(this);
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
@@ -50,7 +52,7 @@ namespace AO2Sharp
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (Areas == null || Areas.Length == 0)
             {
-                Console.WriteLine("At least one area is required to start the server, writing default area...");
+                Logger.Log(LogSeverity.Special, "At least one area is required to start the server, writing default area...");
                 File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] { Area.Default }, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }
@@ -99,7 +101,6 @@ namespace AO2Sharp
             while (true)
             {
                 var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000);
-                Console.WriteLine("!DEBUG: Checking for corpses and disconnecting them.");
                 var clientQueue = new Queue<Client>(ClientsConnected);
                 while (clientQueue.Any())
                 {
@@ -125,7 +126,9 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", new[] { "Server", message, "1" }));
+            AOPacket msgPacket = new AOPacket("CT", new[] {"Server", message, "1"});
+            Broadcast(msgPacket); 
+            Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 
         protected override TcpSession CreateSession()

@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 
 namespace AO2Sharp.Protocol
 {
@@ -10,7 +11,6 @@ namespace AO2Sharp.Protocol
         [MessageHandler("HI")]
         internal static void HardwareId(Client client, AOPacket packet)
         {
-            Console.WriteLine("Recieved hardware ID: " + packet.Objects[0]);
             client.HardwareId = packet.Objects[0];
 
             // Check if this player is hardware banned and kick them if so
@@ -95,6 +95,8 @@ namespace AO2Sharp.Protocol
             // TODO: Determine if this is needed because it's retarded
             client.Send(new AOPacket("OPPASS", Server.ServerConfiguration.ModPassword));
             client.Send(new AOPacket("DONE"));
+
+            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the server.");
         }
 
         [MessageHandler("CH")]
@@ -164,6 +166,7 @@ namespace AO2Sharp.Protocol
                 return;
 
             client.Area.Broadcast(validPacket);
+            Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
         }
 
         [MessageHandler("CT")]
@@ -177,6 +180,7 @@ namespace AO2Sharp.Protocol
             }
 
             client.Area.Broadcast(packet);
+            Server.Logger.OocMessageLog(message, client.Area, packet.Objects[0]);
         }
 
         [MessageHandler("HP")]

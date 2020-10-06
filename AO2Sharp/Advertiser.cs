@@ -24,7 +24,7 @@ namespace AO2Sharp
             }
             catch (SocketException e)
             {
-                Console.WriteLine("Advertiser disconnected: " + e.Message);
+                Server.Logger.Log(LogSeverity.Error, "Advertiser disconnected: " + e.Message);
             }
         }
 

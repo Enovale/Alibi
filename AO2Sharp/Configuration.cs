@@ -19,6 +19,7 @@ namespace AO2Sharp
         public string MasterServerAddress = "master.aceattorneyonline.com";
         public int MasterServerPort = 27016;
         public int LogBufferSize = 500;
+        public bool VerboseLogs = false;
 
         public bool Advertise = true;
         public int MaxPlayers = 100;
