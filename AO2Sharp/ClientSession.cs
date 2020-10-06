@@ -17,7 +17,7 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
-            Console.WriteLine("Session connected: " + Socket.RemoteEndPoint);
+            AO2Sharp.Server.Logger.Log(LogSeverity.Info, "Session connected: " + Socket.RemoteEndPoint, true);
             Client = new Client(Server as Server, this, IPAddress.Parse(((IPEndPoint)Socket.RemoteEndPoint).Address.ToString()));
             Client.LastAlive = DateTime.Now;
 
@@ -27,7 +27,7 @@ namespace AO2Sharp
 
         protected override void OnDisconnected()
         {
-            Console.WriteLine("Session terminated.");
+            AO2Sharp.Server.Logger.Log(LogSeverity.Info, "Session terminated.", true);
 
             ((Server)Server).ClientsConnected.Remove(Client);
             if (Client.Connected)
@@ -47,7 +47,6 @@ namespace AO2Sharp
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
-                Console.WriteLine("Message recieved from " + Socket.RemoteEndPoint + ", message: " + packet);
                 MessageHandler.HandleMessage(Client, AOPacket.FromMessage(packet));
             }
             Client.LastAlive = DateTime.Now;

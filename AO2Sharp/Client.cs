@@ -89,8 +89,6 @@ namespace AO2Sharp
         public void Send(AOPacket packet)
         {
             Session.SendAsync(packet);
-
-            Console.WriteLine("Send message to " + IpAddress + ": " + packet);
         }
 
         public void SendOocMessage(string message)

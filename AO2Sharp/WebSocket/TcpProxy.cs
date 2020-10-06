@@ -1,6 +1,8 @@
-﻿using AO2Sharp.Helpers;
+﻿using System;
+using AO2Sharp.Helpers;
 using NetCoreServer;
 using System.Net;
+using System.Text;
 
 namespace AO2Sharp.WebSocket
 {
@@ -27,7 +29,12 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            _session.SendTextAsync(buffer, offset, size);
+            string msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
+            string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
+            foreach (var packet in packets)
+            {
+                _session.SendTextAsync(packet);
+            }
         }
     }
 }

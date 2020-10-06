@@ -24,7 +24,7 @@ namespace AO2Sharp.Protocol
             }
             else
             {
-                Console.WriteLine($"Unknown client message: '{packet.Type}'");
+                Server.Logger.Log(LogSeverity.Warning, $"Unknown client message: '{packet.Type}'", true);
             }
         }
 

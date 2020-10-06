@@ -21,8 +21,10 @@ namespace AO2Sharp
         /// <param name="severity">Normal debug severities, though Special is for info that is
         /// more relevant to server owners.</param>
         /// <param name="message">The message to log</param>
-        public void Log(LogSeverity severity, string message)
+        public void Log(LogSeverity severity, string message, bool verbose = false)
         {
+            if (verbose && !Server.ServerConfiguration.VerboseLogs)
+                return;
             Console.ForegroundColor = severity switch
             {
                 LogSeverity.Info => ConsoleColor.White,
