@@ -14,8 +14,8 @@ These packets are implemented:
 - [X] PW
 - [X] CharsCheck
 - [X] CC
-- [ ] MS
-- [ ] MC
+- [X] MS
+- [X] MC
 - [ ] RT
 - [X] CT
 - [X] HP
@@ -32,7 +32,6 @@ Some shit that needs to get done
 
 - [X] Areas
 - [ ] Commands
-- [ ] Logging architecture
+- [X] Logging architecture
 - [ ] Database
-- [ ] Console logging system
 - [ ] More shit lol
