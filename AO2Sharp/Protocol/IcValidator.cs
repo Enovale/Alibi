@@ -107,7 +107,7 @@ namespace AO2Sharp.Protocol
                 return invalid;
 
             // Make sure chat color is valid
-            string allowedColors = "0123456";
+            string allowedColors = "012345678";
             if (!allowedColors.Contains(packet.Objects[14]))
                 return invalid;
             validatedObjects.Add(packet.Objects[14]);

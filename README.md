@@ -30,8 +30,17 @@ These packets are implemented:
 # TODO
 Some shit that needs to get done
 
+- [ ] Plugins
 - [X] Areas
 - [ ] Commands
 - [X] Logging architecture
 - [ ] Database
 - [ ] More shit lol
+
+# Plugins
+
+I plan to have a system where you build a class library with a reference to AO2Sharp.dll, and make a class that inherits from PluginBase.
+
+This class will have overrides for some server functions, and it's constructor will be called after server initialization. It'll also let you
+define more packet handlers and commands, and even override existing ones. Still trying to brainstorm how this will work and figure out
+how to actually execute it because im not super big brained at reflection.
