@@ -4,7 +4,11 @@ using System.Text;
 
 namespace AO2Sharp.Plugins
 {
-    class PluginBase
+    public abstract class PluginBase
     {
+        public PluginBase(Server server)
+        {
+            // stub
+        }
     }
 }

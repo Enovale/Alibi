@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
-    internal class Logger
+    public class Logger
     {
         public const string LogsFolder = "Logs";
 

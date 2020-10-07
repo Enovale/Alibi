@@ -4,7 +4,7 @@ using System.Net;
 
 namespace AO2Sharp
 {
-    internal class Client
+    public class Client
     {
         public ClientSession Session { get; private set; }
         public Server Server { get; private set; }

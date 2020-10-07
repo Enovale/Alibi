@@ -15,6 +15,12 @@ namespace AO2Sharp.Commands
             client.SendOocMessage(finalResponse);
         }
 
+        [CommandHandler("pc", "Shows the player count.")]
+        internal static void PlayerCount(Client client, string[] args)
+        {
+            client.SendOocMessage($"{client.Area.PlayerCount} players in this Area.");
+        }
+
         [CommandHandler("getlogs", "Retrieves the server logs and dumps them.")]
         internal static void GetLogs(Client client, string[] args)
         {
