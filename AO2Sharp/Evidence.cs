@@ -1,6 +1,6 @@
 ﻿namespace AO2Sharp
 {
-    internal class Evidence
+    public class Evidence
     {
         public string Name;
         public string Description;

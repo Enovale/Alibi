@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AO2Sharp
 {
-    internal class ClientSession : TcpSession
+    public class ClientSession : TcpSession
     {
         public Client Client { get; private set; }
 

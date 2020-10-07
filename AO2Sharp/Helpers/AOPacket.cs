@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AO2Sharp.Helpers
 {
-    internal class AOPacket
+    public class AOPacket
     {
         public string Type;
         public string[] Objects;

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
-    internal class Server : TcpServer
+    public class Server : TcpServer
     {
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
