@@ -1,5 +1,6 @@
 ﻿using AO2Sharp.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -178,9 +179,10 @@ namespace AO2Sharp.Protocol
             if (message.StartsWith("/"))
             {
                 string command = message.Substring(1).Trim();
-                string[] arguments = message.Split(" ");
+                List<string> arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+                arguments.RemoveAt(0);
 
-                CommandHandler.HandleMessage(client, command, arguments);
+                CommandHandler.HandleMessage(client, command, arguments.ToArray());
                 return;
             }
 
