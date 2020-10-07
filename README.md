@@ -32,7 +32,7 @@ Some shit that needs to get done
 
 - [ ] Plugins
 - [X] Areas
-- [ ] Commands
+- [X] Commands (Actual commands themselves need to be made though)
 - [X] Logging architecture
 - [ ] Database
 - [ ] More shit lol
