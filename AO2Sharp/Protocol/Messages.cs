@@ -1,10 +1,9 @@
-﻿using AO2Sharp.Helpers;
+﻿using AO2Sharp.Commands;
+using AO2Sharp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
-using AO2Sharp.Commands;
 
 namespace AO2Sharp.Protocol
 {
