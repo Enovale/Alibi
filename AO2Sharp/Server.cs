@@ -126,8 +126,8 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            AOPacket msgPacket = new AOPacket("CT", new[] {"Server", message, "1"});
-            Broadcast(msgPacket); 
+            AOPacket msgPacket = new AOPacket("CT", new[] { "Server", message, "1" });
+            Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 

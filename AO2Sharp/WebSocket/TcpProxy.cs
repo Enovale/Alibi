@@ -1,6 +1,6 @@
-﻿using System;
-using AO2Sharp.Helpers;
+﻿using AO2Sharp.Helpers;
 using NetCoreServer;
+using System;
 using System.Net;
 using System.Text;
 

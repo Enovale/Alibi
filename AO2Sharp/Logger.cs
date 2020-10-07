@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
     internal class Logger
     {
-        private Server _server;
+        public const string LogsFolder = "Logs";
 
+        private Server _server;
         private Queue<string> _logBuffer = new Queue<string>(Server.ServerConfiguration.LogBufferSize);
 
         public Logger(Server server)
@@ -62,6 +65,22 @@ namespace AO2Sharp
             string areaName = area == null ? "Global" : area.Name;
             string person = name == null ? "Server" : name;
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
+        }
+
+        public async Task<bool> Dump()
+        {
+            if (!Directory.Exists(LogsFolder))
+                Directory.CreateDirectory(LogsFolder);
+
+            if (_logBuffer.Count == 0)
+                return false;
+
+            var logDump = File.CreateText(Path.Combine(LogsFolder, $"server_{DateTime.Now:dd-M_HH-mm}.log"));
+            while (_logBuffer.Count > 0)
+                await logDump.WriteLineAsync(_logBuffer.Dequeue());
+            await logDump.FlushAsync();
+            logDump.Close();
+            return true;
         }
     }
 }
