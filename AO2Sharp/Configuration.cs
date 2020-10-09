@@ -38,7 +38,7 @@ namespace AO2Sharp
             if (!Directory.Exists(Server.ConfigFolder))
                 Directory.CreateDirectory(Server.ConfigFolder);
             var jsonSettings = new JsonSerializerSettings();
-            jsonSettings.Converters.Add(new IPConverter());
+            jsonSettings.Converters.Add(new IpConverter());
             jsonSettings.Formatting = Formatting.Indented;
             File.WriteAllText(path, JsonConvert.SerializeObject(this, jsonSettings));
         }
@@ -46,7 +46,7 @@ namespace AO2Sharp
         public static Configuration LoadFromFile(string path)
         {
             var jsonSettings = new JsonSerializerSettings();
-            jsonSettings.Converters.Add(new IPConverter());
+            jsonSettings.Converters.Add(new IpConverter());
             var conf = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path), jsonSettings);
             File.WriteAllText(path, JsonConvert.SerializeObject(conf, jsonSettings));
             return conf;
