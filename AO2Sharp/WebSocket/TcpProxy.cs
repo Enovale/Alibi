@@ -17,6 +17,11 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnConnected()
         {
+            if (_session.IsDisposed || _session.IsSocketDisposed)
+            {
+                Disconnect();
+                return;
+            }
             IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
             if (IPAddress.IsLoopback(ip))
                 Send(new AOPacket("WSIP", ip.ToString()));
@@ -29,6 +34,11 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
+            if (_session.IsDisposed || _session.IsSocketDisposed)
+            {
+                Disconnect();
+                return;
+            }
             string msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
