@@ -71,6 +71,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RD")]
         internal static void Ready(Client client, AOPacket packet)
         {
+            // This client didn't send us a hwid, need to kick
             if (string.IsNullOrWhiteSpace(client.HardwareId))
             {
                 client.Session.Disconnect();
