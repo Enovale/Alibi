@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using AO2Sharp.Database;
 
 namespace AO2Sharp
 {
@@ -35,11 +36,13 @@ namespace AO2Sharp
 
         private Advertiser _advertiser;
         private WebSocketProxy _wsProxy;
+        private DatabaseManager _database;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
             ServerConfiguration = config;
             Logger = new Logger(this);
+            _database = new DatabaseManager();
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;

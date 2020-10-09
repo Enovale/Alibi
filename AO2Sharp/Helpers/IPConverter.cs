@@ -4,7 +4,7 @@ using System.Net;
 
 namespace AO2Sharp.Helpers
 {
-    public class IPConverter : JsonConverter<IPAddress>
+    public class IpConverter : JsonConverter<IPAddress>
     {
         public override void WriteJson(JsonWriter writer, IPAddress value, JsonSerializer serializer)
         {
