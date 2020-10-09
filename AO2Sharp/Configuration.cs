@@ -7,7 +7,7 @@ using System.Net;
 namespace AO2Sharp
 {
     [Serializable]
-    internal class Configuration
+    public class Configuration
     {
         public string ServerName = "Test Server";
         public string ServerDescription = "Example server description.";

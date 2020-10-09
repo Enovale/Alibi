@@ -1,29 +1,28 @@
-﻿using AO2Sharp.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace AO2Sharp.Protocol
+namespace AO2Sharp.Commands
 {
-    internal static class MessageHandler
+    internal static class CommandHandler
     {
-        private static readonly Dictionary<string, Handler> _handlers = new Dictionary<string, Handler>();
+        internal static readonly Dictionary<string, Handler> _handlers = new Dictionary<string, Handler>();
 
-        internal delegate void Handler(Client client, AOPacket packet);
+        internal delegate void Handler(Client client, string[] args);
 
-        static MessageHandler()
+        static CommandHandler()
         {
             AddHandlers();
         }
 
-        public static void HandleMessage(Client client, AOPacket packet)
+        public static void HandleMessage(Client client, string command, string[] args)
         {
-            if (_handlers.ContainsKey(packet.Type))
+            if (_handlers.ContainsKey(command))
             {
-                _handlers[packet.Type](client, packet);
+                _handlers[command](client, args);
             }
             else
             {
-                Server.Logger.Log(LogSeverity.Warning, $"Unknown client message: '{packet.Type}'", true);
+                client.SendOocMessage("Unknown command. Type /help for a list of commands.");
             }
         }
 
@@ -45,10 +44,10 @@ namespace AO2Sharp.Protocol
                 {
                     if (method.IsStatic)
                     {
-                        var attr = method.GetCustomAttribute<MessageHandlerAttribute>();
+                        var attr = method.GetCustomAttribute<CommandHandlerAttribute>();
 
                         if (attr != null)
-                            RegisterMessageHandler(attr.MessageName, (Handler)method.CreateDelegate(typeof(Handler)));
+                            RegisterMessageHandler(attr.Command, (Handler)method.CreateDelegate(typeof(Handler)));
                     }
                 }
             }

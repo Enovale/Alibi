@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
-    internal class Server : TcpServer
+    public class Server : TcpServer
     {
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
@@ -126,8 +126,8 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            AOPacket msgPacket = new AOPacket("CT", new[] {"Server", message, "1"});
-            Broadcast(msgPacket); 
+            AOPacket msgPacket = new AOPacket("CT", new[] { "Server", message, "1" });
+            Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 
