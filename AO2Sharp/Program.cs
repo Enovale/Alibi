@@ -1,7 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
+using System.Reflection;
 
 namespace AO2Sharp
 {
@@ -13,19 +13,21 @@ namespace AO2Sharp
                 new Configuration().SaveToFile(Server.ConfigPath);
             var server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
             Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
+            Console.Title = "AO2Sharp - Running";
             server.Start();
 
             AppDomain.CurrentDomain.ProcessExit += DumpLogsAndExit;
             AppDomain.CurrentDomain.UnhandledException += DumpLogsAndExit;
-            
+
             while (true) ;
         }
 
         static void DumpLogsAndExit(object? sender, EventArgs eventArgs)
         {
+            Console.Title = "AO2Sharp - Crashed";
             if (eventArgs.GetType() == typeof(UnhandledExceptionEventArgs))
             {
-                var error = (Exception) ((UnhandledExceptionEventArgs) eventArgs).ExceptionObject;
+                var error = (Exception)((UnhandledExceptionEventArgs)eventArgs).ExceptionObject;
                 Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
             }
             Server.Logger.Dump();

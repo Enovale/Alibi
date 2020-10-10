@@ -2,7 +2,9 @@
 using AO2Sharp.Protocol;
 using NetCoreServer;
 using System;
+using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 namespace AO2Sharp
@@ -17,8 +19,12 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
-            AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Session connected: " + Socket.RemoteEndPoint, true);
-            Client = new Client(Server as Server, this, IPAddress.Parse(((IPEndPoint)Socket.RemoteEndPoint).Address.ToString()));
+            var ip = ((IPEndPoint) Socket.RemoteEndPoint).Address;
+            if(AO2Sharp.Server.ServerConfiguration.Advertise && ip.Equals(AO2Sharp.Server.MasterServerIp))
+                AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
+            else
+                AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Session connected: " + Socket.RemoteEndPoint, true);
+            Client = new Client(Server as Server, this, ip);
             Client.LastAlive = DateTime.Now;
 
             // fuck fantaencrypt

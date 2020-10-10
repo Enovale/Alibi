@@ -12,15 +12,12 @@ namespace AO2Sharp
     {
         private Socket Socket;
 
-        public Advertiser(string masterServer, int port)
+        public Advertiser(IPAddress ip, int port)
         {
-            IPHostEntry ipHostInfo = Dns.GetHostEntry(masterServer);
-            IPAddress ipAddress = ipHostInfo.AddressList.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
-
             try
             {
-                Socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                Socket.BeginConnect(new IPEndPoint(ipAddress, port), OnConnect, Socket);
+                Socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                Socket.BeginConnect(new IPEndPoint(ip, port), OnConnect, Socket);
             }
             catch (SocketException e)
             {
