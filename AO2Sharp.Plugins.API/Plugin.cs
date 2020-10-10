@@ -12,6 +12,7 @@ namespace AO2Sharp.Plugins.API
         public abstract void Initialize(IPluginManager manager);
 
         public virtual void OnAllPluginsLoaded() { }
+        public virtual void OnModCall(IClient caller, string reason) { }
 
         private Queue<string> _logBuffer = new Queue<string>(500);
 

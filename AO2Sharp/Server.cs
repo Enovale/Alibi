@@ -194,6 +194,11 @@ namespace AO2Sharp
             });
         }
 
+        public void OnModCall(Client client, AOPacket packet)
+        {
+            _pluginManager.GetAllPlugins().ForEach(p => p.OnModCall(client, packet.Objects[0]));
+        }
+
         protected override TcpSession CreateSession()
         {
             return new ClientSession(this);

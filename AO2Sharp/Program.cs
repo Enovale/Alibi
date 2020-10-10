@@ -23,9 +23,10 @@ namespace AO2Sharp
 
         static void DumpLogsAndExit(object? sender, EventArgs eventArgs)
         {
-            Console.Title = "AO2Sharp - Crashed";
+            Console.Title = "AO2Sharp - Stopping";
             if (eventArgs.GetType() == typeof(UnhandledExceptionEventArgs))
             {
+                Console.Title = "AO2Sharp - Crashed";
                 var error = (Exception)((UnhandledExceptionEventArgs)eventArgs).ExceptionObject;
                 Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
             }

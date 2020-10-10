@@ -24,6 +24,9 @@ namespace AO2Sharp.Plugins
         public dynamic RequestPluginInstance(string id)
             => Registry.GetPluginInstance(id);
 
+        public string GetConfigFolder(string id)
+            => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
+
         public List<Plugin> GetAllPlugins()
             => Registry.RegisteredPlugins;
 

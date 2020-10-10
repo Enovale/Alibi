@@ -19,6 +19,8 @@ namespace AO2Sharp
         // I dont think this needs to be stored
         // public string ShowName { get; internal set; }
         public Area Area { get; internal set; }
+        public IArea IArea => (IArea) Area;
+
         public string Password { get; internal set; }
         public int? Character { get; internal set; }
         public string LastSentMessage { get; internal set; }

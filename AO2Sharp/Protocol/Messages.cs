@@ -295,6 +295,8 @@ namespace AO2Sharp.Protocol
                 if (c.Authed)
                     c.Send(packetToSend);
             }
+
+            client.Server.OnModCall(client, packet);
         }
 
         [MessageHandler("WSIP")]

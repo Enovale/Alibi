@@ -45,7 +45,7 @@ namespace AO2Sharp.Protocol
             // Make sure message is sanitized(eventually) and prevent double messages
             // TODO: Sanitization and zalgo cleaning
             string sentMessage = packet.Objects[4].Trim();
-            if (sentMessage == client.LastSentMessage)
+            if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
                 return invalid;
             client.LastSentMessage = sentMessage;
             validatedObjects.Add(sentMessage);
