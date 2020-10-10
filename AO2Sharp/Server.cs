@@ -123,8 +123,11 @@ namespace AO2Sharp
                 {
                     var client = clientQueue.Dequeue();
                     if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
+                    {
+                        Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
                         // Forcibly kick.
                         client.Session.Disconnect();
+                    }
                 }
                 await delayTask; // wait until at least 10s elapsed since delayTask created
             }

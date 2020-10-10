@@ -22,8 +22,6 @@ namespace AO2Sharp
             var ip = ((IPEndPoint) Socket.RemoteEndPoint).Address;
             if(AO2Sharp.Server.ServerConfiguration.Advertise && ip.Equals(AO2Sharp.Server.MasterServerIp))
                 AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
-            else
-                AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Session connected: " + Socket.RemoteEndPoint, true);
             Client = new Client(Server as Server, this, ip);
             Client.LastAlive = DateTime.Now;
 
@@ -33,8 +31,6 @@ namespace AO2Sharp
 
         protected override void OnDisconnected()
         {
-            AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Session terminated.", true);
-
             ((Server)Server).ClientsConnected.Remove(Client);
             if (Client.Connected)
             {
