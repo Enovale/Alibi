@@ -18,33 +18,80 @@ namespace AO2Sharp.Protocol
 
             // Check if this player is hardware banned and kick them if so
             // Also probably check if the max players is reached and kick them
-            client.Send(new AOPacket("ID", new[] { "111111", "AO2Sharp", Server.Version }));
+            client.Send(new AOPacket("ID", "111111", "AO2Sharp", Server.Version));
         }
 
         [MessageHandler("ID")]
         internal static void SoftwareId(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("PN", new[]
-                {
-                    client.Server.ConnectedPlayers.ToString(),
-                    Server.ServerConfiguration.MaxPlayers.ToString()
-                }
-            ));
+            client.Send(new AOPacket("PN", client.Server.ConnectedPlayers.ToString(), Server.ServerConfiguration.MaxPlayers.ToString()));
             client.Send(new AOPacket("FL", new[]
             {
                 "noencryption", "fastloading"
             }.Concat(Server.ServerConfiguration.FeatureList).ToArray()));
         }
 
+        // Slow loading, ugh.
+        [MessageHandler("askchar2")]
+        internal static void RequestCharactersSlow(Client client, AOPacket packet)
+        {
+            RequestCharacterPageSlow(client, new AOPacket("AN", "0"));
+        }
+
+        [MessageHandler("AN")]
+        internal static void RequestCharacterPageSlow(Client client, AOPacket packet)
+        {
+            // According to current client
+            int page = int.Parse(packet.Objects[0]);
+            int pageSize = 10 * 9;
+            int pageOffset = pageSize * page;
+
+            if (pageOffset >= Server.CharactersList.Length)
+            {
+                client.Send(new AOPacket("EI", page.ToString(), ""));
+                return;
+            }
+
+            var finalPacket = new AOPacket("CI",
+                Server.CharactersList.Skip(pageOffset).TakeWhile((c, i) => i < Server.CharactersList.Length).ToArray());
+            client.Send(finalPacket);
+        }
+
+        [MessageHandler("AE")]
+        internal static void RequestEvidenceSlow(Client client, AOPacket packet)
+        {
+            if (int.TryParse(packet.Objects[0], out int index))
+            {
+                index = Math.Max(0, Math.Min(client.Server.EvidenceList.Count, index));
+
+                client.Send(new AOPacket("EI", index.ToString(), client.Server.EvidenceList[index].ToPacket()));
+            }
+        }
+
+        [MessageHandler("AM")]
+        internal static void RequestMusicSlow(Client client, AOPacket packet)
+        {
+            if (int.TryParse(packet.Objects[0], out int index))
+            {
+                index = Math.Max(0, index);
+
+                var musicList = Server.MusicList.ToList();
+                var categories = musicList.Split(m => m.Contains(".")).ToArray();
+
+                if (index >= categories.Length)
+                {
+                    Ready(client, new AOPacket("RD"));
+                    return;
+                }
+
+                client.Send(new AOPacket("EM", new[] { index.ToString() }.Concatenate(categories[index].ToArray())));
+            }
+        }
+
         [MessageHandler("askchaa")]
         internal static void RequestResourceCounts(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("SI", new[]
-            {
-                Server.CharactersList.Length.ToString(),
-                client.Server.EvidenceList.Count.ToString(),
-                (client.Server.Areas.Length + Server.MusicList.Length).ToString()
-            }));
+            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(), client.Server.EvidenceList.Count.ToString(), (client.Server.Areas.Length + Server.MusicList.Length).ToString()));
         }
 
         [MessageHandler("RC")]
@@ -62,6 +109,30 @@ namespace AO2Sharp.Protocol
                 evidenceList += e.ToPacket();
             });
             client.Send(new AOPacket("LE", evidenceList));
+        }
+
+        [MessageHandler("PE")]
+        internal static void AddEvidence(Client client, AOPacket packet)
+        {
+            client.Server.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
+        }
+
+        [MessageHandler("DE")]
+        internal static void RemoveEvidence(Client client, AOPacket packet)
+        {
+            if (int.TryParse(packet.Objects[0], out int id))
+                client.Server.EvidenceList.RemoveAt(id);
+        }
+
+        [MessageHandler("EE")]
+        internal static void EditEvidence(Client client, AOPacket packet)
+        {
+            if (int.TryParse(packet.Objects[0], out int id))
+            {
+                id = Math.Max(0, Math.Min(client.Server.EvidenceList.Count, id));
+
+                client.Server.EvidenceList[id] = new Evidence(packet.Objects[1], packet.Objects[2], packet.Objects[3]);
+            }
         }
 
         [MessageHandler("RM")]
@@ -91,10 +162,10 @@ namespace AO2Sharp.Protocol
             // Tell all the other clients that someone has joined
             client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
 
-            client.Send(new AOPacket("HP", new[] { "1", client.Area.DefendantHp.ToString() }));
-            client.Send(new AOPacket("HP", new[] { "2", client.Area.ProsecutorHp.ToString() }));
+            client.Send(new AOPacket("HP", "1", client.Area.DefendantHp.ToString()));
+            client.Send(new AOPacket("HP", "2", client.Area.ProsecutorHp.ToString()));
             client.Send(new AOPacket("FA", client.Server.AreaNames));
-            client.Send(new AOPacket("BN", client.Area.Background));
+            client.Send(new AOPacket("BN", client.Area.Background, client.Area.BackgroundPosition.ToString()));
             // TODO: Determine if this is needed because it's retarded
             // WebAO doesn't use it so im gonna assume its not
             //client.Send(new AOPacket("OPPASS", Server.ServerConfiguration.ModPassword));
@@ -137,7 +208,7 @@ namespace AO2Sharp.Protocol
                 client.Character = charId;
                 client.Area.UpdateTakenCharacters();
 
-                client.Send(new AOPacket("PV", new[] { "111111", "CID", charId.ToString() }));
+                client.Send(new AOPacket("PV", "111111", "CID", charId.ToString()));
             }
         }
 
@@ -204,6 +275,25 @@ namespace AO2Sharp.Protocol
                     client.Area.ProsecutorHp = Math.Max(0, Math.Min(hp, 10));
 
                 client.Area.Broadcast(packet);
+            }
+        }
+
+        [MessageHandler("RT")]
+        internal static void JudgeAnimation(Client client, AOPacket packet)
+        {
+            client.Area.Broadcast(packet);
+        }
+
+        [MessageHandler("ZZ")]
+        internal static void ModCall(Client client, AOPacket packet)
+        {
+            Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] {Server.CharactersList[(int)client.Character]} called for mod with reasoning: {packet.Objects[0]}");
+            var packetToSend = new AOPacket(packet.Type, $"Someone has called mod in the {client.Area.Name} area, with reasoning: {packet.Objects[0]}");
+
+            foreach (var c in new Queue<Client>(client.Server.ClientsConnected))
+            {
+                if (c.Authed)
+                    c.Send(packetToSend);
             }
         }
 

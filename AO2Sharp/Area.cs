@@ -12,6 +12,7 @@ namespace AO2Sharp
         {
             Name = "Test Area",
             Background = "gs4",
+            BackgroundPosition = 0,
             BackgroundLocked = false,
             Locked = false,
             IniSwappingAllowed = true
@@ -19,6 +20,7 @@ namespace AO2Sharp
 
         public string Name;
         public string Background;
+        public int BackgroundPosition;
         public bool Locked;
         public bool BackgroundLocked;
         public bool IniSwappingAllowed;
@@ -50,7 +52,7 @@ namespace AO2Sharp
 
         internal void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", new[] { "Server", message, "1" }));
+            Broadcast(new AOPacket("CT", "Server", message, "1"));
         }
 
         /// <summary>

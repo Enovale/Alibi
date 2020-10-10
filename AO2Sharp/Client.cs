@@ -66,10 +66,10 @@ namespace AO2Sharp
             Area.PlayerCount++;
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
 
-            Send(new AOPacket("HP", new[] { "1", Area.DefendantHp.ToString() }));
-            Send(new AOPacket("HP", new[] { "2", Area.ProsecutorHp.ToString() }));
+            Send(new AOPacket("HP", "1", Area.DefendantHp.ToString()));
+            Send(new AOPacket("HP", "2", Area.ProsecutorHp.ToString()));
             Send(new AOPacket("FA", Server.AreaNames));
-            Send(new AOPacket("BN", Area.Background));
+            Send(new AOPacket("BN", Area.Background, Area.BackgroundPosition.ToString()));
 
             if (Character != null)
             {
@@ -124,12 +124,20 @@ namespace AO2Sharp
 
         public void Send(AOPacket packet)
         {
+            if (packet.Objects != null)
+            {
+                for (var i = 0; i < packet.Objects.Length; i++)
+                {
+                    packet.Objects[i] = packet.Objects[i].EncodeToAOPacket();
+                }
+            }
+
             Session.SendAsync(packet);
         }
 
         public void SendOocMessage(string message)
         {
-            Send(new AOPacket("CT", new[] { "Server", message, "1" }));
+            Send(new AOPacket("CT", "Server", message, "1"));
         }
     }
 }
