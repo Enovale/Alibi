@@ -58,7 +58,7 @@ namespace AO2Sharp.Database
                 return false;
             }
 
-            var newUser = new User()
+            var newUser = new User
             {
                 Banned = false,
                 BanReason = "",
