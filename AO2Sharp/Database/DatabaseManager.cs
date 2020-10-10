@@ -1,8 +1,11 @@
 ﻿using SQLite;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Threading.Tasks;
 
 namespace AO2Sharp.Database
 {
@@ -11,7 +14,7 @@ namespace AO2Sharp.Database
         public const string DatabaseFolder = "Database";
         public static readonly string DatabasePath = Path.Combine(DatabaseFolder, "database.db");
 
-        private SQLiteConnection _sql;
+        private SQLiteConnectionWithLock _sql;
 
         public DatabaseManager()
         {
@@ -19,7 +22,7 @@ namespace AO2Sharp.Database
                 Directory.CreateDirectory(DatabaseFolder);
             if (!File.Exists(DatabasePath))
                 File.Create(DatabasePath).Close();
-            _sql = new SQLiteConnection(DatabasePath);
+            _sql = new SQLiteConnectionWithLock(new SQLiteConnectionString(DatabasePath));
             _sql.CreateTable<User>();
             _sql.CreateTable<Login>();
 
@@ -33,7 +36,6 @@ namespace AO2Sharp.Database
 
         public bool AddUser(string hdid, string ip)
         {
-            EnsureFree();
             var query = _sql.Table<User>().Where(u => u.Hdid == hdid);
             var list = query.ToArray();
 
@@ -69,7 +71,6 @@ namespace AO2Sharp.Database
 
         public void ChangeIp(string hdid, string oldIp, string newIp)
         {
-            EnsureFree();
             var user = _sql.Table<User>().First(u => u.Hdid == hdid);
             if (user.Ips.Contains(oldIp))
                 user.Ips = user.Ips.Replace(oldIp, newIp);
@@ -81,31 +82,26 @@ namespace AO2Sharp.Database
 
         public string GetHdidfromIp(string ip)
         {
-            EnsureFree();
             return _sql.Table<User>().First(u => u.Ips.Contains(ip)).Hdid;
         }
 
         public bool IsHdidBanned(string hdid)
         {
-            EnsureFree();
             return _sql.Table<User>().Any(u => u.Banned && u.Hdid == hdid);
         }
 
         public bool IsIpBanned(string ip)
         {
-            EnsureFree();
             return IsHdidBanned(GetHdidfromIp(ip));
         }
 
         public string GetBanReason(string ip)
         {
-            EnsureFree();
             return _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
         }
 
         public void BanHdid(string hdid, string reason)
         {
-            EnsureFree();
             var user = _sql.Table<User>().First(u => u.Hdid == hdid);
             user.Banned = true;
             user.BanReason = reason;
@@ -115,13 +111,11 @@ namespace AO2Sharp.Database
 
         public void BanIp(string ip, string reason)
         {
-            EnsureFree();
             BanHdid(GetHdidfromIp(ip), reason);
         }
 
         public void UnbanHdid(string hdid)
         {
-            EnsureFree();
             var user = _sql.Table<User>().First(u => u.Hdid == hdid);
             user.Banned = false;
 
@@ -130,13 +124,11 @@ namespace AO2Sharp.Database
 
         public void UnbanIp(string ip)
         {
-            EnsureFree();
             UnbanHdid(GetHdidfromIp(ip));
         }
 
         public bool AddLogin(string username, string password)
         {
-            EnsureFree();
             if (_sql.Table<Login>().Any(l => l.UserName.ToLower() == username.ToLower()))
                 return false;
 
@@ -152,7 +144,6 @@ namespace AO2Sharp.Database
 
         public bool RemoveLogin(string username)
         {
-            EnsureFree();
             if (_sql.Delete<Login>(username) == 0)
                 return false;
 
@@ -161,7 +152,6 @@ namespace AO2Sharp.Database
 
         public bool CheckCredentials(string username, string password)
         {
-            EnsureFree();
             var logins = _sql.Table<Login>().Where(l => l.UserName == username).ToArray();
 
             if (logins.Length <= 0)
@@ -172,11 +162,6 @@ namespace AO2Sharp.Database
                 return true;
 
             return false;
-        }
-
-        private void EnsureFree()
-        {
-            _sql.BusyTimeout = new TimeSpan(0, 0, 0, 0, 10);
         }
     }
 }

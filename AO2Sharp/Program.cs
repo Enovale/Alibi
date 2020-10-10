@@ -25,7 +25,7 @@ namespace AO2Sharp
             if (eventArgs.GetType() == typeof(UnhandledExceptionEventArgs))
             {
                 var error = (Exception) ((UnhandledExceptionEventArgs) eventArgs).ExceptionObject;
-                Server.Logger.Log(LogSeverity.Error, error.Message + "\n" + error.StackTrace);
+                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
             }
             Server.Logger.Dump();
             Environment.Exit(0);
