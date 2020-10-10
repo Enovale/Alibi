@@ -1,11 +1,12 @@
 ﻿using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
-    public class Client
+    public class Client : IClient
     {
         public ClientSession Session { get; private set; }
         public Server Server { get; private set; }
@@ -133,6 +134,11 @@ namespace AO2Sharp
             }
 
             Session.SendAsync(packet);
+        }
+
+        public void Send(IAOPacket packetInterface)
+        {
+            Send((AOPacket)packetInterface);
         }
 
         public void SendOocMessage(string message)

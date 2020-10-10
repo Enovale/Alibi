@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\netcoreapp3.1\Plugins\&quot; /S /Y" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AO2Sharp.Plugins.API\AO2Sharp.Plugins.API.csproj" />
+  </ItemGroup>
+
+</Project>

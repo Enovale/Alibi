@@ -1,6 +1,5 @@
 ﻿using AO2Sharp.Helpers;
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -35,10 +34,10 @@ namespace AO2Sharp
             else
                 ports = Server.ServerConfiguration.Port + "&" + Server.ServerConfiguration.WebsocketPort;
 
-            Socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC", 
-                ports, 
-                Server.ServerConfiguration.ServerName, 
-                Server.ServerConfiguration.ServerDescription, 
+            Socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
+                ports,
+                Server.ServerConfiguration.ServerName,
+                Server.ServerConfiguration.ServerDescription,
                 $"AO2Sharp v{Server.Version}"
             )));
         }

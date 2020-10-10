@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AO2Sharp.Plugins.API;
+using System;
 using System.Linq;
 
 namespace AO2Sharp.Helpers
 {
-    public class AOPacket
+    public class AOPacket : IAOPacket
     {
-        public string Type;
-        public string[] Objects;
+        public string Type { get; set; }
+        public string[] Objects { get; set; }
 
         public AOPacket(string type, params string[] objects)
         {
