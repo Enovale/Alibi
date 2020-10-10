@@ -23,6 +23,7 @@ namespace AO2Sharp.Database
             if (!File.Exists(DatabasePath))
                 File.Create(DatabasePath).Close();
             _sql = new SQLiteConnectionWithLock(new SQLiteConnectionString(DatabasePath));
+            _sql.Lock();
             _sql.CreateTable<User>();
             _sql.CreateTable<Login>();
 
@@ -50,7 +51,7 @@ namespace AO2Sharp.Database
                 string[] ips = list.First().Ips.Split(";");
                 if (!ips.Contains(ip))
                 {
-                    list.First().Ips += ip + ";";
+                    list.First().Ips += ";" + ip;
                     return true;
                 }
                 return false;
@@ -75,7 +76,7 @@ namespace AO2Sharp.Database
             if (user.Ips.Contains(oldIp))
                 user.Ips = user.Ips.Replace(oldIp, newIp);
             else
-                user.Ips += newIp + ";";
+                user.Ips += ";" + newIp;
 
             _sql.Update(user);
         }
