@@ -24,6 +24,7 @@ namespace AO2Sharp
 
         public static Logger Logger;
         public static Configuration ServerConfiguration;
+        public static DatabaseManager Database;
         public static string[] MusicList;
         public static string[] CharactersList;
         public static string Version;
@@ -36,15 +37,14 @@ namespace AO2Sharp
 
         private Advertiser _advertiser;
         private WebSocketProxy _wsProxy;
-        private DatabaseManager _database;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
             ServerConfiguration = config;
             Logger = new Logger(this);
             Logger.Log(LogSeverity.Special, "Server starting up...");
-            _database = new DatabaseManager();
-            if (_database.CheckCredentials("admin", "ChangeThis"))
+            Database = new DatabaseManager();
+            if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning, " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -139,24 +139,35 @@ namespace AO2Sharp
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 
+        public bool AddUser(Client client)
+        {
+            return Database.AddUser(client.HardwareId, client.IpAddress.ToString());
+        }
+
         public bool CheckLogin(string username, string password)
         {
-            return _database.CheckCredentials(username, password);
+            return Database.CheckCredentials(username, password);
         }
 
         public bool AddLogin(string username, string password)
         {
-            return _database.AddLogin(username, password);
+            return Database.AddLogin(username, password);
         }
 
         public bool RemoveLogin(string username)
         {
-            return _database.RemoveLogin(username);
+            return Database.RemoveLogin(username);
         }
 
         protected override TcpSession CreateSession()
         {
             return new ClientSession(this);
+        }
+
+        protected override void OnStopped()
+        {
+            _advertiser.Stop();
+            _wsProxy.Stop();
         }
     }
 }
