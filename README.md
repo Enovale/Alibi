@@ -16,15 +16,15 @@ These packets are implemented:
 - [X] CC
 - [X] MS
 - [X] MC
-- [ ] RT
+- [X] RT
 - [X] CT
 - [X] HP
-- [ ] PE
-- [ ] DE
-- [ ] EE
+- [X] PE
+- [X] DE
+- [X] EE
 - [ ] SETCASE
 - [ ] CASEA
-- [ ] ZZ
+- [X] ZZ
 - [X] CH
 
 # TODO
