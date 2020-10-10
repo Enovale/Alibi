@@ -2,7 +2,6 @@
 using AO2Sharp.Protocol;
 using NetCoreServer;
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -19,8 +18,8 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
-            var ip = ((IPEndPoint) Socket.RemoteEndPoint).Address;
-            if(AO2Sharp.Server.ServerConfiguration.Advertise && ip.Equals(AO2Sharp.Server.MasterServerIp))
+            var ip = ((IPEndPoint)Socket.RemoteEndPoint).Address;
+            if (AO2Sharp.Server.ServerConfiguration.Advertise && ip.Equals(AO2Sharp.Server.MasterServerIp))
                 AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
             Client = new Client(Server as Server, this, ip);
             Client.LastAlive = DateTime.Now;

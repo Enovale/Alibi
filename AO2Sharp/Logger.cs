@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
@@ -24,11 +23,13 @@ namespace AO2Sharp
         /// <param name="severity">Normal debug severities, though Special is for info that is
         /// more relevant to server owners.</param>
         /// <param name="message">The message to log</param>
-        public void Log(LogSeverity severity, string message, bool verbose = false)
+        /// <param name="verbose">Should this only show when in verbose logs mode?</param>
+        /// <param name="color">Manually override the log color</param>
+        public void Log(LogSeverity severity, string message, bool verbose = false, ConsoleColor? color = null)
         {
             if (verbose && !Server.ServerConfiguration.VerboseLogs)
                 return;
-            Console.ForegroundColor = severity switch
+            Console.ForegroundColor = color ?? severity switch
             {
                 LogSeverity.Info => ConsoleColor.White,
                 LogSeverity.Special => ConsoleColor.Cyan,
@@ -81,6 +82,8 @@ namespace AO2Sharp
                 logDump.WriteLine(_logBuffer.Dequeue());
             logDump.Flush();
             logDump.Close();
+
+            _server.DumpPluginLogs();
             return true;
         }
     }

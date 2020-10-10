@@ -18,4 +18,8 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AO2Sharp.Plugins.API\AO2Sharp.Plugins.API.csproj" />
+  </ItemGroup>
+
 </Project>

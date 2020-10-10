@@ -1,5 +1,7 @@
 ﻿using AO2Sharp.Database;
 using AO2Sharp.Helpers;
+using AO2Sharp.Plugins;
+using AO2Sharp.Plugins.API;
 using AO2Sharp.WebSocket;
 using NetCoreServer;
 using Newtonsoft.Json;
@@ -15,8 +17,9 @@ using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
-    public class Server : TcpServer
+    public class Server : TcpServer, IServer
     {
+        public static string PluginFolder = "Plugins";
         public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName;
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
@@ -34,13 +37,19 @@ namespace AO2Sharp
         public static string Version;
 
         public readonly List<Client> ClientsConnected;
+
         public int ConnectedPlayers = 0;
         public readonly Area[] Areas;
         public readonly string[] AreaNames;
         public List<Evidence> EvidenceList = new List<Evidence>();
 
+        // For use in Plugins, this needs to be renamed
+        public List<IClient> Clients => (List<IClient>)ClientsConnected.Cast<IClient>();
+        public bool VerboseLogs => ServerConfiguration.VerboseLogs;
+
         private readonly Advertiser _advertiser;
         private readonly WebSocketProxy _wsProxy;
+        private readonly PluginManager _pluginManager;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
@@ -84,6 +93,9 @@ namespace AO2Sharp
                 _wsProxy = new WebSocketProxy(IPAddress.Any, ServerConfiguration.WebsocketPort);
                 _wsProxy.Start();
             }
+
+            _pluginManager = new PluginManager(PluginFolder);
+            _pluginManager.LoadPlugins(this);
 
             Logger.Log(LogSeverity.Special, "Server started!");
             CheckCorpses();
@@ -169,6 +181,17 @@ namespace AO2Sharp
         public bool RemoveLogin(string username)
         {
             return Database.RemoveLogin(username);
+        }
+
+        public void DumpPluginLogs()
+        {
+            _pluginManager.GetAllPlugins().ForEach(p =>
+            {
+                var pluginLogsFolder = Path.Combine(Logger.LogsFolder, p.ID);
+                Directory.CreateDirectory(pluginLogsFolder);
+
+                p.DumpLogs(Path.Combine(pluginLogsFolder, $"log_{DateTime.Now:dd-M_HH-mm}.log"));
+            });
         }
 
         protected override TcpSession CreateSession()
