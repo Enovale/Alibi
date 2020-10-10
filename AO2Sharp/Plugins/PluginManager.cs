@@ -84,6 +84,7 @@ namespace AO2Sharp.Plugins
                 instance!.Initialize(this);
             }
 
+            ((Server)server).OnAllPluginsLoaded();
             Server.Logger.Log(LogSeverity.Special, "[PluginLoader] Plugins loaded.");
         }
     }
