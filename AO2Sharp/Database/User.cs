@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
+using System;
 
 namespace AO2Sharp.Database
 {
@@ -11,7 +9,7 @@ namespace AO2Sharp.Database
         [PrimaryKey, Indexed]
         [Column("hdid")]
         public string Hdid { get; set; }
-        [Column("ips")] 
+        [Column("ips")]
         public string Ips { get; set; }
         [Column("banned")]
         public bool Banned { get; set; }

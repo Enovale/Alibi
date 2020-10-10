@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SQLite;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using SQLite;
 
 namespace AO2Sharp.Database
 {
@@ -18,11 +16,18 @@ namespace AO2Sharp.Database
         {
             if (!Directory.Exists(DatabaseFolder))
                 Directory.CreateDirectory(DatabaseFolder);
-            if(!File.Exists(DatabasePath))
+            if (!File.Exists(DatabasePath))
                 File.Create(DatabasePath).Close();
             _sql = new SQLiteConnection(DatabasePath);
             _sql.CreateTable<User>();
             _sql.CreateTable<Login>();
+
+            if (!_sql.Table<Login>().Any())
+                _sql.Insert(new Login
+                {
+                    UserName = "admin",
+                    PassHash = "$2y$11$Zz.qeWzmJPTMiS/IJi.1qeREWoHTavQji2lGC.xzWFuv4ceQgMP3y"
+                });
         }
 
         public bool AddUser(string hwid, string ip)
@@ -58,6 +63,43 @@ namespace AO2Sharp.Database
             _sql.Insert(newUser);
 
             return true;
+        }
+
+        public bool AddLogin(string username, string password)
+        {
+            if (_sql.Table<Login>().Any(l => l.UserName.ToLower() == username.ToLower()))
+                return false;
+
+            var newLogin = new Login()
+            {
+                UserName = username,
+                PassHash = BCrypt.Net.BCrypt.HashPassword(password)
+            };
+            _sql.Insert(newLogin);
+
+            return true;
+        }
+
+        public bool RemoveLogin(string username)
+        {
+            if (_sql.Delete<Login>(username) == 0)
+                return false;
+
+            return true;
+        }
+
+        public bool CheckCredentials(string username, string password)
+        {
+            var logins = _sql.Table<Login>().Where(l => l.UserName == username).ToArray();
+
+            if (logins.Length <= 0)
+                return false;
+
+            string hash = logins.First().PassHash;
+            if (BCrypt.Net.BCrypt.Verify(password, hash))
+                return true;
+
+            return false;
         }
     }
 }
