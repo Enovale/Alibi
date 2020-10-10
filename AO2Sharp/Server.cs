@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -22,6 +23,8 @@ namespace AO2Sharp
         public static string AreasPath = Path.Combine(ConfigFolder, "areas.json");
         public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
+
+        public static IPAddress MasterServerIp;
 
         public static Logger Logger;
         public static Configuration ServerConfiguration;
@@ -53,7 +56,12 @@ namespace AO2Sharp
 
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
             if (ServerConfiguration.Advertise)
-                _advertiser = new Advertiser(ServerConfiguration.MasterServerAddress, ServerConfiguration.MasterServerPort);
+            {
+                IPHostEntry ipHostInfo = Dns.GetHostEntry(ServerConfiguration.MasterServerAddress);
+                MasterServerIp = ipHostInfo.AddressList.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
+                _advertiser = new Advertiser(MasterServerIp, ServerConfiguration.MasterServerPort);
+            }
+
             ReloadConfig();
 
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));

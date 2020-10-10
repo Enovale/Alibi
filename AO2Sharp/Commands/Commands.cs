@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -53,9 +52,14 @@ namespace AO2Sharp.Commands
         internal static void Logout(Client client, string[] args)
         {
             if (client.Authed)
+            {
                 client.Authed = false;
+                client.SendOocMessage("Logged out.");
+            }
             else
+            {
                 client.SendOocMessage("You are not logged in.");
+            }
         }
 
         [CommandHandler("pc", "Shows the player count.")]

@@ -14,6 +14,7 @@ namespace AO2Sharp.WebSocket
 
         public override void OnWsConnected(HttpRequest request)
         {
+            AO2Sharp.Server.Logger.Log(LogSeverity.Info, $"[{((IPEndPoint)Socket.RemoteEndPoint).Address}] Websocket connection.", true);
             _tcpSocket.ConnectAsync();
         }
 
