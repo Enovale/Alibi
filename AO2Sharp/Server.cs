@@ -58,7 +58,7 @@ namespace AO2Sharp
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (Areas == null || Areas.Length == 0)
             {
-                Logger.Log(LogSeverity.Special, "At least one area is required to start the server, writing default area...");
+                Logger.Log(LogSeverity.Warning, "At least one area is required to start the server, writing default area...");
                 File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] { Area.Default }, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }

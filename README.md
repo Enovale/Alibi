@@ -30,6 +30,7 @@ These packets are implemented:
 # TODO
 Some shit that needs to get done
 
+- [ ] Become more thread safe (Many things are very prone to multithreaded errors)
 - [ ] Plugins
 - [X] Areas
 - [X] Commands (Some commands are in but need more)

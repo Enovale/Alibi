@@ -68,14 +68,13 @@ namespace AO2Sharp.Commands
         [CommandHandler("restart", "Restart's the server.")]
         internal static void Restart(Client client, string[] args)
         {
+            Server.Logger.Log(LogSeverity.Special, "process");
             client.Server.Stop();
             Server.Logger.Log(LogSeverity.Special, $"[{client.IpAddress}] Ran the restart command.");
             var env = Environment.GetCommandLineArgs();
-#if  DEBUG
-            Process.Start(env[0].Replace(".dll", ".exe"), string.Join(' ', env.Skip(1)));
-#else
-            Process.Start(env[0], string.Join(' ', env.Skip(1)));
-#endif
+            var process = Process.GetCurrentProcess().MainModule!.FileName;
+            Process.Start(process, string.Join(' ', env.Skip(1)));
+
             Environment.Exit(0);
         }
 
