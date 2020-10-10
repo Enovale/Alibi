@@ -210,9 +210,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("WSIP")]
         internal static void UpdateWebsocketIp(Client client, AOPacket packet)
         {
-            // TODO: Need to recheck ban
             IPAddress ip = IPAddress.Parse(packet.Objects[0]);
-            if (IPAddress.IsLoopback(client.IpAddress))
+            if (IPAddress.IsLoopback(client.IpAddress) && !IPAddress.IsLoopback(ip))
             {
                 Server.Database.ChangeIp(client.HardwareId, client.IpAddress.ToString(), ip.ToString());
                 client.IpAddress = ip;

@@ -16,6 +16,7 @@ namespace AO2Sharp
 {
     public class Server : TcpServer
     {
+        public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName;
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
         public static string AreasPath = Path.Combine(ConfigFolder, "areas.json");
@@ -35,8 +36,8 @@ namespace AO2Sharp
         public readonly string[] AreaNames;
         public List<Evidence> EvidenceList = new List<Evidence>();
 
-        private Advertiser _advertiser;
-        private WebSocketProxy _wsProxy;
+        private readonly Advertiser _advertiser;
+        private readonly WebSocketProxy _wsProxy;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
@@ -166,6 +167,7 @@ namespace AO2Sharp
 
         protected override void OnStopped()
         {
+            Logger.Log(LogSeverity.Warning, "Stopping server...");
             _advertiser.Stop();
             _wsProxy.Stop();
         }
