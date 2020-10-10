@@ -9,6 +9,7 @@
     <Description>A server for the AO2 protocol based in C#</Description>
     <Copyright>ElijahZAwesome 2020</Copyright>
     <PackageProjectUrl>https://github.com/ElijahZAwesome/AO2Sharp</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AO2Sharp.Plugins.API\AO2Sharp.Plugins.API.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
