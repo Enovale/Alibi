@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace AO2Sharp.Commands
@@ -18,7 +19,17 @@ namespace AO2Sharp.Commands
         {
             if (_handlers.ContainsKey(command))
             {
-                _handlers[command](client, args);
+                var handler = _handlers[command];
+                var modAttributes = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
+                if (modAttributes.Any())
+                {
+                    if (client.Authed)
+                        _handlers[command](client, args);
+                    else
+                        client.SendOocMessage(((ModOnlyAttribute)modAttributes.First()).ErrorMsg);
+                }
+                else
+                    _handlers[command](client, args);
             }
             else
             {

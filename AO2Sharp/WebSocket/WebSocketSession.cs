@@ -5,7 +5,7 @@ namespace AO2Sharp.WebSocket
 {
     internal class WebSocketSession : WsSession
     {
-        private TcpProxy _tcpSocket;
+        private readonly TcpProxy _tcpSocket;
 
         public WebSocketSession(WsServer server) : base(server)
         {
@@ -18,6 +18,11 @@ namespace AO2Sharp.WebSocket
         }
 
         public override void OnWsDisconnected()
+        {
+            _tcpSocket.DisconnectAsync();
+        }
+
+        protected override void OnDisconnected()
         {
             _tcpSocket.DisconnectAsync();
         }

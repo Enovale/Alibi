@@ -178,7 +178,7 @@ namespace AO2Sharp.Protocol
             string message = packet.Objects[1];
             if (message.StartsWith("/"))
             {
-                string command = message.Substring(1).Trim();
+                string command = message.Substring(1).Split(" ").First().Trim();
                 List<string> arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries));
                 arguments.RemoveAt(0);
 

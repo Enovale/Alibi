@@ -17,14 +17,22 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnConnected()
         {
-            if (_session.IsDisposed || _session.IsSocketDisposed)
+            try
             {
-                Disconnect();
-                return;
+                if (_session.IsDisposed || _session.IsSocketDisposed)
+                {
+                    Disconnect();
+                    return;
+                }
+
+                IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
+                if (IPAddress.IsLoopback(ip))
+                    Send(new AOPacket("WSIP", ip.ToString()));
             }
-            IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
-            if (IPAddress.IsLoopback(ip))
-                Send(new AOPacket("WSIP", ip.ToString()));
+            catch (Exception e)
+            {
+                Server.Logger.Log(LogSeverity.Error, "TcpProxy fucked up: " + e.Message + "\n" + e.StackTrace);
+            }
         }
 
         protected override void OnDisconnected()

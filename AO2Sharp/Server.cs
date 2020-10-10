@@ -1,4 +1,5 @@
-﻿using AO2Sharp.Helpers;
+﻿using AO2Sharp.Database;
+using AO2Sharp.Helpers;
 using AO2Sharp.WebSocket;
 using NetCoreServer;
 using Newtonsoft.Json;
@@ -10,7 +11,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using AO2Sharp.Database;
 
 namespace AO2Sharp
 {
@@ -42,7 +42,10 @@ namespace AO2Sharp
         {
             ServerConfiguration = config;
             Logger = new Logger(this);
+            Logger.Log(LogSeverity.Special, "Server starting up...");
             _database = new DatabaseManager();
+            if (_database.CheckCredentials("admin", "ChangeThis"))
+                Logger.Log(LogSeverity.Warning, " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
@@ -73,6 +76,7 @@ namespace AO2Sharp
                 _wsProxy.Start();
             }
 
+            Logger.Log(LogSeverity.Special, "Server started!");
             CheckCorpses();
         }
 
@@ -104,6 +108,7 @@ namespace AO2Sharp
             while (true)
             {
                 var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000);
+                Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
                 var clientQueue = new Queue<Client>(ClientsConnected);
                 while (clientQueue.Any())
                 {
@@ -132,6 +137,21 @@ namespace AO2Sharp
             AOPacket msgPacket = new AOPacket("CT", new[] { "Server", message, "1" });
             Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
+        }
+
+        public bool CheckLogin(string username, string password)
+        {
+            return _database.CheckCredentials(username, password);
+        }
+
+        public bool AddLogin(string username, string password)
+        {
+            return _database.AddLogin(username, password);
+        }
+
+        public bool RemoveLogin(string username)
+        {
+            return _database.RemoveLogin(username);
         }
 
         protected override TcpSession CreateSession()

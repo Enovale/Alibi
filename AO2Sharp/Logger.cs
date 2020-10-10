@@ -37,7 +37,8 @@ namespace AO2Sharp
                 _ => Console.ForegroundColor
             };
 
-            string log = $"[{DateTime.Now.DayOfWeek}, {DateTime.Now.ToShortTimeString()}][{severity}]{message}";
+            string debug = verbose ? "[DEBUG]" : "";
+            string log = $"{debug}[{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}][{severity}]{message}";
             Console.WriteLine(log);
             AddLog(log);
 
@@ -63,7 +64,7 @@ namespace AO2Sharp
         public void OocMessageLog(string message, Area area = null, string name = null)
         {
             string areaName = area == null ? "Global" : area.Name;
-            string person = name == null ? "Server" : name;
+            string person = name ?? "Server";
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 
