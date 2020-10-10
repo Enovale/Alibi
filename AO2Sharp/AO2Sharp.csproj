@@ -3,6 +3,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>ElijahZAwesome</Authors>
+    <Company>ElijahZAwesome</Company>
+    <Version>0.1</Version>
+    <Description>A server for the AO2 protocol based in C#</Description>
+    <Copyright>ElijahZAwesome 2020</Copyright>
+    <PackageProjectUrl>https://github.com/ElijahZAwesome/AO2Sharp</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

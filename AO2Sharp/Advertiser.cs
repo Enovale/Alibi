@@ -46,5 +46,10 @@ namespace AO2Sharp
                 $"AO2Sharp v{Server.Version}"
             })));
         }
+
+        public void Stop()
+        {
+            Socket.Disconnect(true);
+        }
     }
 }

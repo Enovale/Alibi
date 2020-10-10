@@ -68,7 +68,7 @@ namespace AO2Sharp
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 
-        public async Task<bool> Dump()
+        public bool Dump()
         {
             if (!Directory.Exists(LogsFolder))
                 Directory.CreateDirectory(LogsFolder);
@@ -78,8 +78,8 @@ namespace AO2Sharp
 
             var logDump = File.CreateText(Path.Combine(LogsFolder, $"server_{DateTime.Now:dd-M_HH-mm}.log"));
             while (_logBuffer.Count > 0)
-                await logDump.WriteLineAsync(_logBuffer.Dequeue());
-            await logDump.FlushAsync();
+                logDump.WriteLine(_logBuffer.Dequeue());
+            logDump.Flush();
             logDump.Close();
             return true;
         }

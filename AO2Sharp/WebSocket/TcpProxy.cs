@@ -17,21 +17,9 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnConnected()
         {
-            try
+            if (_session.IsDisposed || _session.IsSocketDisposed)
             {
-                if (_session.IsDisposed || _session.IsSocketDisposed)
-                {
-                    Disconnect();
-                    return;
-                }
-
-                IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
-                if (IPAddress.IsLoopback(ip))
-                    Send(new AOPacket("WSIP", ip.ToString()));
-            }
-            catch (Exception e)
-            {
-                Server.Logger.Log(LogSeverity.Error, "TcpProxy fucked up: " + e.Message + "\n" + e.StackTrace);
+                Disconnect();
             }
         }
 
@@ -51,6 +39,11 @@ namespace AO2Sharp.WebSocket
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
+                if (packet.StartsWith("ID"))
+                {
+                    IPAddress ip = (_session.Socket.RemoteEndPoint as IPEndPoint)?.Address;
+                    Send(new AOPacket("WSIP", ip.ToString()));
+                }
                 _session.SendTextAsync(packet);
             }
         }

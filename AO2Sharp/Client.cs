@@ -1,6 +1,7 @@
 ﻿using AO2Sharp.Helpers;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
@@ -85,6 +86,40 @@ namespace AO2Sharp
 
             Area.UpdateTakenCharacters();
             SendOocMessage($"Successfully changed to area \"{Area.Name}\"");
+        }
+
+        public void KickIfBanned()
+        {
+            if (Server.Database.IsHdidBanned(HardwareId) || Server.Database.IsIpBanned(IpAddress.ToString()))
+            {
+                Send(new AOPacket("BD", GetBanReason()));
+                Task.Delay(500).Wait();
+                Session.Disconnect();
+            }
+        }
+
+        public void Kick(string reason)
+        {
+            Send(new AOPacket("KK", reason));
+            Task.Delay(500).Wait();
+            Session.Disconnect();
+        }
+
+        public string GetBanReason()
+        {
+            return Server.Database.GetBanReason(IpAddress.ToString());
+        }
+
+        public void BanHdid(string reason)
+        {
+            Server.Database.BanHdid(HardwareId, reason);
+            Send(new AOPacket("KB", reason));
+        }
+
+        public void BanIp(string reason)
+        {
+            Server.Database.BanIp(IpAddress.ToString(), reason);
+            Send(new AOPacket("KB", reason));
         }
 
         public void Send(AOPacket packet)

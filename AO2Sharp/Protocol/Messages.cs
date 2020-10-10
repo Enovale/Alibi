@@ -13,6 +13,8 @@ namespace AO2Sharp.Protocol
         internal static void HardwareId(Client client, AOPacket packet)
         {
             client.HardwareId = packet.Objects[0];
+            client.Server.AddUser(client);
+            client.KickIfBanned();
 
             // Check if this player is hardware banned and kick them if so
             // Also probably check if the max players is reached and kick them
@@ -210,9 +212,11 @@ namespace AO2Sharp.Protocol
         {
             // TODO: Need to recheck ban
             IPAddress ip = IPAddress.Parse(packet.Objects[0]);
-            if (IPAddress.IsLoopback(ip))
+            if (IPAddress.IsLoopback(client.IpAddress))
             {
+                Server.Database.ChangeIp(client.HardwareId, client.IpAddress.ToString(), ip.ToString());
                 client.IpAddress = ip;
+                client.KickIfBanned();
             }
         }
     }

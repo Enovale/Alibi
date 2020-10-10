@@ -30,9 +30,9 @@ namespace AO2Sharp.Database
                 });
         }
 
-        public bool AddUser(string hwid, string ip)
+        public bool AddUser(string hdid, string ip)
         {
-            var query = _sql.Table<User>().Where(u => u.Hdid == hwid);
+            var query = _sql.Table<User>().Where(u => u.Hdid == hdid);
             var list = query.ToArray();
 
             if (list.Length > 1)
@@ -56,13 +56,68 @@ namespace AO2Sharp.Database
             {
                 Banned = false,
                 BanReason = "",
-                Hdid = hwid,
+                Hdid = hdid,
                 Ips = ip
             };
 
-            _sql.Insert(newUser);
+            _sql.InsertOrReplace(newUser);
 
             return true;
+        }
+
+        public void ChangeIp(string hdid, string oldIp, string newIp)
+        {
+            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            user.Ips = user.Ips.Replace(oldIp, newIp);
+
+            _sql.Update(user);
+        }
+
+        public string GetHdidfromIp(string ip)
+        {
+            return _sql.Table<User>().First(u => u.Ips.Contains(ip)).Hdid;
+        }
+
+        public bool IsHdidBanned(string hdid)
+        {
+            return _sql.Table<User>().Any(u => u.Banned && u.Hdid == hdid);
+        }
+
+        public bool IsIpBanned(string ip)
+        {
+            return IsHdidBanned(GetHdidfromIp(ip));
+        }
+
+        public string GetBanReason(string ip)
+        {
+            return _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
+        }
+
+        public void BanHdid(string hdid, string reason)
+        {
+            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            user.Banned = true;
+            user.BanReason = reason;
+
+            _sql.Update(user);
+        }
+
+        public void BanIp(string ip, string reason)
+        {
+            BanHdid(GetHdidfromIp(ip), reason);
+        }
+
+        public void UnbanHdid(string hdid)
+        {
+            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            user.Banned = false;
+
+            _sql.Update(user);
+        }
+
+        public void UnbanIp(string ip)
+        {
+            UnbanHdid(GetHdidfromIp(ip));
         }
 
         public bool AddLogin(string username, string password)

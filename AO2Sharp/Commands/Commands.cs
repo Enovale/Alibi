@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 
 namespace AO2Sharp.Commands
@@ -51,6 +54,8 @@ namespace AO2Sharp.Commands
         {
             if (client.Authed)
                 client.Authed = false;
+            else
+                client.SendOocMessage("You are not logged in.");
         }
 
         [CommandHandler("pc", "Shows the player count.")]
@@ -63,6 +68,8 @@ namespace AO2Sharp.Commands
         [CommandHandler("restart", "Restart's the server.")]
         internal static void Restart(Client client, string[] args)
         {
+            client.Server.Stop();
+            Server.Logger.Log(LogSeverity.Special, $"[{client.IpAddress}] Ran the restart command.");
             var env = Environment.GetCommandLineArgs();
 #if  DEBUG
             Process.Start(env[0].Replace(".dll", ".exe"), string.Join(' ', env.Skip(1)));
@@ -76,7 +83,7 @@ namespace AO2Sharp.Commands
         [CommandHandler("getlogs", "Retrieves the server logs and dumps them.")]
         internal static void GetLogs(Client client, string[] args)
         {
-            if (Server.Logger.Dump().Result)
+            if (Server.Logger.Dump())
                 client.SendOocMessage("Successfully dumped logs. Check the Logs folder.");
             else
                 client.SendOocMessage("No logs have been stored yet, can't dump.");
@@ -113,6 +120,59 @@ namespace AO2Sharp.Commands
                 client.SendOocMessage("Successfully removed user " + args[0] + ".");
             else
                 client.SendOocMessage("Could not remove user " + args[0] + ". Does it exist?");
+        }
+
+        [ModOnly]
+        [CommandHandler("ban", "Ban a user. You can specify a hardware ID or IP")]
+        internal static void Ban(Client client, string[] args)
+        {
+            if (args.Length < 1)
+            {
+                client.SendOocMessage("Usage: /ban <hdid/ip> [reason]");
+                return;
+            }
+
+            string reason = args.Length > 1 ? args[1] : "No reason given.";
+
+            if (IPAddress.TryParse(args[0], out _))
+            {
+                // Gross
+                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
+                {
+                    c.BanIp(reason);
+                }
+            }
+            else
+            {
+                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.HardwareId == args[0])))
+                {
+                    c.BanHdid(reason);
+                }
+            }
+
+            client.SendOocMessage($"{args[0]} has been banned.");
+        }
+
+        [ModOnly]
+        [CommandHandler("unban", "Unbans a user. You can specify a hardware ID or IP.")]
+        internal static void Unban(Client client, string[] args)
+        {
+            if (args.Length < 1)
+            {
+                client.SendOocMessage("Usage: /unban <hdid/ip>");
+                return;
+            }
+
+            if (IPAddress.TryParse(args[0], out _))
+            {
+                Server.Database.UnbanIp(args[0]);
+            }
+            else
+            {
+                Server.Database.UnbanHdid(args[0]);
+            }
+
+            client.SendOocMessage($"{args[0]} has been unbanned.");
         }
     }
 }
