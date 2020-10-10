@@ -48,10 +48,11 @@ namespace AO2Sharp.Database
 
             if (list.Length == 1)
             {
-                string[] ips = list.First().Ips.Split(";");
-                if (!ips.Contains(ip))
+                var existingUser = list.First();
+                if (!existingUser.Ips.Contains(ip))
                 {
-                    list.First().Ips += ";" + ip;
+                    existingUser.Ips += ";" + ip;
+                    _sql.Update(existingUser);
                     return true;
                 }
                 return false;
@@ -73,8 +74,11 @@ namespace AO2Sharp.Database
         public void ChangeIp(string hdid, string oldIp, string newIp)
         {
             var user = _sql.Table<User>().First(u => u.Hdid == hdid);
-            if (user.Ips.Contains(oldIp))
+            if (user.Ips.Contains(oldIp) && !user.Ips.Contains(newIp))
                 user.Ips = user.Ips.Replace(oldIp, newIp);
+            else if (user.Ips.Contains(oldIp))
+                // Can probably be done better
+                user.Ips = user.Ips.Replace(";" + oldIp, "").Replace(oldIp + ";", "").Replace(oldIp, "");
             else
                 user.Ips += ";" + newIp;
 
