@@ -22,6 +22,7 @@ namespace AO2Sharp
         public bool VerboseLogs = false;
 
         public bool Advertise = true;
+        public bool AllowDoublePostsIfDifferentAnim = false;
         public int MaxPlayers = 100;
         public int TimeoutSeconds = 60;
 

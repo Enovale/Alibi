@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AO2Sharp.Plugins.API;
 
 namespace AO2Sharp
 {
-    public class Area
+    public class Area : IArea
     {
         [NonSerialized]
         public static readonly Area Default = new Area()
@@ -18,12 +19,12 @@ namespace AO2Sharp
             IniSwappingAllowed = true
         };
 
-        public string Name;
-        public string Background;
-        public int BackgroundPosition;
-        public bool Locked;
-        public bool BackgroundLocked;
-        public bool IniSwappingAllowed;
+        public string Name { get; set; }
+        public string Background { get; set; }
+        public int BackgroundPosition { get; set; }
+        public bool Locked { get; set; }
+        public bool BackgroundLocked { get; set; }
+        public bool IniSwappingAllowed { get; set; }
         [NonSerialized]
         public int PlayerCount;
         [NonSerialized]
