@@ -25,12 +25,11 @@ namespace AO2Sharp
         public bool Locked { get; set; }
         public bool BackgroundLocked { get; set; }
         public bool IniSwappingAllowed { get; set; }
+        public string Status { get; set; } = "FREE";
         [NonSerialized]
         public int PlayerCount;
         [NonSerialized]
         public string CurrentCourtManager = "FREE";
-        [NonSerialized]
-        public string Status = "FREE";
         [NonSerialized]
         public int DefendantHp = 10;
         [NonSerialized]

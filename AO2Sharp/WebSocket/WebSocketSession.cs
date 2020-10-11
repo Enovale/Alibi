@@ -1,5 +1,6 @@
 ﻿using NetCoreServer;
 using System.Net;
+using System.Text;
 
 namespace AO2Sharp.WebSocket
 {
@@ -35,6 +36,8 @@ namespace AO2Sharp.WebSocket
 
         public override void OnWsReceived(byte[] buffer, long offset, long size)
         {
+            if (Encoding.ASCII.GetString(buffer, (int) offset, (int) size).StartsWith("GET"))
+                return;
             _tcpSocket.SendAsync(buffer, offset, size);
         }
     }
