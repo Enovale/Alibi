@@ -15,6 +15,8 @@ namespace AO2Sharp.Plugins
         public PluginManager(string path)
         {
             PluginFolder = path;
+            Directory.CreateDirectory(PluginFolder);
+            Directory.CreateDirectory(Path.Combine(PluginFolder, Server.PluginDepsFolder));
             Registry = new PluginRegistry(this);
         }
 
@@ -34,9 +36,11 @@ namespace AO2Sharp.Plugins
         {
             var paths = Directory.GetFiles(PluginFolder, "*.dll");
 
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
             foreach (var path in paths)
             {
-                Server.Logger.Log(LogSeverity.Special, $"[PluginLoader] Loading plugin: {Path.GetDirectoryName(path)}");
+                Server.Logger.Log(LogSeverity.Special, $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
                 Assembly asm;
                 try
                 {
@@ -80,12 +84,49 @@ namespace AO2Sharp.Plugins
                     continue;
                 }
 
-                instance!.Server = server;
-                instance!.Initialize(this);
+                try
+                {
+                    instance!.Server = server;
+                    instance!.Initialize(this);
+                }
+                catch (Exception e)
+                {
+                    Server.Logger.Log(LogSeverity.Error, 
+                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e.Message}" + (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
+                    continue;
+                }
             }
 
             ((Server)server).OnAllPluginsLoaded();
             Server.Logger.Log(LogSeverity.Special, "[PluginLoader] Plugins loaded.");
+        }
+
+        private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            // Ignore missing resources
+            if (args.Name.Contains(".resources"))
+                return null;
+
+            // check for assemblies already loaded
+            Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
+            if (assembly != null)
+                return assembly;
+
+            // Try to load by filename - split out the filename of the full assembly name
+            // and append the base path of the original assembly (ie. look in the same dir)
+            string filename = args.Name.Split(',')[0] + ".dll".ToLower();
+
+            string asmFile = Path.Combine(PluginFolder, Server.PluginDepsFolder, filename);
+    
+            try
+            {
+                return Assembly.LoadFrom(asmFile);
+            }
+            catch (Exception e)
+            {
+                Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Error loading dependency, {e.Message}");
+                return null;
+            }
         }
     }
 }

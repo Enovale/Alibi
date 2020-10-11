@@ -20,6 +20,7 @@ namespace AO2Sharp
     public class Server : TcpServer, IServer
     {
         public static string PluginFolder = "Plugins";
+        public static string PluginDepsFolder = "Dependencies";
         public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName;
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");

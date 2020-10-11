@@ -7,7 +7,7 @@ namespace AO2Sharp.Plugins.API
     public abstract class Plugin
     {
         public abstract string ID { get; }
-        public abstract string DebugName { get; }
+        public abstract string Name { get; }
         public IServer Server { get; set; }
         public abstract void Initialize(IPluginManager manager);
 
@@ -19,28 +19,28 @@ namespace AO2Sharp.Plugins.API
         public void LogInfo(string message, bool verbose = false)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Log($"[Info][{DebugName}] {message}", verbose);
+            Log($"[Info][{Name}] {message}", verbose);
             Console.ResetColor();
         }
 
         public void LogWarning(string message, bool verbose = false)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Log($"[Warning][{DebugName}] {message}", verbose);
+            Log($"[Warning][{Name}] {message}", verbose);
             Console.ResetColor();
         }
 
         public void LogError(string message, bool verbose = false)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Log($"[Error][{DebugName}] {message}", verbose);
+            Log($"[Error][{Name}] {message}", verbose);
             Console.ResetColor();
         }
 
         public void LogSpecial(string message, bool verbose = false)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Log($"[Special][{DebugName}] {message}", verbose);
+            Log($"[Special][{Name}] {message}", verbose);
             Console.ResetColor();
         }
 
