@@ -43,7 +43,7 @@ namespace AO2Sharp.Helpers
             catch (Exception e)
             {
                 if (Server.ServerConfiguration.VerboseLogs)
-                    Server.Logger.Log(LogSeverity.Error, e.Message + "\n" + e.StackTrace, true);
+                    Server.Logger.Log(LogSeverity.Error, " " + e.Message + "\n" + e.StackTrace, true);
                 else
                     Server.Logger.Log(LogSeverity.Error, e.Message);
                 return new AOPacket("NULL");

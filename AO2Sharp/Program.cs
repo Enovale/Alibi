@@ -1,6 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.IO;
+using System.Runtime.ExceptionServices;
+using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
@@ -17,7 +19,8 @@ namespace AO2Sharp
 
             AppDomain.CurrentDomain.ProcessExit += DumpLogsAndExit;
             AppDomain.CurrentDomain.UnhandledException += DumpLogsAndExit;
-            AppDomain.CurrentDomain.FirstChanceException += DumpLogsAndExit;
+            //AppDomain.CurrentDomain.FirstChanceException += DumpLogsAndExit;
+            TaskScheduler.UnobservedTaskException += DumpLogsAndExit;
 
             while (true) ;
         }
@@ -29,6 +32,18 @@ namespace AO2Sharp
             {
                 Console.Title = "AO2Sharp - Crashed";
                 var error = (Exception)((UnhandledExceptionEventArgs)eventArgs).ExceptionObject;
+                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
+            }
+            if (eventArgs.GetType() == typeof(UnobservedTaskExceptionEventArgs))
+            {
+                Console.Title = "AO2Sharp - Crashed";
+                var error = ((UnobservedTaskExceptionEventArgs)eventArgs).Exception;
+                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
+            }
+            if (eventArgs.GetType() == typeof(FirstChanceExceptionEventArgs))
+            {
+                Console.Title = "AO2Sharp - Crashed";
+                var error = ((FirstChanceExceptionEventArgs)eventArgs).Exception;
                 Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
             }
             Server.Logger.Dump();
