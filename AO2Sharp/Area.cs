@@ -35,10 +35,13 @@ namespace AO2Sharp
         public int DefendantHp = 10;
         [NonSerialized]
         public int ProsecutorHp = 10;
+        [NonSerialized]
+        public bool[] TakenCharacters;
+        [NonSerialized]
+        public List<Evidence> EvidenceList = new List<Evidence>();
 
-        [NonSerialized] public bool[] TakenCharacters;
-
-        [NonSerialized] internal Server Server;
+        [NonSerialized]
+        internal Server Server;
 
         internal void Broadcast(AOPacket packet)
         {
