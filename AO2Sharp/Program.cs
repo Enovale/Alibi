@@ -17,6 +17,7 @@ namespace AO2Sharp
 
             AppDomain.CurrentDomain.ProcessExit += DumpLogsAndExit;
             AppDomain.CurrentDomain.UnhandledException += DumpLogsAndExit;
+            AppDomain.CurrentDomain.FirstChanceException += DumpLogsAndExit;
 
             while (true) ;
         }

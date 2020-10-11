@@ -1,5 +1,41 @@
 # AO2Sharp
- Attorney Online 2 Server Implementation in C# .NET Core
+Attorney Online 2 Server Implementation in C# .NET Core
+ 
+# What is it?
+After having ran an Attorney Online server, I despise the current experience of maintaining an active server
+for this game. So I thought it would be fun to try and make one myself, to see if I can do something better.
+
+# Prerequisites
+Windows:
+
+ - All you need is the [.NET Core 3.1 Runtime](https://cutt.ly/netcore31) installed.
+
+Linux:
+ 
+ - Determine how to install the dotnet core runtime on your distribution: 
+ [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu) 
+ or [here](https://wiki.archlinux.org/index.php/.NET_Core#Installation) are a few.
+
+# Usage
+To run the most basic possible server, all you have to do is download the latest 
+[Release](https://github.com/ElijahZAwesome/AO2Sharp/releases/).
+It will make the needed config files for you and set up defaults for you.
+
+Double click or run this in the console (currently no command line arguments):
+
+```
+AO2Sharp
+```
+
+# Plugins
+Surprisingly, this thing supports plugins! To make one, just make a new .Net Core 
+Class Library that targets 'Core 3.1, and reference the `AO2Sharp.Plugins.API` 
+project of this repository, or install this 
+[NuGet package](https://www.nuget.org/packages/AO2Sharp.Plugins.API/).
+
+Then, make a class that inherits from `Plugin`, and implement it's required members.
+You should now have a barebones working plugin! Build it and put the .dll in the `Plugins`
+folder of AO2Sharp, and restart the server.
 
 # Progress
 These packets are implemented:
@@ -30,18 +66,9 @@ These packets are implemented:
 # TODO
 Some shit that needs to get done
 
-- [ ] Become more thread safe (Many things are very prone to multithreaded errors)
-- [ ] Plugins
+- [-] Become more thread safe (Maybe?)
+- [X] Plugins
 - [X] Areas
 - [X] Commands (Some commands are in but need more)
 - [X] Logging architecture
 - [X] Database
-- [ ] More shit lol
-
-# Plugins
-
-I plan to have a system where you build a class library with a reference to AO2Sharp.dll, and make a class that inherits from PluginBase.
-
-This class will have overrides for some server functions, and it's constructor will be called after server initialization. It'll also let you
-define more packet handlers and commands, and even override existing ones. Still trying to brainstorm how this will work and figure out
-how to actually execute it because im not super big brained at reflection.

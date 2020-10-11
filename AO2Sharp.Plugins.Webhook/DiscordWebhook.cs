@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using AO2Sharp.Plugins.API;
 
 namespace AO2Sharp.Plugins.Webhook
@@ -8,10 +7,10 @@ namespace AO2Sharp.Plugins.Webhook
     public class DiscordWebhook : Plugin
     {
         public override string ID => "com.elijahzawesome.DiscordWebhook";
-        public override string DebugName => "DiscordWebhook";
+        public override string Name => "DiscordWebhook";
 
         private string _configFile;
-        private bool _validConfig = false;
+        private bool _validConfig;
 
         private DWebHook _hook;
 
