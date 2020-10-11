@@ -62,9 +62,9 @@ namespace AO2Sharp.Protocol
         {
             if (int.TryParse(packet.Objects[0], out int index))
             {
-                index = Math.Max(0, Math.Min(client.Server.EvidenceList.Count, index));
+                index = Math.Max(0, Math.Min(client.Area.EvidenceList.Count, index));
 
-                client.Send(new AOPacket("EI", index.ToString(), client.Server.EvidenceList[index].ToPacket()));
+                client.Send(new AOPacket("EI", index.ToString(), client.Area.EvidenceList[index].ToPacket()));
             }
         }
 
@@ -91,7 +91,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("askchaa")]
         internal static void RequestResourceCounts(Client client, AOPacket packet)
         {
-            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(), client.Server.EvidenceList.Count.ToString(), (client.Server.Areas.Length + Server.MusicList.Length).ToString()));
+            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(), client.Server.Areas.First().EvidenceList.Count.ToString(), (client.Server.Areas.Length + Server.MusicList.Length).ToString()));
         }
 
         [MessageHandler("RC")]
@@ -103,25 +103,27 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RE")]
         internal static void RequestEvidence(Client client, AOPacket packet)
         {
-            string evidenceList = "";
-            client.Server.EvidenceList.ForEach(e =>
+            string[] evidenceList = new string[client.Area.EvidenceList.Count];
+            for (var i = 0; i < client.Area.EvidenceList.Count; i++)
             {
-                evidenceList += e.ToPacket();
-            });
-            client.Send(new AOPacket("LE", evidenceList));
+                evidenceList[i] = client.Area.EvidenceList[i].ToPacket();
+            }
+            client.Area.Broadcast(new AOPacket("LE", evidenceList));
         }
 
         [MessageHandler("PE")]
         internal static void AddEvidence(Client client, AOPacket packet)
         {
-            client.Server.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
+            client.Area.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
+            RequestEvidence(client, packet);
         }
 
         [MessageHandler("DE")]
         internal static void RemoveEvidence(Client client, AOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out int id))
-                client.Server.EvidenceList.RemoveAt(id);
+                client.Area.EvidenceList.RemoveAt(id);
+            RequestEvidence(client, packet);
         }
 
         [MessageHandler("EE")]
@@ -129,10 +131,11 @@ namespace AO2Sharp.Protocol
         {
             if (int.TryParse(packet.Objects[0], out int id))
             {
-                id = Math.Max(0, Math.Min(client.Server.EvidenceList.Count, id));
+                id = Math.Max(0, Math.Min(client.Area.EvidenceList.Count, id));
 
-                client.Server.EvidenceList[id] = new Evidence(packet.Objects[1], packet.Objects[2], packet.Objects[3]);
+                client.Area.EvidenceList[id] = new Evidence(packet.Objects[1], packet.Objects[2], packet.Objects[3]);
             }
+            RequestEvidence(client, packet);
         }
 
         [MessageHandler("RM")]

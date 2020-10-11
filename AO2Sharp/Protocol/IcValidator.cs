@@ -84,10 +84,10 @@ namespace AO2Sharp.Protocol
 
             // Make sure evidence exists
             int moddedEvidenceId = Math.Max(0,
-                Math.Min(client.Server.EvidenceList.Count, packet.Objects[11].ToIntOrZero() - 1));
-            if (client.Server.EvidenceList.Count == 0)
+                Math.Min(client.Area.EvidenceList.Count, packet.Objects[11].ToIntOrZero() - 1));
+            if (client.Area.EvidenceList.Count == 0)
                 validatedObjects.Add("0");
-            else if (client.Server.EvidenceList[moddedEvidenceId] != null)
+            else if (client.Area.EvidenceList[moddedEvidenceId] != null)
                 validatedObjects.Add(moddedEvidenceId.ToString());
             else
                 return invalid;

@@ -42,7 +42,6 @@ namespace AO2Sharp
         public int ConnectedPlayers = 0;
         public readonly Area[] Areas;
         public readonly string[] AreaNames;
-        public List<Evidence> EvidenceList = new List<Evidence>();
 
         // For use in Plugins, this needs to be renamed
         public List<IClient> Clients => (List<IClient>)ClientsConnected.Cast<IClient>();
