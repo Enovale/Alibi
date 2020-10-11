@@ -25,6 +25,12 @@ namespace AO2Sharp.Commands
             client.SendOocMessage(finalResponse);
         }
 
+        [CommandHandler("motd", "Displays the MOTD sent upon joining.")]
+        internal static void Motd(Client client, string[] args)
+        {
+            client.SendOocMessage(Server.ServerConfiguration.MOTD);
+        }
+
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]
         internal static void Login(Client client, string[] args)
         {

@@ -173,6 +173,7 @@ namespace AO2Sharp.Protocol
             // WebAO doesn't use it so im gonna assume its not
             //client.Send(new AOPacket("OPPASS", Server.ServerConfiguration.ModPassword));
             client.Send(new AOPacket("DONE"));
+            client.SendOocMessage(Server.ServerConfiguration.MOTD);
 
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the server.");
         }

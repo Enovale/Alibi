@@ -27,7 +27,7 @@ namespace AO2Sharp.Protocol
             validatedObjects.Add(packet.Objects[1]);
 
             // Make sure character isn't ini-swapping if it isn't allowed
-            if (packet.Objects[2] != Server.CharactersList[(int)client.Character])
+            if (packet.Objects[2].ToLower() != Server.CharactersList[(int)client.Character].ToLower())
             {
                 // Client is iniswapping
                 if (!client.Area.IniSwappingAllowed)
