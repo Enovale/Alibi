@@ -10,8 +10,8 @@ namespace AO2Sharp.Commands
     internal static class CommandHandler
     {
         internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
-        internal static readonly Dictionary<string, IPluginManager.CustomCommandHandler> CustomHandlers
-            = new Dictionary<string, IPluginManager.CustomCommandHandler>();
+        internal static readonly Dictionary<string, Action<IClient, string[]>> CustomHandlers
+            = new Dictionary<string, Action<IClient, string[]>>();
 
         internal static readonly List<Tuple<string, string, bool>> HandlerInfo = new List<Tuple<string, string, bool>>();
 
@@ -78,7 +78,7 @@ namespace AO2Sharp.Commands
             }
         }
 
-        public static void RegisterCustomCommandHandler(CustomCommandHandlerAttribute attr, IPluginManager.CustomCommandHandler handler, bool overrideHandler = false)
+        public static void RegisterCustomCommandHandler(CustomCommandHandlerAttribute attr, Action<IClient, string[]> handler, bool overrideHandler = false)
         {
             if (!CustomHandlers.ContainsKey(attr.Command))
             {
@@ -115,7 +115,7 @@ namespace AO2Sharp.Commands
                         var attr = method.GetCustomAttribute<CommandHandlerAttribute>();
 
                         if (attr != null)
-                            RegisterCommandHandler(attr, (Handler) method.CreateDelegate(typeof(Handler)));
+                            RegisterCommandHandler(attr, (Handler)method.CreateDelegate(typeof(Handler)));
                     }
                 }
             }
@@ -130,23 +130,22 @@ namespace AO2Sharp.Commands
                 var methods = type.GetRuntimeMethods();
                 foreach (var method in methods)
                 {
-                    if (method.IsStatic)
-                    {
-                        var attr = method.GetCustomAttribute<CustomCommandHandlerAttribute>();
+                    var attr = method.GetCustomAttribute<CustomCommandHandlerAttribute>();
 
-                        if (attr != null)
+                    if (attr != null)
+                    {
+                        try
                         {
-                            try
-                            {
-                                RegisterCustomCommandHandler(attr,
-                                    (IPluginManager.CustomCommandHandler) method.CreateDelegate(
-                                        typeof(IPluginManager.CustomCommandHandler)), true);
-                            }
-                            catch (ArgumentException)
-                            {
-                                plugin.LogError(
-                                    $"Could not load handler {attr.Command} because it does not match the CustomCommandHandler signature.");
-                            }
+                            RegisterCustomCommandHandler(attr,
+                                (c, s) =>
+                                {
+                                    type.GetMethod(method.Name)!.Invoke(plugin, new object[] { c, s });
+                                }, true);
+                        }
+                        catch (ArgumentException)
+                        {
+                            plugin.LogError(
+                                $"Could not load handler {attr.Command} because it does not match the CustomCommandHandler signature.");
                         }
                     }
                 }
