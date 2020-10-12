@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using System;
+using SQLite;
 using System.IO;
 using System.Linq;
 
@@ -30,14 +31,14 @@ namespace AO2Sharp.Database
                 });
         }
 
-        public bool AddUser(string hdid, string ip)
+        public bool AddUser(string hwid, string ip)
         {
-            var query = _sql.Table<User>().Where(u => u.Hdid == hdid);
+            var query = _sql.Table<User>().Where(u => u.Hwid == hwid);
             var list = query.ToArray();
 
             if (list.Length > 1)
             {
-                Server.Logger.Log(LogSeverity.Error, "Two of the same hdid found, please edit the db...");
+                Server.Logger.Log(LogSeverity.Error, "Two of the same hwid found, please edit the db...");
                 return false;
             }
 
@@ -57,7 +58,7 @@ namespace AO2Sharp.Database
             {
                 Banned = false,
                 BanReason = "",
-                Hdid = hdid,
+                Hwid = hwid,
                 Ips = ip
             };
 
@@ -66,9 +67,9 @@ namespace AO2Sharp.Database
             return true;
         }
 
-        public void ChangeIp(string hdid, string oldIp, string newIp)
+        public void ChangeIp(string hwid, string oldIp, string newIp)
         {
-            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            var user = _sql.Table<User>().First(u => u.Hwid == hwid);
             if (user.Ips.Contains(oldIp) && !user.Ips.Contains(newIp))
                 user.Ips = user.Ips.Replace(oldIp, newIp);
             else if (user.Ips.Contains(oldIp))
@@ -80,19 +81,25 @@ namespace AO2Sharp.Database
             _sql.Update(user);
         }
 
-        public string GetHdidfromIp(string ip)
+        public string[] GetHwidsfromIp(string ip)
         {
-            return _sql.Table<User>().First(u => u.Ips.Contains(ip)).Hdid;
+            return _sql.Table<User>().Where(u => u.Ips.Contains(ip)).Select(u => u.Hwid).ToArray();
         }
 
-        public bool IsHdidBanned(string hdid)
+        public bool IsHwidBanned(string hwid)
         {
-            return _sql.Table<User>().Any(u => u.Banned && u.Hdid == hdid);
+            return _sql.Table<User>().Any(u => u.Banned && u.Hwid == hwid);
         }
 
         public bool IsIpBanned(string ip)
         {
-            return IsHdidBanned(GetHdidfromIp(ip));
+            foreach (var hwid in GetHwidsfromIp(ip))
+            {
+                if (IsHwidBanned(hwid))
+                    return true;
+            }
+
+            return false;
         }
 
         public string GetBanReason(string ip)
@@ -100,23 +107,28 @@ namespace AO2Sharp.Database
             return _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
         }
 
-        public void BanHdid(string hdid, string reason)
+        public void BanHwid(string hwid, string reason, TimeSpan? expireTime = null)
         {
-            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            var user = _sql.Table<User>().First(u => u.Hwid == hwid);
             user.Banned = true;
             user.BanReason = reason;
+            if (expireTime != null)
+                user.BanExpiration = DateTime.Now.Add((TimeSpan) expireTime);
 
             _sql.Update(user);
         }
 
-        public void BanIp(string ip, string reason)
+        public void BanIp(string ip, string reason, TimeSpan? expireTime = null)
         {
-            BanHdid(GetHdidfromIp(ip), reason);
+            foreach (var hwid in GetHwidsfromIp(ip))
+            {
+                BanHwid(hwid, reason, expireTime);
+            }
         }
 
-        public void UnbanHdid(string hdid)
+        public void UnbanHwid(string hwid)
         {
-            var user = _sql.Table<User>().First(u => u.Hdid == hdid);
+            var user = _sql.Table<User>().First(u => u.Hwid == hwid);
             user.Banned = false;
 
             _sql.Update(user);
@@ -124,7 +136,20 @@ namespace AO2Sharp.Database
 
         public void UnbanIp(string ip)
         {
-            UnbanHdid(GetHdidfromIp(ip));
+            foreach (var hwid in GetHwidsfromIp(ip))
+            {
+                UnbanHwid(hwid);
+            }
+        }
+
+        public string[] GetBannedHwids()
+        {
+            return _sql.Table<User>().Where(u => u.Banned).Select(u => u.Hwid).ToArray();
+        }
+
+        public DateTime? GetBanExpiration(string hwid)
+        {
+            return _sql.Table<User>().Single(u => u.Hwid == hwid).BanExpiration;
         }
 
         public bool AddLogin(string username, string password)

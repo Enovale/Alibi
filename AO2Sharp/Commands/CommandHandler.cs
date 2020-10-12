@@ -19,6 +19,10 @@ namespace AO2Sharp.Commands
         {
             if (_handlers.ContainsKey(command))
             {
+                for (var i = 0; i < args.Length; i++)
+                {
+                    args[i] = args[i].Trim('"');
+                }
                 var handler = _handlers[command];
                 var modAttributes = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
                 if (modAttributes.Any())

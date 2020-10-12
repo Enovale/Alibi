@@ -36,8 +36,6 @@ namespace AO2Sharp.WebSocket
 
         public override void OnWsReceived(byte[] buffer, long offset, long size)
         {
-            if (Encoding.ASCII.GetString(buffer, (int) offset, (int) size).StartsWith("GET"))
-                return;
             _tcpSocket.SendAsync(buffer, offset, size);
         }
     }

@@ -19,7 +19,8 @@ namespace AO2Sharp
         // I dont think this needs to be stored
         // public string ShowName { get; internal set; }
         public Area Area { get; internal set; }
-        public IArea IArea => (IArea) Area;
+        public IArea IArea => Area;
+        public string Position { get; internal set; }
 
         public string Password { get; internal set; }
         public int? Character { get; internal set; }
@@ -93,7 +94,7 @@ namespace AO2Sharp
 
         public void KickIfBanned()
         {
-            if (Server.Database.IsHdidBanned(HardwareId) || Server.Database.IsIpBanned(IpAddress.ToString()))
+            if (Server.Database.IsHwidBanned(HardwareId) || Server.Database.IsIpBanned(IpAddress.ToString()))
             {
                 Send(new AOPacket("BD", GetBanReason()));
                 Task.Delay(500).Wait();
@@ -113,16 +114,19 @@ namespace AO2Sharp
             return Server.Database.GetBanReason(IpAddress.ToString());
         }
 
-        public void BanHdid(string reason)
+        public void BanHwid(string reason, TimeSpan? expireDate)
         {
-            Server.Database.BanHdid(HardwareId, reason);
+            Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
         }
 
-        public void BanIp(string reason)
+        public void BanIp(string reason, TimeSpan? expireDate)
         {
-            Server.Database.BanIp(IpAddress.ToString(), reason);
-            Send(new AOPacket("KB", reason));
+            Server.Database.BanIp(IpAddress.ToString(), reason, expireDate);
+            foreach (var hdid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
+            {
+                Send(new AOPacket("KB", reason));
+            }
         }
 
         public void Send(AOPacket packet)

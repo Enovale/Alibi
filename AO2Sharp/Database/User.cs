@@ -7,8 +7,8 @@ namespace AO2Sharp.Database
     public class User
     {
         [PrimaryKey, Indexed]
-        [Column("hdid")]
-        public string Hdid { get; set; }
+        [Column("hwid")]
+        public string Hwid { get; set; }
         [Column("ips")]
         public string Ips { get; set; }
         [Column("banned")]

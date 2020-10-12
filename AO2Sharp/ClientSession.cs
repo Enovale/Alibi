@@ -2,6 +2,7 @@
 using AO2Sharp.Protocol;
 using NetCoreServer;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -45,6 +46,9 @@ namespace AO2Sharp
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
             string msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
+            string[] dissallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
+            if (dissallowedRequests.Any(r => msg.StartsWith(r)))
+                return;
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
