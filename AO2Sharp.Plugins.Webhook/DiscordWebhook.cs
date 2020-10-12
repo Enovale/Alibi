@@ -43,9 +43,9 @@ namespace AO2Sharp.Plugins.Webhook
         }
 
         [CustomCommandHandler("customtest", "A csutom command test!")]
-        public static void Custom(IClient client, string[] args)
+        public void Custom(IClient client, string[] args)
         {
-            Console.WriteLine("Test!");
+            LogInfo("Instance methods actually work wtf lmao");
         }
 
         public override void OnModCall(IClient caller, string reason)
