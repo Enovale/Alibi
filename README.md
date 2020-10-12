@@ -10,7 +10,7 @@ Windows:
 
  - All you need is the [.NET Core 3.1 Runtime](https://cutt.ly/netcore31) installed.
 
-Linux:
+Linux/Unix:
  
  - Determine how to install the dotnet core runtime on your distribution: 
  [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu) 
@@ -72,3 +72,5 @@ Some shit that needs to get done
 - [X] Commands (Some commands are in but need more)
 - [X] Logging architecture
 - [X] Database
+- [ ] Implement standard commands
+- [ ] Test/Stress test this bitch

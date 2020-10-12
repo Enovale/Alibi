@@ -31,6 +31,8 @@ namespace AO2Sharp
         [NonSerialized]
         public string CurrentCourtManager = "FREE";
         [NonSerialized]
+        public string Document;
+        [NonSerialized]
         public int DefendantHp = 10;
         [NonSerialized]
         public int ProsecutorHp = 10;

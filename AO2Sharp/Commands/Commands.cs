@@ -74,6 +74,13 @@ namespace AO2Sharp.Commands
             client.SendOocMessage($"{client.Area.PlayerCount} players in this Area.");
         }
 
+        [CommandHandler("pos", "Set your position (def, wit, pro, jud, etc).")]
+        internal static void SetPosition(Client client, string[] args)
+        {
+            client.Position = args[0];
+            client.SendOocMessage($"You have changed your position to {args[0]}");
+        }
+
         [ModOnly]
         [CommandHandler("restart", "Restart's the server.")]
         internal static void Restart(Client client, string[] args)
@@ -135,25 +142,51 @@ namespace AO2Sharp.Commands
         {
             if (args.Length < 1)
             {
-                client.SendOocMessage("Usage: /ban <hdid/ip> [reason]");
+                client.SendOocMessage("Usage: /ban <hwid/ip> [reason]");
                 return;
             }
 
             string reason = args.Length > 1 ? args[1] : "No reason given.";
+            string expires = args.Length > 2 ? args[2] : null;
+
+            TimeSpan? expireDate = null;
+            if (expires != null)
+            {
+                string[] expireArgs = expires.Split(" ");
+                if (expireArgs.Length >= 2)
+                {
+                    if (int.TryParse(expireArgs[0], out int value))
+                    {
+                        if (!expireArgs[1].EndsWith('s'))
+                            expireArgs[1] += 's';
+                        expireDate = expireArgs[1] switch
+                        {
+                            "minutes" => new TimeSpan(0, value, 0),
+                            "hours" => new TimeSpan(value, 0, 0),
+                            "day" => new TimeSpan(value, 0, 0, 0),
+                            "week" => new TimeSpan(value * 7, 0, 0, 0),
+                            // Shut up i don't care
+                            "month" => new TimeSpan(value * 30, 0, 0, 0),
+                            "perma" => null,
+                            _ => null
+                        };
+                    }
+                }
+            }
 
             if (IPAddress.TryParse(args[0], out _))
             {
                 // Gross
                 foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
                 {
-                    c.BanIp(reason);
+                    c.BanIp(reason, expireDate);
                 }
             }
             else
             {
                 foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.HardwareId == args[0])))
                 {
-                    c.BanHdid(reason);
+                    c.BanHwid(reason, expireDate);
                 }
             }
 
@@ -166,7 +199,7 @@ namespace AO2Sharp.Commands
         {
             if (args.Length < 1)
             {
-                client.SendOocMessage("Usage: /unban <hdid/ip>");
+                client.SendOocMessage("Usage: /unban <hwid/ip>");
                 return;
             }
 
@@ -176,10 +209,41 @@ namespace AO2Sharp.Commands
             }
             else
             {
-                Server.Database.UnbanHdid(args[0]);
+                Server.Database.UnbanHwid(args[0]);
             }
 
             client.SendOocMessage($"{args[0]} has been unbanned.");
+        }
+
+        [ModOnly]
+        [CommandHandler("kick", "Kick a user from the server. You can specify a hardware ID or IP")]
+        internal static void Kick(Client client, string[] args)
+        {
+            if (args.Length < 1)
+            {
+                client.SendOocMessage("Usage: /kick <hwid/ip> [reason]");
+                return;
+            }
+
+            string reason = args.Length > 1 ? args[1] : "No reason given.";
+
+            if (IPAddress.TryParse(args[0], out _))
+            {
+                // Gross
+                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
+                {
+                    c.Kick(reason);
+                }
+            }
+            else
+            {
+                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.HardwareId == args[0])))
+                {
+                    c.Kick(reason);
+                }
+            }
+
+            client.SendOocMessage($"{args[0]} has been kicked.");
         }
     }
 }

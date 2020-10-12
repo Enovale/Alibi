@@ -270,6 +270,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("HP")]
         internal static void UpdateHealthBar(Client client, AOPacket packet)
         {
+            if (!client.Position.ToLower().StartsWith("jud"))
+                return;
             int hp;
             if (int.TryParse(packet.Objects[1], out hp))
             {
@@ -285,7 +287,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RT")]
         internal static void JudgeAnimation(Client client, AOPacket packet)
         {
-            client.Area.Broadcast(packet);
+            if((client.Position ?? "").ToLower().StartsWith("jud"))
+                client.Area.Broadcast(packet);
         }
 
         [MessageHandler("ZZ")]

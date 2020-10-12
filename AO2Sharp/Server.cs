@@ -55,7 +55,7 @@ namespace AO2Sharp
         {
             ServerConfiguration = config;
             Logger = new Logger(this);
-            Logger.Log(LogSeverity.Special, "Server starting up...");
+            Logger.Log(LogSeverity.Special, " Server starting up...");
             Database = new DatabaseManager();
             if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning, " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
@@ -97,8 +97,9 @@ namespace AO2Sharp
             _pluginManager = new PluginManager(PluginFolder);
             _pluginManager.LoadPlugins(this);
 
-            Logger.Log(LogSeverity.Special, "Server started!");
+            Logger.Log(LogSeverity.Special, " Server started!");
             CheckCorpses();
+            UnbanExpires();
         }
 
         public void ReloadConfig()
@@ -141,7 +142,23 @@ namespace AO2Sharp
                         client.Session.Disconnect();
                     }
                 }
-                await delayTask; // wait until at least 10s elapsed since delayTask created
+                await delayTask;
+            }
+        }
+
+        private async void UnbanExpires()
+        {
+            while (true)
+            {
+                // Wait a minute each time because that's the minimum unit of measurement
+                var delayTask = Task.Delay(60000);
+                Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
+                foreach (var bannedHwid in Database.GetBannedHwids())
+                {
+                    if(DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
+                        Database.UnbanHwid(bannedHwid);
+                }
+                await delayTask;
             }
         }
 
