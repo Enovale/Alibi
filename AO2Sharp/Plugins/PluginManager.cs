@@ -87,6 +87,7 @@ namespace AO2Sharp.Plugins
                 try
                 {
                     instance!.Server = server;
+                    instance!.Assembly = asm;
                     instance!.Initialize(this);
                 }
                 catch (Exception e)
