@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 using AO2Sharp.Plugins.API;
+using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Plugins.Webhook
 {
@@ -38,6 +40,12 @@ namespace AO2Sharp.Plugins.Webhook
             _validConfig = true;
 
             LogInfo("Discord Webhook loaded.");
+        }
+
+        [CustomCommandHandler("customtest", "A csutom command test!")]
+        public static void Custom(IClient client, string[] args)
+        {
+            Console.WriteLine("Test!");
         }
 
         public override void OnModCall(IClient caller, string reason)

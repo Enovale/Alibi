@@ -3,45 +3,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AO2Sharp.Plugins.API;
+using Newtonsoft.Json;
 
 namespace AO2Sharp
 {
     public class Area : IArea
     {
-        [NonSerialized]
-        public static readonly Area Default = new Area()
-        {
-            Name = "Test Area",
-            Background = "gs4",
-            BackgroundPosition = 0,
-            BackgroundLocked = false,
-            Locked = false,
-            IniSwappingAllowed = true
-        };
-
-        public string Name { get; set; }
-        public string Background { get; set; }
-        public int BackgroundPosition { get; set; }
-        public bool Locked { get; set; }
-        public bool BackgroundLocked { get; set; }
-        public bool IniSwappingAllowed { get; set; }
+        public string Name { get; set; } = "AreaName";
+        public string Background { get; set; } = "gs4";
+        public bool CanLock { get; set; } = true;
+        public bool BackgroundLocked { get; set; } = false;
+        public bool IniSwappingAllowed { get; set; } = true;
         public string Status { get; set; } = "FREE";
-        [NonSerialized]
-        public int PlayerCount;
-        [NonSerialized]
-        public string CurrentCourtManager = "FREE";
-        [NonSerialized]
-        public string Document;
-        [NonSerialized]
-        public int DefendantHp = 10;
-        [NonSerialized]
-        public int ProsecutorHp = 10;
-        [NonSerialized]
-        public bool[] TakenCharacters;
-        [NonSerialized]
-        public List<Evidence> EvidenceList = new List<Evidence>();
+        [JsonIgnore]
+        public bool Locked { get; set; } = false;
+        [JsonIgnore]
+        public int PlayerCount { get; set; } = 0;
+        [JsonIgnore]
+        public Client CurrentCourtManager { get; set; } = null;
+        [JsonIgnore]
+        public IClient ICurrentCourtManager
+        {
+            get => CurrentCourtManager;
+            set => CurrentCourtManager = (Client)value;
+        }
 
-        [NonSerialized]
+        [JsonIgnore]
+        public string Document { get; set; }
+        [JsonIgnore]
+        public int DefendantHp { get; set; } = 10;
+        [JsonIgnore]
+        public int ProsecutorHp { get; set; } = 10;
+        [JsonIgnore]
+        public bool[] TakenCharacters { get; set; }
+        [JsonIgnore]
+        public List<Evidence> EvidenceList { get; set; } = new List<Evidence>();
+        [JsonIgnore]
+        public List<IEvidence> IEvidenceList => (List<IEvidence>)EvidenceList.Cast<IEvidence>();
+
+        [JsonIgnore]
         internal Server Server;
 
         internal void Broadcast(AOPacket packet)
@@ -79,7 +79,10 @@ namespace AO2Sharp
                         updateData.Add(area.Status);
                         break;
                     case AreaUpdateType.CourtManager:
-                        updateData.Add(area.CurrentCourtManager);
+                        if(area.CurrentCourtManager == null)
+                            updateData.Add("FREE");
+                        else
+                            updateData.Add(area.CurrentCourtManager.CharacterName!);
                         break;
                     case AreaUpdateType.Locked:
                         updateData.Add(area.Locked ? "LOCKED" : "FREE");

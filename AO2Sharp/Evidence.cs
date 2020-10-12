@@ -2,9 +2,9 @@
 {
     public class Evidence
     {
-        public string Name;
-        public string Description;
-        public string Photo;
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Photo { get; set; }
 
         public Evidence(string name, string description, string photo)
         {

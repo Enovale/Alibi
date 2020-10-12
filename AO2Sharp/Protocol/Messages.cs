@@ -168,7 +168,7 @@ namespace AO2Sharp.Protocol
             client.Send(new AOPacket("HP", "1", client.Area.DefendantHp.ToString()));
             client.Send(new AOPacket("HP", "2", client.Area.ProsecutorHp.ToString()));
             client.Send(new AOPacket("FA", client.Server.AreaNames));
-            client.Send(new AOPacket("BN", client.Area.Background, client.Area.BackgroundPosition.ToString()));
+            client.Send(new AOPacket("BN", client.Area.Background));
             // TODO: Determine if this is needed because it's retarded
             // WebAO doesn't use it so im gonna assume its not
             //client.Send(new AOPacket("OPPASS", Server.ServerConfiguration.ModPassword));
@@ -259,7 +259,7 @@ namespace AO2Sharp.Protocol
                 List<string> arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries));
                 arguments.RemoveAt(0);
 
-                CommandHandler.HandleMessage(client, command, arguments.ToArray());
+                CommandHandler.HandleCommand(client, command, arguments.ToArray());
                 return;
             }
 
@@ -294,7 +294,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("ZZ")]
         internal static void ModCall(Client client, AOPacket packet)
         {
-            Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] {Server.CharactersList[(int)client.Character]} called for mod with reasoning: {packet.Objects[0]}");
+            Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] {client.CharacterName} called for mod with reasoning: {packet.Objects[0]}");
             var packetToSend = new AOPacket(packet.Type, $"Someone has called mod in the {client.Area.Name} area, with reasoning: {packet.Objects[0]}");
 
             foreach (var c in new Queue<Client>(client.Server.ClientsConnected))

@@ -59,7 +59,7 @@ namespace AO2Sharp
         public void IcMessageLog(string message, Area area, Client client)
         {
             Debug.Assert(client.Character != null, "client.Character == null during IC logging");
-            Log(LogSeverity.Info, $"[IC][{area.Name}][{Server.CharactersList[(int)client.Character]}] {message}");
+            Log(LogSeverity.Info, $"[IC][{area.Name}][{client.CharacterName}] {message}");
         }
 
         public void OocMessageLog(string message, Area area = null, string name = null)

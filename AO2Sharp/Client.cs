@@ -1,6 +1,8 @@
-﻿using AO2Sharp.Helpers;
+﻿#nullable enable
+using AO2Sharp.Helpers;
 using AO2Sharp.Plugins.API;
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -10,25 +12,27 @@ namespace AO2Sharp
     {
         public ClientSession Session { get; private set; }
         public Server Server { get; private set; }
+        public IServer IServer => Server;
 
         public bool Connected { get; internal set; }
         public bool Authed { get; internal set; }
         public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal set; }
-        public string HardwareId { get; internal set; }
+        public string? HardwareId { get; internal set; }
         // I dont think this needs to be stored
         // public string ShowName { get; internal set; }
-        public Area Area { get; internal set; }
-        public IArea IArea => Area;
-        public string Position { get; internal set; }
+        public Area? Area { get; internal set; }
+        public IArea IArea => Area!;
+        public string? Position { get; set; }
 
-        public string Password { get; internal set; }
-        public int? Character { get; internal set; }
-        public string LastSentMessage { get; internal set; }
+        public string? Password { get; internal set; }
+        public int? Character { get; set; }
+        public string? CharacterName => Character != null ? Server.CharactersList[(int)Character] : null;
+        public string? LastSentMessage { get; set; }
 
         // Retarded pairing shit
         public int PairingWith { get; internal set; } = -1;
-        public string StoredEmote { get; internal set; }
+        public string? StoredEmote { get; internal set; }
         public int StoredOffset { get; internal set; }
         public bool StoredFlip { get; internal set; }
 
@@ -58,6 +62,10 @@ namespace AO2Sharp
                 return;
             }
 
+            // Mostly to make the nullable warnings to shut up
+            if (Area == null)
+                Area = Server.Areas.First();
+
             if (Character != null)
             {
                 Area.TakenCharacters[(int)Character] = false;
@@ -73,7 +81,7 @@ namespace AO2Sharp
             Send(new AOPacket("HP", "1", Area.DefendantHp.ToString()));
             Send(new AOPacket("HP", "2", Area.ProsecutorHp.ToString()));
             Send(new AOPacket("FA", Server.AreaNames));
-            Send(new AOPacket("BN", Area.Background, Area.BackgroundPosition.ToString()));
+            Send(new AOPacket("BN", Area.Background));
 
             if (Character != null)
             {
@@ -118,6 +126,8 @@ namespace AO2Sharp
         {
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
+            Task.Delay(500).Wait();
+            Session.Disconnect();
         }
 
         public void BanIp(string reason, TimeSpan? expireDate)
@@ -126,6 +136,8 @@ namespace AO2Sharp
             foreach (var hdid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
             {
                 Send(new AOPacket("KB", reason));
+                Task.Delay(500).Wait();
+                Session.Disconnect();
             }
         }
 

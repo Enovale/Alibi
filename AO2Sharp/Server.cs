@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Threading.Tasks;
+using AO2Sharp.Commands;
 
 namespace AO2Sharp
 {
@@ -66,8 +67,7 @@ namespace AO2Sharp
             ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
             if (ServerConfiguration.Advertise)
             {
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(ServerConfiguration.MasterServerAddress);
-                MasterServerIp = ipHostInfo.AddressList.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
+                MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
                 _advertiser = new Advertiser(MasterServerIp, ServerConfiguration.MasterServerPort);
             }
 
@@ -77,7 +77,7 @@ namespace AO2Sharp
             if (Areas == null || Areas.Length == 0)
             {
                 Logger.Log(LogSeverity.Warning, "At least one area is required to start the server, writing default area...");
-                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new Area[] { Area.Default }, Formatting.Indented));
+                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new[] { new Area() }, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }
             AreaNames = new string[Areas.Length];
@@ -96,6 +96,7 @@ namespace AO2Sharp
 
             _pluginManager = new PluginManager(PluginFolder);
             _pluginManager.LoadPlugins(this);
+            _pluginManager.GetAllPlugins().ForEach(p => CommandHandler.AddCustomHandler(p));
 
             Logger.Log(LogSeverity.Special, " Server started!");
             CheckCorpses();

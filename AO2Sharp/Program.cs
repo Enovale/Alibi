@@ -38,7 +38,7 @@ namespace AO2Sharp
             {
                 Console.Title = "AO2Sharp - Crashed";
                 var error = ((UnobservedTaskExceptionEventArgs)eventArgs).Exception;
-                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
+                Server.Logger.Log(LogSeverity.Error, " " + error!.Message + "\n" + error.StackTrace);
             }
             if (eventArgs.GetType() == typeof(FirstChanceExceptionEventArgs))
             {

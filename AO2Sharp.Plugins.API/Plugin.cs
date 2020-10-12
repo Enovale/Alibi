@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace AO2Sharp.Plugins.API
 {
@@ -9,6 +10,7 @@ namespace AO2Sharp.Plugins.API
         public abstract string ID { get; }
         public abstract string Name { get; }
         public IServer Server { get; set; }
+        public Assembly Assembly { get; set; }
         public abstract void Initialize(IPluginManager manager);
 
         public virtual void OnAllPluginsLoaded() { }

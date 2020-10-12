@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Commands
 {
@@ -12,14 +14,14 @@ namespace AO2Sharp.Commands
         [CommandHandler("help", "Show's this text.")]
         internal static void Help(Client client, string[] args)
         {
-            string finalResponse = "Commands: \n";
-            foreach (var (command, handler) in CommandHandler._handlers)
+            string finalResponse = "Commands:";
+            foreach (var (command, desc, modOnly) in CommandHandler.HandlerInfo)
             {
                 if (client.Authed)
                     finalResponse +=
-                        $"/{command}: {handler.Method.GetCustomAttributes<CommandHandlerAttribute>().First().ShortDesc}\n";
-                else if (!handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute)).Any())
-                    finalResponse += $"/{command}: {handler.Method.GetCustomAttributes<CommandHandlerAttribute>().First().ShortDesc}\n";
+                        $"\n/{command}: {desc}";
+                else if (!modOnly)
+                    finalResponse += $"\n/{command}: {desc}";
             }
 
             client.SendOocMessage(finalResponse);
@@ -29,6 +31,51 @@ namespace AO2Sharp.Commands
         internal static void Motd(Client client, string[] args)
         {
             client.SendOocMessage(Server.ServerConfiguration.MOTD);
+        }
+
+        [CommandHandler("online", "Shows the player count.")]
+        internal static void PlayerCount(Client client, string[] args)
+        {
+            client.SendOocMessage($"{client.Area.PlayerCount} players in this Area.");
+        }
+
+        [CommandHandler("pos", "Set your position (def, wit, pro, jud, etc).")]
+        internal static void SetPosition(Client client, string[] args)
+        {
+            client.Position = args[0];
+            client.SendOocMessage($"You have changed your position to {args[0]}");
+        }
+
+        [CommandHandler("bg", "Set the background for this area.")]
+        internal static void SetBackground(Client client, string[] args)
+        {
+            if (!client.Area.BackgroundLocked)
+            {
+                client.Area.Background = args[0];
+                if(args.Length > 1)
+                    client.Area.Broadcast(new AOPacket("BN", client.Area.Background, args[1]));
+                else
+                    client.Area.Broadcast(new AOPacket("BN", client.Area.Background));
+            }
+
+            client.SendOocMessage($"You have changed the background to {args[0]}");
+        }
+
+        [CommandHandler("areainfo", "Display area info, including players and name.")]
+        internal static void AreaInfo(Client client, string[] args)
+        {
+            string output = $"{client.Area.Name}:";
+            for (var i = 0; i < client.Area.TakenCharacters.Length; i++)
+            {
+                if (!client.Area.TakenCharacters[i])
+                    continue;
+                var tchar = Server.CharactersList[i];
+                if (!client.Authed)
+                    output += "\n" + tchar;
+                else
+                    output += $"{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: {tchar}\n";
+            }
+            client.SendOocMessage(output);
         }
 
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]
@@ -66,19 +113,6 @@ namespace AO2Sharp.Commands
             {
                 client.SendOocMessage("You are not logged in.");
             }
-        }
-
-        [CommandHandler("pc", "Shows the player count.")]
-        internal static void PlayerCount(Client client, string[] args)
-        {
-            client.SendOocMessage($"{client.Area.PlayerCount} players in this Area.");
-        }
-
-        [CommandHandler("pos", "Set your position (def, wit, pro, jud, etc).")]
-        internal static void SetPosition(Client client, string[] args)
-        {
-            client.Position = args[0];
-            client.SendOocMessage($"You have changed your position to {args[0]}");
         }
 
         [ModOnly]

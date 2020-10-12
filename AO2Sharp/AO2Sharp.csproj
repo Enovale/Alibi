@@ -10,6 +10,7 @@
     <Copyright>ElijahZAwesome 2020</Copyright>
     <PackageProjectUrl>https://github.com/ElijahZAwesome/AO2Sharp</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
