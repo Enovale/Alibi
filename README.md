@@ -38,35 +38,16 @@ You should now have a barebones working plugin! Build it and put the .dll in the
 folder of AO2Sharp, and restart the server.
 
 # Progress
-These packets are implemented:
+These packets are not implemented:
 
-- [X] HI
-- [X] ID
-- [X] askchaa
-- [X] RC
-- [X] RE
-- [X] RM
-- [X] RD
-- [X] PW
-- [X] CharsCheck
-- [X] CC
-- [X] MS
-- [X] MC
-- [X] RT
-- [X] CT
-- [X] HP
-- [X] PE
-- [X] DE
-- [X] EE
 - [ ] SETCASE
 - [ ] CASEA
-- [X] ZZ
-- [X] CH
 
 # TODO
 Some shit that needs to get done
 
-- [-] Become more thread safe (Maybe?)
+- [ ] Clean up some of this shit code
+- [ ] Become more thread safe (Maybe?)
 - [X] Plugins
 - [X] Areas
 - [X] Commands (Some commands are in but need more)

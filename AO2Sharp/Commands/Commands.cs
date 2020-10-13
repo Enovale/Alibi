@@ -62,17 +62,17 @@ namespace AO2Sharp.Commands
         [CommandHandler("areainfo", "Display area info, including players and name.")]
         internal static void AreaInfo(Client client, string[] args)
         {
-            string output = $"{client.Area.Name}:";
+            string output = $"{client.Area!.Name}:";
             for (var i = 0; i < client.Area.TakenCharacters.Length; i++)
             {
                 if (!client.Area.TakenCharacters[i])
                     continue;
                 var tchar = Server.CharactersList[i];
                 if (!client.Authed)
-                    output += "\n" + tchar + ", ID: " + client.Character;
+                    output += "\n" + tchar + ", ID: " + i;
                 else
                     output +=
-                        $"{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
+                        $"\n{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
                         $"{tchar}, ID: {client.Character}\n";
             }
             client.SendOocMessage(output);
