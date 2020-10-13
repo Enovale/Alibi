@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AO2Sharp.Plugins.API
+﻿namespace AO2Sharp.Plugins.API
 {
     public interface IPluginManager
     {

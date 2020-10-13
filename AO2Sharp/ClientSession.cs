@@ -35,11 +35,14 @@ namespace AO2Sharp
             if (Client.Connected)
             {
                 ((Server)Server).ConnectedPlayers--;
-                Client.Area.PlayerCount--;
+                Client.Area!.PlayerCount--;
+                Client.Connected = false;
                 if (Client.Character != null)
                     Client.Area.TakenCharacters[(int)Client.Character] = false;
                 Client.Area.UpdateTakenCharacters();
+                Client.Area.CurrentCourtManagers.Remove(Client);
                 Client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
+                Client.Area.AreaUpdate(AreaUpdateType.CourtManager);
             }
         }
 

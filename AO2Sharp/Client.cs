@@ -56,9 +56,15 @@ namespace AO2Sharp
                 return;
             }
 
-            if (Server.Areas[index].Locked)
+            if (Server.Areas[index].Locked == "LOCKED")
             {
                 SendOocMessage($"Area \"{Server.AreaNames[index]}\" is locked.");
+                return;
+            }
+
+            if (Server.Areas[index].Locked == "SPECTATABLE" && Character == null)
+            {
+                SendOocMessage($"Area \"{Server.AreaNames[index]}\" is spectater-only.");
                 return;
             }
 

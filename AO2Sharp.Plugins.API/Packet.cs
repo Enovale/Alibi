@@ -1,6 +1,4 @@
-﻿using AO2Sharp.Plugins.API;
-using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AO2Sharp.Plugins.API
 {

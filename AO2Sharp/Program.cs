@@ -1,53 +1,52 @@
 ﻿#nullable enable
 using System;
 using System.IO;
-using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
     class Program
     {
+        private static Server _server;
+
         static void Main(string[] args)
         {
             if (!File.Exists(Server.ConfigPath))
                 new Configuration().SaveToFile(Server.ConfigPath);
-            var server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
+            _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
             Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
             Console.Title = "AO2Sharp - Running";
-            server.Start();
+            _server.Start();
 
-            AppDomain.CurrentDomain.ProcessExit += DumpLogsAndExit;
-            AppDomain.CurrentDomain.UnhandledException += DumpLogsAndExit;
-            //AppDomain.CurrentDomain.FirstChanceException += DumpLogsAndExit;
-            TaskScheduler.UnobservedTaskException += DumpLogsAndExit;
+            AppDomain.CurrentDomain.ProcessExit += ExitProgram;
+            Console.CancelKeyPress += ExitProgram;
+            AppDomain.CurrentDomain.UnhandledException += ExitProgram;
+            TaskScheduler.UnobservedTaskException += ExitProgram;
 
             while (true) ;
         }
 
-        static void DumpLogsAndExit(object? sender, EventArgs eventArgs)
+        static void ExitProgram(object? sender, EventArgs eventArgs)
         {
             Console.Title = "AO2Sharp - Stopping";
-            if (eventArgs.GetType() == typeof(UnhandledExceptionEventArgs))
+            if (eventArgs is UnhandledExceptionEventArgs exceptionArgs)
             {
                 Console.Title = "AO2Sharp - Crashed";
-                var error = (Exception)((UnhandledExceptionEventArgs)eventArgs).ExceptionObject;
+                var error = (Exception)exceptionArgs.ExceptionObject;
                 Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
             }
-            if (eventArgs.GetType() == typeof(UnobservedTaskExceptionEventArgs))
+            if (eventArgs is UnobservedTaskExceptionEventArgs taskExceptionArgs)
             {
                 Console.Title = "AO2Sharp - Crashed";
-                var error = ((UnobservedTaskExceptionEventArgs)eventArgs).Exception;
+                var error = taskExceptionArgs.Exception;
                 Server.Logger.Log(LogSeverity.Error, " " + error!.Message + "\n" + error.StackTrace);
             }
-            if (eventArgs.GetType() == typeof(FirstChanceExceptionEventArgs))
+            _server.Stop();
+            if (eventArgs is ConsoleCancelEventArgs args)
             {
-                Console.Title = "AO2Sharp - Crashed";
-                var error = ((FirstChanceExceptionEventArgs)eventArgs).Exception;
-                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
+                args.Cancel = true;
+                Environment.Exit(0);
             }
-            Server.Logger.Dump();
-            Environment.Exit(0);
         }
     }
 }

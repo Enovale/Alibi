@@ -27,7 +27,7 @@ Double click or run this in the console (currently no command line arguments):
 AO2Sharp
 ```
 
-# Plugins
+# Plugins (Actual wiki coming soon)
 Surprisingly, this thing supports plugins! To make one, just make a new .Net Core 
 Class Library that targets 'Core 3.1, and reference the `AO2Sharp.Plugins.API` 
 project of this repository, or install this 
@@ -74,3 +74,5 @@ Some shit that needs to get done
 - [X] Database
 - [ ] Implement standard commands
 - [ ] Test/Stress test this bitch
+- [ ] Document server
+- [ ] Document Plugin API

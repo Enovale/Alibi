@@ -1,6 +1,5 @@
 ﻿using NetCoreServer;
 using System.Net;
-using System.Text;
 
 namespace AO2Sharp.WebSocket
 {

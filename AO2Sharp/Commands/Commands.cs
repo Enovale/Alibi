@@ -1,11 +1,9 @@
-﻿using System;
+﻿using AO2Sharp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using AO2Sharp.Helpers;
-using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Commands
 {
@@ -52,7 +50,7 @@ namespace AO2Sharp.Commands
             if (!client.Area.BackgroundLocked)
             {
                 client.Area.Background = args[0];
-                if(args.Length > 1)
+                if (args.Length > 1)
                     client.Area.Broadcast(new AOPacket("BN", client.Area.Background, args[1]));
                 else
                     client.Area.Broadcast(new AOPacket("BN", client.Area.Background));
@@ -71,11 +69,95 @@ namespace AO2Sharp.Commands
                     continue;
                 var tchar = Server.CharactersList[i];
                 if (!client.Authed)
-                    output += "\n" + tchar;
+                    output += "\n" + tchar + ", ID: " + client.Character;
                 else
-                    output += $"{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: {tchar}\n";
+                    output +=
+                        $"{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
+                        $"{tchar}, ID: {client.Character}\n";
             }
             client.SendOocMessage(output);
+        }
+
+        [CommandHandler("cm", "Add a CM to the area.")]
+        internal static void AddCaseManager(Client client, string[] args)
+        {
+            if (client.Character == null)
+            {
+                client.SendOocMessage("You must not be a spectater to be a CM.");
+                return;
+            }
+            int characterToCm;
+            if (args.Length <= 0)
+                characterToCm = (int)client.Character;
+            else if (!int.TryParse(args[0], out characterToCm))
+            {
+                if (Server.CharactersList.Contains(args[0]))
+                    characterToCm = Array.IndexOf(Server.CharactersList, args[0]);
+                else
+                {
+                    client.SendOocMessage("Usage: /cm <character name/id>");
+                    return;
+                }
+            }
+            Client clientToCm =
+                client.Server.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
+            Area area = client.Area;
+            bool cmExists = area!.CurrentCourtManagers.Count > 0;
+            if (!cmExists)
+            {
+                area.CurrentCourtManagers.Add(clientToCm);
+                area.AreaUpdate(AreaUpdateType.CourtManager);
+                client.SendOocMessage($"{clientToCm.CharacterName} has become a CM.");
+                return;
+            }
+
+            bool isAlreadyCM = area.IsClientCM(clientToCm);
+            if (isAlreadyCM)
+            {
+                client.SendOocMessage("They are already CM in this area.");
+            }
+            else if (area.IsClientCM(client))
+            {
+                area.CurrentCourtManagers.Add(clientToCm);
+                area.AreaUpdate(AreaUpdateType.CourtManager);
+                client.SendOocMessage($"{clientToCm.CharacterName} has become a CM.");
+            }
+            else
+            {
+                client.SendOocMessage("You must be added by the CM to do this.");
+            }
+        }
+
+        [CommandHandler("uncm", "Add a CM to the area.")]
+        internal static void RemoveCaseManager(Client client, string[] args)
+        {
+            int characterToDeCm = (int)(args.Length > 0 ? int.Parse(args[0]) : client.Character);
+            Client clientToDeCm =
+                client.Server.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
+            Area area = client.Area;
+            bool cmExists = area!.CurrentCourtManagers.Count > 0;
+            if (!cmExists)
+            {
+                client.SendOocMessage("There aren't any Case Managers in this area.");
+                return;
+            }
+
+            bool isTargetCM = area.IsClientCM(clientToDeCm);
+            if (area.IsClientCM(client))
+            {
+                if (isTargetCM)
+                {
+                    area.CurrentCourtManagers.Remove(clientToDeCm);
+                    area.AreaUpdate(AreaUpdateType.CourtManager);
+                    client.SendOocMessage($"{clientToDeCm.CharacterName} is no longer a CM.");
+                }
+                else
+                {
+                    client.SendOocMessage("They are not CM, so cannot de-CM them.");
+                }
+            }
+            else
+                client.SendOocMessage("Must be CM to remove a CM.");
         }
 
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]

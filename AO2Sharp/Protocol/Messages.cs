@@ -287,7 +287,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RT")]
         internal static void JudgeAnimation(Client client, AOPacket packet)
         {
-            if((client.Position ?? "").ToLower().StartsWith("jud"))
+            if ((client.Position ?? "").ToLower().StartsWith("jud"))
                 client.Area.Broadcast(packet);
         }
 

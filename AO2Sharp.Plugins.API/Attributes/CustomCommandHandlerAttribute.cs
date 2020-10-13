@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AO2Sharp.Plugins.API.Attributes
 {
-    
+
     [AttributeUsage(AttributeTargets.Method)]
     public class CustomCommandHandlerAttribute : Attribute
     {
