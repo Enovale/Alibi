@@ -11,7 +11,7 @@
 		<Description>API For AO2Sharp plugins.</Description>
 		<PackageProjectUrl>https://github.com/ElijahZAwesome/AO2Sharp</PackageProjectUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.1</Version>
+		<Version>0.2</Version>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>

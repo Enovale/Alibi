@@ -30,7 +30,7 @@ namespace AO2Sharp.WebSocket
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            if (_session.IsDisposed || _session.IsSocketDisposed)
+            if (!_session.IsConnected || _session.IsDisposed || _session.IsSocketDisposed)
             {
                 Disconnect();
                 return;
