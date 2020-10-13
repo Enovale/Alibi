@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AO2Sharp.Plugins.API
+﻿namespace AO2Sharp.Plugins.API
 {
     public interface IEvidence
     {

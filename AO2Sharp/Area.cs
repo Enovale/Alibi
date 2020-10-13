@@ -1,9 +1,9 @@
 ﻿using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AO2Sharp.Plugins.API;
-using Newtonsoft.Json;
 
 namespace AO2Sharp
 {
@@ -16,16 +16,16 @@ namespace AO2Sharp
         public bool IniSwappingAllowed { get; set; } = true;
         public string Status { get; set; } = "FREE";
         [JsonIgnore]
-        public bool Locked { get; set; } = false;
+        public string Locked { get; set; } = "FREE";
         [JsonIgnore]
         public int PlayerCount { get; set; } = 0;
         [JsonIgnore]
-        public Client CurrentCourtManager { get; set; } = null;
+        public List<Client> CurrentCourtManagers { get; set; } = new List<Client>();
         [JsonIgnore]
-        public IClient ICurrentCourtManager
+        public List<IClient> ICurrentCourtManagers
         {
-            get => CurrentCourtManager;
-            set => CurrentCourtManager = (Client)value;
+            get => CurrentCourtManagers.Cast<IClient>().ToList();
+            set => CurrentCourtManagers = value.Cast<Client>().ToList();
         }
 
         [JsonIgnore]
@@ -79,13 +79,14 @@ namespace AO2Sharp
                         updateData.Add(area.Status);
                         break;
                     case AreaUpdateType.CourtManager:
-                        if(area.CurrentCourtManager == null)
+                        if (area.CurrentCourtManagers.Count <= 0)
                             updateData.Add("FREE");
                         else
-                            updateData.Add(area.CurrentCourtManager.CharacterName!);
+                            updateData.Add(
+                                string.Join(',', area.CurrentCourtManagers.Select(c => c.CharacterName)));
                         break;
                     case AreaUpdateType.Locked:
-                        updateData.Add(area.Locked ? "LOCKED" : "FREE");
+                        updateData.Add(area.Locked);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -105,6 +106,8 @@ namespace AO2Sharp
             AreaUpdate(AreaUpdateType.CourtManager, client);
             AreaUpdate(AreaUpdateType.Locked, client);
         }
+
+        internal bool IsClientCM(Client client) => CurrentCourtManagers.Contains(client);
 
         internal void UpdateTakenCharacters()
         {

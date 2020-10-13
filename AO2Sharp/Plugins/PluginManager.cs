@@ -92,7 +92,7 @@ namespace AO2Sharp.Plugins
                 }
                 catch (Exception e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, 
+                    Server.Logger.Log(LogSeverity.Error,
                         $"[PluginLoader] Could not run initialization on {instance!.ID}: {e.Message}" + (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
                     continue;
                 }
@@ -118,7 +118,7 @@ namespace AO2Sharp.Plugins
             string filename = args.Name.Split(',')[0] + ".dll".ToLower();
 
             string asmFile = Path.Combine(PluginFolder, Server.PluginDepsFolder, filename);
-    
+
             try
             {
                 return Assembly.LoadFrom(asmFile);

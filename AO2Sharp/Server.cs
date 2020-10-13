@@ -1,4 +1,5 @@
-﻿using AO2Sharp.Database;
+﻿using AO2Sharp.Commands;
+using AO2Sharp.Database;
 using AO2Sharp.Helpers;
 using AO2Sharp.Plugins;
 using AO2Sharp.Plugins.API;
@@ -11,10 +12,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
-using AO2Sharp.Commands;
 
 namespace AO2Sharp
 {
@@ -51,6 +51,7 @@ namespace AO2Sharp
         private readonly Advertiser _advertiser;
         private readonly WebSocketProxy _wsProxy;
         private readonly PluginManager _pluginManager;
+        private readonly CancellationTokenSource _cancelTasksToken;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
@@ -96,11 +97,12 @@ namespace AO2Sharp
 
             _pluginManager = new PluginManager(PluginFolder);
             _pluginManager.LoadPlugins(this);
-            _pluginManager.GetAllPlugins().ForEach(p => CommandHandler.AddCustomHandler(p));
+            _pluginManager.GetAllPlugins().ForEach(CommandHandler.AddCustomHandler);
 
             Logger.Log(LogSeverity.Special, " Server started!");
-            CheckCorpses();
-            UnbanExpires();
+            _cancelTasksToken = new CancellationTokenSource();
+            CheckCorpses(_cancelTasksToken.Token);
+            UnbanExpires(_cancelTasksToken.Token);
         }
 
         public void ReloadConfig()
@@ -126,41 +128,53 @@ namespace AO2Sharp
                 File.Create(AreasPath).Close();
         }
 
-        private async void CheckCorpses()
+        private async void CheckCorpses(CancellationToken token)
         {
-            while (true)
+            var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
+            Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
+            var clientQueue = new Queue<Client>(ClientsConnected);
+            while (clientQueue.Any())
             {
-                var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000);
-                Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
-                var clientQueue = new Queue<Client>(ClientsConnected);
-                while (clientQueue.Any())
+                var client = clientQueue.Dequeue();
+                if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
                 {
-                    var client = clientQueue.Dequeue();
-                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
-                    {
-                        Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
-                        // Forcibly kick.
-                        client.Session.Disconnect();
-                    }
+                    Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
+                    // Forcibly kick.
+                    client.Session.Disconnect();
                 }
+            }
+
+            try
+            {
                 await delayTask;
             }
+            catch (TaskCanceledException)
+            {
+                return;
+            }
+            CheckCorpses(token);
         }
 
-        private async void UnbanExpires()
+        private async void UnbanExpires(CancellationToken token)
         {
-            while (true)
+            // Wait a minute each time because that's the minimum unit of measurement
+            var delayTask = Task.Delay(60000, token);
+            Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
+            foreach (var bannedHwid in Database.GetBannedHwids())
             {
-                // Wait a minute each time because that's the minimum unit of measurement
-                var delayTask = Task.Delay(60000);
-                Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
-                foreach (var bannedHwid in Database.GetBannedHwids())
-                {
-                    if(DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
-                        Database.UnbanHwid(bannedHwid);
-                }
+                if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
+                    Database.UnbanHwid(bannedHwid);
+            }
+
+            try
+            {
                 await delayTask;
             }
+            catch (TaskCanceledException)
+            {
+                return;
+            }
+            UnbanExpires(token);
         }
 
         public void Broadcast(AOPacket message)
@@ -230,8 +244,10 @@ namespace AO2Sharp
         protected override void OnStopped()
         {
             Logger.Log(LogSeverity.Warning, "Stopping server...");
+            _cancelTasksToken.Cancel();
             _advertiser.Stop();
             _wsProxy.Stop();
+            Logger.Dump();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using SQLite;
+﻿using SQLite;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -113,7 +113,7 @@ namespace AO2Sharp.Database
             user.Banned = true;
             user.BanReason = reason;
             if (expireTime != null)
-                user.BanExpiration = DateTime.Now.Add((TimeSpan) expireTime);
+                user.BanExpiration = DateTime.Now.Add((TimeSpan)expireTime);
 
             _sql.Update(user);
         }

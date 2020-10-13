@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AO2Sharp.Plugins.API;
+using AO2Sharp.Plugins.API.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AO2Sharp.Plugins.API;
-using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Commands
 {
@@ -56,7 +56,7 @@ namespace AO2Sharp.Commands
                     if (client.Authed)
                         CustomHandlers[command](client, args);
                     else
-                        client.SendOocMessage(((Plugins.API.Attributes.ModOnlyAttribute)customModAttributes.First()).ErrorMsg);
+                        client.SendOocMessage(((ModOnlyAttribute)customModAttributes.First()).ErrorMsg);
                 }
                 else
                     CustomHandlers[command](client, args);
@@ -80,20 +80,17 @@ namespace AO2Sharp.Commands
 
         public static void RegisterCustomCommandHandler(CustomCommandHandlerAttribute attr, Action<IClient, string[]> handler, bool overrideHandler = false)
         {
-            if (!CustomHandlers.ContainsKey(attr.Command))
-            {
-                CustomHandlers[attr.Command] = handler;
-                var isModOnly = handler.Method.GetCustomAttribute<Plugins.API.Attributes.ModOnlyAttribute>() != null;
-                HandlerInfo.Add(new Tuple<string, string, bool>(attr.Command, attr.ShortDesc, isModOnly));
-                SortInfo();
-            }
-
             if (overrideHandler && Handlers.ContainsKey(attr.Command))
             {
                 Handlers.Remove(attr.Command);
                 HandlerInfo.RemoveAll(t => t.Item1 == attr.Command);
-                SortInfo();
             }
+            if (CustomHandlers.ContainsKey(attr.Command)) return;
+
+            CustomHandlers[attr.Command] = handler;
+            var isModOnly = handler.Method.GetCustomAttribute<Plugins.API.Attributes.ModOnlyAttribute>() != null;
+            HandlerInfo.Add(new Tuple<string, string, bool>(attr.Command, attr.ShortDesc, isModOnly));
+            SortInfo();
         }
 
         private static void SortInfo()
