@@ -85,7 +85,13 @@ namespace AO2Sharp.Commands
                 Handlers.Remove(attr.Command);
                 HandlerInfo.RemoveAll(t => t.Item1 == attr.Command);
             }
-            if (CustomHandlers.ContainsKey(attr.Command)) return;
+
+            if (CustomHandlers.ContainsKey(attr.Command))
+            {
+                Server.Logger.Log(LogSeverity.Warning,
+                    $"[PluginLoader] Tried to add two of the same command: {attr.Command}.");
+                return;
+            }
 
             CustomHandlers[attr.Command] = handler;
             var isModOnly = handler.Method.GetCustomAttribute<Plugins.API.Attributes.ModOnlyAttribute>() != null;
