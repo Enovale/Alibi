@@ -40,7 +40,7 @@ namespace AO2Sharp
                 if (Client.Character != null)
                     Client.Area.TakenCharacters[(int)Client.Character] = false;
                 Client.Area.UpdateTakenCharacters();
-                Client.Area.CurrentCourtManagers.Remove(Client);
+                Client.Area.CurrentCaseManagers.Remove(Client);
                 Client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
                 Client.Area.AreaUpdate(AreaUpdateType.CourtManager);
             }
