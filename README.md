@@ -42,6 +42,7 @@ These packets are not implemented:
 
 - [ ] SETCASE
 - [ ] CASEA
+- [ ] Slow loading packets (needed because client is bugged lol)
 
 # TODO
 Some shit that needs to get done
