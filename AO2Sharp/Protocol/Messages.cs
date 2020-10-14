@@ -114,6 +114,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("PE")]
         internal static void AddEvidence(Client client, AOPacket packet)
         {
+            if (!CanModifyEvidence(client))
+                return;
             client.Area.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
             RequestEvidence(client, packet);
         }
@@ -121,6 +123,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("DE")]
         internal static void RemoveEvidence(Client client, AOPacket packet)
         {
+            if (!CanModifyEvidence(client))
+                return;
             if (int.TryParse(packet.Objects[0], out int id))
                 client.Area.EvidenceList.RemoveAt(id);
             RequestEvidence(client, packet);
@@ -129,6 +133,8 @@ namespace AO2Sharp.Protocol
         [MessageHandler("EE")]
         internal static void EditEvidence(Client client, AOPacket packet)
         {
+            if (!CanModifyEvidence(client))
+                return;
             if (int.TryParse(packet.Objects[0], out int id))
             {
                 id = Math.Max(0, Math.Min(client.Area.EvidenceList.Count, id));
@@ -294,8 +300,10 @@ namespace AO2Sharp.Protocol
         [MessageHandler("ZZ")]
         internal static void ModCall(Client client, AOPacket packet)
         {
-            Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] {client.CharacterName} called for mod with reasoning: {packet.Objects[0]}");
-            var packetToSend = new AOPacket(packet.Type, $"Someone has called mod in the {client.Area.Name} area, with reasoning: {packet.Objects[0]}");
+            Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] " +
+                                                   $"{client.CharacterName} called for mod with reasoning: {packet.Objects[0]}");
+            var packetToSend = new AOPacket(packet.Type, "Someone has called mod in the " +
+                                                         $"{client.Area.Name} area, with reasoning: {packet.Objects[0]}");
 
             foreach (var c in new Queue<Client>(client.Server.ClientsConnected))
             {
@@ -316,6 +324,17 @@ namespace AO2Sharp.Protocol
                 client.IpAddress = ip;
                 client.KickIfBanned();
             }
+        }
+
+        private static bool CanModifyEvidence(Client client)
+        {
+            if (client.Area.EvidenceModifications >= 0)
+                return true;
+            if (client.Area.EvidenceModifications == 1 && client.Area.IsClientCM(client))
+                return true;
+            client.SendOocMessage(
+                $"{(client.Area.EvidenceModifications == 1 ? "Only CMs are" : "Noone is")} allowed to modify evidence in this area.");
+            return false;
         }
     }
 }

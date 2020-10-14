@@ -29,6 +29,9 @@ namespace AO2Sharp.Plugins
         public string GetConfigFolder(string id)
             => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
 
+        public void Log(int severity, string message, bool verbose)
+            => Server.Logger.Log((LogSeverity) severity, message, verbose);
+
         public List<Plugin> GetAllPlugins()
             => Registry.RegisteredPlugins;
 
@@ -87,8 +90,9 @@ namespace AO2Sharp.Plugins
                 try
                 {
                     instance!.Server = server;
+                    instance!.PluginManager = this;
                     instance!.Assembly = asm;
-                    instance!.Initialize(this);
+                    instance!.Initialize();
                 }
                 catch (Exception e)
                 {

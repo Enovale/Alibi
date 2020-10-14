@@ -12,7 +12,7 @@ namespace AO2Sharp.Plugins.API
         public string Status { get; set; }
         public string Locked { get; set; }
         public int PlayerCount { get; }
-        public List<IClient> ICurrentCourtManagers { get; set; }
+        public List<IClient> ICurrentCaseManagers { get; }
         public string Document { get; set; }
         public int DefendantHp { get; set; }
         public int ProsecutorHp { get; set; }
