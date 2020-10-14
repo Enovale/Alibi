@@ -17,9 +17,9 @@ namespace AO2Sharp.Plugins.Webhook
 
         private DWebHook _hook;
 
-        public override void Initialize(IPluginManager manager)
+        public override void Initialize()
         {
-            _configFile = Path.Combine(manager.GetConfigFolder(ID), "config.json");
+            _configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
 
             if (!File.Exists(_configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(_configFile)))
             {
