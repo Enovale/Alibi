@@ -78,14 +78,59 @@ namespace AO2Sharp.Commands
             client.SendOocMessage(output);
         }
 
+        [CommandHandler("arealock", "Set the lock on the current area. 0 = FREE, 1 = SPECTATABLE, 2 = LOCKED.")]
+        internal static void LockArea(Client client, string[] args)
+        {
+            if (!client.Area!.CanLock)
+                throw new CommandException("This area cannot be locked/unlocked.");
+
+            if (!client.Area.IsClientCM(client))
+                throw new CommandException("Must be CM to lock areas.");
+
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /arealock <0/1/2:FREE/SPECTATABLE/LOCKED>");
+
+            if (int.TryParse(args[0], out int lockType))
+            {
+                client.Area.Locked = lockType switch
+                {
+                    0 => "FREE",
+                    1 => "SPECTATABLE",
+                    2 => "LOCKED",
+                    _ => client.Area.Locked
+                };
+                client.SendOocMessage($"Area lock set to {client.Area.Locked}.");
+                client.Area.AreaUpdate(AreaUpdateType.Locked);
+            }
+            else
+                throw new CommandException("Invalid lock type provided.");
+        }
+
+        [CommandHandler("status", "Set the status on this area. Type /status help for types.")]
+        internal static void AreaStatus(Client client, string[] args)
+        {
+            if (!client.Area.IsClientCM(client))
+                throw new CommandException("Must be CM to change the area status.");
+
+            if (args.Length <= 0)
+                throw new CommandException($"{client.Area.Name}: {client.Area.Status}");
+
+            string[] allowedStatuses = { "IDLE", "RP", "CASING", "LOOKING-FOR-PLAYERS", "LFP", "RECESS", "GAMING"};
+
+            if (!allowedStatuses.Contains(args[0].ToUpper()))
+                throw new CommandException($"Usage: /status <{string.Join('|', allowedStatuses)}>");
+
+            client.Area.Status = args[0].ToUpper();
+            client.SendOocMessage("Status changed successfully.");
+            client.Area.AreaUpdate(AreaUpdateType.Status);
+        }
+
         [CommandHandler("cm", "Add a CM to the area.")]
         internal static void AddCaseManager(Client client, string[] args)
         {
             if (client.Character == null)
-            {
-                client.SendOocMessage("You must not be a spectater to be a CM.");
-                return;
-            }
+                throw new CommandException("You must not be a spectater to be a CM.");
+
             int characterToCm;
             if (args.Length <= 0)
                 characterToCm = (int)client.Character;
@@ -94,18 +139,15 @@ namespace AO2Sharp.Commands
                 if (Server.CharactersList.Contains(args[0]))
                     characterToCm = Array.IndexOf(Server.CharactersList, args[0]);
                 else
-                {
-                    client.SendOocMessage("Usage: /cm <character name/id>");
-                    return;
-                }
+                    throw new CommandException("Usage: /cm <character name/id>");
             }
             Client clientToCm =
                 client.Server.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
             Area area = client.Area;
-            bool cmExists = area!.CurrentCourtManagers.Count > 0;
+            bool cmExists = area!.CurrentCaseManagers.Count > 0;
             if (!cmExists)
             {
-                area.CurrentCourtManagers.Add(clientToCm);
+                area.CurrentCaseManagers.Add(clientToCm);
                 area.AreaUpdate(AreaUpdateType.CourtManager);
                 client.SendOocMessage($"{clientToCm.CharacterName} has become a CM.");
                 return;
@@ -113,19 +155,15 @@ namespace AO2Sharp.Commands
 
             bool isAlreadyCM = area.IsClientCM(clientToCm);
             if (isAlreadyCM)
-            {
-                client.SendOocMessage("They are already CM in this area.");
-            }
+                throw new CommandException("They are already CM in this area.");
             else if (area.IsClientCM(client))
             {
-                area.CurrentCourtManagers.Add(clientToCm);
+                area.CurrentCaseManagers.Add(clientToCm);
                 area.AreaUpdate(AreaUpdateType.CourtManager);
                 client.SendOocMessage($"{clientToCm.CharacterName} has become a CM.");
             }
             else
-            {
-                client.SendOocMessage("You must be added by the CM to do this.");
-            }
+                throw new CommandException("You must be added by the CM to do this.");
         }
 
         [CommandHandler("uncm", "Add a CM to the area.")]
@@ -135,48 +173,60 @@ namespace AO2Sharp.Commands
             Client clientToDeCm =
                 client.Server.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
             Area area = client.Area;
-            bool cmExists = area!.CurrentCourtManagers.Count > 0;
+            bool cmExists = area!.CurrentCaseManagers.Count > 0;
             if (!cmExists)
-            {
-                client.SendOocMessage("There aren't any Case Managers in this area.");
-                return;
-            }
+                throw new CommandException("There aren't any Case Managers in this area.");
 
             bool isTargetCM = area.IsClientCM(clientToDeCm);
             if (area.IsClientCM(client))
             {
                 if (isTargetCM)
                 {
-                    area.CurrentCourtManagers.Remove(clientToDeCm);
+                    area.CurrentCaseManagers.Remove(clientToDeCm);
                     area.AreaUpdate(AreaUpdateType.CourtManager);
                     client.SendOocMessage($"{clientToDeCm.CharacterName} is no longer a CM.");
                 }
                 else
-                {
-                    client.SendOocMessage("They are not CM, so cannot de-CM them.");
-                }
+                    throw new CommandException("They are not CM, so cannot de-CM them.");
             }
             else
-                client.SendOocMessage("Must be CM to remove a CM.");
+                throw new CommandException("Must be CM to remove a CM.");
+        }
+
+        [CommandHandler("doc", "Set the document URL for the current Area's case.")]
+        internal static void SetDocument(Client client, string[] args)
+        {
+            if (args.Length <= 0)
+                client.SendOocMessage(client.Area!.Document ?? "No document in this area.");
+
+            if (!client.Area!.IsClientCM(client))
+                throw new CommandException("Must be a CM to change the document.");
+
+            client.Area.Document = args[0];
+            client.SendOocMessage("Document changed.");
+        }
+
+        [CommandHandler("cleardoc", "Remove the currently set document.")]
+        internal static void ClearDocument(Client client, string[] args)
+        {
+            if (!client.Area!.IsClientCM(client))
+                throw new CommandException("Must be a CM to change the document.");
+
+            client.Area!.Document = null;
+            client.SendOocMessage("Document removed.");
         }
 
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]
         internal static void Login(Client client, string[] args)
         {
             if (client.Authed)
-                client.SendOocMessage("You are already logged in.");
+                throw new CommandException("You are already logged in.");
 
             if (args.Length < 2)
-            {
-                client.SendOocMessage("Usage: /login <username> <password>");
-                return;
-            }
+                throw new CommandException("Usage: /login <username> <password>");
 
             if (!client.Server.CheckLogin(args[0], args[1]))
-            {
-                client.SendOocMessage("Incorrect credentials.");
-                return;
-            }
+                throw new CommandException("Incorrect credentials.");
 
             client.Authed = true;
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
@@ -192,9 +242,7 @@ namespace AO2Sharp.Commands
                 client.SendOocMessage("Logged out.");
             }
             else
-            {
-                client.SendOocMessage("You are not logged in.");
-            }
+                throw new CommandException("You are not logged in.");
         }
 
         [ModOnly]
@@ -216,7 +264,7 @@ namespace AO2Sharp.Commands
             if (Server.Logger.Dump())
                 client.SendOocMessage("Successfully dumped logs. Check the Logs folder.");
             else
-                client.SendOocMessage("No logs have been stored yet, can't dump.");
+                throw new CommandException("No logs have been stored yet, can't dump.");
         }
 
         [ModOnly]
@@ -224,16 +272,13 @@ namespace AO2Sharp.Commands
         internal static void AddLogin(Client client, string[] args)
         {
             if (args.Length < 2)
-            {
-                client.SendOocMessage("Usage: /addlogin <username> <password>");
-                return;
-            }
+                throw new CommandException("Usage: /addlogin <username> <password>");
 
             args[0] = args[0].ToLower();
             if (client.Server.AddLogin(args[0], args[1]))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
-                client.SendOocMessage($"Failed: User {args[0]} already exists or another error occured.");
+                throw new CommandException($"User {args[0]} already exists or another error occured.");
         }
 
         [ModOnly]
@@ -241,15 +286,12 @@ namespace AO2Sharp.Commands
         internal static void RemoveLogin(Client client, string[] args)
         {
             if (args.Length < 1)
-            {
-                client.SendOocMessage("Usage: /removelogin <username>");
-                return;
-            }
+                throw new CommandException("Usage: /removelogin <username>");
 
             if (client.Server.RemoveLogin(args[0].ToLower()))
                 client.SendOocMessage("Successfully removed user " + args[0] + ".");
             else
-                client.SendOocMessage("Could not remove user " + args[0] + ". Does it exist?");
+                throw new CommandException("Could not remove user " + args[0] + ". Does it exist?");
         }
 
         [ModOnly]
@@ -257,10 +299,7 @@ namespace AO2Sharp.Commands
         internal static void Ban(Client client, string[] args)
         {
             if (args.Length < 1)
-            {
-                client.SendOocMessage("Usage: /ban <hwid/ip> [reason]");
-                return;
-            }
+                throw new CommandException("Usage: /ban <hwid/ip> [reason]");
 
             string reason = args.Length > 1 ? args[1] : "No reason given.";
             string expires = args.Length > 2 ? args[2] : null;
@@ -314,19 +353,12 @@ namespace AO2Sharp.Commands
         internal static void Unban(Client client, string[] args)
         {
             if (args.Length < 1)
-            {
-                client.SendOocMessage("Usage: /unban <hwid/ip>");
-                return;
-            }
+                throw new CommandException("Usage: /unban <hwid/ip>");
 
             if (IPAddress.TryParse(args[0], out _))
-            {
                 Server.Database.UnbanIp(args[0]);
-            }
             else
-            {
                 Server.Database.UnbanHwid(args[0]);
-            }
 
             client.SendOocMessage($"{args[0]} has been unbanned.");
         }
@@ -336,10 +368,7 @@ namespace AO2Sharp.Commands
         internal static void Kick(Client client, string[] args)
         {
             if (args.Length < 1)
-            {
-                client.SendOocMessage("Usage: /kick <hwid/ip> [reason]");
-                return;
-            }
+                throw new CommandException("Usage: /kick <hwid/ip> [reason]");
 
             string reason = args.Length > 1 ? args[1] : "No reason given.";
 
@@ -360,6 +389,33 @@ namespace AO2Sharp.Commands
             }
 
             client.SendOocMessage($"{args[0]} has been kicked.");
+        }
+
+        [ModOnly]
+        [CommandHandler("hwid", "Get the HWID of a user from IP or ID")]
+        internal static void GetHwid(Client client, string[] args)
+        {
+            if (args.Length <= 0 || (IPAddress.TryParse(args[0], out _) && !int.TryParse(args[0], out _)))
+                throw new CommandException("Usage: /hwid <ip/charId>");
+
+            Client[] ipSearch = client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0]).ToArray();
+            if (ipSearch.Length > 0)
+            {
+                string output = "Hwids: ";
+                foreach (var c in ipSearch)
+                {
+                    output += $"\n\"{c.HardwareId}\"";
+                }
+                client.SendOocMessage(output);
+                return;
+            }
+
+            int searchedChar = int.Parse(args[0]);
+            if (!client.Area.TakenCharacters[searchedChar])
+                throw new CommandException("Usage: /hwid <ip/charId>");
+            Client idSearch =
+                    client.Server.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);
+            client.SendOocMessage($"Hwids: \n\"{idSearch.HardwareId}\"");
         }
     }
 }

@@ -14,18 +14,25 @@ namespace AO2Sharp
         public bool CanLock { get; set; } = true;
         public bool BackgroundLocked { get; set; } = false;
         public bool IniSwappingAllowed { get; set; } = true;
-        public string Status { get; set; } = "FREE";
+        /// <summary>
+        /// Permission level needed to modify evidence
+        /// 0 = FFA
+        /// 1 = CM
+        /// 2 = No-one
+        /// </summary>
+        public int EvidenceModifications { get; set; } = 0;
+        public string Status { get; set; } = "IDLE";
         [JsonIgnore]
         public string Locked { get; set; } = "FREE";
         [JsonIgnore]
         public int PlayerCount { get; set; } = 0;
         [JsonIgnore]
-        public List<Client> CurrentCourtManagers { get; set; } = new List<Client>();
+        public List<Client> CurrentCaseManagers { get; set; } = new List<Client>();
         [JsonIgnore]
-        public List<IClient> ICurrentCourtManagers
+        public List<IClient> ICurrentCaseManagers
         {
-            get => CurrentCourtManagers.Cast<IClient>().ToList();
-            set => CurrentCourtManagers = value.Cast<Client>().ToList();
+            get => CurrentCaseManagers.Cast<IClient>().ToList();
+            set => CurrentCaseManagers = value.Cast<Client>().ToList();
         }
 
         [JsonIgnore]
@@ -79,11 +86,11 @@ namespace AO2Sharp
                         updateData.Add(area.Status);
                         break;
                     case AreaUpdateType.CourtManager:
-                        if (area.CurrentCourtManagers.Count <= 0)
+                        if (area.CurrentCaseManagers.Count <= 0)
                             updateData.Add("FREE");
                         else
                             updateData.Add(
-                                string.Join(',', area.CurrentCourtManagers.Select(c => c.CharacterName)));
+                                string.Join(',', area.CurrentCaseManagers.Select(c => c.CharacterName)));
                         break;
                     case AreaUpdateType.Locked:
                         updateData.Add(area.Locked);
@@ -107,7 +114,7 @@ namespace AO2Sharp
             AreaUpdate(AreaUpdateType.Locked, client);
         }
 
-        internal bool IsClientCM(Client client) => CurrentCourtManagers.Contains(client);
+        internal bool IsClientCM(Client client) => CurrentCaseManagers.Contains(client);
 
         internal void UpdateTakenCharacters()
         {

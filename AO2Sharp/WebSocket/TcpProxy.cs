@@ -39,12 +39,17 @@ namespace AO2Sharp.WebSocket
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
-                if (packet.StartsWith("ID"))
+                try
                 {
-                    IPAddress ip = ((IPEndPoint)_session.Socket.RemoteEndPoint).Address;
-                    Send(new AOPacket("WSIP", ip.ToString()));
+                    if (packet.StartsWith("ID"))
+                    {
+                        IPAddress ip = ((IPEndPoint) _session.Socket.RemoteEndPoint).Address;
+                        Send(new AOPacket("WSIP", ip.ToString()));
+                    }
+
+                    _session.SendTextAsync(packet);
                 }
-                _session.SendTextAsync(packet);
+                catch {}
             }
         }
     }

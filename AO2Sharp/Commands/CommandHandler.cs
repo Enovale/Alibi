@@ -32,15 +32,22 @@ namespace AO2Sharp.Commands
                 }
                 var handler = Handlers[command];
                 var modAttributes = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
-                if (modAttributes.Any())
+                try
                 {
-                    if (client.Authed)
-                        Handlers[command](client, args);
+                    if (modAttributes.Any())
+                    {
+                        if (client.Authed)
+                            Handlers[command](client, args);
+                        else
+                            client.SendOocMessage(((ModOnlyAttribute) modAttributes.First()).ErrorMsg);
+                    }
                     else
-                        client.SendOocMessage(((ModOnlyAttribute)modAttributes.First()).ErrorMsg);
+                        Handlers[command](client, args);
                 }
-                else
-                    Handlers[command](client, args);
+                catch (CommandException e)
+                {
+                    client.SendOocMessage("Error: " + e.Message);
+                }
             }
             else if (CustomHandlers.ContainsKey(command))
             {
