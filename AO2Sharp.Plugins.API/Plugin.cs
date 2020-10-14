@@ -10,8 +10,9 @@ namespace AO2Sharp.Plugins.API
         public abstract string ID { get; }
         public abstract string Name { get; }
         public IServer Server { get; set; }
+        public IPluginManager PluginManager { get; set; }
         public Assembly Assembly { get; set; }
-        public abstract void Initialize(IPluginManager manager);
+        public abstract void Initialize();
 
         public virtual void OnAllPluginsLoaded() { }
         public virtual void OnModCall(IClient caller, string reason) { }
@@ -20,42 +21,31 @@ namespace AO2Sharp.Plugins.API
 
         public void LogInfo(string message, bool verbose = false)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Log($"[Info][{Name}] {message}", verbose);
-            Console.ResetColor();
-        }
-
-        public void LogWarning(string message, bool verbose = false)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Log($"[Warning][{Name}] {message}", verbose);
-            Console.ResetColor();
-        }
-
-        public void LogError(string message, bool verbose = false)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Log($"[Error][{Name}] {message}", verbose);
-            Console.ResetColor();
+            Log(0, $"[Info][{Name}] {message}", verbose);
         }
 
         public void LogSpecial(string message, bool verbose = false)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Log($"[Special][{Name}] {message}", verbose);
-            Console.ResetColor();
+            Log(1, $"[Special][{Name}] {message}", verbose);
         }
 
-        private void Log(string message, bool verbose = false)
+        public void LogWarning(string message, bool verbose = false)
+        {
+            Log(2, $"[Warning][{Name}] {message}", verbose);
+        }
+
+        public void LogError(string message, bool verbose = false)
+        {
+            Log(3, $"[Error][{Name}] {message}", verbose);
+        }
+
+        private void Log(int severity, string message, bool verbose = false)
         {
             if (verbose && !Server.VerboseLogs)
                 return;
-            string debug = verbose ? "[DEBUG]" : "";
-            string log = $"{debug}[{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}]{message}";
-            Console.WriteLine(log);
-            if (_logBuffer.Count >= 500)
-                _logBuffer.Dequeue();
-            _logBuffer.Enqueue(log);
+            if (severity < 0 || severity > 3)
+                return;
+            PluginManager.Log(severity, message, verbose);
         }
 
         public void DumpLogs(string path)
