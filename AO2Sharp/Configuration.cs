@@ -13,7 +13,6 @@ namespace AO2Sharp
         public string ServerName = "Test Server";
         public string ServerDescription = "Example server description.";
         public string MOTD = "Welcome to my test server! Type /help for a list of commands you can run.";
-        public string ModPassword = "ChangeThis";
 
         public IPAddress BoundIpAddress = IPAddress.Parse("0.0.0.0");
         public int Port = 27016;

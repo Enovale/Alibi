@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -13,7 +14,9 @@ namespace AO2Sharp
 
         static void Main(string[] args)
         {
-            if (!File.Exists(Server.ConfigPath))
+            Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
+            if (!File.Exists(Server.ConfigPath) 
+                || new FileInfo(Server.ConfigPath).Length > 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
             _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
             Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
