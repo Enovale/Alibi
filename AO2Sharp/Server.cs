@@ -33,23 +33,20 @@ namespace AO2Sharp
         public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
 
-        public static IPAddress MasterServerIp;
+        public static IPAddress MasterServerIp { get; }
 
-        public static Logger Logger;
-        public static Configuration ServerConfiguration;
-        public static DatabaseManager Database;
-        public static string[] MusicList;
-        public static string[] CharactersList;
-        public static string Version;
+        public static Logger Logger { get; }
+        public static Configuration ServerConfiguration { get; }
+        public static DatabaseManager Database { get; }
+        public static string[] MusicList { get; }
+        public static string[] CharactersList { get; }
+        public static string Version { get; }
 
-        public readonly List<Client> ClientsConnected;
+        public List<IClient> ClientsConnected { get; }
 
-        public int ConnectedPlayers = 0;
-        public readonly Area[] Areas;
-        public readonly string[] AreaNames;
-
-        // For use in Plugins, this needs to be renamed
-        public List<IClient> Clients => (List<IClient>)ClientsConnected.Cast<IClient>();
+        public int ConnectedPlayers { get; set; }
+        public IArea[] Areas { get; }
+        public string[] AreaNames { get; }
         public bool VerboseLogs => ServerConfiguration.VerboseLogs;
 
         private readonly Advertiser _advertiser;

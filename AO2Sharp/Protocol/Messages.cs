@@ -4,18 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using AO2Sharp.Plugins.API;
+using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Protocol
 {
     internal static class Messages
     {
         [MessageHandler("HI")]
-        internal static void HardwareId(Client client, AOPacket packet)
+        internal static void HardwareId(IClient client, IAOPacket packet)
         {
             if (packet.Objects.Length <= 0)
                 return;
 
-            client.HardwareId = packet.Objects[0];
+            ((Client)client).HardwareId = packet.Objects[0];
             client.Server.AddUser(client);
             client.KickIfBanned();
 
@@ -25,7 +27,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("ID")]
-        internal static void SoftwareId(Client client, AOPacket packet)
+        internal static void SoftwareId(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("PN", client.Server.ConnectedPlayers.ToString(), Server.ServerConfiguration.MaxPlayers.ToString()));
             client.Send(new AOPacket("FL", new[]
@@ -36,13 +38,13 @@ namespace AO2Sharp.Protocol
 
         // Slow loading, ugh.
         [MessageHandler("askchar2")]
-        internal static void RequestCharactersSlow(Client client, AOPacket packet)
+        internal static void RequestCharactersSlow(IClient client, IAOPacket packet)
         {
             RequestCharacterPageSlow(client, new AOPacket("AN", "0"));
         }
 
         [MessageHandler("AN")]
-        internal static void RequestCharacterPageSlow(Client client, AOPacket packet)
+        internal static void RequestCharacterPageSlow(IClient client, IAOPacket packet)
         {
             // According to current client
             int page = int.Parse(packet.Objects[0]);
@@ -61,7 +63,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("AE")]
-        internal static void RequestEvidenceSlow(Client client, AOPacket packet)
+        internal static void RequestEvidenceSlow(IClient client, IAOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out int index))
             {
@@ -72,7 +74,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("AM")]
-        internal static void RequestMusicSlow(Client client, AOPacket packet)
+        internal static void RequestMusicSlow(IClient client, IAOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out int index))
             {
@@ -92,19 +94,19 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("askchaa")]
-        internal static void RequestResourceCounts(Client client, AOPacket packet)
+        internal static void RequestResourceCounts(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(), client.Server.Areas.First().EvidenceList.Count.ToString(), (client.Server.Areas.Length + Server.MusicList.Length).ToString()));
         }
 
         [MessageHandler("RC")]
-        internal static void RequestCharacters(Client client, AOPacket packet)
+        internal static void RequestCharacters(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("SC", Server.CharactersList));
         }
 
         [MessageHandler("RE")]
-        internal static void RequestEvidence(Client client, AOPacket packet)
+        internal static void RequestEvidence(IClient client, IAOPacket packet)
         {
             string[] evidenceList = new string[client.Area!.EvidenceList.Count];
             for (var i = 0; i < client.Area.EvidenceList.Count; i++)
@@ -115,7 +117,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("PE")]
-        internal static void AddEvidence(Client client, AOPacket packet)
+        internal static void AddEvidence(IClient client, IAOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -124,7 +126,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("DE")]
-        internal static void RemoveEvidence(Client client, AOPacket packet)
+        internal static void RemoveEvidence(IClient client, IAOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -134,7 +136,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("EE")]
-        internal static void EditEvidence(Client client, AOPacket packet)
+        internal static void EditEvidence(IClient client, IAOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -148,13 +150,13 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("RM")]
-        internal static void RequestMusic(Client client, AOPacket packet)
+        internal static void RequestMusic(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("SM", client.Server.AreaNames.Concat(Server.MusicList).ToArray()));
         }
 
         [MessageHandler("RD")]
-        internal static void Ready(Client client, AOPacket packet)
+        internal static void Ready(IClient client, IAOPacket packet)
         {
             // This client didn't send us a hwid, need to kick
             if (string.IsNullOrWhiteSpace(client.HardwareId))
@@ -188,19 +190,19 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("CH")]
-        internal static void KeepAlive(Client client, AOPacket packet)
+        internal static void KeepAlive(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("CHECK"));
         }
 
         [MessageHandler("PW")]
-        internal static void CharacterPassword(Client client, AOPacket packet)
+        internal static void CharacterPassword(IClient client, IAOPacket packet)
         {
             client.Password = packet.Objects.First();
         }
 
         [MessageHandler("CC")]
-        internal static void ChangeCharacter(Client client, AOPacket packet)
+        internal static void ChangeCharacter(IClient client, IAOPacket packet)
         {
             int charId;
             if (int.TryParse(packet.Objects[1], out charId))
@@ -226,7 +228,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("MC")]
-        internal static void ChangeMusic(Client client, AOPacket packet)
+        internal static void ChangeMusic(IClient client, IAOPacket packet)
         {
             string song = packet.Objects[0];
 
@@ -247,7 +249,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("MS")]
-        internal static void IcMessage(Client client, AOPacket packet)
+        internal static void IcMessage(IClient client, IAOPacket packet)
         {
             try
             {
@@ -265,7 +267,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("CT")]
-        internal static void OocMessage(Client client, AOPacket packet)
+        internal static void OocMessage(IClient client, IAOPacket packet)
         {
             // TODO: Sanitization and cleaning (especially Zalgo)
             // maybe put this into anti-spam plugin
@@ -286,7 +288,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("HP")]
-        internal static void UpdateHealthBar(Client client, AOPacket packet)
+        internal static void UpdateHealthBar(IClient client, IAOPacket packet)
         {
             if (!client.Position.ToLower().StartsWith("jud"))
                 return;
@@ -303,14 +305,14 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("RT")]
-        internal static void JudgeAnimation(Client client, AOPacket packet)
+        internal static void JudgeAnimation(IClient client, IAOPacket packet)
         {
             if ((client.Position ?? "").ToLower().StartsWith("jud"))
                 client.Area.Broadcast(packet);
         }
 
         [MessageHandler("ZZ")]
-        internal static void ModCall(Client client, AOPacket packet)
+        internal static void ModCall(IClient client, IAOPacket packet)
         {
             Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] " +
                                                    $"{client.CharacterName} called for mod with reasoning: {packet.Objects[0]}");
@@ -327,7 +329,7 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("WSIP")]
-        internal static void UpdateWebsocketIp(Client client, AOPacket packet)
+        internal static void UpdateWebsocketIp(IClient client, IAOPacket packet)
         {
             IPAddress ip = IPAddress.Parse(packet.Objects[0]);
             if (IPAddress.IsLoopback(client.IpAddress) && !IPAddress.IsLoopback(ip))

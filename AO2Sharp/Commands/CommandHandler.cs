@@ -9,13 +9,9 @@ namespace AO2Sharp.Commands
 {
     internal static class CommandHandler
     {
-        internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
-        internal static readonly Dictionary<string, Action<IClient, string[]>> CustomHandlers
-            = new Dictionary<string, Action<IClient, string[]>>();
+        internal static readonly Dictionary<string, Action<IClient, string[]>> Handlers = new Dictionary<string, Action<IClient, string[]>>();
 
         internal static readonly List<Tuple<string, string, bool>> HandlerInfo = new List<Tuple<string, string, bool>>();
-
-        internal delegate void Handler(Client client, string[] args);
 
         static CommandHandler()
         {
@@ -39,7 +35,7 @@ namespace AO2Sharp.Commands
                         if (client.Authed)
                             Handlers[command](client, args);
                         else
-                            client.SendOocMessage(((ModOnlyAttribute) modAttributes.First()).ErrorMsg);
+                            client.SendOocMessage(((ModOnlyAttribute)modAttributes.First()).ErrorMsg);
                     }
                     else
                         Handlers[command](client, args);
@@ -49,61 +45,19 @@ namespace AO2Sharp.Commands
                     client.SendOocMessage("Error: " + e.Message);
                 }
             }
-            else if (CustomHandlers.ContainsKey(command))
-            {
-                for (var i = 0; i < args.Length; i++)
-                {
-                    args[i] = args[i].Trim('"');
-                }
-                var handler = CustomHandlers[command];
-                var customModAttributes =
-                    handler.Method.GetCustomAttributes(typeof(Plugins.API.Attributes.ModOnlyAttribute));
-                if (customModAttributes.Any())
-                {
-                    if (client.Authed)
-                        CustomHandlers[command](client, args);
-                    else
-                        client.SendOocMessage(((ModOnlyAttribute)customModAttributes.First()).ErrorMsg);
-                }
-                else
-                    CustomHandlers[command](client, args);
-            }
             else
             {
                 client.SendOocMessage("Unknown command. Type /help for a list of commands.");
             }
         }
 
-        public static void RegisterCommandHandler(CommandHandlerAttribute attr, Handler handler)
+        public static void RegisterCommandHandler(CommandHandlerAttribute attr, Action<IClient, string[]> handler, bool overrideHandler = false)
         {
-            if (!Handlers.ContainsKey(attr.Command))
-            {
-                Handlers[attr.Command] = handler;
-                var isModOnly = handler.Method.GetCustomAttribute<ModOnlyAttribute>() != null;
-                HandlerInfo.Add(new Tuple<string, string, bool>(attr.Command, attr.ShortDesc, isModOnly));
-                SortInfo();
-            }
-        }
-
-        public static void RegisterCustomCommandHandler(CustomCommandHandlerAttribute attr, Action<IClient, string[]> handler, bool overrideHandler = false)
-        {
-            if (overrideHandler && Handlers.ContainsKey(attr.Command))
-            {
-                Handlers.Remove(attr.Command);
-                HandlerInfo.RemoveAll(t => t.Item1 == attr.Command);
-            }
-            else if (!overrideHandler && Handlers.ContainsKey(attr.Command))
+            if (!overrideHandler && Handlers.ContainsKey(attr.Command))
                 return;
 
-            if (CustomHandlers.ContainsKey(attr.Command))
-            {
-                Server.Logger.Log(LogSeverity.Warning,
-                    $"[PluginLoader] Tried to add two of the same command: {attr.Command}.");
-                return;
-            }
-
-            CustomHandlers[attr.Command] = handler;
-            var isModOnly = handler.Method.GetCustomAttribute<Plugins.API.Attributes.ModOnlyAttribute>() != null;
+            Handlers[attr.Command] = handler;
+            var isModOnly = handler.Method.GetCustomAttribute<ModOnlyAttribute>() != null;
             HandlerInfo.Add(new Tuple<string, string, bool>(attr.Command, attr.ShortDesc, isModOnly));
             SortInfo();
         }
@@ -124,7 +78,7 @@ namespace AO2Sharp.Commands
                         var attr = method.GetCustomAttribute<CommandHandlerAttribute>();
 
                         if (attr != null)
-                            RegisterCommandHandler(attr, (Handler)method.CreateDelegate(typeof(Handler)));
+                            RegisterCommandHandler(attr, (c, a) => { method.Invoke(null, new object[] { c, a }); });
                     }
                 }
             }
@@ -139,13 +93,13 @@ namespace AO2Sharp.Commands
                 var methods = type.GetRuntimeMethods();
                 foreach (var method in methods)
                 {
-                    var attr = method.GetCustomAttribute<CustomCommandHandlerAttribute>();
+                    var attr = method.GetCustomAttribute<CommandHandlerAttribute>();
 
                     if (attr != null)
                     {
                         try
                         {
-                            RegisterCustomCommandHandler(attr,
+                            RegisterCommandHandler(attr,
                                 (c, s) =>
                                 {
                                     method.Invoke(plugin, new object[] { c, s });
