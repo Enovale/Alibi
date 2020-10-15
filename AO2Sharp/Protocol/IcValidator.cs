@@ -139,7 +139,7 @@ namespace AO2Sharp.Protocol
                 if (!paired)
                     pairStr = "-1";
                 else
-                    pairStr = pair[0] + "^" + pair[1];
+                    pairStr = packet.Objects[16];
                 validatedObjects.Add(pairStr);
                 validatedObjects.Add(otherData[0]);
                 validatedObjects.Add(otherData[1]);
