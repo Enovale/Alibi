@@ -1,7 +1,9 @@
-﻿using AO2Sharp.Plugins.API;
+﻿using System;
+using AO2Sharp.Plugins.API;
 using AO2Sharp.Plugins.API.Attributes;
 using System.IO;
 using System.Text.Json;
+using AO2Sharp.Plugins.Webhook.Helpers;
 
 namespace AO2Sharp.Plugins.Webhook
 {
@@ -10,8 +12,7 @@ namespace AO2Sharp.Plugins.Webhook
         public override string ID => "com.elijahzawesome.DiscordWebhook";
         public override string Name => "DiscordWebhook";
 
-        private string _configFile;
-        private string _rawMessage;
+        public WebhookConfig Configuration;
         private bool _validConfig;
         private bool _enabled = true;
 
@@ -19,7 +20,7 @@ namespace AO2Sharp.Plugins.Webhook
 
         public override void Initialize()
         {
-            _configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
+            var _configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
 
             if (!File.Exists(_configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(_configFile)))
             {
@@ -28,17 +29,16 @@ namespace AO2Sharp.Plugins.Webhook
                 return;
             }
 
-            var config = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(_configFile));
-            if (config.WebhookUrl == null || config.Username == null || config.Message == null)
+            Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(_configFile));
+            if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
                 LogError("Config file is empty, please fill in the webhook, username, and message in the JSON.");
                 return;
             }
 
-            _hook = new DWebHook(config.WebhookUrl);
-            _hook.Username = config.Username;
-            _hook.AvatarUrl = config.AvatarURL;
-            _rawMessage = config.Message;
+            _hook = new DWebHook(Configuration.WebhookUrl);
+            _hook.Username = Configuration.Username;
+            _hook.AvatarUrl = Configuration.AvatarURL;
             _validConfig = true;
 
             LogInfo("Discord Webhook loaded.");
@@ -62,13 +62,29 @@ namespace AO2Sharp.Plugins.Webhook
         {
             if (_validConfig && _enabled)
             {
-                string decodedMessage = _rawMessage;
+                string decodedMessage = Configuration.ModMessage;
                 decodedMessage = decodedMessage.Replace("%ch", caller.CharacterName);
                 decodedMessage = decodedMessage.Replace("%a", caller.IArea.Name);
                 decodedMessage = decodedMessage.Replace("%r", reason);
                 decodedMessage = decodedMessage.Replace("%ip", caller.IpAddress.ToString());
                 decodedMessage = decodedMessage.Replace("%hwid", caller.HardwareId);
                 decodedMessage = decodedMessage.Replace("%lsm", caller.LastSentMessage);
+                _hook.SendMessage(decodedMessage);
+            }
+        }
+
+        public override void OnBan(IClient banned, string reason, TimeSpan? expires = null)
+        {
+            if (_validConfig && _enabled)
+            {
+                string decodedMessage = Configuration.BanMessage;
+                decodedMessage = decodedMessage.Replace("%ch", banned.CharacterName);
+                decodedMessage = decodedMessage.Replace("%e",
+                    expires != null ? expires.Value.LargestIntervalWithUnits() : "Never.");
+                decodedMessage = decodedMessage.Replace("%r", reason);
+                decodedMessage = decodedMessage.Replace("%ip", banned.IpAddress.ToString());
+                decodedMessage = decodedMessage.Replace("%hwid", banned.HardwareId);
+                decodedMessage = decodedMessage.Replace("%lsm", banned.LastSentMessage);
                 _hook.SendMessage(decodedMessage);
             }
         }

@@ -47,6 +47,7 @@ These packets are not implemented:
 # TODO
 Some shit that needs to get done
 
+***- [ ] Switch to an ID system (incremented ID as primary key in the db instead of hwid)***
 - [ ] Clean up some of this shit code
 - [ ] Become more thread safe (Maybe?)
 - [X] Plugins

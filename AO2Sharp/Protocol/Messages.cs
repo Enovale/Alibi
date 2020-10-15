@@ -258,7 +258,9 @@ namespace AO2Sharp.Protocol
         internal static void OocMessage(Client client, AOPacket packet)
         {
             // TODO: Sanitization and cleaning (especially Zalgo)
+            // maybe put this into anti-spam plugin
             string message = packet.Objects[1];
+            client.OocName = packet.Objects[0];
             if (message.StartsWith("/"))
             {
                 string command = message.Substring(1).Split(" ").First().Trim();
@@ -269,7 +271,7 @@ namespace AO2Sharp.Protocol
                 return;
             }
 
-            client.Area.Broadcast(packet);
+            client.Area!.Broadcast(packet);
             Server.Logger.OocMessageLog(message, client.Area, packet.Objects[0]);
         }
 

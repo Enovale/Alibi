@@ -1,4 +1,5 @@
-﻿using AO2Sharp.Commands;
+﻿#nullable enable
+using AO2Sharp.Commands;
 using AO2Sharp.Database;
 using AO2Sharp.Helpers;
 using AO2Sharp.Plugins;
@@ -15,6 +16,9 @@ using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using AO2Sharp.Protocol;
+
+#pragma warning disable 8618
 
 namespace AO2Sharp
 {
@@ -98,6 +102,7 @@ namespace AO2Sharp
             _pluginManager = new PluginManager(PluginFolder);
             _pluginManager.LoadPlugins(this);
             _pluginManager.GetAllPlugins().ForEach(CommandHandler.AddCustomHandler);
+            _pluginManager.GetAllPlugins().ForEach(MessageHandler.AddCustomHandler);
 
             Logger.Log(LogSeverity.Special, " Server started!");
             _cancelTasksToken = new CancellationTokenSource();
@@ -195,6 +200,29 @@ namespace AO2Sharp
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 
+        /// <summary>
+        /// Find a client using an id, ooc name, character name, or hwid. (IPs dont work)
+        /// </summary>
+        /// <param name="str">an id, ooc name, char name, or HWID to search for.</param>
+        /// <returns></returns>
+        public Client? FindUser(string str)
+        {
+            if (int.TryParse(str, out int id))
+                return ClientsConnected.FirstOrDefault(c => c.Character == id) ?? null;
+            //if (IPAddress.TryParse(str, out IPAddress ip))
+            //    return ClientsConnected.FirstOrDefault(c => Equals(c.IpAddress, ip)) ?? null;
+            Client? hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
+            if (hwidSearch != null)
+                return hwidSearch;
+            Client? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
+            if (oocSearch != null)
+                return oocSearch;
+            Client? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName.ToLower() == str.ToLower()) ?? null;
+            if (charSearch != null)
+                return charSearch;
+            return null;
+        }
+
         public bool AddUser(Client client)
         {
             return Database.AddUser(client.HardwareId, client.IpAddress.ToString());
@@ -234,6 +262,11 @@ namespace AO2Sharp
         public void OnModCall(Client client, AOPacket packet)
         {
             _pluginManager.GetAllPlugins().ForEach(p => p.OnModCall(client, packet.Objects[0]));
+        }
+
+        public void OnBan(Client client, string reason, TimeSpan? expires = null)
+        {
+            _pluginManager.GetAllPlugins().ForEach(p => p.OnBan(client, reason, expires));
         }
 
         protected override TcpSession CreateSession()

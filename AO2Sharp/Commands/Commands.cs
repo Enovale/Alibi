@@ -1,4 +1,5 @@
-﻿using AO2Sharp.Helpers;
+﻿#nullable enable
+using AO2Sharp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,20 +35,40 @@ namespace AO2Sharp.Commands
         [CommandHandler("online", "Shows the player count.")]
         internal static void PlayerCount(Client client, string[] args)
         {
-            client.SendOocMessage($"{client.Area.PlayerCount} players in this Area.");
+            client.SendOocMessage($"{client.Area!.PlayerCount} players in this Area.");
         }
 
         [CommandHandler("pos", "Set your position (def, wit, pro, jud, etc).")]
         internal static void SetPosition(Client client, string[] args)
         {
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /pos <position>");
+
             client.Position = args[0];
             client.SendOocMessage($"You have changed your position to {args[0]}");
+        }
+
+        [CommandHandler("pm", "Send a private, un-logged message to the user.")]
+        internal static void PrivateMessage(Client client, string[] args)
+        {
+            if(args.Length < 2)
+                throw new CommandException("Usage: /pm <id|oocname|characterName> <message>");
+
+            Client? userToPM = client.Server.FindUser(args[0]);
+            if (userToPM != null)
+            {
+                string message = string.Join(' ', args.Skip(1));
+                userToPM.SendOocMessage(message, "(PM) " + client.OocName!);
+                client.SendOocMessage($"Sent to {userToPM.CharacterName}.");
+            }
+            else
+                throw new CommandException("That user cannot be found.");
         }
 
         [CommandHandler("bg", "Set the background for this area.")]
         internal static void SetBackground(Client client, string[] args)
         {
-            if (!client.Area.BackgroundLocked)
+            if (!client.Area!.BackgroundLocked)
             {
                 client.Area.Background = args[0];
                 if (args.Length > 1)
@@ -109,7 +130,7 @@ namespace AO2Sharp.Commands
         [CommandHandler("status", "Set the status on this area. Type /status help for types.")]
         internal static void AreaStatus(Client client, string[] args)
         {
-            if (!client.Area.IsClientCM(client))
+            if (!client.Area!.IsClientCM(client))
                 throw new CommandException("Must be CM to change the area status.");
 
             if (args.Length <= 0)
@@ -143,8 +164,8 @@ namespace AO2Sharp.Commands
             }
             Client clientToCm =
                 client.Server.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
-            Area area = client.Area;
-            bool cmExists = area!.CurrentCaseManagers.Count > 0;
+            Area area = client.Area!;
+            bool cmExists = area.CurrentCaseManagers.Count > 0;
             if (!cmExists)
             {
                 area.CurrentCaseManagers.Add(clientToCm);
@@ -169,10 +190,10 @@ namespace AO2Sharp.Commands
         [CommandHandler("uncm", "Add a CM to the area.")]
         internal static void RemoveCaseManager(Client client, string[] args)
         {
-            int characterToDeCm = (int)(args.Length > 0 ? int.Parse(args[0]) : client.Character);
+            int characterToDeCm = (int)(args.Length > 0 ? int.Parse(args[0]) : client.Character!);
             Client clientToDeCm =
                 client.Server.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
-            Area area = client.Area;
+            Area area = client.Area!;
             bool cmExists = area!.CurrentCaseManagers.Count > 0;
             if (!cmExists)
                 throw new CommandException("There aren't any Case Managers in this area.");
@@ -302,7 +323,7 @@ namespace AO2Sharp.Commands
                 throw new CommandException("Usage: /ban <hwid/ip> [reason]");
 
             string reason = args.Length > 1 ? args[1] : "No reason given.";
-            string expires = args.Length > 2 ? args[2] : null;
+            string? expires = args.Length > 2 ? args[2] : null;
 
             TimeSpan? expireDate = null;
             if (expires != null)
@@ -411,7 +432,7 @@ namespace AO2Sharp.Commands
             }
 
             int searchedChar = int.Parse(args[0]);
-            if (!client.Area.TakenCharacters[searchedChar])
+            if (!client.Area!.TakenCharacters[searchedChar])
                 throw new CommandException("Usage: /hwid <ip/charId>");
             Client idSearch =
                     client.Server.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);

@@ -19,8 +19,6 @@ namespace AO2Sharp
         public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal set; }
         public string? HardwareId { get; internal set; }
-        // I dont think this needs to be stored
-        // public string ShowName { get; internal set; }
         public Area? Area { get; internal set; }
         public IArea IArea => Area!;
         public string? Position { get; set; }
@@ -28,6 +26,7 @@ namespace AO2Sharp
         public string? Password { get; internal set; }
         public int? Character { get; set; }
         public string? CharacterName => Character != null ? Server.CharactersList[(int)Character] : null;
+        public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
 
         // Retarded pairing shit
@@ -130,6 +129,7 @@ namespace AO2Sharp
 
         public void BanHwid(string reason, TimeSpan? expireDate)
         {
+            Server.OnBan(Server.FindUser(HardwareId!)!, reason, expireDate);
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
             Task.Delay(500).Wait();
@@ -138,12 +138,9 @@ namespace AO2Sharp
 
         public void BanIp(string reason, TimeSpan? expireDate)
         {
-            Server.Database.BanIp(IpAddress.ToString(), reason, expireDate);
             foreach (var hdid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
             {
-                Send(new AOPacket("KB", reason));
-                Task.Delay(500).Wait();
-                Session.Disconnect();
+                BanHwid(reason, expireDate);
             }
         }
 
@@ -165,9 +162,9 @@ namespace AO2Sharp
             Send((AOPacket)packetInterface);
         }
 
-        public void SendOocMessage(string message)
+        public void SendOocMessage(string message, string? sender = null)
         {
-            Send(new AOPacket("CT", "Server", message, "1"));
+            Send(new AOPacket("CT", sender ?? "Server", message, "1"));
         }
     }
 }

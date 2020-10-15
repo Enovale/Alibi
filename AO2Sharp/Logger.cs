@@ -52,6 +52,8 @@ namespace AO2Sharp
         /// <param name="color">Manually override the log color</param>
         public void Log(LogSeverity severity, string message, bool verbose = false)
         {
+            if (verbose && !Server.ServerConfiguration.VerboseLogs)
+                return;
             string debug = verbose ? "[DEBUG]" : "";
             string log = $"{debug}[{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}][{severity}]{message}";
             AddLog(severity, log);
