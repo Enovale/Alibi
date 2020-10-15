@@ -12,6 +12,9 @@ namespace AO2Sharp.Protocol
         [MessageHandler("HI")]
         internal static void HardwareId(Client client, AOPacket packet)
         {
+            if (packet.Objects.Length <= 0)
+                return;
+
             client.HardwareId = packet.Objects[0];
             client.Server.AddUser(client);
             client.KickIfBanned();
