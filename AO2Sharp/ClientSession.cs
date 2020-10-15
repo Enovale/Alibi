@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AO2Sharp
 {
@@ -19,6 +20,13 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
+            if (((Server) Server).ConnectedPlayers >= AO2Sharp.Server.ServerConfiguration.MaxPlayers)
+            {
+                Send(new AOPacket("BD", "Max players has been reached."));
+                Task.Delay(500);
+                Disconnect();
+            }
+
             var ip = ((IPEndPoint)Socket.RemoteEndPoint).Address;
             if (AO2Sharp.Server.ServerConfiguration.Advertise && ip.Equals(AO2Sharp.Server.MasterServerIp))
                 AO2Sharp.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);

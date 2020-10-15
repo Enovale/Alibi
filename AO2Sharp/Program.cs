@@ -7,7 +7,9 @@ namespace AO2Sharp
 {
     class Program
     {
+#pragma warning disable 8618
         private static Server _server;
+#pragma warning restore 8618
 
         static void Main(string[] args)
         {

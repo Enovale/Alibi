@@ -19,6 +19,7 @@ namespace AO2Sharp.Plugins.API
         public string? Password { get; }
         public int? Character { get; set; }
         public string? CharacterName { get; }
+        public string? OocName { get; }
         public string? LastSentMessage { get; set; }
 
         // Retarded pairing shit
@@ -34,6 +35,6 @@ namespace AO2Sharp.Plugins.API
         public void BanIp(string reason, TimeSpan? expireDate);
 
         public void Send(IAOPacket packet);
-        public void SendOocMessage(string message);
+        public void SendOocMessage(string message, string? sender = null);
     }
 }

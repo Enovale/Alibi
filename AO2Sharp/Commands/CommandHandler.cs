@@ -92,6 +92,8 @@ namespace AO2Sharp.Commands
                 Handlers.Remove(attr.Command);
                 HandlerInfo.RemoveAll(t => t.Item1 == attr.Command);
             }
+            else if (!overrideHandler && Handlers.ContainsKey(attr.Command))
+                return;
 
             if (CustomHandlers.ContainsKey(attr.Command))
             {
@@ -106,10 +108,7 @@ namespace AO2Sharp.Commands
             SortInfo();
         }
 
-        private static void SortInfo()
-        {
-            HandlerInfo.Sort((x, y) => x.Item1.CompareTo(y.Item1));
-        }
+        private static void SortInfo() => HandlerInfo.Sort((x, y) => x.Item1.CompareTo(y.Item1));
 
         public static void AddHandlers()
         {
@@ -149,7 +148,7 @@ namespace AO2Sharp.Commands
                             RegisterCustomCommandHandler(attr,
                                 (c, s) =>
                                 {
-                                    type.GetMethod(method.Name)!.Invoke(plugin, new object[] { c, s });
+                                    method.Invoke(plugin, new object[] { c, s });
                                 }, true);
                         }
                         catch (ArgumentException)

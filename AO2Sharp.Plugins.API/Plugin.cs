@@ -16,6 +16,7 @@ namespace AO2Sharp.Plugins.API
 
         public virtual void OnAllPluginsLoaded() { }
         public virtual void OnModCall(IClient caller, string reason) { }
+        public virtual void OnBan(IClient banned, string reason, TimeSpan? expires = null) { }
 
         private Queue<string> _logBuffer = new Queue<string>(500);
 
