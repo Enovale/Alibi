@@ -20,16 +20,16 @@ namespace AO2Sharp.Plugins.Webhook
 
         public override void Initialize()
         {
-            var _configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
+            var configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
 
-            if (!File.Exists(_configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(_configFile)))
+            if (!File.Exists(configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(configFile)))
             {
-                File.WriteAllText(_configFile, JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions { WriteIndented = true }));
+                File.WriteAllText(configFile, JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions { WriteIndented = true }));
                 LogError("No config found. Check this mod's config JSON and add the needed values.");
                 return;
             }
 
-            Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(_configFile));
+            Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
                 LogError("Config file is empty, please fill in the webhook, username, and message in the JSON.");
