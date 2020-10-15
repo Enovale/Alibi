@@ -64,7 +64,6 @@ namespace AO2Sharp
             if (_logBuffer.Count >= Server.ServerConfiguration.LogBufferSize)
             {
                 _logBuffer.Dequeue();
-                _consoleLogQueue.Dequeue();
             }
 
             _logBuffer.Enqueue(log);
