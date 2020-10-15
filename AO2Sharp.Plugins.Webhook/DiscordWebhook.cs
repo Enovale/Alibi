@@ -1,9 +1,9 @@
-﻿using System;
-using AO2Sharp.Plugins.API;
+﻿using AO2Sharp.Plugins.API;
 using AO2Sharp.Plugins.API.Attributes;
+using AO2Sharp.Plugins.Webhook.Helpers;
+using System;
 using System.IO;
 using System.Text.Json;
-using AO2Sharp.Plugins.Webhook.Helpers;
 
 namespace AO2Sharp.Plugins.Webhook
 {
@@ -25,14 +25,14 @@ namespace AO2Sharp.Plugins.Webhook
             if (!File.Exists(configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(configFile)))
             {
                 File.WriteAllText(configFile, JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions { WriteIndented = true }));
-                LogError("No config found. Check this mod's config JSON and add the needed values.");
+                Log(LogSeverity.Error, "No config found. Check this mod's config JSON and add the needed values.");
                 return;
             }
 
             Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
-                LogError("Config file is empty, please fill in the webhook, username, and message in the JSON.");
+                Log(LogSeverity.Error, "Config file is empty, please fill in the webhook, username, and message in the JSON.");
                 return;
             }
 
@@ -41,11 +41,11 @@ namespace AO2Sharp.Plugins.Webhook
             _hook.AvatarUrl = Configuration.AvatarURL;
             _validConfig = true;
 
-            LogInfo("Discord Webhook loaded.");
+            Log(LogSeverity.Info, "Discord Webhook loaded.");
         }
 
         [ModOnly]
-        [CustomCommandHandler("discord", "Enable or disable the discord webhook. (on/off)")]
+        [CommandHandler("discord", "Enable or disable the discord webhook. (on/off)")]
         public void SetEnabledCommand(IClient client, string[] args)
         {
             if (args.Length <= 0)
@@ -64,7 +64,7 @@ namespace AO2Sharp.Plugins.Webhook
             {
                 string decodedMessage = Configuration.ModMessage;
                 decodedMessage = decodedMessage.Replace("%ch", caller.CharacterName);
-                decodedMessage = decodedMessage.Replace("%a", caller.IArea.Name);
+                decodedMessage = decodedMessage.Replace("%a", caller.Area.Name);
                 decodedMessage = decodedMessage.Replace("%r", reason);
                 decodedMessage = decodedMessage.Replace("%ip", caller.IpAddress.ToString());
                 decodedMessage = decodedMessage.Replace("%hwid", caller.HardwareId);

@@ -43,13 +43,13 @@ namespace AO2Sharp.WebSocket
                 {
                     if (packet.StartsWith("ID"))
                     {
-                        IPAddress ip = ((IPEndPoint) _session.Socket.RemoteEndPoint).Address;
+                        IPAddress ip = ((IPEndPoint)_session.Socket.RemoteEndPoint).Address;
                         Send(new AOPacket("WSIP", ip.ToString()));
                     }
 
                     _session.SendTextAsync(packet);
                 }
-                catch {}
+                catch { }
             }
         }
     }

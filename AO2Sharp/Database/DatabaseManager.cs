@@ -1,11 +1,12 @@
-﻿using SQLite;
+﻿using AO2Sharp.Plugins.API;
+using SQLite;
 using System;
 using System.IO;
 using System.Linq;
 
 namespace AO2Sharp.Database
 {
-    public class DatabaseManager
+    public class DatabaseManager : IDatabaseManager
     {
         public const string DatabaseFolder = "Database";
         public static readonly string DatabasePath = Path.Combine(DatabaseFolder, "database.db");

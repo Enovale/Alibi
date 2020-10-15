@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AO2Sharp.Plugins.Webhook.Helpers
 {
@@ -23,27 +21,27 @@ namespace AO2Sharp.Plugins.Webhook.Helpers
 
             if (interval.TotalHours > 22.0)
             {
-                timeValue = (int) Math.Ceiling(interval.TotalDays);
+                timeValue = (int)Math.Ceiling(interval.TotalDays);
                 timeUnits = " day";
             }
             else if (interval.TotalMinutes > 50.0)
             {
-                timeValue = (int) Math.Ceiling(interval.TotalHours);
+                timeValue = (int)Math.Ceiling(interval.TotalHours);
                 timeUnits = " hour";
             }
             else if (interval.TotalSeconds > 40.0)
             {
-                timeValue = (int) Math.Ceiling(interval.TotalMinutes);
+                timeValue = (int)Math.Ceiling(interval.TotalMinutes);
                 timeUnits = " minute";
             }
             else if (interval.TotalMilliseconds > 500.0)
             {
-                timeValue = (int) Math.Ceiling(interval.TotalSeconds);
+                timeValue = (int)Math.Ceiling(interval.TotalSeconds);
                 timeUnits = " second";
             }
             else
             {
-                timeValue = (int) Math.Ceiling(interval.TotalMilliseconds);
+                timeValue = (int)Math.Ceiling(interval.TotalMilliseconds);
                 timeUnits = " millisecond";
             }
 
