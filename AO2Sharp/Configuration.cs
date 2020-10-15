@@ -50,7 +50,7 @@ namespace AO2Sharp
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new IpConverter());
             var conf = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path), jsonSettings);
-            File.WriteAllText(path, JsonConvert.SerializeObject(conf, jsonSettings));
+            File.WriteAllText(path, JsonConvert.SerializeObject(conf, Formatting.Indented, jsonSettings));
             return conf;
         }
     }
