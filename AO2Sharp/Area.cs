@@ -27,13 +27,7 @@ namespace AO2Sharp
         [JsonIgnore]
         public int PlayerCount { get; set; } = 0;
         [JsonIgnore]
-        public List<Client> CurrentCaseManagers { get; set; } = new List<Client>();
-        [JsonIgnore]
-        public List<IClient> ICurrentCaseManagers
-        {
-            get => CurrentCaseManagers.Cast<IClient>().ToList();
-            set => CurrentCaseManagers = value.Cast<Client>().ToList();
-        }
+        public List<IClient> CurrentCaseManagers { get; } = new List<IClient>();
 
         [JsonIgnore]
         public string Document { get; set; }
@@ -44,16 +38,14 @@ namespace AO2Sharp
         [JsonIgnore]
         public bool[] TakenCharacters { get; set; }
         [JsonIgnore]
-        public List<Evidence> EvidenceList { get; set; } = new List<Evidence>();
-        [JsonIgnore]
-        public List<IEvidence> IEvidenceList => (List<IEvidence>)EvidenceList.Cast<IEvidence>();
+        public List<IEvidence> EvidenceList { get; } = new List<IEvidence>();
 
         [JsonIgnore]
         internal Server Server;
 
-        internal void Broadcast(AOPacket packet)
+        public void Broadcast(IAOPacket packet)
         {
-            var clientQueue = new Queue<Client>(Server.ClientsConnected);
+            var clientQueue = new Queue<IClient>(Server.ClientsConnected);
             while (clientQueue.Any())
             {
                 var client = clientQueue.Dequeue();
@@ -62,16 +54,16 @@ namespace AO2Sharp
             }
         }
 
-        internal void BroadcastOocMessage(string message)
+        public void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", "Server", message, "1"));
+            Broadcast(new AOPacket("CT", "ServerRef", message, "1"));
         }
 
         /// <summary>
         /// Sends an area update to the client specified, all clients if null
         /// </summary>
         /// <param name="client"></param>
-        internal void AreaUpdate(AreaUpdateType type, Client client = null)
+        public void AreaUpdate(AreaUpdateType type, IClient client = null)
         {
             List<string> updateData = new List<string>();
             updateData.Add(((int)type).ToString());
@@ -106,7 +98,7 @@ namespace AO2Sharp
                 client.Send(new AOPacket("ARUP", updateData.ToArray()));
         }
 
-        internal void FullUpdate(Client client = null)
+        public void FullUpdate(IClient client = null)
         {
             AreaUpdate(AreaUpdateType.PlayerCount, client);
             AreaUpdate(AreaUpdateType.Status, client);
@@ -114,9 +106,9 @@ namespace AO2Sharp
             AreaUpdate(AreaUpdateType.Locked, client);
         }
 
-        internal bool IsClientCM(Client client) => CurrentCaseManagers.Contains(client);
+        public bool IsClientCM(IClient client) => CurrentCaseManagers.Contains(client);
 
-        internal void UpdateTakenCharacters()
+        public void UpdateTakenCharacters()
         {
             List<string> takenData = new List<string>(Server.CharactersList.Length);
             for (var i = 0; i < Server.CharactersList.Length; i++)

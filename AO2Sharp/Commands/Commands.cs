@@ -1,12 +1,12 @@
 ﻿#nullable enable
 using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API;
+using AO2Sharp.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using AO2Sharp.Plugins.API;
-using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Commands
 {
@@ -53,10 +53,10 @@ namespace AO2Sharp.Commands
         [CommandHandler("pm", "Send a private, un-logged message to the user.")]
         internal static void PrivateMessage(IClient client, string[] args)
         {
-            if(args.Length < 2)
+            if (args.Length < 2)
                 throw new CommandException("Usage: /pm <id|oocname|characterName> <message>");
 
-            Client? userToPM = client.Server.FindUser(args[0]);
+            IClient? userToPM = client.ServerRef.FindUser(args[0]);
             if (userToPM != null)
             {
                 string message = string.Join(' ', args.Skip(1));
@@ -72,7 +72,7 @@ namespace AO2Sharp.Commands
         {
             if (!client.Area!.BackgroundLocked)
             {
-                client.Area.Background = args[0];
+                ((Area)client.Area).Background = args[0];
                 if (args.Length > 1)
                     client.Area.Broadcast(new AOPacket("BN", client.Area.Background, args[1]));
                 else
@@ -95,7 +95,7 @@ namespace AO2Sharp.Commands
                     output += "\n" + tchar + ", ID: " + i;
                 else
                     output +=
-                        $"\n{client.Server.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
+                        $"\n{client.ServerRef.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
                         $"{tchar}, ID: {client.Character}\n";
             }
             client.SendOocMessage(output);
@@ -138,7 +138,7 @@ namespace AO2Sharp.Commands
             if (args.Length <= 0)
                 throw new CommandException($"{client.Area.Name}: {client.Area.Status}");
 
-            string[] allowedStatuses = { "IDLE", "RP", "CASING", "LOOKING-FOR-PLAYERS", "LFP", "RECESS", "GAMING"};
+            string[] allowedStatuses = { "IDLE", "RP", "CASING", "LOOKING-FOR-PLAYERS", "LFP", "RECESS", "GAMING" };
 
             if (!allowedStatuses.Contains(args[0].ToUpper()))
                 throw new CommandException($"Usage: /status <{string.Join('|', allowedStatuses)}>");
@@ -165,8 +165,8 @@ namespace AO2Sharp.Commands
                     throw new CommandException("Usage: /cm <character name/id>");
             }
             IClient clientToCm =
-                client.Server.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
-            Area area = client.Area!;
+                client.ServerRef.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
+            IArea area = client.Area!;
             bool cmExists = area.CurrentCaseManagers.Count > 0;
             if (!cmExists)
             {
@@ -194,8 +194,8 @@ namespace AO2Sharp.Commands
         {
             int characterToDeCm = (int)(args.Length > 0 ? int.Parse(args[0]) : client.Character!);
             IClient clientToDeCm =
-                client.Server.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
-            Area area = client.Area!;
+                client.ServerRef.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
+            IArea area = client.Area!;
             bool cmExists = area!.CurrentCaseManagers.Count > 0;
             if (!cmExists)
                 throw new CommandException("There aren't any Case Managers in this area.");
@@ -248,10 +248,10 @@ namespace AO2Sharp.Commands
             if (args.Length < 2)
                 throw new CommandException("Usage: /login <username> <password>");
 
-            if (!client.Server.CheckLogin(args[0], args[1]))
+            if (!client.ServerRef.CheckLogin(args[0], args[1]))
                 throw new CommandException("Incorrect credentials.");
 
-            client.Authed = true;
+            ((Client)client).Authed = true;
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
@@ -261,7 +261,7 @@ namespace AO2Sharp.Commands
         {
             if (client.Authed)
             {
-                client.Authed = false;
+                ((Client)client).Authed = false;
                 client.SendOocMessage("Logged out.");
             }
             else
@@ -272,7 +272,7 @@ namespace AO2Sharp.Commands
         [CommandHandler("restart", "Restart's the server.")]
         internal static void Restart(IClient client, string[] args)
         {
-            client.Server.Stop();
+            client.ServerRef.Stop();
             Server.Logger.Log(LogSeverity.Special, $"[{client.IpAddress}] Ran the restart command.");
             var env = Environment.GetCommandLineArgs();
             var process = Server.ProcessPath;
@@ -298,7 +298,7 @@ namespace AO2Sharp.Commands
                 throw new CommandException("Usage: /addlogin <username> <password>");
 
             args[0] = args[0].ToLower();
-            if (client.Server.AddLogin(args[0], args[1]))
+            if (client.ServerRef.AddLogin(args[0], args[1]))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
                 throw new CommandException($"User {args[0]} already exists or another error occured.");
@@ -311,7 +311,7 @@ namespace AO2Sharp.Commands
             if (args.Length < 1)
                 throw new CommandException("Usage: /removelogin <username>");
 
-            if (client.Server.RemoveLogin(args[0].ToLower()))
+            if (client.ServerRef.RemoveLogin(args[0].ToLower()))
                 client.SendOocMessage("Successfully removed user " + args[0] + ".");
             else
                 throw new CommandException("Could not remove user " + args[0] + ". Does it exist?");
@@ -355,14 +355,14 @@ namespace AO2Sharp.Commands
             if (IPAddress.TryParse(args[0], out _))
             {
                 // Gross
-                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
+                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
                 {
                     c.BanIp(reason, expireDate);
                 }
             }
             else
             {
-                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.HardwareId == args[0])))
+                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
                 {
                     c.BanHwid(reason, expireDate);
                 }
@@ -398,14 +398,14 @@ namespace AO2Sharp.Commands
             if (IPAddress.TryParse(args[0], out _))
             {
                 // Gross
-                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
+                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
                 {
                     c.Kick(reason);
                 }
             }
             else
             {
-                foreach (var c in new Queue<Client>(client.Server.ClientsConnected.Where(c => c.HardwareId == args[0])))
+                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
                 {
                     c.Kick(reason);
                 }
@@ -421,7 +421,7 @@ namespace AO2Sharp.Commands
             if (args.Length <= 0 || (IPAddress.TryParse(args[0], out _) && !int.TryParse(args[0], out _)))
                 throw new CommandException("Usage: /hwid <ip/charId>");
 
-            Client[] ipSearch = client.Server.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0]).ToArray();
+            IClient[] ipSearch = client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0]).ToArray();
             if (ipSearch.Length > 0)
             {
                 string output = "Hwids: ";
@@ -436,8 +436,8 @@ namespace AO2Sharp.Commands
             int searchedChar = int.Parse(args[0]);
             if (!client.Area!.TakenCharacters[searchedChar])
                 throw new CommandException("Usage: /hwid <ip/charId>");
-            Client idSearch =
-                    client.Server.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);
+            IClient idSearch =
+                    client.ServerRef.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);
             client.SendOocMessage($"Hwids: \n\"{idSearch.HardwareId}\"");
         }
     }

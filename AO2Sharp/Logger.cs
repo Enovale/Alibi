@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AO2Sharp.Plugins.API;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -70,16 +71,16 @@ namespace AO2Sharp
             _consoleLogQueue.Enqueue(new Tuple<LogSeverity, string>(severity, log));
         }
 
-        public void IcMessageLog(string message, Area area, Client client)
+        public void IcMessageLog(string message, IArea area, IClient client)
         {
             Debug.Assert(client.Character != null, "client.Character == null during IC logging");
             Log(LogSeverity.Info, $"[IC][{area.Name}][{client.CharacterName}] {message}");
         }
 
-        public void OocMessageLog(string message, Area area = null, string name = null)
+        public void OocMessageLog(string message, IArea area = null, string name = null)
         {
             string areaName = area == null ? "Global" : area.Name;
-            string person = name ?? "Server";
+            string person = name ?? "ServerRef";
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 
@@ -97,7 +98,6 @@ namespace AO2Sharp
             logDump.Flush();
             logDump.Close();
 
-            _server.DumpPluginLogs();
             return true;
         }
     }

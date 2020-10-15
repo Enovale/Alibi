@@ -6,14 +6,14 @@ namespace AO2Sharp.Plugins.API
 {
     public interface IClient
     {
-        public IServer Server { get; }
+        public IServer ServerRef { get; }
 
         public bool Connected { get; }
         public bool Authed { get; }
         public DateTime LastAlive { get; }
         public IPAddress IpAddress { get; }
         public string? HardwareId { get; }
-        public IArea Area { get; }
+        public IArea? Area { get; }
         public string? Position { get; set; }
 
         public string? Password { get; }
@@ -29,6 +29,7 @@ namespace AO2Sharp.Plugins.API
         public bool StoredFlip { get; }
 
         public void ChangeArea(int index);
+        public void KickIfBanned();
         public void Kick(string reason);
         public string GetBanReason();
         public void BanHwid(string reason, TimeSpan? expireDate);

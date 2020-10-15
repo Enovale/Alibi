@@ -1,34 +1,25 @@
-﻿using System;
-using AO2Sharp.Helpers;
+﻿using AO2Sharp.Plugins.API;
+using AO2Sharp.Plugins.API.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using AO2Sharp.Plugins.API;
-using AO2Sharp.Plugins.API.Attributes;
 
 namespace AO2Sharp.Protocol
 {
     internal static class MessageHandler
     {
-        private static readonly Dictionary<string, Handler> _handlers = new Dictionary<string, Handler>();
-        private static readonly Dictionary<string, Action<IClient, IAOPacket>> _customHandlers =
-            new Dictionary<string, Action<IClient, IAOPacket>>();
-
-        internal delegate void Handler(Client client, AOPacket packet);
+        private static readonly Dictionary<string, Action<IClient, IAOPacket>> _handlers = new Dictionary<string, Action<IClient, IAOPacket>>();
 
         static MessageHandler()
         {
             AddHandlers();
         }
 
-        public static void HandleMessage(Client client, AOPacket packet)
+        public static void HandleMessage(IClient client, IAOPacket packet)
         {
             if (_handlers.ContainsKey(packet.Type))
             {
                 _handlers[packet.Type](client, packet);
-            }
-            else if (_customHandlers.ContainsKey(packet.Type))
-            {
-                _customHandlers[packet.Type](client, packet);
             }
             else
             {
@@ -36,23 +27,12 @@ namespace AO2Sharp.Protocol
             }
         }
 
-        public static void RegisterMessageHandler(string messageName, Handler handler) => _handlers[messageName] = handler;
-
-        public static void RegisterCustomMessageHandler(string messageName, Action<IClient, IAOPacket> handler, bool overrideHandler = false)
+        public static void RegisterMessageHandler(string messageName, Action<IClient, IAOPacket> handler, bool overrideHandler = false)
         {
-            if (overrideHandler && _handlers.ContainsKey(messageName))
-                _handlers.Remove(messageName);
-            else if (!overrideHandler && _handlers.ContainsKey(messageName))
+            if (!overrideHandler && _handlers.ContainsKey(messageName))
                 return;
 
-            if (_customHandlers.ContainsKey(messageName))
-            {
-                Server.Logger.Log(LogSeverity.Warning,
-                    $"[PluginLoader] Tried to add two of the same message handler: {messageName}.");
-                return;
-            }
-
-            _customHandlers[messageName] = handler;
+            _handlers[messageName] = handler;
         }
 
         public static void AddHandlers()
@@ -68,7 +48,8 @@ namespace AO2Sharp.Protocol
                         var attr = method.GetCustomAttribute<MessageHandlerAttribute>();
 
                         if (attr != null)
-                            RegisterMessageHandler(attr.MessageName, (Handler)method.CreateDelegate(typeof(Handler)));
+                            RegisterMessageHandler(attr.MessageName,
+                                (c, p) => { method.Invoke(null, new object[] { c, p }); });
                     }
                 }
             }
@@ -82,10 +63,10 @@ namespace AO2Sharp.Protocol
                 var methods = type.GetRuntimeMethods();
                 foreach (var method in methods)
                 {
-                    var attr = method.GetCustomAttribute<CustomMessageHandlerAttribute>();
+                    var attr = method.GetCustomAttribute<MessageHandlerAttribute>();
 
                     if (attr != null)
-                        RegisterCustomMessageHandler(attr.MessageName, (c, p) =>
+                        RegisterMessageHandler(attr.MessageName, (c, p) =>
                         {
                             method.Invoke(plugin, new object[] { c, p });
                         }, true);

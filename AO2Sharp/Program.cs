@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using AO2Sharp.Plugins.API;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -15,7 +16,7 @@ namespace AO2Sharp
         static void Main(string[] args)
         {
             Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
-            if (!File.Exists(Server.ConfigPath) 
+            if (!File.Exists(Server.ConfigPath)
                 || new FileInfo(Server.ConfigPath).Length <= 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
             _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
