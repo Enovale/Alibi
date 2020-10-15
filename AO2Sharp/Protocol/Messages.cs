@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using AO2Sharp.Exceptions;
+
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedParameter.Global
 #pragma warning disable IDE0060 // Remove unused parameter
@@ -281,15 +283,14 @@ namespace AO2Sharp.Protocol
             try
             {
                 AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
-                if (validPacket.Type == "INVALID")
-                    return;
 
-                client.Area.Broadcast(validPacket);
+                client.Area!.Broadcast(validPacket);
                 Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
             }
-            catch (Exception e)
+            catch (IcValidationException e)
             {
-                Server.Logger.Log(LogSeverity.Error, e.Message + "\n" + e.StackTrace, true);
+                client.SendOocMessage(e.Message);
+                //Server.Logger.Log(LogSeverity.Error, e.Message, true);
             }
         }
 

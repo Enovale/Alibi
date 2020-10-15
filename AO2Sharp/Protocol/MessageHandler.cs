@@ -1,4 +1,5 @@
-﻿using AO2Sharp.Plugins.API;
+﻿#nullable enable
+using AO2Sharp.Plugins.API;
 using AO2Sharp.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;

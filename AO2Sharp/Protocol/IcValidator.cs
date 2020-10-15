@@ -2,6 +2,7 @@
 using AO2Sharp.Plugins.API;
 using System;
 using System.Collections.Generic;
+using AO2Sharp.Exceptions;
 
 namespace AO2Sharp.Protocol
 {
@@ -9,10 +10,8 @@ namespace AO2Sharp.Protocol
     {
         internal static AOPacket ValidateIcPacket(IAOPacket packet, IClient client)
         {
-            AOPacket invalid = new AOPacket("INVALID");
-
             if (client.Character == null || !client.Connected)
-                return invalid;
+                throw new IcValidationException("Client does not have a character or isn't connected.");
 
             List<string> validatedObjects = new List<string>(packet.Objects.Length);
 
@@ -28,10 +27,10 @@ namespace AO2Sharp.Protocol
             validatedObjects.Add(packet.Objects[1]);
 
             // Make sure character isn't ini-swapping if it isn't allowed
-            if (!client.Area.IniSwappingAllowed && packet.Objects[2].ToLower() != Server.CharactersList[(int)client.Character].ToLower())
+            if (!client.Area!.IniSwappingAllowed && packet.Objects[2].ToLower() != Server.CharactersList[(int)client.Character].ToLower())
             {
                 client.SendOocMessage("Ini-swapping isn't allowed in this area.");
-                return invalid;
+                throw new IcValidationException("Ini-swapping now allowed.");
             }
             validatedObjects.Add(packet.Objects[2]);
 
@@ -43,7 +42,7 @@ namespace AO2Sharp.Protocol
             // TODO: Sanitization and zalgo cleaning
             string sentMessage = packet.Objects[4].Trim();
             if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
-                return invalid;
+                throw new IcValidationException("Cannot double post.");
             client.LastSentMessage = sentMessage;
             validatedObjects.Add(sentMessage);
 
@@ -60,12 +59,12 @@ namespace AO2Sharp.Protocol
             if (packet.Objects[7] == "4")
                 packet.Objects[7] = "6";
             if (!allowedEmotes.Contains(packet.Objects[7]))
-                return invalid;
+                throw new IcValidationException("Tried to use an invalid emote.");
             validatedObjects.Add(packet.Objects[7]);
 
             // Make sure theyre telling us the player that they actually are
             if (packet.Objects[8].ToIntOrZero() != client.Character)
-                return invalid;
+                throw new IcValidationException("Sent character does not match their actual character.");
             validatedObjects.Add(packet.Objects[8]);
 
             // Delay, limit this to 3 seconds to prevent spam
@@ -77,7 +76,7 @@ namespace AO2Sharp.Protocol
             if (allowedObjectionMods.Contains(packet.Objects[10][0]))
                 validatedObjects.Add(packet.Objects[10]);
             else
-                return invalid;
+                throw new IcValidationException("Used an invalid objection mod.");
 
             // Make sure evidence exists
             int moddedEvidenceId = Math.Max(0,
@@ -87,12 +86,12 @@ namespace AO2Sharp.Protocol
             else if (client.Area.EvidenceList[moddedEvidenceId] != null)
                 validatedObjects.Add(moddedEvidenceId.ToString());
             else
-                return invalid;
+                throw new IcValidationException("Tried to use evidence that doesn't exist.");
 
             // Make sure flip is 1 or 0
             int flip = packet.Objects[12].ToIntOrZero();
             if (flip != 0 && flip != 1)
-                return invalid;
+                throw new IcValidationException("Flip is invalid.");
             ((Client)client).StoredFlip = flip == 1;
             validatedObjects.Add(flip.ToString());
 
@@ -101,12 +100,12 @@ namespace AO2Sharp.Protocol
             if (realization == 0 || realization == 1)
                 validatedObjects.Add(realization.ToString());
             else
-                return invalid;
+                throw new IcValidationException("Realization is invalid.");
 
             // Make sure chat color is valid
             string allowedColors = "012345678";
             if (!allowedColors.Contains(packet.Objects[14]))
-                return invalid;
+                throw new IcValidationException("Chat color invalid.");
             validatedObjects.Add(packet.Objects[14]);
 
             // 2.6+ Attributes
@@ -154,7 +153,7 @@ namespace AO2Sharp.Protocol
                 // Non interrupting pre-animation
                 int nip = packet.Objects[18].ToIntOrZero();
                 if (nip != 0 && nip != 1)
-                    return invalid;
+                    throw new IcValidationException("Nip invalid.");
                 validatedObjects.Add(nip.ToString());
             }
 
@@ -164,13 +163,13 @@ namespace AO2Sharp.Protocol
                 // Make sure sfx looping is 1 or 0
                 int sfxLoop = packet.Objects[19].ToIntOrZero();
                 if (sfxLoop != 0 && sfxLoop != 1)
-                    return invalid;
+                    throw new IcValidationException("SFX Loop invalid.");
                 validatedObjects.Add(sfxLoop.ToString());
 
                 // Make sure screenshake is 1 or 0
                 int screenshake = packet.Objects[20].ToIntOrZero();
                 if (screenshake != 0 && screenshake != 1)
-                    return invalid;
+                    throw new IcValidationException("Screenshake invalid.");
                 validatedObjects.Add(screenshake.ToString());
 
                 // Frames to shake on; spec not even available so we can't validate this
@@ -185,7 +184,7 @@ namespace AO2Sharp.Protocol
                 // Make sure additive is 1 or 0
                 int additive = packet.Objects[24].ToIntOrZero();
                 if (additive != 0 && additive != 1)
-                    return invalid;
+                    throw new IcValidationException("Additive invalid.");
                 validatedObjects.Add(additive.ToString());
 
                 // Overlay effect; spec not available as well
