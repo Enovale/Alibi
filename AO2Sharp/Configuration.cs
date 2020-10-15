@@ -10,7 +10,7 @@ namespace AO2Sharp
     public class Configuration
     {
 #pragma warning disable CA2235 // Mark all non-serializable fields
-        public string ServerName = "Test Server";
+        public string ServerName = "Test ServerRef";
         public string ServerDescription = "Example server description.";
         public string MOTD = "Welcome to my test server! Type /help for a list of commands you can run.";
 

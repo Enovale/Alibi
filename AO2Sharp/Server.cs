@@ -4,6 +4,7 @@ using AO2Sharp.Database;
 using AO2Sharp.Helpers;
 using AO2Sharp.Plugins;
 using AO2Sharp.Plugins.API;
+using AO2Sharp.Protocol;
 using AO2Sharp.WebSocket;
 using NetCoreServer;
 using Newtonsoft.Json;
@@ -16,7 +17,6 @@ using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using AO2Sharp.Protocol;
 
 #pragma warning disable 8618
 
@@ -33,14 +33,14 @@ namespace AO2Sharp
         public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
 
-        public static IPAddress MasterServerIp { get; }
+        public static IPAddress MasterServerIp { get; private set; }
 
-        public static Logger Logger { get; }
-        public static Configuration ServerConfiguration { get; }
-        public static DatabaseManager Database { get; }
-        public static string[] MusicList { get; }
-        public static string[] CharactersList { get; }
-        public static string Version { get; }
+        public static Logger Logger { get; private set; }
+        public static Configuration ServerConfiguration { get; private set; }
+        public static IDatabaseManager Database { get; private set; }
+        public static string[] MusicList { get; private set; }
+        public static string[] CharactersList { get; private set; }
+        public static string Version { get; private set; }
 
         public List<IClient> ClientsConnected { get; }
 
@@ -66,7 +66,7 @@ namespace AO2Sharp
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
 
-            ClientsConnected = new List<Client>(ServerConfiguration.MaxPlayers);
+            ClientsConnected = new List<IClient>(ServerConfiguration.MaxPlayers);
             if (ServerConfiguration.Advertise)
             {
                 MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
@@ -86,8 +86,8 @@ namespace AO2Sharp
             foreach (var area in Areas)
             {
                 AreaNames[Array.IndexOf(Areas, area)] = area.Name;
-                area.Server = this;
-                area.TakenCharacters = new bool[CharactersList.Length];
+                ((Area)area).Server = this;
+                ((Area)area).TakenCharacters = new bool[CharactersList.Length];
             }
 
             if (ServerConfiguration.WebsocketPort > -1)
@@ -134,7 +134,7 @@ namespace AO2Sharp
         {
             var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
             Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
-            var clientQueue = new Queue<Client>(ClientsConnected);
+            var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
             while (clientQueue.Any())
             {
                 var client = clientQueue.Dequeue();
@@ -179,9 +179,9 @@ namespace AO2Sharp
             UnbanExpires(token);
         }
 
-        public void Broadcast(AOPacket message)
+        public void Broadcast(IAOPacket message)
         {
-            var clientQueue = new Queue<Client>(ClientsConnected);
+            var clientQueue = new Queue<IClient>(ClientsConnected);
             while (clientQueue.Any())
             {
                 var client = clientQueue.Dequeue();
@@ -192,7 +192,7 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            AOPacket msgPacket = new AOPacket("CT", "Server", message, "1");
+            AOPacket msgPacket = new AOPacket("CT", "ServerRef", message, "1");
             Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
@@ -202,25 +202,25 @@ namespace AO2Sharp
         /// </summary>
         /// <param name="str">an id, ooc name, char name, or HWID to search for.</param>
         /// <returns></returns>
-        public Client? FindUser(string str)
+        public IClient? FindUser(string str)
         {
             if (int.TryParse(str, out int id))
                 return ClientsConnected.FirstOrDefault(c => c.Character == id) ?? null;
             //if (IPAddress.TryParse(str, out IPAddress ip))
             //    return ClientsConnected.FirstOrDefault(c => Equals(c.IpAddress, ip)) ?? null;
-            Client? hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
+            IClient? hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
             if (hwidSearch != null)
                 return hwidSearch;
-            Client? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
+            IClient? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
             if (oocSearch != null)
                 return oocSearch;
-            Client? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName.ToLower() == str.ToLower()) ?? null;
+            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName.ToLower() == str.ToLower()) ?? null;
             if (charSearch != null)
                 return charSearch;
             return null;
         }
 
-        public bool AddUser(Client client)
+        public bool AddUser(IClient client)
         {
             return Database.AddUser(client.HardwareId, client.IpAddress.ToString());
         }
@@ -240,28 +240,17 @@ namespace AO2Sharp
             return Database.RemoveLogin(username);
         }
 
-        public void DumpPluginLogs()
-        {
-            _pluginManager.GetAllPlugins().ForEach(p =>
-            {
-                var pluginLogsFolder = Path.Combine(Logger.LogsFolder, p.ID);
-                Directory.CreateDirectory(pluginLogsFolder);
-
-                p.DumpLogs(Path.Combine(pluginLogsFolder, $"log_{DateTime.Now:dd-M_HH-mm}.log"));
-            });
-        }
-
         public void OnAllPluginsLoaded()
         {
             _pluginManager.GetAllPlugins().ForEach(p => p.OnAllPluginsLoaded());
         }
 
-        public void OnModCall(Client client, AOPacket packet)
+        public void OnModCall(IClient client, IAOPacket packet)
         {
             _pluginManager.GetAllPlugins().ForEach(p => p.OnModCall(client, packet.Objects[0]));
         }
 
-        public void OnBan(Client client, string reason, TimeSpan? expires = null)
+        public void OnBan(IClient client, string reason, TimeSpan? expires = null)
         {
             _pluginManager.GetAllPlugins().ForEach(p => p.OnBan(client, reason, expires));
         }

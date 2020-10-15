@@ -18,7 +18,7 @@ namespace AO2Sharp.Commands
             AddHandlers();
         }
 
-        public static void HandleCommand(Client client, string command, string[] args)
+        public static void HandleCommand(IClient client, string command, string[] args)
         {
             if (Handlers.ContainsKey(command))
             {
@@ -107,7 +107,7 @@ namespace AO2Sharp.Commands
                         }
                         catch (ArgumentException)
                         {
-                            plugin.LogError(
+                            plugin.Log(LogSeverity.Error,
                                 $"Could not load handler {attr.Command} because it does not match the CustomCommandHandler signature.");
                         }
                     }
