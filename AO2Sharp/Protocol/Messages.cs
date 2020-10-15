@@ -17,6 +17,9 @@ namespace AO2Sharp.Protocol
             if (packet.Objects.Length <= 0)
                 return;
 
+            if (client.HardwareId != null)
+                return;
+
             ((Client)client).HardwareId = packet.Objects[0];
             client.ServerRef.AddUser(client);
             client.KickIfBanned();
