@@ -15,6 +15,7 @@ namespace AO2Sharp.Plugins.API
         public string? HardwareId { get; }
         public IArea? Area { get; }
         public string? Position { get; set; }
+        public ClientState CurrentState { get; set; }
 
         public string? Password { get; }
         public int? Character { get; set; }

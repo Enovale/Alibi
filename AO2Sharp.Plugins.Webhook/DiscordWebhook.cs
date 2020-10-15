@@ -58,6 +58,7 @@ namespace AO2Sharp.Plugins.Webhook
             client.SendOocMessage("Discord webhook successfully " + (_enabled ? "enabled." : "disabled."));
         }
 
+
         public override void OnModCall(IClient caller, string reason)
         {
             if (_validConfig && _enabled)

@@ -56,7 +56,7 @@ namespace AO2Sharp
 
         public void BroadcastOocMessage(string message)
         {
-            Broadcast(new AOPacket("CT", "ServerRef", message, "1"));
+            Broadcast(new AOPacket("CT", "Server", message, "1"));
         }
 
         /// <summary>

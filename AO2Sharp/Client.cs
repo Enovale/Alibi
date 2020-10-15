@@ -20,6 +20,7 @@ namespace AO2Sharp
         public string? HardwareId { get; internal set; }
         public IArea? Area { get; internal set; }
         public string? Position { get; set; }
+        public ClientState CurrentState { get; set; }
 
         public string? Password { get; internal set; }
         public int? Character { get; set; }
@@ -36,6 +37,7 @@ namespace AO2Sharp
 
         public Client(Server serverRef, ClientSession session, IPAddress ip)
         {
+            CurrentState = ClientState.NewClient;
             ServerRef = serverRef;
             Session = session;
             IpAddress = ip;
@@ -163,7 +165,7 @@ namespace AO2Sharp
 
         public void SendOocMessage(string message, string? sender = null)
         {
-            Send(new AOPacket("CT", sender ?? "ServerRef", message, "1"));
+            Send(new AOPacket("CT", sender ?? "Server", message, "1"));
         }
     }
 }
