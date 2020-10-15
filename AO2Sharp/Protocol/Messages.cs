@@ -106,7 +106,7 @@ namespace AO2Sharp.Protocol
         [MessageHandler("RE")]
         internal static void RequestEvidence(Client client, AOPacket packet)
         {
-            string[] evidenceList = new string[client.Area.EvidenceList.Count];
+            string[] evidenceList = new string[client.Area!.EvidenceList.Count];
             for (var i = 0; i < client.Area.EvidenceList.Count; i++)
             {
                 evidenceList[i] = client.Area.EvidenceList[i].ToPacket();
