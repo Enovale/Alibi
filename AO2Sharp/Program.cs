@@ -16,10 +16,9 @@ namespace AO2Sharp
         {
             Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
             if (!File.Exists(Server.ConfigPath) 
-                || new FileInfo(Server.ConfigPath).Length > 0)
+                || new FileInfo(Server.ConfigPath).Length <= 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
             _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
-            Server.ServerConfiguration.SaveToFile(Server.ConfigPath);
             Console.Title = "AO2Sharp - Running";
             _server.Start();
 
