@@ -12,11 +12,18 @@ namespace AO2Sharp.Plugins.API
         public string Status { get; set; }
         public string Locked { get; set; }
         public int PlayerCount { get; }
-        public List<IClient> ICurrentCaseManagers { get; }
+        public List<IClient> CurrentCaseManagers { get; }
         public string Document { get; set; }
         public int DefendantHp { get; set; }
         public int ProsecutorHp { get; set; }
         public bool[] TakenCharacters { get; }
-        public List<IEvidence> IEvidenceList { get; }
+        public List<IEvidence> EvidenceList { get; }
+
+        public void Broadcast(IAOPacket packet);
+        public void BroadcastOocMessage(string message);
+        public void AreaUpdate(AreaUpdateType type, IClient client = null);
+        public void FullUpdate(IClient client = null);
+        public bool IsClientCM(IClient client);
+        public void UpdateTakenCharacters();
     }
 }

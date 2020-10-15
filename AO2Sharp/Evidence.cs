@@ -1,6 +1,8 @@
-﻿namespace AO2Sharp
+﻿using AO2Sharp.Plugins.API;
+
+namespace AO2Sharp
 {
-    public class Evidence
+    public class Evidence : IEvidence
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API;
 using AO2Sharp.Protocol;
 using NetCoreServer;
 using System;
@@ -20,7 +21,7 @@ namespace AO2Sharp
 
         protected override void OnConnected()
         {
-            if (((Server) Server).ConnectedPlayers >= AO2Sharp.Server.ServerConfiguration.MaxPlayers)
+            if (((Server)Server).ConnectedPlayers >= AO2Sharp.Server.ServerConfiguration.MaxPlayers)
             {
                 Send(new AOPacket("BD", "Max players has been reached."));
                 Task.Delay(500);
@@ -43,7 +44,7 @@ namespace AO2Sharp
             if (Client.Connected)
             {
                 ((Server)Server).ConnectedPlayers--;
-                Client.Area!.PlayerCount--;
+                ((Area)Client.Area)!.PlayerCount--;
                 Client.Connected = false;
                 if (Client.Character != null)
                     Client.Area.TakenCharacters[(int)Client.Character] = false;

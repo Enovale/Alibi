@@ -1,4 +1,5 @@
 ﻿using AO2Sharp.Helpers;
+using AO2Sharp.Plugins.API;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +7,7 @@ namespace AO2Sharp.Protocol
 {
     public static class IcValidator
     {
-        internal static AOPacket ValidateIcPacket(AOPacket packet, Client client)
+        internal static AOPacket ValidateIcPacket(IAOPacket packet, IClient client)
         {
             AOPacket invalid = new AOPacket("INVALID");
 
@@ -35,7 +36,7 @@ namespace AO2Sharp.Protocol
             validatedObjects.Add(packet.Objects[2]);
 
             // Nothing should break if this isn't an existing emote
-            client.StoredEmote = packet.Objects[3];
+            ((Client)client).StoredEmote = packet.Objects[3];
             validatedObjects.Add(packet.Objects[3]);
 
             // Make sure message is sanitized(eventually) and prevent double messages
@@ -92,7 +93,7 @@ namespace AO2Sharp.Protocol
             int flip = packet.Objects[12].ToIntOrZero();
             if (flip != 0 && flip != 1)
                 return invalid;
-            client.StoredFlip = flip == 1;
+            ((Client)client).StoredFlip = flip == 1;
             validatedObjects.Add(flip.ToString());
 
             // Make sure realization is 1 or 0 
@@ -116,12 +117,12 @@ namespace AO2Sharp.Protocol
 
                 // First object is the charID, second is whether or not they're in front
                 string[] pair = packet.Objects[16].Split("^");
-                client.PairingWith = pair[0].ToIntOrZero();
+                ((Client)client).PairingWith = pair[0].ToIntOrZero();
 
                 bool paired = false;
                 // Other's name, emote, offset, and flip
                 string[] otherData = { "0", "0", "0", "0" };
-                foreach (var otherClient in client.Server.ClientsConnected)
+                foreach (var otherClient in client.ServerRef.ClientsConnected)
                 {
                     if (otherClient.PairingWith == client.Character &&
                         otherClient.Character == pair[0].ToIntOrZero() &&
@@ -145,7 +146,7 @@ namespace AO2Sharp.Protocol
                 validatedObjects.Add(otherData[1]);
 
                 // Self offset
-                client.StoredOffset = Math.Max(-100, Math.Min(100, packet.Objects[17].ToIntOrZero()));
+                ((Client)client).StoredOffset = Math.Max(-100, Math.Min(100, packet.Objects[17].ToIntOrZero()));
                 validatedObjects.Add(client.StoredOffset.ToString());
                 validatedObjects.Add(otherData[2]);
                 validatedObjects.Add(otherData[3]);

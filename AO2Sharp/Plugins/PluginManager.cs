@@ -29,8 +29,8 @@ namespace AO2Sharp.Plugins
         public string GetConfigFolder(string id)
             => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
 
-        public void Log(int severity, string message, bool verbose)
-            => Server.Logger.Log((LogSeverity) severity, message, verbose);
+        public void Log(LogSeverity severity, string message, bool verbose)
+            => Server.Logger.Log(severity, message, verbose);
 
         public List<Plugin> GetAllPlugins()
             => Registry.RegisteredPlugins;

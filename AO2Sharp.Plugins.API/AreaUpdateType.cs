@@ -1,4 +1,4 @@
-﻿namespace AO2Sharp
+﻿namespace AO2Sharp.Plugins.API
 {
     public enum AreaUpdateType
     {
