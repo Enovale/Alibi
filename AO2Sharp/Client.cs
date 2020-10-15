@@ -11,16 +11,14 @@ namespace AO2Sharp
     public class Client : IClient
     {
         public ClientSession Session { get; private set; }
-        public Server Server { get; private set; }
-        public IServer IServer => Server;
+        public IServer Server { get; private set; }
 
         public bool Connected { get; internal set; }
         public bool Authed { get; internal set; }
         public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal set; }
         public string? HardwareId { get; internal set; }
-        public Area? Area { get; internal set; }
-        public IArea IArea => Area!;
+        public IArea? Area { get; internal set; }
         public string? Position { get; set; }
 
         public string? Password { get; internal set; }
