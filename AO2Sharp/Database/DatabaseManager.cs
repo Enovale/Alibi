@@ -39,7 +39,7 @@ namespace AO2Sharp.Database
 
             if (list.Length > 1)
             {
-                Server.Logger.Log(LogSeverity.Error, "Two of the same hwid found, please edit the db...");
+                Server.Logger.Log(LogSeverity.Error, " Two of the same hwid found, please edit the db...");
                 return false;
             }
 

@@ -29,7 +29,7 @@ namespace AO2Sharp.Protocol
                 Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] { client, packet });
             }
             else
-                Server.Logger.Log(LogSeverity.Warning, $"Unknown client message: '{packet.Type}'", true);
+                Server.Logger.Log(LogSeverity.Warning, $" Unknown client message: '{packet.Type}'", true);
         }
 
         public static void RegisterMessageHandler(string messageName, MethodInfo handler, Plugin? target, bool overrideHandler = false)

@@ -31,7 +31,7 @@ namespace AO2Sharp.WebSocket
 
         public override void OnWsError(string error)
         {
-            AO2Sharp.Server.Logger.Log(LogSeverity.Error, error, true);
+            AO2Sharp.Server.Logger.Log(LogSeverity.Error, " " + error, true);
         }
 
         public override void OnWsReceived(byte[] buffer, long offset, long size)

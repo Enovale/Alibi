@@ -179,7 +179,6 @@ namespace AO2Sharp.Protocol
         }
 
         [MessageHandler("CH")]
-        [RequireState(ClientState.Identified)]
         internal static void KeepAlive(IClient client, IAOPacket packet)
         {
             client.Send(new AOPacket("CHECK"));
@@ -191,7 +190,7 @@ namespace AO2Sharp.Protocol
         {
             if (!CanModifyEvidence(client))
                 return;
-            client.Area.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
+            client.Area!.EvidenceList.Add(new Evidence(packet.Objects[0], packet.Objects[1], packet.Objects[2]));
             RequestEvidence(client, packet);
         }
 
