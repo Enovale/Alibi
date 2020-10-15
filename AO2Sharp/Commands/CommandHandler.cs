@@ -94,18 +94,8 @@ namespace AO2Sharp.Commands
                 {
                     var attr = method.GetCustomAttribute<CommandHandlerAttribute>();
 
-                    if (attr != null)
-                    {
-                        try
-                        {
-                            RegisterCommandHandler(attr, method, plugin, true);
-                        }
-                        catch (ArgumentException)
-                        {
-                            plugin.Log(LogSeverity.Error,
-                                $"Could not load handler {attr.Command} because it does not match the CustomCommandHandler signature.");
-                        }
-                    }
+                    if (attr != null) 
+                        RegisterCommandHandler(attr, method, plugin, true);
                 }
             }
         }
