@@ -246,12 +246,19 @@ namespace AO2Sharp.Protocol
         [MessageHandler("MS")]
         internal static void IcMessage(Client client, AOPacket packet)
         {
-            AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
-            if (validPacket.Type == "INVALID")
-                return;
+            try
+            {
+                AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
+                if (validPacket.Type == "INVALID")
+                    return;
 
-            client.Area.Broadcast(validPacket);
-            Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
+                client.Area.Broadcast(validPacket);
+                Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
+            }
+            catch (Exception e)
+            {
+                Server.Logger.Log(LogSeverity.Error, e.Message + "\n" + e.StackTrace, true);
+            }
         }
 
         [MessageHandler("CT")]
