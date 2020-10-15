@@ -2,13 +2,14 @@
 using AO2Sharp.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace AO2Sharp.Protocol
 {
     internal static class MessageHandler
     {
-        private static readonly Dictionary<string, Action<IClient, IAOPacket>> _handlers = new Dictionary<string, Action<IClient, IAOPacket>>();
+        internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
 
         static MessageHandler()
         {
@@ -17,22 +18,25 @@ namespace AO2Sharp.Protocol
 
         public static void HandleMessage(IClient client, IAOPacket packet)
         {
-            if (_handlers.ContainsKey(packet.Type))
+            if (Handlers.ContainsKey(packet.Type))
             {
-                _handlers[packet.Type](client, packet);
+                var stateAttr = Handlers[packet.Type].Method.GetCustomAttribute<RequireStateAttribute>();
+
+                if (stateAttr != null)
+                    if (client.CurrentState != stateAttr.State)
+                        return;
+                Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] { client, packet });
             }
             else
-            {
                 Server.Logger.Log(LogSeverity.Warning, $"Unknown client message: '{packet.Type}'", true);
-            }
         }
 
-        public static void RegisterMessageHandler(string messageName, Action<IClient, IAOPacket> handler, bool overrideHandler = false)
+        public static void RegisterMessageHandler(string messageName, MethodInfo handler, Plugin? target, bool overrideHandler = false)
         {
-            if (!overrideHandler && _handlers.ContainsKey(messageName))
+            if (!overrideHandler && Handlers.ContainsKey(messageName))
                 return;
 
-            _handlers[messageName] = handler;
+            Handlers[messageName] = new Handler(handler, target);
         }
 
         public static void AddHandlers()
@@ -48,8 +52,7 @@ namespace AO2Sharp.Protocol
                         var attr = method.GetCustomAttribute<MessageHandlerAttribute>();
 
                         if (attr != null)
-                            RegisterMessageHandler(attr.MessageName,
-                                (c, p) => { method.Invoke(null, new object[] { c, p }); });
+                            RegisterMessageHandler(attr.MessageName, method, null, true);
                     }
                 }
             }
@@ -66,10 +69,7 @@ namespace AO2Sharp.Protocol
                     var attr = method.GetCustomAttribute<MessageHandlerAttribute>();
 
                     if (attr != null)
-                        RegisterMessageHandler(attr.MessageName, (c, p) =>
-                        {
-                            method.Invoke(plugin, new object[] { c, p });
-                        }, true);
+                        RegisterMessageHandler(attr.MessageName, method, plugin, true);
                 }
             }
         }
