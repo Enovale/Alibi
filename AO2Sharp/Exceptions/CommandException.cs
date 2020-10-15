@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO2Sharp.Commands
+namespace AO2Sharp.Exceptions
 {
     public class CommandException : Exception
     {

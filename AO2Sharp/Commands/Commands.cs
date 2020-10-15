@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using AO2Sharp.Exceptions;
+
 #pragma warning disable IDE0060 // Remove unused parameter
 // ReSharper disable UnusedParameter.Global
 
@@ -58,12 +60,12 @@ namespace AO2Sharp.Commands
             if (args.Length < 2)
                 throw new CommandException("Usage: /pm <id|oocname|characterName> <message>");
 
-            IClient? userToPM = client.ServerRef.FindUser(args[0]);
-            if (userToPM != null)
+            IClient? userToPm = client.ServerRef.FindUser(args[0]);
+            if (userToPm != null)
             {
                 string message = string.Join(' ', args.Skip(1));
-                userToPM.SendOocMessage(message, "(PM) " + client.OocName!);
-                client.SendOocMessage($"Sent to {userToPM.CharacterName}.");
+                userToPm.SendOocMessage(message, "(PM) " + client.OocName!);
+                client.SendOocMessage($"Sent to {userToPm.CharacterName}.");
             }
             else
                 throw new CommandException("That user cannot be found.");
@@ -178,8 +180,8 @@ namespace AO2Sharp.Commands
                 return;
             }
 
-            bool isAlreadyCM = area.IsClientCM(clientToCm);
-            if (isAlreadyCM)
+            bool isAlreadyCm = area.IsClientCM(clientToCm);
+            if (isAlreadyCm)
                 throw new CommandException("They are already CM in this area.");
             else if (area.IsClientCM(client))
             {
