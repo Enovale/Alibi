@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+#pragma warning disable IDE0060 // Remove unused parameter
+// ReSharper disable UnusedParameter.Global
 
 namespace AO2Sharp.Commands
 {

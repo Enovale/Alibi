@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 // ReSharper disable UnusedType.Global
+// ReSharper disable UnusedParameter.Global
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace AO2Sharp.Protocol
 {
@@ -210,7 +212,7 @@ namespace AO2Sharp.Protocol
                 return;
             if (int.TryParse(packet.Objects[0], out int id))
             {
-                id = Math.Max(0, Math.Min(client.Area.EvidenceList.Count, id));
+                id = Math.Max(0, Math.Min(client.Area!.EvidenceList.Count, id));
 
                 client.Area.EvidenceList[id] = new Evidence(packet.Objects[1], packet.Objects[2], packet.Objects[3]);
             }
@@ -228,8 +230,7 @@ namespace AO2Sharp.Protocol
         [RequireState(ClientState.InArea)]
         internal static void ChangeCharacter(IClient client, IAOPacket packet)
         {
-            int charId;
-            if (int.TryParse(packet.Objects[1], out charId))
+            if (int.TryParse(packet.Objects[1], out var charId))
             {
                 if (client.Character != null)
                     client.Area.TakenCharacters[(int)client.Character] = false;
@@ -240,7 +241,7 @@ namespace AO2Sharp.Protocol
                     return;
 
                 string charToTake = Server.CharactersList[charId];
-                if (client.Area.TakenCharacters[charId] || charToTake == "")
+                if (client.Area!.TakenCharacters[charId] || string.IsNullOrWhiteSpace(charToTake))
                     return;
 
                 client.Area.TakenCharacters[charId] = true;
@@ -320,15 +321,14 @@ namespace AO2Sharp.Protocol
         {
             if (!client.Position.ToLower().StartsWith("jud"))
                 return;
-            int hp;
-            if (int.TryParse(packet.Objects[1], out hp))
+            if (int.TryParse(packet.Objects[1], out var hp))
             {
                 if (packet.Objects[0] == "1")
-                    client.Area.DefendantHp = Math.Max(0, Math.Min(hp, 10));
+                    client.Area!.DefendantHp = Math.Max(0, Math.Min(hp, 10));
                 else if (packet.Objects[0] == "2")
-                    client.Area.ProsecutorHp = Math.Max(0, Math.Min(hp, 10));
+                    client.Area!.ProsecutorHp = Math.Max(0, Math.Min(hp, 10));
 
-                client.Area.Broadcast(packet);
+                client.Area!.Broadcast(packet);
             }
         }
 
