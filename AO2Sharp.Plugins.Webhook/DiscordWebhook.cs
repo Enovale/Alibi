@@ -45,7 +45,7 @@ namespace AO2Sharp.Plugins.Webhook
         }
 
         [ModOnly]
-        [CustomCommandHandler("discord", "Enable or disable the discord webhook. (on/off)")]
+        [CommandHandler("discord", "Enable or disable the discord webhook. (on/off)")]
         public void SetEnabledCommand(IClient client, string[] args)
         {
             if (args.Length <= 0)

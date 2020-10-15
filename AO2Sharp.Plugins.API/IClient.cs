@@ -6,14 +6,14 @@ namespace AO2Sharp.Plugins.API
 {
     public interface IClient
     {
-        public IServer IServer { get; }
+        public IServer Server { get; }
 
         public bool Connected { get; }
         public bool Authed { get; }
         public DateTime LastAlive { get; }
         public IPAddress IpAddress { get; }
         public string? HardwareId { get; }
-        public IArea IArea { get; }
+        public IArea Area { get; }
         public string? Position { get; set; }
 
         public string? Password { get; }
