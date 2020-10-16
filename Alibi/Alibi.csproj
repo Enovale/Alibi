@@ -11,6 +11,8 @@
     <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Nullable>disable</Nullable>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
