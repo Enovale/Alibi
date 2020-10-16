@@ -214,7 +214,7 @@ namespace Alibi
             IClient? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
             if (oocSearch != null)
                 return oocSearch;
-            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName.ToLower() == str.ToLower()) ?? null;
+            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ?? null;
             if (charSearch != null)
                 return charSearch;
             return null;

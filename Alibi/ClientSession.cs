@@ -71,6 +71,8 @@ namespace Alibi
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
+                if (Client.HardwareId == null && !packet.StartsWith("HI#"))
+                    return;
                 if (DateTime.Now.CompareTo(BanCheckTime.AddSeconds
                     (Alibi.Server.ServerConfiguration.RateLimitResetTime)) >= 0)
                 {

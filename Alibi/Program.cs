@@ -3,19 +3,20 @@ using Alibi.Plugins.API;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Alibi
 {
-    class Program
+    internal static class Program
     {
 #pragma warning disable 8618
         private static Server _server;
 #pragma warning restore 8618
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
+            Environment.CurrentDirectory = GetRealProcessDirectory();
             if (!File.Exists(Server.ConfigPath)
                 || new FileInfo(Server.ConfigPath).Length <= 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
@@ -31,7 +32,13 @@ namespace Alibi
             while (true) ;
         }
 
-        static void ExitProgram(object? sender, EventArgs eventArgs)
+        private static string GetRealProcessDirectory()
+        {
+            var execPath = Process.GetCurrentProcess().MainModule.FileName;
+            return (execPath.EndsWith("dotnet.exe") ? Environment.CurrentDirectory : Path.GetDirectoryName(execPath))!;
+        }
+
+        private static void ExitProgram(object? sender, EventArgs eventArgs)
         {
             Console.Title = "Alibi - Stopping";
             if (eventArgs is UnhandledExceptionEventArgs exceptionArgs)

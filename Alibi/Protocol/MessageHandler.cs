@@ -23,7 +23,10 @@ namespace Alibi.Protocol
 
                 if (stateAttr != null)
                     if (client.CurrentState != stateAttr.State)
+                    {
+                        client.Kick("Protocol violation.");
                         return;
+                    }
                 Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] { client, packet });
             }
             else
