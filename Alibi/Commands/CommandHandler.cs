@@ -42,9 +42,9 @@ namespace Alibi.Commands
                     else
                         Handlers[command].Method.Invoke(Handlers[command].Target, new object[] { client, args });
                 }
-                catch (CommandException e)
+                catch (TargetInvocationException e)
                 {
-                    client.SendOocMessage("Error: " + e.Message);
+                    client.SendOocMessage("Error: " + ((CommandException)e.InnerException!).Message);
                 }
             }
             else

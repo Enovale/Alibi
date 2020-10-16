@@ -373,7 +373,7 @@ namespace Alibi.Protocol
 
         private static bool CanModifyEvidence(IClient client)
         {
-            if (((Area)client.Area).EvidenceModifications >= 0)
+            if (((Area)client.Area).EvidenceModifications <= 0)
                 return true;
             if (((Area)client.Area).EvidenceModifications == 1 && client.Area.IsClientCM(client))
                 return true;

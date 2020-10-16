@@ -37,6 +37,14 @@ namespace Alibi
             var ip = ((IPEndPoint)Socket.RemoteEndPoint).Address;
             if (Alibi.Server.ServerConfiguration.Advertise && ip.Equals(Alibi.Server.MasterServerIp))
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
+            if (((Server) Server).ClientsConnected.Count(c => Equals(c.IpAddress, ip)) 
+                > Alibi.Server.ServerConfiguration.MaxMultiClients)
+            {
+                Send(new AOPacket("BD", $"Can't have more than " +
+                                        $"{Alibi.Server.ServerConfiguration.MaxMultiClients} clients at a time."));
+                Task.Delay(500);
+                Disconnect();
+            }
             Client = new Client((Server)Server, this, ip);
             Client.LastAlive = DateTime.Now;
             Client.KickIfBanned();

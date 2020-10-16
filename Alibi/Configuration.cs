@@ -25,6 +25,7 @@ namespace Alibi
         public bool Advertise = true;
         public bool AllowDoublePostsIfDifferentAnim = false;
         public int MaxPlayers = 100;
+        public int MaxMultiClients = 4;
         public int TimeoutSeconds = 60;
         public int RateLimit = 50;
         public int RateLimitResetTime = 1;
