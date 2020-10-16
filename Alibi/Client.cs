@@ -139,9 +139,9 @@ namespace Alibi
 
         public void BanIp(string reason, TimeSpan? expireDate)
         {
-            foreach (var hdid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
+            foreach (var hwid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
             {
-                BanHwid(reason, expireDate);
+                ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate);
             }
         }
 

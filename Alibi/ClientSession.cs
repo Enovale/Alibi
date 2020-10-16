@@ -27,9 +27,10 @@ namespace Alibi
         {
             if (((Server)Server).ConnectedPlayers >= Alibi.Server.ServerConfiguration.MaxPlayers)
             {
-                Send(new AOPacket("BD", "Max players has been reached."));
+                Send(new AOPacket("BD", "Not a real ban: Max players has been reached."));
                 Task.Delay(500);
                 Disconnect();
+                return;
             }
 
             _banCheckTime = DateTime.Now;
@@ -37,26 +38,27 @@ namespace Alibi
             var ip = ((IPEndPoint)Socket.RemoteEndPoint).Address;
             if (Alibi.Server.ServerConfiguration.Advertise && ip.Equals(Alibi.Server.MasterServerIp))
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
-            if (((Server) Server).ClientsConnected.Count(c => Equals(c.IpAddress, ip)) 
-                > Alibi.Server.ServerConfiguration.MaxMultiClients)
+            if (!IPAddress.IsLoopback(ip) && ((Server) Server).ClientsConnected.Count(c => ip.ToString() == c.IpAddress.ToString()) 
+                >= Alibi.Server.ServerConfiguration.MaxMultiClients)
             {
-                Send(new AOPacket("BD", $"Can't have more than " +
+                Send(new AOPacket("BD", $"Not a real ban: Can't have more than " +
                                         $"{Alibi.Server.ServerConfiguration.MaxMultiClients} clients at a time."));
                 Task.Delay(500);
                 Disconnect();
+                return;
             }
             Client = new Client((Server)Server, this, ip);
             Client.LastAlive = DateTime.Now;
             Client.KickIfBanned();
-
+            
             // fuck fantaencrypt
-            SendAsync(new AOPacket("decryptor", "NOENCRYPT"));
+            Send(new AOPacket("decryptor", "NOENCRYPT"));
         }
 
         protected override void OnDisconnected()
         {
             ((Server)Server).ClientsConnected.Remove(Client);
-            if (Client.Connected)
+            if (Client != null && Client.Connected)
             {
                 ((Server)Server).ConnectedPlayers--;
                 ((Area)Client.Area)!.PlayerCount--;
@@ -79,7 +81,9 @@ namespace Alibi
             string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
-                if (Client.HardwareId == null && !packet.StartsWith("HI#"))
+                if (Client.HardwareId == null 
+                    && !packet.StartsWith("HI#") 
+                    && !packet.StartsWith("WSIP#"))
                     return;
                 if (DateTime.Now.CompareTo(_banCheckTime.AddSeconds
                     (Alibi.Server.ServerConfiguration.RateLimitResetTime)) >= 0)

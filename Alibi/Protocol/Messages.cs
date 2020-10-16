@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedParameter.Global
@@ -156,7 +157,7 @@ namespace Alibi.Protocol
             if (client.Connected)
                 return;
 
-            ((Client)client).Area = client.ServerRef.Areas.First();
+            ((Client)client).Area = client.ServerRef.Areas.First(a => a.Locked == "FREE");
             ((Client)client).Connected = true;
             client.CurrentState = ClientState.InArea;
             client.ServerRef.ConnectedPlayers++;
@@ -297,9 +298,17 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void OocMessage(IClient client, IAOPacket packet)
         {
+            if (packet.Objects.Length < 2)
+                return;
+            
             // TODO: Sanitization and cleaning (especially Zalgo)
             // maybe put this into anti-spam plugin
             string message = packet.Objects[1];
+            if (message.Length > Server.ServerConfiguration.MaxMessageSize)
+            {
+                client.SendOocMessage("Message was too long.");
+                return;
+            }
             ((Client)client).OocName = packet.Objects[0];
             if (message.StartsWith("/"))
             {
@@ -359,7 +368,7 @@ namespace Alibi.Protocol
         }
 
         [MessageHandler("WSIP")]
-        [RequireState(ClientState.NewClient)]
+        [RequireState(ClientState.Identified)]
         internal static void UpdateWebsocketIp(IClient client, IAOPacket packet)
         {
             IPAddress ip = IPAddress.Parse(packet.Objects[0]);
@@ -368,6 +377,11 @@ namespace Alibi.Protocol
                 Server.Database.ChangeIp(client.HardwareId, client.IpAddress.ToString(), ip.ToString());
                 ((Client)client).IpAddress = ip;
                 client.KickIfBanned();
+            }
+            if (((Server) client.ServerRef).ClientsConnected.Count(c => ip.ToString() == c.IpAddress.ToString()) 
+                >= Alibi.Server.ServerConfiguration.MaxMultiClients)
+            {
+                client.Kick($"Cannot have more than {Server.ServerConfiguration.MaxMultiClients} clients at the same");
             }
         }
 

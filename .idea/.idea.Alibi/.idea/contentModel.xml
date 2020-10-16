@@ -104,7 +104,6 @@
       </e>
       <e p="Alibi.Plugins.Webhook" t="IncludeRecursive">
         <e p="Alibi.Plugins.Webhook.csproj" t="IncludeRecursive" />
-        <e p="Alibi.Plugins.Webhook.csproj~RF2bf184f.TMP" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DiscordWebhook.cs" t="Include" />
         <e p="DWebHook.cs" t="Include" />

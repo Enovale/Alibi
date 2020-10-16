@@ -247,12 +247,32 @@ namespace Alibi
 
         public void OnModCall(IClient client, IAOPacket packet)
         {
-            _pluginManager.GetAllPlugins().ForEach(p => p.OnModCall(client, packet.Objects[0]));
+            _pluginManager.GetAllPlugins().ForEach(p =>
+            {
+                try
+                {
+                    p.OnModCall(client, packet.Objects[0]);
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnModCall(), {e.Message}\n{e.StackTrace}");
+                }
+            });
         }
 
         public void OnBan(IClient client, string reason, TimeSpan? expires = null)
         {
-            _pluginManager.GetAllPlugins().ForEach(p => p.OnBan(client, reason, expires));
+            _pluginManager.GetAllPlugins().ForEach(p =>
+            {
+                try
+                {
+                    p.OnBan(client, reason, expires);
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e.Message}\n{e.StackTrace}");
+                }
+            });
         }
 
         protected override TcpSession CreateSession()
