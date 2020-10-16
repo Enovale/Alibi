@@ -19,15 +19,23 @@ namespace Alibi.Protocol
         {
             if (Handlers.ContainsKey(packet.Type))
             {
-                var stateAttr = Handlers[packet.Type].Method.GetCustomAttribute<RequireStateAttribute>();
+                try
+                {
+                    var stateAttr = Handlers[packet.Type].Method.GetCustomAttribute<RequireStateAttribute>();
 
-                if (stateAttr != null)
-                    if (client.CurrentState != stateAttr.State)
-                    {
-                        client.Kick("Protocol violation.");
-                        return;
-                    }
-                Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] { client, packet });
+                    if (stateAttr != null)
+                        if (client.CurrentState != stateAttr.State)
+                        {
+                            client.Kick("Protocol violation.");
+                            return;
+                        }
+
+                    Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] {client, packet});
+                }
+                catch (TargetInvocationException e)
+                {
+                    Server.Logger.Log(LogSeverity.Error, $" Error handling message: {e.Message}\n{e.StackTrace}");
+                }
             }
             else
                 Server.Logger.Log(LogSeverity.Warning, $" Unknown client message: '{packet.Type}'", true);

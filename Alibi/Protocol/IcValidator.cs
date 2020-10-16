@@ -12,6 +12,8 @@ namespace Alibi.Protocol
         {
             if (client.Character == null || !client.Connected)
                 throw new IcValidationException("Client does not have a character or isn't connected.");
+            if(packet.Objects.Length < 16)
+                throw new IcValidationException("Didn't provide a full Ic Message.");
 
             List<string> validatedObjects = new List<string>(packet.Objects.Length);
 
@@ -41,6 +43,8 @@ namespace Alibi.Protocol
             // Make sure message is sanitized(eventually) and prevent double messages
             // TODO: Sanitization and zalgo cleaning
             string sentMessage = packet.Objects[4].Trim();
+            if(sentMessage.Length > Server.ServerConfiguration.MaxMessageSize)
+                throw new IcValidationException("Message was too long.");
             if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
                 throw new IcValidationException("Cannot double post.");
             if (Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim
@@ -116,6 +120,8 @@ namespace Alibi.Protocol
             if (packet.Objects.Length > 15)
             {
                 // Showname
+                if(packet.Objects[15].Length > Server.ServerConfiguration.MaxShownameSize)
+                    throw new IcValidationException($"Showname is longer than {Server.ServerConfiguration.MaxShownameSize}");
                 validatedObjects.Add(packet.Objects[15]);
 
                 // First object is the charID, second is whether or not they're in front

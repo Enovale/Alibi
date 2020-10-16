@@ -27,6 +27,8 @@ namespace Alibi
         public int MaxPlayers = 100;
         public int MaxMultiClients = 4;
         public int TimeoutSeconds = 60;
+        public int MaxMessageSize = 256;
+        public int MaxShownameSize = 16;
         public int RateLimit = 50;
         public int RateLimitResetTime = 1;
         public TimeSpan RateLimitBanLength = new TimeSpan(0, 5, 0);
