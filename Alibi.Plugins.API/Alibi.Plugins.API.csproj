@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Title>Alibi.Plugins.API</Title>
+		<Description>The plugin framework for Alibi, an Attorney Online server.</Description>
+		<Summary>The plugin framework for Alibi, an Attorney Online server.</Summary>
+		<Copyright>Copyright 2020 Elijah Bansley</Copyright>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Authors>ElijahZAwesome</Authors>
+		<Company>ElijahZAwesome</Company>
+		<Description>API For Alibi plugins.</Description>
+		<PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>0.3</Version>
+		<PackageLicenseExpression></PackageLicenseExpression>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
