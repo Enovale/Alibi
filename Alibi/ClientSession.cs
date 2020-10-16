@@ -15,9 +15,9 @@ namespace Alibi
     {
         public Client Client { get; private set; }
 
-        private string LastSentPacket;
-        private DateTime BanCheckTime;
-        private int PacketCount;
+        private string _lastSentPacket;
+        private DateTime _banCheckTime;
+        private int _packetCount;
 
         public ClientSession(TcpServer server) : base(server)
         {
@@ -32,12 +32,12 @@ namespace Alibi
                 Disconnect();
             }
 
-            BanCheckTime = DateTime.Now;
+            _banCheckTime = DateTime.Now;
 
             var ip = ((IPEndPoint)Socket.RemoteEndPoint).Address;
             if (Alibi.Server.ServerConfiguration.Advertise && ip.Equals(Alibi.Server.MasterServerIp))
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
-            Client = new Client(Server as Server, this, ip);
+            Client = new Client((Server)Server, this, ip);
             Client.LastAlive = DateTime.Now;
             Client.KickIfBanned();
 
@@ -73,16 +73,16 @@ namespace Alibi
             {
                 if (Client.HardwareId == null && !packet.StartsWith("HI#"))
                     return;
-                if (DateTime.Now.CompareTo(BanCheckTime.AddSeconds
+                if (DateTime.Now.CompareTo(_banCheckTime.AddSeconds
                     (Alibi.Server.ServerConfiguration.RateLimitResetTime)) >= 0)
                 {
-                    PacketCount = 0;
-                    BanCheckTime = DateTime.Now;
+                    _packetCount = 0;
+                    _banCheckTime = DateTime.Now;
                 }
-                if (PacketCount >= Alibi.Server.ServerConfiguration.RateLimit)
+                if (_packetCount >= Alibi.Server.ServerConfiguration.RateLimit)
                     Client.BanIp("You have been rate limited.", Alibi.Server.ServerConfiguration.RateLimitBanLength);
-                PacketCount++;
-                LastSentPacket = packet;
+                _packetCount++;
+                _lastSentPacket = packet;
                 MessageHandler.HandleMessage(Client, AOPacket.FromMessage(packet));
             }
             Client.LastAlive = DateTime.Now;

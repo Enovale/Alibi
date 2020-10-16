@@ -7,7 +7,6 @@
       <e p="Alibi" t="IncludeRecursive">
         <e p="Advertiser.cs" t="Include" />
         <e p="Alibi.csproj" t="IncludeRecursive" />
-        <e p="Alibi.csproj~RF2bdf9bf.TMP" t="Include" />
         <e p="Area.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Client.cs" t="Include" />

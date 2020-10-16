@@ -45,13 +45,13 @@ namespace Alibi
             {
                 Console.Title = "Alibi - Crashed";
                 var error = (Exception)exceptionArgs.ExceptionObject;
-                Server.Logger.Log(LogSeverity.Error, " " + error.Message + "\n" + error.StackTrace);
+                Server.Logger.Log(LogSeverity.Error, $" {error.Message}\n{error.StackTrace}");
             }
             if (eventArgs is UnobservedTaskExceptionEventArgs taskExceptionArgs)
             {
                 Console.Title = "Alibi - Crashed";
                 var error = taskExceptionArgs.Exception;
-                Server.Logger.Log(LogSeverity.Error, " " + error!.Message + "\n" + error.StackTrace);
+                Server.Logger.Log(LogSeverity.Error, $" {error!.Message}\n{error.StackTrace}");
             }
             _server.Stop();
             if (eventArgs is ConsoleCancelEventArgs args)

@@ -10,14 +10,14 @@ namespace Alibi
     // TODO: Maybe rewrite this using a TcpClient so we can better handle errors
     internal class Advertiser
     {
-        private Socket Socket;
+        private readonly Socket _socket;
 
         public Advertiser(IPAddress ip, int port)
         {
             try
             {
-                Socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                Socket.BeginConnect(new IPEndPoint(ip, port), OnConnect, Socket);
+                _socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                _socket.BeginConnect(new IPEndPoint(ip, port), OnConnect, _socket);
             }
             catch (SocketException e)
             {
@@ -27,7 +27,7 @@ namespace Alibi
 
         private void OnConnect(IAsyncResult ar)
         {
-            ((Socket)ar.AsyncState).EndConnect(ar);
+            ((Socket)ar.AsyncState)?.EndConnect(ar);
 
             string ports;
             if (string.IsNullOrWhiteSpace(Server.ServerConfiguration.WebsocketPort.ToString()))
@@ -35,7 +35,7 @@ namespace Alibi
             else
                 ports = Server.ServerConfiguration.Port + "&" + Server.ServerConfiguration.WebsocketPort;
 
-            Socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
+            _socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
                 ports,
                 Server.ServerConfiguration.ServerName,
                 Server.ServerConfiguration.ServerDescription,
@@ -45,7 +45,7 @@ namespace Alibi
 
         public void Stop()
         {
-            Socket.Disconnect(true);
+            _socket.Disconnect(true);
         }
     }
 }

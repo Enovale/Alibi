@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Alibi.iml
+/modules.xml
+# Datasource local storage ignored files
+/../../../../../../../:\Documents\GitHub\Alibi\.idea\.idea.Alibi\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
