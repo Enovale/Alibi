@@ -102,6 +102,19 @@
           </e>
         </e>
       </e>
+      <e p="Alibi.Plugins.Cerberus" t="IncludeRecursive">
+        <e p="Alibi.Plugins.Cerberus.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CerberusConfiguration.cs" t="Include" />
+        <e p="MainPlugin.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Alibi.Plugins.Cerberus.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Alibi.Plugins.Webhook" t="IncludeRecursive">
         <e p="Alibi.Plugins.Webhook.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
