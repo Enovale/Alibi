@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alibi.Plugins.Webhook", "Al
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alibi.Plugins.API", "Alibi.Plugins.API\Alibi.Plugins.API.csproj", "{C1660F68-3977-49A4-A71C-2511F0E7C71A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alibi.Plugins.Cerberus", "Alibi.Plugins.Cerberus\Alibi.Plugins.Cerberus.csproj", "{A7280021-C17B-431C-A303-A18E70B8AE57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C1660F68-3977-49A4-A71C-2511F0E7C71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1660F68-3977-49A4-A71C-2511F0E7C71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1660F68-3977-49A4-A71C-2511F0E7C71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7280021-C17B-431C-A303-A18E70B8AE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7280021-C17B-431C-A303-A18E70B8AE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7280021-C17B-431C-A303-A18E70B8AE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7280021-C17B-431C-A303-A18E70B8AE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
