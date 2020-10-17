@@ -125,7 +125,7 @@ namespace Alibi.Protocol
         }
 
         [MessageHandler("RE")]
-        [RequireState(ClientState.Identified)]
+        [RequireState(ClientState.InArea, false)]
         internal static void RequestEvidence(IClient client, IAOPacket packet)
         {
             string[] evidenceList = new string[client.Area!.EvidenceList.Count];

@@ -24,11 +24,13 @@ namespace Alibi.Protocol
                     var stateAttr = Handlers[packet.Type].Method.GetCustomAttribute<RequireStateAttribute>();
 
                     if (stateAttr != null)
-                        if (client.CurrentState != stateAttr.State)
+                        if (client.CurrentState != stateAttr.State && stateAttr.Kick)
                         {
                             client.Kick("Protocol violation.");
                             return;
                         }
+                        else if(client.CurrentState != stateAttr.State)
+                            return;
 
                     Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] {client, packet});
                 }

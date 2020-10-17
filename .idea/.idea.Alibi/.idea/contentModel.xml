@@ -68,7 +68,6 @@
       </e>
       <e p="Alibi.Plugins.API" t="IncludeRecursive">
         <e p="Alibi.Plugins.API.csproj" t="IncludeRecursive" />
-        <e p="Alibi.Plugins.API.csproj~RF2be577f.TMP" t="Include" />
         <e p="AreaUpdateType.cs" t="Include" />
         <e p="Attributes" t="Include">
           <e p="CommandHandlerAttribute.cs" t="Include" />
