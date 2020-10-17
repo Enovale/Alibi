@@ -3,6 +3,7 @@ using Alibi.Helpers;
 using Alibi.Plugins.API;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Alibi.Protocol
 {
@@ -42,7 +43,8 @@ namespace Alibi.Protocol
 
             // Make sure message is sanitized(eventually) and prevent double messages
             // TODO: Sanitization and zalgo cleaning
-            string sentMessage = packet.Objects[4].Trim();
+            string sentMessage = packet.Objects[4];
+            sentMessage = Regex.Replace(sentMessage,@"\s+"," ");
             if(sentMessage.Length > Server.ServerConfiguration.MaxMessageSize)
                 throw new IcValidationException("Message was too long.");
             if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
