@@ -51,6 +51,8 @@ namespace Alibi
             Client.LastAlive = DateTime.Now;
             Client.KickIfBanned();
             
+            ((Server)Server).OnPlayerJoined(Client);
+            
             // fuck fantaencrypt
             Send(new AOPacket("decryptor", "NOENCRYPT"));
         }

@@ -266,7 +266,7 @@ namespace Alibi.Protocol
             if (packet.Objects.Length <= 0)
                 return;
             string song = packet.Objects[0];
-            if (!client.ServerRef.OnMusicChange(client, song))
+            if (!client.ServerRef.OnMusicChange(client, ref song))
                 return;
 
             foreach (var m in Server.MusicList)
@@ -295,8 +295,11 @@ namespace Alibi.Protocol
             {
                 AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
                 
-                if (!client.ServerRef.OnIcMessage(client, validPacket.Objects[4])) // 4 is the message
+                if (!client.ServerRef.OnIcMessage(client, ref validPacket.Objects[4])) // 4 is the message
                     return;
+                
+                if(validPacket.Objects[4].Length > Server.ServerConfiguration.MaxMessageSize)
+                    throw new IcValidationException("Message was too long.");
 
                 client.Area!.Broadcast(validPacket);
                 Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
@@ -320,6 +323,11 @@ namespace Alibi.Protocol
             // TODO: Sanitization and cleaning (especially Zalgo)
             // maybe put this into anti-spam plugin
             string message = packet.Objects[1];
+
+            if (!client.ServerRef.OnOocMessage(client, ref message))
+                return;
+            packet.Objects[1] = message;
+            
             if (message.Length > Server.ServerConfiguration.MaxMessageSize)
             {
                 client.SendOocMessage("Message was too long.");
@@ -336,9 +344,6 @@ namespace Alibi.Protocol
                 CommandHandler.HandleCommand(client, command, arguments.ToArray());
                 return;
             }
-
-            if (!client.ServerRef.OnOocMessage(client, message))
-                return;
             
             client.Area!.Broadcast(packet);
             Server.Logger.OocMessageLog(message, client.Area, packet.Objects[0]);

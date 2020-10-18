@@ -76,7 +76,7 @@ namespace Alibi.Plugins.Webhook
             return true;
         }
 
-        public override bool OnBan(IClient banned, string reason, TimeSpan? expires = null)
+        public override bool OnBan(IClient banned, ref string reason, TimeSpan? expires = null)
         {
             if (_validConfig && _enabled)
             {

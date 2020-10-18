@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 
@@ -17,18 +18,20 @@ namespace Alibi.Plugins.Cerberus
 
         private string _configPath;
 
-        private Dictionary<IClient, Tuple<DateTime, int>> _icTimeDict;
+        private Dictionary<IClient, MuteInfo> _clientDict;
 
         public override void Initialize()
         {
             _configPath = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
-            if (!File.Exists(_configPath))
+            if (!File.Exists(_configPath) || new FileInfo(_configPath).Length <= 0)
                 File.WriteAllText(_configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
                     new JsonSerializerOptions {WriteIndented = true}));
 
             Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(_configPath));
 
-            _icTimeDict = new Dictionary<IClient, Tuple<DateTime, int>>(Server.ClientsConnected.Count);
+            _clientDict = new Dictionary<IClient, MuteInfo>();
+            foreach (var client in Server.ClientsConnected)
+                _clientDict.Add(client, new MuteInfo());
 
             MutedClientsCheck();
         }
@@ -36,46 +39,140 @@ namespace Alibi.Plugins.Cerberus
         // ReSharper disable once FunctionRecursiveOnAllPaths
         private async void MutedClientsCheck()
         {
-            foreach (var client in _icTimeDict.Keys)
-                if (client.Muted
-                    && _icTimeDict[client].Item1.AddSeconds(Config.IcMuteLengthInSeconds).CompareTo(DateTime.Now) <
+            var queue = new Queue<IClient>(_clientDict.Keys);
+            while (queue.Count > 0)
+            {
+                var client = queue.Dequeue();
+                if (_clientDict[client].IcMuted
+                    && _clientDict[client].IcTimer.AddSeconds(Config.IcMuteLengthInSeconds).CompareTo(DateTime.Now) <
                     0)
                 {
-                    client.SendOocMessage("You have been un-muted.");
-                    client.Muted = false;
+                    client.SendOocMessage("You have been un-muted in IC.");
+                    _clientDict[client].IcMuted = false;
                 }
+
+                if (_clientDict[client].OocMuted
+                    && _clientDict[client].OocTimer.AddSeconds(Config.OocMuteLengthInSeconds).CompareTo(DateTime.Now) <
+                    0)
+                {
+                    client.SendOocMessage("You have been un-muted in OOC.");
+                    _clientDict[client].OocMuted = false;
+                }
+
+                if (_clientDict[client].MusicMuted
+                    && _clientDict[client].MusicTimer.AddSeconds(Config.MusicMuteLengthInSeconds)
+                        .CompareTo(DateTime.Now) <
+                    0)
+                {
+                    client.SendOocMessage("You have been un-muted from changing Music.");
+                    _clientDict[client].MusicMuted = false;
+                }
+            }
 
             await Task.Delay(1000);
             MutedClientsCheck();
         }
 
-        public override bool OnIcMessage(IClient client, string message)
+        public override void OnPlayerJoined(IClient client)
         {
-            if (_icTimeDict.ContainsKey(client))
+            _clientDict[client] = new MuteInfo();
+        }
+
+        private string StripZalgo(string message)
+        {
+            if (!Config.StripZalgo)
+                return message;
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in message.Normalize(NormalizationForm.FormC))
             {
-                if (DateTime.Now.CompareTo(_icTimeDict[client].Item1) >= 0)
-                {
-                    _icTimeDict[client] = new Tuple<DateTime, int>(DateTime.Now.AddSeconds(1), 0);
-                }
-                else
-                {
-                    var tuple = _icTimeDict[client];
-                    _icTimeDict[client] = new Tuple<DateTime, int>(tuple.Item1, tuple.Item2 + 1);
-                }
+                if (char.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
 
-                if (_icTimeDict[client].Item2 > Config.MaxIcMessagesPerSecond)
-                {
-                    client.Muted = true;
-                    client.SendOocMessage($"You have been muted for {Config.IcMuteLengthInSeconds} seconds.");
-                    _icTimeDict[client] = new Tuple<DateTime, int>(DateTime.Now, 0);
-                    return false;
-                }
+            return sb.ToString();
+        }
 
+        public override bool OnIcMessage(IClient client, ref string message)
+        {
+            message = StripZalgo(message);
+            if (Config.IcMuteLengthInSeconds < 0 || Config.MaxIcMessagesPerSecond < 0)
                 return true;
+            if (_clientDict[client].IcMuted)
+                return false;
+            if (DateTime.Now.CompareTo(_clientDict[client].IcTimer) >= 0)
+            {
+                _clientDict[client].IcTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].IcMessages = 0;
             }
             else
             {
-                _icTimeDict.Add(client, new Tuple<DateTime, int>(DateTime.Now, 0));
+                _clientDict[client].IcMessages++;
+            }
+
+            if (_clientDict[client].IcMessages > Config.MaxIcMessagesPerSecond)
+            {
+                client.SendOocMessage($"You have been IC muted for {Config.IcMuteLengthInSeconds} seconds.");
+                _clientDict[client].IcTimer = DateTime.Now;
+                _clientDict[client].IcMessages = 0;
+                _clientDict[client].IcMuted = true;
+                return false;
+            }
+
+            return true;
+        }
+
+        public override bool OnOocMessage(IClient client, ref string message)
+        {
+            message = StripZalgo(message);
+            if (Config.OocMuteLengthInSeconds < 0 || Config.MaxOocMessagesPerSecond < 0)
+                return true;
+            if (_clientDict[client].OocMuted)
+                return false;
+            if (DateTime.Now.CompareTo(_clientDict[client].OocTimer) >= 0)
+            {
+                _clientDict[client].OocTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].OocMessages = 0;
+            }
+            else
+            {
+                _clientDict[client].OocMessages++;
+            }
+
+            if (_clientDict[client].OocMessages > Config.MaxOocMessagesPerSecond)
+            {
+                client.SendOocMessage($"You have been OOC muted for {Config.OocMuteLengthInSeconds} seconds.");
+                _clientDict[client].OocTimer = DateTime.Now;
+                _clientDict[client].OocMessages = 0;
+                _clientDict[client].OocMuted = true;
+                return false;
+            }
+
+            return true;
+        }
+
+        public override bool OnMusicChange(IClient client, ref string song)
+        {
+            if (Config.MusicMuteLengthInSeconds < 0 || Config.MaxMusicMessagesPerSecond < 0)
+                return true;
+            if (_clientDict[client].MusicMuted)
+                return false;
+            if (DateTime.Now.CompareTo(_clientDict[client].MusicTimer) >= 0)
+            {
+                _clientDict[client].MusicTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].MusicMessages = 0;
+            }
+            else
+            {
+                _clientDict[client].MusicMessages++;
+            }
+
+            if (_clientDict[client].MusicMessages > Config.MaxMusicMessagesPerSecond)
+            {
+                client.SendOocMessage($"You have been Music muted for {Config.MusicMuteLengthInSeconds} seconds.");
+                _clientDict[client].MusicTimer = DateTime.Now;
+                _clientDict[client].MusicMessages = 0;
+                _clientDict[client].MusicMuted = true;
+                return false;
             }
 
             return true;

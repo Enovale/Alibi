@@ -322,6 +322,26 @@ namespace Alibi.Commands
         }
 
         [ModOnly]
+        [CommandHandler("mute", "Prevent a player from sending messages to IC or OOC")]
+        internal static void Mute(IClient client, string[] args)
+        {
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /mute <charid/name/oocname/hwid>");
+
+            client.ServerRef.FindUser(args[0])!.Muted = true;
+        }
+
+        [ModOnly]
+        [CommandHandler("unmute", "Allow a player to send messages again")]
+        internal static void Un(IClient client, string[] args)
+        {
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /unmute <charid/name/oocname/hwid>");
+
+            client.ServerRef.FindUser(args[0])!.Muted = false;
+        }
+
+        [ModOnly]
         [CommandHandler("ban", "Ban a user. You can specify a hardware ID or IP")]
         internal static void Ban(IClient client, string[] args)
         {
