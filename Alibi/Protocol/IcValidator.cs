@@ -45,8 +45,6 @@ namespace Alibi.Protocol
             // TODO: Sanitization and zalgo cleaning
             string sentMessage = packet.Objects[4];
             sentMessage = Regex.Replace(sentMessage,@"\s+"," ");
-            if(sentMessage.Length > Server.ServerConfiguration.MaxMessageSize)
-                throw new IcValidationException("Message was too long.");
             if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
                 throw new IcValidationException("Cannot double post.");
             if (Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim

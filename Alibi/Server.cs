@@ -61,7 +61,8 @@ namespace Alibi
             Logger.Log(LogSeverity.Special, " Server starting up...");
             Database = new DatabaseManager();
             if (Database.CheckCredentials("admin", "ChangeThis"))
-                Logger.Log(LogSeverity.Warning, " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
+                Logger.Log(LogSeverity.Warning,
+                    " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;
@@ -78,16 +79,18 @@ namespace Alibi
             Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (Areas == null || Areas.Length == 0)
             {
-                Logger.Log(LogSeverity.Warning, "At least one area is required to start the server, writing default area...");
-                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new[] { new Area() }, Formatting.Indented));
+                Logger.Log(LogSeverity.Warning,
+                    "At least one area is required to start the server, writing default area...");
+                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new[] {new Area()}, Formatting.Indented));
                 Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             }
+
             AreaNames = new string[Areas.Length];
             foreach (var area in Areas)
             {
                 AreaNames[Array.IndexOf(Areas, area)] = area.Name;
-                ((Area)area).Server = this;
-                ((Area)area).TakenCharacters = new bool[CharactersList.Length];
+                ((Area) area).Server = this;
+                ((Area) area).TakenCharacters = new bool[CharactersList.Length];
             }
 
             if (ServerConfiguration.WebsocketPort > -1)
@@ -120,6 +123,7 @@ namespace Alibi
                 tmp.Insert(0, "==Music==");
                 MusicList = tmp.ToArray();
             }
+
             CharactersList = File.ReadAllLines(CharactersPath);
         }
 
@@ -157,6 +161,7 @@ namespace Alibi
             {
                 return;
             }
+
             CheckCorpses(token);
         }
 
@@ -179,6 +184,7 @@ namespace Alibi
             {
                 return;
             }
+
             UnbanExpires(token);
         }
 
@@ -200,11 +206,6 @@ namespace Alibi
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
 
-        /// <summary>
-        /// Find a client using an id, ooc name, character name, or hwid. (IPs dont work)
-        /// </summary>
-        /// <param name="str">an id, ooc name, char name, or HWID to search for.</param>
-        /// <returns></returns>
         public IClient? FindUser(string str)
         {
             if (int.TryParse(str, out int id))
@@ -217,7 +218,8 @@ namespace Alibi
             IClient? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
             if (oocSearch != null)
                 return oocSearch;
-            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ?? null;
+            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ??
+                                  null;
             if (charSearch != null)
                 return charSearch;
             return null;
@@ -225,19 +227,41 @@ namespace Alibi
 
         public void OnAllPluginsLoaded()
         {
-            foreach (var plugin in _pluginManager.LoadedPlugins)
+            foreach (var p in _pluginManager.LoadedPlugins)
             {
-                plugin.OnAllPluginsLoaded();
+                try
+                {
+                    p.OnAllPluginsLoaded();
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnAllPluginsLoaded(), {e}");
+                }
             }
         }
 
-        public bool OnIcMessage(IClient client, string message)
+        public void OnPlayerJoined(IClient client)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    if (!p.OnIcMessage(client, message))
+                    p.OnPlayerJoined(client);
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnPlayerJoined(), {e}");
+                }
+            }
+        }
+
+        public bool OnIcMessage(IClient client, ref string message)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+            {
+                try
+                {
+                    if (!p.OnIcMessage(client, ref message))
                         return false;
                 }
                 catch (Exception e)
@@ -249,13 +273,13 @@ namespace Alibi
             return true;
         }
 
-        public bool OnOocMessage(IClient client, string message)
+        public bool OnOocMessage(IClient client, ref string message)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    if (!p.OnOocMessage(client, message))
+                    if (!p.OnOocMessage(client, ref message))
                         return false;
                 }
                 catch (Exception e)
@@ -267,13 +291,13 @@ namespace Alibi
             return true;
         }
 
-        public bool OnMusicChange(IClient client, string song)
+        public bool OnMusicChange(IClient client, ref string song)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    if (!p.OnMusicChange(client, song))
+                    if (!p.OnMusicChange(client, ref song))
                         return false;
                 }
                 catch (Exception e)
@@ -303,13 +327,13 @@ namespace Alibi
             return true;
         }
 
-        public bool OnBan(IClient client, string reason, TimeSpan? expires = null)
+        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    if (!p.OnBan(client, reason, expires))
+                    if (!p.OnBan(client, ref reason, expires))
                         return false;
                 }
                 catch (Exception e)

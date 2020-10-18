@@ -131,7 +131,7 @@ namespace Alibi
 
         public void BanHwid(string reason, TimeSpan? expireDate)
         {
-            if (!ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, reason, expireDate))
+            if (!ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, ref reason, expireDate))
                 return;
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));

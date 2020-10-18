@@ -92,9 +92,11 @@
       </e>
       <e p="Alibi.Plugins.Cerberus" t="IncludeRecursive">
         <e p="Alibi.Plugins.Cerberus.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
         <e p="CerberusConfiguration.cs" t="Include" />
         <e p="MainPlugin.cs" t="Include" />
         <e p="Messages.cs" t="Include" />
+        <e p="MuteInfo.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -105,6 +107,7 @@
       </e>
       <e p="Alibi.Plugins.Webhook" t="IncludeRecursive">
         <e p="Alibi.Plugins.Webhook.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
         <e p="DiscordWebhook.cs" t="Include" />
         <e p="DWebHook.cs" t="Include" />
         <e p="Helpers" t="Include">

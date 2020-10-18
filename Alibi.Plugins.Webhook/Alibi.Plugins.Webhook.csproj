@@ -12,7 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <Optimize>false</Optimize>
-	  <OutputPath>..\Alibi\bin\Debug\</OutputPath>
+	  <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\netcoreapp3.1\Plugins\&quot; /S /Y" />
+    <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\netcoreapp3.1\win-x64\Plugins\&quot; /S /Y" />
   </Target>
 
   <ItemGroup>

@@ -24,13 +24,19 @@ namespace Alibi.Plugins.API
         public void ReloadConfig();
         public void Broadcast(IAOPacket message);
         public void BroadcastOocMessage(string message);
+        /// <summary>
+        /// Find a client using an id, ooc name, character name, or hwid. (IPs dont work)
+        /// </summary>
+        /// <param name="str">an id, ooc name, char name, or HWID to search for.</param>
+        /// <returns></returns>
         public IClient? FindUser(string str);
 
         public void OnAllPluginsLoaded();
-        public bool OnIcMessage(IClient client, string message);
-        public bool OnOocMessage(IClient client, string message);
-        public bool OnMusicChange(IClient client, string song);
+        public void OnPlayerJoined(IClient client);
+        public bool OnIcMessage(IClient client, ref string message);
+        public bool OnOocMessage(IClient client, ref string message);
+        public bool OnMusicChange(IClient client, ref string song);
         public bool OnModCall(IClient client, IAOPacket packet);
-        public bool OnBan(IClient client, string reason, TimeSpan? expires = null);
+        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null);
     }
 }

@@ -5,11 +5,15 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\Alibi\bin\Debug\</OutputPath>
+      <OutputPath>bin\Debug\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Alibi.Plugins.API\Alibi.Plugins.API.csproj" />
     </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\netcoreapp3.1\win-x64\Plugins\&quot; /S /Y" />
+    </Target>
 
 </Project>
