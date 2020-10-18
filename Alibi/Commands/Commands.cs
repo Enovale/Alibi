@@ -252,7 +252,7 @@ namespace Alibi.Commands
             if (args.Length < 2)
                 throw new CommandException("Usage: /login <username> <password>");
 
-            if (!client.ServerRef.CheckLogin(args[0], args[1]))
+            if (!Server.Database.CheckCredentials(args[0], args[1]))
                 throw new CommandException("Incorrect credentials.");
 
             ((Client)client).Authed = true;
@@ -302,7 +302,7 @@ namespace Alibi.Commands
                 throw new CommandException("Usage: /addlogin <username> <password>");
 
             args[0] = args[0].ToLower();
-            if (client.ServerRef.AddLogin(args[0], args[1]))
+            if (Server.Database.AddLogin(args[0], args[1]))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
                 throw new CommandException($"User {args[0]} already exists or another error occured.");
@@ -315,7 +315,7 @@ namespace Alibi.Commands
             if (args.Length < 1)
                 throw new CommandException("Usage: /removelogin <username>");
 
-            if (client.ServerRef.RemoveLogin(args[0].ToLower()))
+            if (Server.Database.RemoveLogin(args[0].ToLower()))
                 client.SendOocMessage("Successfully removed user " + args[0] + ".");
             else
                 throw new CommandException("Could not remove user " + args[0] + ". Does it exist?");

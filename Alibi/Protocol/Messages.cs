@@ -27,8 +27,8 @@ namespace Alibi.Protocol
             if (client.HardwareId != null)
                 return;
 
-            ((Client)client).HardwareId = packet.Objects[0];
-            client.ServerRef.AddUser(client);
+            ((Client) client).HardwareId = packet.Objects[0];
+            Server.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
             client.KickIfBanned();
             client.CurrentState = ClientState.Handshook;
 
@@ -42,7 +42,8 @@ namespace Alibi.Protocol
         internal static void SoftwareId(IClient client, IAOPacket packet)
         {
             client.CurrentState = ClientState.Identified;
-            client.Send(new AOPacket("PN", client.ServerRef.ConnectedPlayers.ToString(), Server.ServerConfiguration.MaxPlayers.ToString()));
+            client.Send(new AOPacket("PN", client.ServerRef.ConnectedPlayers.ToString(),
+                Server.ServerConfiguration.MaxPlayers.ToString()));
             client.Send(new AOPacket("FL", new[]
             {
                 "noencryption", "fastloading"
@@ -106,7 +107,7 @@ namespace Alibi.Protocol
                     return;
                 }
 
-                client.Send(new AOPacket("EM", new[] { index.ToString() }.Concatenate(categories[index].ToArray())));
+                client.Send(new AOPacket("EM", new[] {index.ToString()}.Concatenate(categories[index].ToArray())));
             }
         }
 
@@ -114,7 +115,9 @@ namespace Alibi.Protocol
         [RequireState(ClientState.Identified)]
         internal static void RequestResourceCounts(IClient client, IAOPacket packet)
         {
-            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(), client.ServerRef.Areas.First().EvidenceList.Count.ToString(), (client.ServerRef.Areas.Length + Server.MusicList.Length).ToString()));
+            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(),
+                client.ServerRef.Areas.First().EvidenceList.Count.ToString(),
+                (client.ServerRef.Areas.Length + Server.MusicList.Length).ToString()));
         }
 
         [MessageHandler("RC")]
@@ -133,6 +136,7 @@ namespace Alibi.Protocol
             {
                 evidenceList[i] = client.Area.EvidenceList[i].ToPacket();
             }
+
             client.Area.Broadcast(new AOPacket("LE", evidenceList));
         }
 
@@ -150,18 +154,18 @@ namespace Alibi.Protocol
             // This client didn't send us a hwid, need to kick
             if (string.IsNullOrWhiteSpace(client.HardwareId))
             {
-                ((Client)client).Session.Disconnect();
+                ((Client) client).Session.Disconnect();
                 return;
             }
 
             if (client.Connected)
                 return;
 
-            ((Client)client).Area = client.ServerRef.Areas.First(a => a.Locked == "FREE");
-            ((Client)client).Connected = true;
+            ((Client) client).Area = client.ServerRef.Areas.First(a => a.Locked == "FREE");
+            ((Client) client).Connected = true;
             client.CurrentState = ClientState.InArea;
             client.ServerRef.ConnectedPlayers++;
-            ((Area)client.Area)!.PlayerCount++;
+            ((Area) client.Area)!.PlayerCount++;
             client.Area.FullUpdate(client);
             // Tell all the other clients that someone has joined
             client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
@@ -218,6 +222,7 @@ namespace Alibi.Protocol
 
                 client.Area.EvidenceList[id] = new Evidence(packet.Objects[1], packet.Objects[2], packet.Objects[3]);
             }
+
             RequestEvidence(client, packet);
         }
 
@@ -225,7 +230,7 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void CharacterPassword(IClient client, IAOPacket packet)
         {
-            ((Client)client).Password = packet.Objects.First();
+            ((Client) client).Password = packet.Objects.First();
         }
 
         [MessageHandler("CC")]
@@ -235,7 +240,7 @@ namespace Alibi.Protocol
             if (int.TryParse(packet.Objects[1], out var charId))
             {
                 if (client.Character != null)
-                    client.Area.TakenCharacters[(int)client.Character] = false;
+                    client.Area.TakenCharacters[(int) client.Character] = false;
 
                 if (charId > Server.CharactersList.Length)
                     return;
@@ -258,7 +263,11 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void ChangeMusic(IClient client, IAOPacket packet)
         {
+            if (packet.Objects.Length <= 0)
+                return;
             string song = packet.Objects[0];
+            if (!client.ServerRef.OnMusicChange(client, song))
+                return;
 
             foreach (var m in Server.MusicList)
             {
@@ -280,9 +289,14 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void IcMessage(IClient client, IAOPacket packet)
         {
+            if (client.Muted)
+                return;
             try
             {
                 AOPacket validPacket = IcValidator.ValidateIcPacket(packet, client);
+                
+                if (!client.ServerRef.OnIcMessage(client, validPacket.Objects[4])) // 4 is the message
+                    return;
 
                 client.Area!.Broadcast(validPacket);
                 Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
@@ -298,9 +312,11 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void OocMessage(IClient client, IAOPacket packet)
         {
+            if (client.Muted)
+                return;
             if (packet.Objects.Length < 2)
                 return;
-            
+
             // TODO: Sanitization and cleaning (especially Zalgo)
             // maybe put this into anti-spam plugin
             string message = packet.Objects[1];
@@ -309,7 +325,8 @@ namespace Alibi.Protocol
                 client.SendOocMessage("Message was too long.");
                 return;
             }
-            ((Client)client).OocName = packet.Objects[0];
+
+            ((Client) client).OocName = packet.Objects[0];
             if (message.StartsWith("/"))
             {
                 string command = message.Substring(1).Split(" ").First().Trim();
@@ -320,6 +337,9 @@ namespace Alibi.Protocol
                 return;
             }
 
+            if (!client.ServerRef.OnOocMessage(client, message))
+                return;
+            
             client.Area!.Broadcast(packet);
             Server.Logger.OocMessageLog(message, client.Area, packet.Objects[0]);
         }
@@ -353,6 +373,9 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void ModCall(IClient client, IAOPacket packet)
         {
+            if (!client.ServerRef.OnModCall(client, packet))
+                return;
+
             Server.Logger.Log(LogSeverity.Special, $"[{client.Area.Name}][{client.IpAddress}] " +
                                                    $"{client.CharacterName} called for mod with reasoning: {packet.Objects[0]}");
             var packetToSend = new AOPacket(packet.Type, "Someone has called mod in the " +
@@ -363,8 +386,6 @@ namespace Alibi.Protocol
                 if (c.Authed)
                     c.Send(packetToSend);
             }
-
-            client.ServerRef.OnModCall(client, packet);
         }
 
         [MessageHandler("WSIP")]
@@ -375,10 +396,11 @@ namespace Alibi.Protocol
             if (IPAddress.IsLoopback(client.IpAddress) && !IPAddress.IsLoopback(ip))
             {
                 Server.Database.ChangeIp(client.HardwareId, client.IpAddress.ToString(), ip.ToString());
-                ((Client)client).IpAddress = ip;
+                ((Client) client).IpAddress = ip;
                 client.KickIfBanned();
             }
-            if (((Server) client.ServerRef).ClientsConnected.Count(c => ip.ToString() == c.IpAddress.ToString()) 
+
+            if (((Server) client.ServerRef).ClientsConnected.Count(c => ip.ToString() == c.IpAddress.ToString())
                 >= Alibi.Server.ServerConfiguration.MaxMultiClients)
             {
                 client.Kick($"Cannot have more than {Server.ServerConfiguration.MaxMultiClients} clients at the same");
@@ -387,12 +409,12 @@ namespace Alibi.Protocol
 
         private static bool CanModifyEvidence(IClient client)
         {
-            if (((Area)client.Area).EvidenceModifications <= 0)
+            if (((Area) client.Area).EvidenceModifications <= 0)
                 return true;
-            if (((Area)client.Area).EvidenceModifications == 1 && client.Area.IsClientCM(client))
+            if (((Area) client.Area).EvidenceModifications == 1 && client.Area.IsClientCM(client))
                 return true;
             client.SendOocMessage(
-                $"{(((Area)client.Area).EvidenceModifications == 1 ? "Only CMs are" : "Noone is")} allowed to modify evidence in this area.");
+                $"{(((Area) client.Area).EvidenceModifications == 1 ? "Only CMs are" : "Noone is")} allowed to modify evidence in this area.");
             return false;
         }
     }

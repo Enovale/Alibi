@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\elija\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\elija\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Alibi.-348209421.00" t="ExcludeRecursive" />
-    <e p="D:\Documents\GitHub\Alibi" t="IncludeFlat">
+    <e p="C:\Users\elija\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Alibi.-1192214923.00" t="ExcludeRecursive" />
+    <e p="F:\Documents\GitHub\Alibi" t="IncludeFlat">
       <e p="Alibi" t="IncludeRecursive">
         <e p="Advertiser.cs" t="Include" />
         <e p="Alibi.csproj" t="IncludeRecursive" />
@@ -48,12 +48,6 @@
           <e p="PluginRegistry.cs" t="Include" />
         </e>
         <e p="Program.cs" t="Include" />
-        <e p="Properties" t="Include">
-          <e p="PublishProfiles" t="Include">
-            <e p="Linux64 Release.pubxml" t="Include" />
-            <e p="Win32 Release.pubxml" t="Include" />
-          </e>
-        </e>
         <e p="Protocol" t="Include">
           <e p="IcValidator.cs" t="Include" />
           <e p="MessageHandler.cs" t="Include" />
@@ -95,17 +89,12 @@
         </e>
         <e p="Packet.cs" t="Include" />
         <e p="Plugin.cs" t="Include" />
-        <e p="Properties" t="Include">
-          <e p="PublishProfiles" t="Include">
-            <e p="FolderProfile.pubxml" t="Include" />
-          </e>
-        </e>
       </e>
       <e p="Alibi.Plugins.Cerberus" t="IncludeRecursive">
         <e p="Alibi.Plugins.Cerberus.csproj" t="IncludeRecursive" />
-        <e p="bin" t="ExcludeRecursive" />
         <e p="CerberusConfiguration.cs" t="Include" />
         <e p="MainPlugin.cs" t="Include" />
+        <e p="Messages.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -116,7 +105,6 @@
       </e>
       <e p="Alibi.Plugins.Webhook" t="IncludeRecursive">
         <e p="Alibi.Plugins.Webhook.csproj" t="IncludeRecursive" />
-        <e p="bin" t="ExcludeRecursive" />
         <e p="DiscordWebhook.cs" t="Include" />
         <e p="DWebHook.cs" t="Include" />
         <e p="Helpers" t="Include">
@@ -127,11 +115,6 @@
             <e p="netcoreapp3.1" t="Include">
               <e p="Alibi.Plugins.Webhook.AssemblyInfo.cs" t="Include" />
             </e>
-          </e>
-        </e>
-        <e p="Properties" t="Include">
-          <e p="PublishProfiles" t="Include">
-            <e p="FolderProfile.pubxml" t="Include" />
           </e>
         </e>
         <e p="README.md" t="Include" />

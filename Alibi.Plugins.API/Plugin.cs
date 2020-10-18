@@ -13,8 +13,11 @@ namespace Alibi.Plugins.API
         public abstract void Initialize();
 
         public virtual void OnAllPluginsLoaded() { }
-        public virtual void OnModCall(IClient caller, string reason) { }
-        public virtual void OnBan(IClient banned, string reason, TimeSpan? expires = null) { }
+        public virtual bool OnIcMessage(IClient client, string message) { return true; }
+        public virtual bool OnOocMessage(IClient client, string message) { return true; }
+        public virtual bool OnMusicChange(IClient client, string song) { return true; }
+        public virtual bool OnModCall(IClient caller, string reason) { return true; }
+        public virtual bool OnBan(IClient banned, string reason, TimeSpan? expires = null) { return true; }
 
         public void Log(LogSeverity severity, string message, bool verbose = false)
         {

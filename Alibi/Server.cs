@@ -98,8 +98,11 @@ namespace Alibi
 
             _pluginManager = new PluginManager(PluginFolder);
             _pluginManager.LoadPlugins(this);
-            _pluginManager.GetAllPlugins().ForEach(CommandHandler.AddCustomHandler);
-            _pluginManager.GetAllPlugins().ForEach(MessageHandler.AddCustomHandler);
+            foreach (var plugin in _pluginManager.LoadedPlugins)
+            {
+                CommandHandler.AddCustomHandler(plugin);
+                MessageHandler.AddCustomHandler(plugin);
+            }
 
             Logger.Log(LogSeverity.Special, " Server started!");
             _cancelTasksToken = new CancellationTokenSource();
@@ -220,59 +223,102 @@ namespace Alibi
             return null;
         }
 
-        public bool AddUser(IClient client)
-        {
-            return Database.AddUser(client.HardwareId, client.IpAddress.ToString());
-        }
-
-        public bool CheckLogin(string username, string password)
-        {
-            return Database.CheckCredentials(username, password);
-        }
-
-        public bool AddLogin(string username, string password)
-        {
-            return Database.AddLogin(username, password);
-        }
-
-        public bool RemoveLogin(string username)
-        {
-            return Database.RemoveLogin(username);
-        }
-
         public void OnAllPluginsLoaded()
         {
-            _pluginManager.GetAllPlugins().ForEach(p => p.OnAllPluginsLoaded());
+            foreach (var plugin in _pluginManager.LoadedPlugins)
+            {
+                plugin.OnAllPluginsLoaded();
+            }
         }
 
-        public void OnModCall(IClient client, IAOPacket packet)
+        public bool OnIcMessage(IClient client, string message)
         {
-            _pluginManager.GetAllPlugins().ForEach(p =>
+            foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    p.OnModCall(client, packet.Objects[0]);
+                    if (!p.OnIcMessage(client, message))
+                        return false;
                 }
                 catch (Exception e)
                 {
-                    p.Log(LogSeverity.Error, $"Error occured during OnModCall(), {e.Message}\n{e.StackTrace}");
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
                 }
-            });
+            }
+
+            return true;
         }
 
-        public void OnBan(IClient client, string reason, TimeSpan? expires = null)
+        public bool OnOocMessage(IClient client, string message)
         {
-            _pluginManager.GetAllPlugins().ForEach(p =>
+            foreach (var p in _pluginManager.LoadedPlugins)
             {
                 try
                 {
-                    p.OnBan(client, reason, expires);
+                    if (!p.OnOocMessage(client, message))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
+                }
+            }
+
+            return true;
+        }
+
+        public bool OnMusicChange(IClient client, string song)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+            {
+                try
+                {
+                    if (!p.OnMusicChange(client, song))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
+                }
+            }
+
+            return true;
+        }
+
+        public bool OnModCall(IClient client, IAOPacket packet)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+            {
+                try
+                {
+                    if (!p.OnModCall(client, packet.Objects[0]))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnModCall(), {e}");
+                }
+            }
+
+            return true;
+        }
+
+        public bool OnBan(IClient client, string reason, TimeSpan? expires = null)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+            {
+                try
+                {
+                    if (!p.OnBan(client, reason, expires))
+                        return false;
                 }
                 catch (Exception e)
                 {
                     p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e.Message}\n{e.StackTrace}");
                 }
-            });
+            }
+
+            return true;
         }
 
         protected override TcpSession CreateSession()

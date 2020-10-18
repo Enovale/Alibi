@@ -59,7 +59,7 @@ namespace Alibi.Plugins.Webhook
         }
 
 
-        public override void OnModCall(IClient caller, string reason)
+        public override bool OnModCall(IClient caller, string reason)
         {
             if (_validConfig && _enabled)
             {
@@ -72,9 +72,11 @@ namespace Alibi.Plugins.Webhook
                 decodedMessage = decodedMessage.Replace("%lsm", caller.LastSentMessage ?? "");
                 _hook.SendMessage(decodedMessage);
             }
+
+            return true;
         }
 
-        public override void OnBan(IClient banned, string reason, TimeSpan? expires = null)
+        public override bool OnBan(IClient banned, string reason, TimeSpan? expires = null)
         {
             if (_validConfig && _enabled)
             {
@@ -88,6 +90,8 @@ namespace Alibi.Plugins.Webhook
                 decodedMessage = decodedMessage.Replace("%lsm", banned.LastSentMessage ?? "");
                 _hook.SendMessage(decodedMessage);
             }
+
+            return true;
         }
     }
 }

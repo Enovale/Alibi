@@ -22,6 +22,7 @@ namespace Alibi.Plugins.API
         public string? CharacterName { get; }
         public string? OocName { get; }
         public string? LastSentMessage { get; set; }
+        public bool Muted { get; set; }
 
         // Retarded pairing shit
         public int PairingWith { get; }

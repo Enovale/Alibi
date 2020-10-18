@@ -9,6 +9,8 @@ namespace Alibi.Plugins
 {
     public class PluginManager : IPluginManager
     {
+        public IReadOnlyList<Plugin> LoadedPlugins;
+        
         private string PluginFolder { get; }
         private PluginRegistry Registry { get; }
 
@@ -18,6 +20,7 @@ namespace Alibi.Plugins
             Directory.CreateDirectory(PluginFolder);
             Directory.CreateDirectory(Path.Combine(PluginFolder, Server.PluginDepsFolder));
             Registry = new PluginRegistry(this);
+            LoadedPlugins = Registry.RegisteredPlugins;
         }
 
         public bool IsPluginLoaded(string id)
@@ -31,9 +34,6 @@ namespace Alibi.Plugins
 
         public void Log(LogSeverity severity, string message, bool verbose)
             => Server.Logger.Log(severity, message, verbose);
-
-        public List<Plugin> GetAllPlugins()
-            => Registry.RegisteredPlugins;
 
         internal void LoadPlugins(IServer server)
         {
