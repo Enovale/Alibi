@@ -14,6 +14,7 @@
 		<Version>0.3</Version>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageVersion>0.4</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
