@@ -28,6 +28,7 @@ namespace Alibi
             Server.CharactersList[(int)Character] : null;
         public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
+        public bool Muted { get; set; } = false;
 
         // Retarded pairing shit
         public int PairingWith { get; internal set; } = -1;
@@ -130,7 +131,8 @@ namespace Alibi
 
         public void BanHwid(string reason, TimeSpan? expireDate)
         {
-            ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, reason, expireDate);
+            if (!ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, reason, expireDate))
+                return;
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
             Task.Delay(500).Wait();

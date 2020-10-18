@@ -25,13 +25,12 @@ namespace Alibi.Plugins.API
         public void Broadcast(IAOPacket message);
         public void BroadcastOocMessage(string message);
         public IClient? FindUser(string str);
-        public bool AddUser(IClient client);
-        public bool CheckLogin(string username, string password);
-        public bool AddLogin(string username, string password);
-        public bool RemoveLogin(string username);
 
         public void OnAllPluginsLoaded();
-        public void OnModCall(IClient client, IAOPacket packet);
-        public void OnBan(IClient client, string reason, TimeSpan? expires = null);
+        public bool OnIcMessage(IClient client, string message);
+        public bool OnOocMessage(IClient client, string message);
+        public bool OnMusicChange(IClient client, string song);
+        public bool OnModCall(IClient client, IAOPacket packet);
+        public bool OnBan(IClient client, string reason, TimeSpan? expires = null);
     }
 }
