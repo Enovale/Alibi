@@ -96,5 +96,35 @@ namespace Alibi.Plugins.Fun
             
             client.Area!.BroadcastOocMessage($"{givenClient.CharacterName}'s tongue has been freed.");
         }
+
+        [ModOnly]
+        [CommandHandler("shake", "Shake around this user's IC messages.")]
+        public static void Shake(IClient client, string[] args)
+        {
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /shake <charid/charname/oocname>");
+            var givenClient = client.ServerRef.FindUser(args[0]);
+            if(givenClient != null)
+                FunPlugin.Shaken[givenClient] = true;
+            else
+                throw new CommandException("User not found.");
+            
+            client.Area!.BroadcastOocMessage($"{givenClient.CharacterName} is shook up.");
+        }
+
+        [ModOnly]
+        [CommandHandler("unshake", "Stabilize this user's IC messages.")]
+        public static void UnShake(IClient client, string[] args)
+        {
+            if (args.Length <= 0)
+                throw new CommandException("Usage: /unshake <charid/charname/oocname>");
+            var givenClient = client.ServerRef.FindUser(args[0]);
+            if(givenClient != null)
+                FunPlugin.Shaken[givenClient] = false;
+            else
+                throw new CommandException("User not found.");
+            
+            client.Area!.BroadcastOocMessage($"{givenClient.CharacterName} caught his balance.");
+        }
     }
 }
