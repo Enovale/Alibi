@@ -1,5 +1,4 @@
 ﻿using Alibi.Commands;
-using Alibi.Exceptions;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Alibi.Plugins.API.Exceptions;
 
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedParameter.Global
@@ -240,7 +240,7 @@ namespace Alibi.Protocol
             if (int.TryParse(packet.Objects[1], out var charId))
             {
                 if (client.Character != null)
-                    client.Area.TakenCharacters[(int) client.Character] = false;
+                    client.Area!.TakenCharacters[(int) client.Character] = false;
 
                 if (charId > Server.CharactersList.Length)
                     return;
@@ -320,19 +320,7 @@ namespace Alibi.Protocol
             if (packet.Objects.Length < 2)
                 return;
 
-            // TODO: Sanitization and cleaning (especially Zalgo)
-            // maybe put this into anti-spam plugin
             string message = packet.Objects[1];
-
-            if (!client.ServerRef.OnOocMessage(client, ref message))
-                return;
-            packet.Objects[1] = message;
-            
-            if (message.Length > Server.ServerConfiguration.MaxMessageSize)
-            {
-                client.SendOocMessage("Message was too long.");
-                return;
-            }
 
             ((Client) client).OocName = packet.Objects[0];
             if (message.StartsWith("/"))
@@ -342,6 +330,16 @@ namespace Alibi.Protocol
                 arguments.RemoveAt(0);
 
                 CommandHandler.HandleCommand(client, command, arguments.ToArray());
+                return;
+            }
+
+            if (!client.ServerRef.OnOocMessage(client, ref message))
+                return;
+            packet.Objects[1] = message;
+            
+            if (message.Length > Server.ServerConfiguration.MaxMessageSize)
+            {
+                client.SendOocMessage("Message was too long.");
                 return;
             }
             

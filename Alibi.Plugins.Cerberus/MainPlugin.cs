@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
+#pragma warning disable 8618
 
 namespace Alibi.Plugins.Cerberus
 {
@@ -19,6 +21,7 @@ namespace Alibi.Plugins.Cerberus
         private string _configPath;
 
         private Dictionary<IClient, MuteInfo> _clientDict;
+        private Dictionary<IClient, string?> _lastOocMsgDict;
 
         public override void Initialize()
         {
@@ -32,6 +35,7 @@ namespace Alibi.Plugins.Cerberus
             _clientDict = new Dictionary<IClient, MuteInfo>();
             foreach (var client in Server.ClientsConnected)
                 _clientDict.Add(client, new MuteInfo());
+            _lastOocMsgDict = new Dictionary<IClient, string?>();
 
             MutedClientsCheck();
         }
@@ -76,6 +80,7 @@ namespace Alibi.Plugins.Cerberus
         public override void OnPlayerJoined(IClient client)
         {
             _clientDict[client] = new MuteInfo();
+            _lastOocMsgDict[client] = null;
         }
 
         private string StripZalgo(string message)
@@ -123,7 +128,13 @@ namespace Alibi.Plugins.Cerberus
 
         public override bool OnOocMessage(IClient client, ref string message)
         {
+            if (_lastOocMsgDict[client] != null && _lastOocMsgDict[client] == message.Trim())
+            {
+                client.SendOocMessage("Cannot double-post in OOC.");
+                return false;
+            }
             message = StripZalgo(message);
+            _lastOocMsgDict[client] = message.Trim();
             if (Config.OocMuteLengthInSeconds < 0 || Config.MaxOocMessagesPerSecond < 0)
                 return true;
             if (_clientDict[client].OocMuted)

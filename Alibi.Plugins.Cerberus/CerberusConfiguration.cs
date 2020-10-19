@@ -3,6 +3,7 @@
     public class CerberusConfiguration
     {
         public bool StripZalgo { get; set; } = true;
+        public bool AllowOocDoublePosting { get; set; } = false;
         
         public int MaxIcMessagesPerSecond { get; set; } = 3;
         public int IcMuteLengthInSeconds { get; set; } = 5;

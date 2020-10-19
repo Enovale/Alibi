@@ -36,7 +36,7 @@ namespace Alibi.Protocol
                 }
                 catch (TargetInvocationException e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, $" Error handling message: {e.Message}\n{e.StackTrace}");
+                    Server.Logger.Log(LogSeverity.Error, $" Error handling message: {e}");
                 }
             }
             else

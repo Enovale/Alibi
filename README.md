@@ -34,7 +34,7 @@ project of this repository, or install this
 [NuGet package](https://www.nuget.org/packages/Alibi.Plugins.API/).
 
 Then, make a class that inherits from `Plugin`, and implement it's required members.
-You should now have a barebones working plugin! Build it and put the .dll in the `Plugins`
+You should now have a bare-bones working plugin! Build it and put the .dll in the `Plugins`
 folder of Alibi, and restart the server.
 
 # Progress
@@ -47,7 +47,8 @@ These packets are not implemented:
 # TODO
 Some shit that needs to get done
 
-- [ ] ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~
+- [ ] Add a "primary admin" or something so only they can restart the server and create/remove logins, since mods shouldnt be able to remove mods.
+- [ ] ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
 - [X] Kick clients without HWIDs
 - [X] Clean up some of this shit code
 - [X] Become more thread safe (Maybe?)

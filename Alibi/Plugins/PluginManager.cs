@@ -73,7 +73,7 @@ namespace Alibi.Plugins
                 }
                 catch (Exception e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Could not create instance of {pluginType.Name}: {e.Message}");
+                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Could not create instance of {pluginType.Name}: {e}");
                     continue;
                 }
 
@@ -83,7 +83,7 @@ namespace Alibi.Plugins
                 }
                 catch (Exception e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Unable to register {instance!.ID}: {e.Message}");
+                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Unable to register {instance!.ID}: {e}");
                     continue;
                 }
 
@@ -97,7 +97,7 @@ namespace Alibi.Plugins
                 catch (Exception e)
                 {
                     Server.Logger.Log(LogSeverity.Error,
-                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e.Message}" + (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
+                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e}" + (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
                     continue;
                 }
             }
@@ -129,7 +129,7 @@ namespace Alibi.Plugins
             }
             catch (Exception e)
             {
-                Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Error loading dependency, {e.Message}");
+                Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Error loading dependency, {e}");
                 return null;
             }
         }
