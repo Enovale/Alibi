@@ -47,10 +47,7 @@ namespace Alibi.Helpers
             }
             catch (Exception e)
             {
-                if (Server.ServerConfiguration.VerboseLogs)
-                    Server.Logger.Log(LogSeverity.Error, " " + e.Message + "\n" + e.StackTrace, true);
-                else
-                    Server.Logger.Log(LogSeverity.Error, " " + e.Message);
+                Server.Logger.Log(LogSeverity.Error, " " + e);
                 return new AOPacket("NULL");
             }
         }

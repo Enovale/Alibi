@@ -338,7 +338,7 @@ namespace Alibi
                 }
                 catch (Exception e)
                 {
-                    p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e.Message}\n{e.StackTrace}");
+                    p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e}");
                 }
             }
 

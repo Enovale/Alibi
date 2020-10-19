@@ -21,7 +21,7 @@ namespace Alibi
             }
             catch (SocketException e)
             {
-                Server.Logger.Log(LogSeverity.Error, " Advertiser disconnected: " + e.Message);
+                Server.Logger.Log(LogSeverity.Error, " Advertiser disconnected: " + e);
             }
         }
 

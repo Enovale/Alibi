@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Alibi.Exceptions
+namespace Alibi.Plugins.API.Exceptions
 {
     public class IcValidationException : Exception
     {

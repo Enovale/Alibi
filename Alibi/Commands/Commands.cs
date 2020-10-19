@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using Alibi.Exceptions;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -8,6 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Alibi.Plugins.API.Exceptions;
+using Alibi.Protocol;
 
 #pragma warning disable IDE0060 // Remove unused parameter
 // ReSharper disable UnusedParameter.Global
@@ -16,20 +17,45 @@ namespace Alibi.Commands
 {
     internal static class Commands
     {
+        private static Random _random = new Random();
+        
         [CommandHandler("help", "Show's this text.")]
         internal static void Help(IClient client, string[] args)
         {
             string finalResponse = "Commands:";
-            foreach (var (command, desc, modOnly) in CommandHandler.HandlerInfo)
+            var commandsAvailable = CommandHandler.HandlerInfo.Where(t => client.Authed || !t.Item3).ToList();
+            int pageSize = 5;
+            int page = 0;
+            if(args.Length >= 1)
+                if (int.TryParse(args[0], out int givenPage))
+                    page = Math.Max(0, Math.Min(givenPage - 1, (commandsAvailable.Count - 1) / pageSize));
+            int totalPages = (int)Math.Max(0, Math.Floor((float)commandsAvailable.Count / pageSize));
+            foreach (var (command, desc, modOnly) in commandsAvailable.Skip(page * pageSize).Take(pageSize))
             {
-                if (client.Authed)
-                    finalResponse +=
-                        $"\n/{command}: {desc}";
-                else if (!modOnly)
-                    finalResponse += $"\n/{command}: {desc}";
+                finalResponse += $"\n/{command}: {desc}";
             }
+            finalResponse += $"\n====PAGE {page + 1} of {totalPages + 1}====";
 
             client.SendOocMessage(finalResponse);
+        }
+
+        [CommandHandler("randomchar", "Changes you to a random character.")]
+        internal static void RandomChar(IClient client, string[] args)
+        {
+            int charsLeft = Server.CharactersList.Length;
+            while (charsLeft > 0)
+            {
+                int character = _random.Next(Server.CharactersList.Length - 1);
+                if (!client.Area!.TakenCharacters[character])
+                {
+                    Messages.ChangeCharacter(client, new AOPacket("CC", "0", character.ToString(), ""));
+                    return;
+                }
+
+                charsLeft--;
+            }
+
+            throw new CommandException("All characters are taken.");
         }
 
         [CommandHandler("motd", "Displays the MOTD sent upon joining.")]
@@ -270,6 +296,15 @@ namespace Alibi.Commands
             }
             else
                 throw new CommandException("You are not logged in.");
+        }
+
+        [ModOnly]
+        [CommandHandler("announce", "Send a message to the entire server.")]
+        internal static void Announce(IClient client, string[] args)
+        {
+            if(args.Length <= 0)
+                throw new CommandException("Usage: /announce <message>");
+            client.ServerRef.BroadcastOocMessage(string.Join(' ', args));
         }
 
         [ModOnly]

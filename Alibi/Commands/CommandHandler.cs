@@ -1,11 +1,11 @@
 ﻿#nullable enable
-using Alibi.Exceptions;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Alibi.Plugins.API.Exceptions;
 
 namespace Alibi.Commands
 {
@@ -44,7 +44,10 @@ namespace Alibi.Commands
                 }
                 catch (TargetInvocationException e)
                 {
-                    client.SendOocMessage("Error: " + ((CommandException)e.InnerException!).Message);
+                    if(e.InnerException?.GetType() == typeof(CommandException))
+                        client.SendOocMessage("Error: " + ((CommandException)e.InnerException!).Message);
+                    else
+                        Server.Logger.Log(LogSeverity.Error, $" {e.InnerException}");
                 }
             }
             else

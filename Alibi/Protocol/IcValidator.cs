@@ -1,9 +1,9 @@
-﻿using Alibi.Exceptions;
-using Alibi.Helpers;
+﻿using Alibi.Helpers;
 using Alibi.Plugins.API;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Alibi.Plugins.API.Exceptions;
 
 namespace Alibi.Protocol
 {
