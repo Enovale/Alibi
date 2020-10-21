@@ -1,6 +1,6 @@
-﻿using Alibi.Plugins.API;
-using System;
+﻿using System;
 using System.Linq;
+using Alibi.Plugins.API;
 
 namespace Alibi.Helpers
 {
@@ -8,7 +8,7 @@ namespace Alibi.Helpers
     {
         public string Type { get; set; }
         public string[] Objects { get; set; }
-
+        
         public AOPacket(string type, params string[] objects)
         {
             Type = type;
@@ -29,7 +29,7 @@ namespace Alibi.Helpers
             try
             {
                 var packet = new AOPacket();
-                string[] split = message.Split("#");
+                var split = message.Split("#");
                 packet.Type = split.First();
 
                 if (split.Length <= 1)
@@ -37,11 +37,10 @@ namespace Alibi.Helpers
                     packet.Objects = Array.Empty<string>();
                     return packet;
                 }
+
                 packet.Objects = new string[split.Length - 2];
                 for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
-                {
                     packet.Objects[i - 1] = split[i].DecodeFromAOPacket();
-                }
 
                 return packet;
             }
@@ -54,16 +53,10 @@ namespace Alibi.Helpers
 
         public static implicit operator string(AOPacket pkt)
         {
-            if (pkt.Objects == null)
-            {
-                return pkt.Type + "#%";
-            }
+            if (pkt.Objects == null) return pkt.Type + "#%";
 
-            string final = pkt.Type + "#";
-            foreach (var o in pkt.Objects)
-            {
-                final += o + "#";
-            }
+            var final = pkt.Type + "#";
+            foreach (var o in pkt.Objects) final += o + "#";
 
             final += "%";
             return final;

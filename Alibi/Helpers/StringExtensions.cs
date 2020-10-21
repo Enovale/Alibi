@@ -4,7 +4,7 @@
     {
         public static int ToIntOrZero(this string str)
         {
-            return int.TryParse(str, out int i) ? i : 0;
+            return int.TryParse(str, out var i) ? i : 0;
         }
 
         public static string EncodeToAOPacket(this string str)

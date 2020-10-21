@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
+
 #pragma warning disable 8618
 
 namespace Alibi.Plugins.Cerberus
@@ -18,9 +19,9 @@ namespace Alibi.Plugins.Cerberus
 
         public static CerberusConfiguration Config;
 
-        private string _configPath;
-
         private Dictionary<IClient, MuteInfo> _clientDict;
+
+        private string _configPath;
         private Dictionary<IClient, string?> _lastOocMsgDict;
 
         public override void Initialize()
@@ -88,11 +89,9 @@ namespace Alibi.Plugins.Cerberus
             if (!Config.StripZalgo)
                 return message;
             StringBuilder sb = new StringBuilder();
-            foreach (char c in message.Normalize(NormalizationForm.FormC))
-            {
+            foreach (var c in message.Normalize(NormalizationForm.FormC))
                 if (char.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                     sb.Append(c);
-            }
 
             return sb.ToString();
         }
@@ -133,6 +132,7 @@ namespace Alibi.Plugins.Cerberus
                 client.SendOocMessage("Cannot double-post in OOC.");
                 return false;
             }
+
             message = StripZalgo(message);
             _lastOocMsgDict[client] = message.Trim();
             if (Config.OocMuteLengthInSeconds < 0 || Config.MaxOocMessagesPerSecond < 0)

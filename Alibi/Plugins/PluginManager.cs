@@ -1,16 +1,16 @@
-﻿using Alibi.Plugins.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Alibi.Plugins.API;
 
 namespace Alibi.Plugins
 {
     public class PluginManager : IPluginManager
     {
-        public IReadOnlyList<Plugin> LoadedPlugins;
-        
+        public readonly IReadOnlyList<Plugin> LoadedPlugins;
+
         private string PluginFolder { get; }
         private PluginRegistry Registry { get; }
 
@@ -23,17 +23,13 @@ namespace Alibi.Plugins
             LoadedPlugins = Registry.RegisteredPlugins;
         }
 
-        public bool IsPluginLoaded(string id)
-            => Registry.IsPluginRegistered(id);
+        public bool IsPluginLoaded(string id) => Registry.IsPluginRegistered(id);
 
-        public dynamic RequestPluginInstance(string id)
-            => Registry.GetPluginInstance(id);
+        public dynamic RequestPluginInstance(string id) => Registry.GetPluginInstance(id);
 
-        public string GetConfigFolder(string id)
-            => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
+        public string GetConfigFolder(string id) => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
 
-        public void Log(LogSeverity severity, string message, bool verbose)
-            => Server.Logger.Log(severity, message, verbose);
+        public void Log(LogSeverity severity, string message, bool verbose) => Server.Logger.Log(severity, message, verbose);
 
         internal void LoadPlugins(IServer server)
         {
@@ -43,7 +39,8 @@ namespace Alibi.Plugins
 
             foreach (var path in paths)
             {
-                Server.Logger.Log(LogSeverity.Special, $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
+                Server.Logger.Log(LogSeverity.Special,
+                    $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
                 Assembly asm;
                 try
                 {
@@ -51,7 +48,8 @@ namespace Alibi.Plugins
                 }
                 catch
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Couldn't load {path}. Make sure it is a .NET assembly.");
+                    Server.Logger.Log(LogSeverity.Error,
+                        $"[PluginLoader] Couldn't load {path}. Make sure it is a .NET assembly.");
                     continue;
                 }
 
@@ -62,18 +60,20 @@ namespace Alibi.Plugins
                 }
                 catch
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, did you implement the Plugin base?");
+                    Server.Logger.Log(LogSeverity.Error,
+                        $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, did you implement the Plugin base?");
                     continue;
                 }
 
                 Plugin instance;
                 try
                 {
-                    instance = (Plugin)Activator.CreateInstance(pluginType);
+                    instance = (Plugin) Activator.CreateInstance(pluginType);
                 }
                 catch (Exception e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Could not create instance of {pluginType.Name}: {e}");
+                    Server.Logger.Log(LogSeverity.Error,
+                        $"[PluginLoader] Could not create instance of {pluginType.Name}: {e}");
                     continue;
                 }
 
@@ -97,12 +97,12 @@ namespace Alibi.Plugins
                 catch (Exception e)
                 {
                     Server.Logger.Log(LogSeverity.Error,
-                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e}" + (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
-                    continue;
+                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e}" +
+                        (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
                 }
             }
 
-            ((Server)server).OnAllPluginsLoaded();
+            ((Server) server).OnAllPluginsLoaded();
             Server.Logger.Log(LogSeverity.Special, "[PluginLoader] Plugins loaded.");
         }
 
@@ -113,15 +113,15 @@ namespace Alibi.Plugins
                 return null;
 
             // check for assemblies already loaded
-            Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
             if (assembly != null)
                 return assembly;
 
             // Try to load by filename - split out the filename of the full assembly name
             // and append the base path of the original assembly (ie. look in the same dir)
-            string filename = args.Name.Split(',')[0] + ".dll".ToLower();
+            var filename = args.Name.Split(',')[0] + ".dll".ToLower();
 
-            string asmFile = Path.Combine(PluginFolder, Server.PluginDepsFolder, filename);
+            var asmFile = Path.Combine(PluginFolder, Server.PluginDepsFolder, filename);
 
             try
             {

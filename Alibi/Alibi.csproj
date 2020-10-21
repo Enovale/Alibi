@@ -10,11 +10,11 @@
     <Copyright>ElijahZAwesome 2020</Copyright>
     <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Nullable>disable</Nullable>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <PackageVersion>0.4</PackageVersion>
     <AssemblyVersion>0.3</AssemblyVersion>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

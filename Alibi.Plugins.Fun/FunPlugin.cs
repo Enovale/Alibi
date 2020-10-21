@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Alibi.Plugins.API;
@@ -31,20 +30,18 @@ namespace Alibi.Plugins.Fun
         {
             if (Disemvoweled[client])
             {
-                string[] vowels = new[]
+                string[] vowels =
                 {
                     "A", "E", "I", "O", "U", "Y",
                     "a", "e", "e", "o", "u", "y"
                 };
                 foreach (var vowel in vowels)
-                {
                     message = message.Replace(vowel, "");
-                }
             }
 
             if (Shaken[client])
             {
-                string[] words = message.Split(' ');
+                var words = message.Split(' ');
                 message = string.Join(' ', words.OrderBy(w => Commands.Rand.Next()));
             }
 

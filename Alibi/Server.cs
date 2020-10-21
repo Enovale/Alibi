@@ -1,13 +1,4 @@
 ﻿#nullable enable
-using Alibi.Commands;
-using Alibi.Database;
-using Alibi.Helpers;
-using Alibi.Plugins;
-using Alibi.Plugins.API;
-using Alibi.Protocol;
-using Alibi.WebSocket;
-using NetCoreServer;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +8,16 @@ using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Alibi.Commands;
+using Alibi.Database;
+using Alibi.Helpers;
+using Alibi.Plugins;
+using Alibi.Plugins.API;
+using Alibi.Protocol;
+using Alibi.WebSocket;
+using NetCoreServer;
+using Newtonsoft.Json;
+using AOPacket = Alibi.Helpers.AOPacket;
 
 #pragma warning disable 8618
 
@@ -43,16 +44,15 @@ namespace Alibi
         public static string Version { get; private set; }
 
         public List<IClient> ClientsConnected { get; }
-
         public int ConnectedPlayers { get; set; }
         public IArea[] Areas { get; }
         public string[] AreaNames { get; }
         public bool VerboseLogs => ServerConfiguration.VerboseLogs;
 
         private readonly Advertiser _advertiser;
-        private readonly WebSocketProxy _wsProxy;
-        private readonly PluginManager _pluginManager;
         private readonly CancellationTokenSource _cancelTasksToken;
+        private readonly PluginManager _pluginManager;
+        private readonly WebSocketProxy _wsProxy;
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
@@ -127,6 +127,149 @@ namespace Alibi
             CharactersList = File.ReadAllLines(CharactersPath);
         }
 
+        public void Broadcast(IAOPacket message)
+        {
+            var clientQueue = new Queue<IClient>(ClientsConnected);
+            while (clientQueue.Any())
+            {
+                var client = clientQueue.Dequeue();
+                if (client.Connected)
+                    client.Send(message);
+            }
+        }
+
+        public void BroadcastOocMessage(string message)
+        {
+            AOPacket msgPacket = new AOPacket("CT", "ServerRef", message, "1");
+            Broadcast(msgPacket);
+            Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
+        }
+
+        public IClient? FindUser(string str)
+        {
+            if (int.TryParse(str, out var id))
+                return ClientsConnected.FirstOrDefault(c => c.Character == id) ?? null;
+            //if (IPAddress.TryParse(str, out IPAddress ip))
+            //    return ClientsConnected.FirstOrDefault(c => Equals(c.IpAddress, ip)) ?? null;
+            var hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
+            if (hwidSearch != null)
+                return hwidSearch;
+            var oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
+            if (oocSearch != null)
+                return oocSearch;
+            var charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ??
+                             null;
+            if (charSearch != null)
+                return charSearch;
+            return null;
+        }
+
+        public void OnAllPluginsLoaded()
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    p.OnAllPluginsLoaded();
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnAllPluginsLoaded(), {e}");
+                }
+        }
+
+        public void OnPlayerJoined(IClient client)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    p.OnPlayerJoined(client);
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnPlayerJoined(), {e}");
+                }
+        }
+
+        public bool OnIcMessage(IClient client, ref string message)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    if (!p.OnIcMessage(client, ref message))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
+                }
+
+            return true;
+        }
+
+        public bool OnOocMessage(IClient client, ref string message)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    if (!p.OnOocMessage(client, ref message))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
+                }
+
+            return true;
+        }
+
+        public bool OnMusicChange(IClient client, ref string song)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    if (!p.OnMusicChange(client, ref song))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
+                }
+
+            return true;
+        }
+
+        public bool OnModCall(IClient client, IAOPacket packet)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    if (!p.OnModCall(client, packet.Objects[0]))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnModCall(), {e}");
+                }
+
+            return true;
+        }
+
+        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    if (!p.OnBan(client, ref reason, expires))
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e}");
+                }
+
+            return true;
+        }
+
         private void EnsureConfigFiles()
         {
             if (!File.Exists(MusicPath) || string.IsNullOrWhiteSpace(File.ReadAllText(MusicPath)))
@@ -171,10 +314,8 @@ namespace Alibi
             var delayTask = Task.Delay(60000, token);
             Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
             foreach (var bannedHwid in Database.GetBannedHwids())
-            {
                 if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
                     Database.UnbanHwid(bannedHwid);
-            }
 
             try
             {
@@ -186,163 +327,6 @@ namespace Alibi
             }
 
             UnbanExpires(token);
-        }
-
-        public void Broadcast(IAOPacket message)
-        {
-            var clientQueue = new Queue<IClient>(ClientsConnected);
-            while (clientQueue.Any())
-            {
-                var client = clientQueue.Dequeue();
-                if (client.Connected)
-                    client.Send(message);
-            }
-        }
-
-        public void BroadcastOocMessage(string message)
-        {
-            AOPacket msgPacket = new AOPacket("CT", "ServerRef", message, "1");
-            Broadcast(msgPacket);
-            Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
-        }
-
-        public IClient? FindUser(string str)
-        {
-            if (int.TryParse(str, out int id))
-                return ClientsConnected.FirstOrDefault(c => c.Character == id) ?? null;
-            //if (IPAddress.TryParse(str, out IPAddress ip))
-            //    return ClientsConnected.FirstOrDefault(c => Equals(c.IpAddress, ip)) ?? null;
-            IClient? hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
-            if (hwidSearch != null)
-                return hwidSearch;
-            IClient? oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
-            if (oocSearch != null)
-                return oocSearch;
-            IClient? charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ??
-                                  null;
-            if (charSearch != null)
-                return charSearch;
-            return null;
-        }
-
-        public void OnAllPluginsLoaded()
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    p.OnAllPluginsLoaded();
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnAllPluginsLoaded(), {e}");
-                }
-            }
-        }
-
-        public void OnPlayerJoined(IClient client)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    p.OnPlayerJoined(client);
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnPlayerJoined(), {e}");
-                }
-            }
-        }
-
-        public bool OnIcMessage(IClient client, ref string message)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    if (!p.OnIcMessage(client, ref message))
-                        return false;
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
-                }
-            }
-
-            return true;
-        }
-
-        public bool OnOocMessage(IClient client, ref string message)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    if (!p.OnOocMessage(client, ref message))
-                        return false;
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
-                }
-            }
-
-            return true;
-        }
-
-        public bool OnMusicChange(IClient client, ref string song)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    if (!p.OnMusicChange(client, ref song))
-                        return false;
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnIcMessage(), {e}");
-                }
-            }
-
-            return true;
-        }
-
-        public bool OnModCall(IClient client, IAOPacket packet)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    if (!p.OnModCall(client, packet.Objects[0]))
-                        return false;
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnModCall(), {e}");
-                }
-            }
-
-            return true;
-        }
-
-        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null)
-        {
-            foreach (var p in _pluginManager.LoadedPlugins)
-            {
-                try
-                {
-                    if (!p.OnBan(client, ref reason, expires))
-                        return false;
-                }
-                catch (Exception e)
-                {
-                    p.Log(LogSeverity.Error, $"Error occured during OnBan(), {e}");
-                }
-            }
-
-            return true;
         }
 
         protected override TcpSession CreateSession()

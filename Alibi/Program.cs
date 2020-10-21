@@ -1,10 +1,9 @@
 ﻿#nullable enable
-using Alibi.Plugins.API;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
+using Alibi.Plugins.API;
 
 namespace Alibi
 {
@@ -44,15 +43,17 @@ namespace Alibi
             if (eventArgs is UnhandledExceptionEventArgs exceptionArgs)
             {
                 Console.Title = "Alibi - Crashed";
-                var error = (Exception)exceptionArgs.ExceptionObject;
+                var error = (Exception) exceptionArgs.ExceptionObject;
                 Server.Logger.Log(LogSeverity.Error, $" {error.Message}\n{error.StackTrace}");
             }
+
             if (eventArgs is UnobservedTaskExceptionEventArgs taskExceptionArgs)
             {
                 Console.Title = "Alibi - Crashed";
                 var error = taskExceptionArgs.Exception;
                 Server.Logger.Log(LogSeverity.Error, $" {error!.Message}\n{error.StackTrace}");
             }
+
             _server.Stop();
             if (eventArgs is ConsoleCancelEventArgs args)
             {

@@ -1,14 +1,14 @@
-﻿using Alibi.Helpers;
-using NetCoreServer;
-using System;
+﻿using System;
 using System.Net;
 using System.Text;
+using NetCoreServer;
 
 namespace Alibi.WebSocket
 {
     internal class TcpProxy : TcpClient
     {
-        private WebSocketSession _session;
+        private readonly WebSocketSession _session;
+
 
         public TcpProxy(WebSocketSession wsSession, IPAddress address, int port) : base(address, port)
         {
@@ -17,10 +17,8 @@ namespace Alibi.WebSocket
 
         protected override void OnConnected()
         {
-            if (_session.IsDisposed || _session.IsSocketDisposed)
-            {
+            if (_session.IsDisposed || _session.IsSocketDisposed) 
                 Disconnect();
-            }
         }
 
         protected override void OnDisconnected()
@@ -35,21 +33,19 @@ namespace Alibi.WebSocket
                 Disconnect();
                 return;
             }
-            string msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
-            string[] packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
+
+            var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
+            var packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
                 try
                 {
-                    if (packet.StartsWith("ID"))
-                    {
-                        IPAddress ip = ((IPEndPoint)_session.Socket.RemoteEndPoint).Address;
-                        Send(new AOPacket("WSIP", ip.ToString()));
-                    }
-
                     _session.SendTextAsync(packet);
                 }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
             }
         }
     }

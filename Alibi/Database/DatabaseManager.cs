@@ -1,8 +1,8 @@
-﻿using Alibi.Plugins.API;
-using SQLite;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Alibi.Plugins.API;
+using SQLite;
 
 namespace Alibi.Database
 {
@@ -11,7 +11,7 @@ namespace Alibi.Database
         public const string DatabaseFolder = "Database";
         public static readonly string DatabasePath = Path.Combine(DatabaseFolder, "database.db");
 
-        private SQLiteConnectionWithLock _sql;
+        private readonly SQLiteConnectionWithLock _sql;
 
         public DatabaseManager()
         {
@@ -52,6 +52,7 @@ namespace Alibi.Database
                     _sql.Update(existingUser);
                     return true;
                 }
+
                 return false;
             }
 
@@ -68,20 +69,6 @@ namespace Alibi.Database
             return true;
         }
 
-        public void ChangeIp(string hwid, string oldIp, string newIp)
-        {
-            var user = _sql.Table<User>().First(u => u.Hwid == hwid);
-            if (user.Ips.Contains(oldIp) && !user.Ips.Contains(newIp))
-                user.Ips = user.Ips.Replace(oldIp, newIp);
-            else if (user.Ips.Contains(oldIp))
-                // Can probably be done better
-                user.Ips = user.Ips.Replace(";" + oldIp, "").Replace(oldIp + ";", "").Replace(oldIp, "");
-            else
-                user.Ips += ";" + newIp;
-
-            _sql.Update(user);
-        }
-
         public string[] GetHwidsfromIp(string ip)
         {
             return _sql.Table<User>().Where(u => u.Ips.Contains(ip)).Select(u => u.Hwid).ToArray();
@@ -95,26 +82,21 @@ namespace Alibi.Database
         public bool IsIpBanned(string ip)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
-            {
                 if (IsHwidBanned(hwid))
                     return true;
-            }
 
             return false;
         }
 
-        public string GetBanReason(string ip)
-        {
-            return _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
-        }
+        public string GetBanReason(string ip) => _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
 
         public void BanHwid(string hwid, string reason, TimeSpan? expireTime = null)
         {
             var user = _sql.Table<User>().First(u => u.Hwid == hwid);
             user.Banned = true;
             user.BanReason = reason;
-            if (expireTime != null && user.BanExpiration == null)
-                user.BanExpiration = DateTime.Now.Add((TimeSpan)expireTime);
+            if (expireTime != null && expireTime.Value == TimeSpan.Zero && user.BanExpiration == null)
+                user.BanExpiration = DateTime.Now.Add((TimeSpan) expireTime);
 
             _sql.Update(user);
         }
@@ -122,9 +104,7 @@ namespace Alibi.Database
         public void BanIp(string ip, string reason, TimeSpan? expireTime = null)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
-            {
                 BanHwid(hwid, reason, expireTime);
-            }
         }
 
         public void UnbanHwid(string hwid)
@@ -138,27 +118,19 @@ namespace Alibi.Database
         public void UnbanIp(string ip)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
-            {
                 UnbanHwid(hwid);
-            }
         }
 
-        public string[] GetBannedHwids()
-        {
-            return _sql.Table<User>().Where(u => u.Banned).Select(u => u.Hwid).ToArray();
-        }
+        public string[] GetBannedHwids() => _sql.Table<User>().Where(u => u.Banned).Select(u => u.Hwid).ToArray();
 
-        public DateTime? GetBanExpiration(string hwid)
-        {
-            return _sql.Table<User>().Single(u => u.Hwid == hwid).BanExpiration;
-        }
+        public DateTime? GetBanExpiration(string hwid) => _sql.Table<User>().Single(u => u.Hwid == hwid).BanExpiration;
 
         public bool AddLogin(string username, string password)
         {
             if (_sql.Table<Login>().Any(l => l.UserName.ToLower() == username.ToLower()))
                 return false;
 
-            var newLogin = new Login()
+            var newLogin = new Login
             {
                 UserName = username,
                 PassHash = BCrypt.Net.BCrypt.HashPassword(password)
@@ -183,7 +155,7 @@ namespace Alibi.Database
             if (logins.Length <= 0)
                 return false;
 
-            string hash = logins.First().PassHash;
+            var hash = logins.First().PassHash;
             if (BCrypt.Net.BCrypt.Verify(password, hash))
                 return true;
 

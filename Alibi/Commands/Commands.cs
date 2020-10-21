@@ -1,14 +1,15 @@
 ﻿#nullable enable
-using Alibi.Helpers;
-using Alibi.Plugins.API;
-using Alibi.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Alibi.Helpers;
+using Alibi.Plugins.API;
+using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
 using Alibi.Protocol;
+using AOPacket = Alibi.Helpers.AOPacket;
 
 #pragma warning disable IDE0060 // Remove unused parameter
 // ReSharper disable UnusedParameter.Global
@@ -17,23 +18,21 @@ namespace Alibi.Commands
 {
     internal static class Commands
     {
-        private static Random _random = new Random();
-        
+        private static readonly Random _random = new Random();
+
         [CommandHandler("help", "Show's this text.")]
         internal static void Help(IClient client, string[] args)
         {
             string finalResponse = "Commands:";
             var commandsAvailable = CommandHandler.HandlerInfo.Where(t => client.Authed || !t.Item3).ToList();
-            int pageSize = 5;
-            int page = 0;
-            if(args.Length >= 1)
-                if (int.TryParse(args[0], out int givenPage))
+            var pageSize = 5;
+            var page = 0;
+            if (args.Length >= 1)
+                if (int.TryParse(args[0], out var givenPage))
                     page = Math.Max(0, Math.Min(givenPage - 1, (commandsAvailable.Count - 1) / pageSize));
-            int totalPages = (int)Math.Max(0, Math.Floor((float)commandsAvailable.Count / pageSize));
+            var totalPages = (int) Math.Max(0, Math.Floor((float) commandsAvailable.Count / pageSize));
             foreach (var (command, desc, modOnly) in commandsAvailable.Skip(page * pageSize).Take(pageSize))
-            {
                 finalResponse += $"\n/{command}: {desc}";
-            }
             finalResponse += $"\n====PAGE {page + 1} of {totalPages + 1}====";
 
             client.SendOocMessage(finalResponse);
@@ -42,10 +41,10 @@ namespace Alibi.Commands
         [CommandHandler("randomchar", "Changes you to a random character.")]
         internal static void RandomChar(IClient client, string[] args)
         {
-            int charsLeft = Server.CharactersList.Length;
+            var charsLeft = Server.CharactersList.Length;
             while (charsLeft > 0)
             {
-                int character = _random.Next(Server.CharactersList.Length - 1);
+                var character = _random.Next(Server.CharactersList.Length - 1);
                 if (!client.Area!.TakenCharacters[character])
                 {
                     Messages.ChangeCharacter(client, new AOPacket("CC", "0", character.ToString(), ""));
@@ -86,7 +85,7 @@ namespace Alibi.Commands
             if (args.Length < 2)
                 throw new CommandException("Usage: /pm <id|oocname|characterName> <message>");
 
-            IClient? userToPm = client.ServerRef.FindUser(args[0]);
+            var userToPm = client.ServerRef.FindUser(args[0]);
             if (userToPm != null)
             {
                 string message = string.Join(' ', args.Skip(1));
@@ -94,7 +93,9 @@ namespace Alibi.Commands
                 client.SendOocMessage($"Sent to {userToPm.CharacterName}.");
             }
             else
+            {
                 throw new CommandException("That user cannot be found.");
+            }
         }
 
         [CommandHandler("bg", "Set the background for this area.")]
@@ -102,7 +103,7 @@ namespace Alibi.Commands
         {
             if (!client.Area!.BackgroundLocked)
             {
-                ((Area)client.Area).Background = args[0];
+                ((Area) client.Area).Background = args[0];
                 if (args.Length > 1)
                     client.Area.Broadcast(new AOPacket("BN", client.Area.Background, args[1]));
                 else
@@ -128,6 +129,7 @@ namespace Alibi.Commands
                         $"\n{client.ServerRef.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
                         $"{tchar}, ID: {client.Character}\n";
             }
+
             client.SendOocMessage(output);
         }
 
@@ -143,7 +145,7 @@ namespace Alibi.Commands
             if (args.Length <= 0)
                 throw new CommandException("Usage: /arealock <0/1/2:FREE/SPECTATABLE/LOCKED>");
 
-            if (int.TryParse(args[0], out int lockType))
+            if (int.TryParse(args[0], out var lockType))
             {
                 client.Area.Locked = lockType switch
                 {
@@ -156,7 +158,9 @@ namespace Alibi.Commands
                 client.Area.AreaUpdate(AreaUpdateType.Locked);
             }
             else
+            {
                 throw new CommandException("Invalid lock type provided.");
+            }
         }
 
         [CommandHandler("status", "Set the status on this area. Type /status help for types.")]
@@ -168,7 +172,7 @@ namespace Alibi.Commands
             if (args.Length <= 0)
                 throw new CommandException($"{client.Area.Name}: {client.Area.Status}");
 
-            string[] allowedStatuses = { "IDLE", "RP", "CASING", "LOOKING-FOR-PLAYERS", "LFP", "RECESS", "GAMING" };
+            string[] allowedStatuses = {"IDLE", "RP", "CASING", "LOOKING-FOR-PLAYERS", "LFP", "RECESS", "GAMING"};
 
             if (!allowedStatuses.Contains(args[0].ToUpper()))
                 throw new CommandException($"Usage: /status <{string.Join('|', allowedStatuses)}>");
@@ -186,7 +190,9 @@ namespace Alibi.Commands
 
             int characterToCm;
             if (args.Length <= 0)
-                characterToCm = (int)client.Character;
+            {
+                characterToCm = (int) client.Character;
+            }
             else if (!int.TryParse(args[0], out characterToCm))
             {
                 if (Server.CharactersList.Contains(args[0]))
@@ -194,10 +200,11 @@ namespace Alibi.Commands
                 else
                     throw new CommandException("Usage: /cm <character name/id>");
             }
+
             IClient clientToCm =
                 client.ServerRef.ClientsConnected.Single(c => c.Character == characterToCm && c.Area == client.Area);
             IArea area = client.Area!;
-            bool cmExists = area.CurrentCaseManagers.Count > 0;
+            var cmExists = area.CurrentCaseManagers.Count > 0;
             if (!cmExists)
             {
                 area.CurrentCaseManagers.Add(clientToCm);
@@ -206,31 +213,36 @@ namespace Alibi.Commands
                 return;
             }
 
-            bool isAlreadyCm = area.IsClientCM(clientToCm);
+            var isAlreadyCm = area.IsClientCM(clientToCm);
             if (isAlreadyCm)
+            {
                 throw new CommandException("They are already CM in this area.");
-            else if (area.IsClientCM(client))
+            }
+
+            if (area.IsClientCM(client))
             {
                 area.CurrentCaseManagers.Add(clientToCm);
                 area.AreaUpdate(AreaUpdateType.CourtManager);
                 client.SendOocMessage($"{clientToCm.CharacterName} has become a CM.");
             }
             else
+            {
                 throw new CommandException("You must be added by the CM to do this.");
+            }
         }
 
         [CommandHandler("uncm", "Add a CM to the area.")]
         internal static void RemoveCaseManager(IClient client, string[] args)
         {
-            int characterToDeCm = (int)(args.Length > 0 ? int.Parse(args[0]) : client.Character!);
+            var characterToDeCm = (int) (args.Length > 0 ? int.Parse(args[0]) : client.Character!);
             IClient clientToDeCm =
                 client.ServerRef.ClientsConnected.Single(c => c.Character == characterToDeCm && c.Area == client.Area);
             IArea area = client.Area!;
-            bool cmExists = area!.CurrentCaseManagers.Count > 0;
+            var cmExists = area!.CurrentCaseManagers.Count > 0;
             if (!cmExists)
                 throw new CommandException("There aren't any Case Managers in this area.");
 
-            bool isTargetCM = area.IsClientCM(clientToDeCm);
+            var isTargetCM = area.IsClientCM(clientToDeCm);
             if (area.IsClientCM(client))
             {
                 if (isTargetCM)
@@ -240,10 +252,14 @@ namespace Alibi.Commands
                     client.SendOocMessage($"{clientToDeCm.CharacterName} is no longer a CM.");
                 }
                 else
+                {
                     throw new CommandException("They are not CM, so cannot de-CM them.");
+                }
             }
             else
+            {
                 throw new CommandException("Must be CM to remove a CM.");
+            }
         }
 
         [CommandHandler("doc", "Set the document URL for the current Area's case.")]
@@ -281,7 +297,7 @@ namespace Alibi.Commands
             if (!Server.Database.CheckCredentials(args[0], args[1]))
                 throw new CommandException("Incorrect credentials.");
 
-            ((Client)client).Authed = true;
+            ((Client) client).Authed = true;
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
@@ -291,18 +307,20 @@ namespace Alibi.Commands
         {
             if (client.Authed)
             {
-                ((Client)client).Authed = false;
+                ((Client) client).Authed = false;
                 client.SendOocMessage("Logged out.");
             }
             else
+            {
                 throw new CommandException("You are not logged in.");
+            }
         }
 
         [ModOnly]
         [CommandHandler("announce", "Send a message to the entire server.")]
         internal static void Announce(IClient client, string[] args)
         {
-            if(args.Length <= 0)
+            if (args.Length <= 0)
                 throw new CommandException("Usage: /announce <message>");
             client.ServerRef.BroadcastOocMessage(string.Join(' ', args));
         }
@@ -384,18 +402,18 @@ namespace Alibi.Commands
                 throw new CommandException("Usage: /ban <hwid/ip> [reason]");
 
             string reason = args.Length > 1 ? args[1] : "No reason given.";
-            string? expires = args.Length > 2 ? args[2] : null;
+            var expires = args.Length > 2 ? args[2] : null;
 
-            TimeSpan? expireDate = null;
+            var expireDate = TimeSpan.Zero;
             if (expires != null)
             {
                 string[] expireArgs = expires.Split(" ");
                 if (expireArgs.Length >= 2)
-                {
-                    if (int.TryParse(expireArgs[0], out int value))
+                    if (int.TryParse(expireArgs[0], out var value))
                     {
                         if (!expireArgs[1].EndsWith('s'))
                             expireArgs[1] += 's';
+
                         expireDate = expireArgs[1] switch
                         {
                             "minutes" => new TimeSpan(0, value, 0),
@@ -404,28 +422,20 @@ namespace Alibi.Commands
                             "week" => new TimeSpan(value * 7, 0, 0, 0),
                             // Shut up i don't care
                             "month" => new TimeSpan(value * 30, 0, 0, 0),
-                            "perma" => null,
-                            _ => null
+                            _ => TimeSpan.Zero
                         };
                     }
-                }
             }
 
             if (IPAddress.TryParse(args[0], out _))
-            {
                 // Gross
-                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
-                {
+                foreach (var c in new Queue<IClient>(
+                    client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
                     c.BanIp(reason, expireDate);
-                }
-            }
             else
-            {
-                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
-                {
+                foreach (var c in new Queue<IClient>(
+                    client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
                     c.BanHwid(reason, expireDate);
-                }
-            }
 
             client.SendOocMessage($"{args[0]} has been banned.");
         }
@@ -455,20 +465,14 @@ namespace Alibi.Commands
             string reason = args.Length > 1 ? args[1] : "No reason given.";
 
             if (IPAddress.TryParse(args[0], out _))
-            {
                 // Gross
-                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
-                {
+                foreach (var c in new Queue<IClient>(
+                    client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
                     c.Kick(reason);
-                }
-            }
             else
-            {
-                foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
-                {
+                foreach (var c in new Queue<IClient>(
+                    client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
                     c.Kick(reason);
-                }
-            }
 
             client.SendOocMessage($"{args[0]} has been kicked.");
         }
@@ -477,26 +481,24 @@ namespace Alibi.Commands
         [CommandHandler("hwid", "Get the HWID of a user from IP or ID")]
         internal static void GetHwid(IClient client, string[] args)
         {
-            if (args.Length <= 0 || (IPAddress.TryParse(args[0], out _) && !int.TryParse(args[0], out _)))
+            if (args.Length <= 0 || IPAddress.TryParse(args[0], out _) && !int.TryParse(args[0], out _))
                 throw new CommandException("Usage: /hwid <ip/charId>");
 
-            IClient[] ipSearch = client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0]).ToArray();
+            IClient[] ipSearch = client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])
+                .ToArray();
             if (ipSearch.Length > 0)
             {
                 string output = "Hwids: ";
-                foreach (var c in ipSearch)
-                {
-                    output += $"\n\"{c.HardwareId}\"";
-                }
+                foreach (var c in ipSearch) output += $"\n\"{c.HardwareId}\"";
                 client.SendOocMessage(output);
                 return;
             }
 
-            int searchedChar = int.Parse(args[0]);
+            var searchedChar = int.Parse(args[0]);
             if (!client.Area!.TakenCharacters[searchedChar])
                 throw new CommandException("Usage: /hwid <ip/charId>");
             IClient idSearch =
-                    client.ServerRef.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);
+                client.ServerRef.ClientsConnected.Single(c => c.Area == client.Area && c.Character == searchedChar);
             client.SendOocMessage($"Hwids: \n\"{idSearch.HardwareId}\"");
         }
     }

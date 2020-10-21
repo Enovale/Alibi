@@ -1,5 +1,5 @@
-﻿using NetCoreServer;
-using System.Net;
+﻿using System.Net;
+using NetCoreServer;
 
 namespace Alibi.WebSocket
 {
