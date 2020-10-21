@@ -24,8 +24,9 @@ namespace Alibi.Plugins.API
         public void ReloadConfig();
         public void Broadcast(IAOPacket message);
         public void BroadcastOocMessage(string message);
+
         /// <summary>
-        /// Find a client using an id, ooc name, character name, or hwid. (IPs dont work)
+        ///     Find a client using an id, ooc name, character name, or hwid. (IPs dont work)
         /// </summary>
         /// <param name="str">an id, ooc name, char name, or HWID to search for.</param>
         /// <returns></returns>

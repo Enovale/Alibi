@@ -31,7 +31,7 @@
         </e>
         <e p="Logger.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="win-x64" t="Include">
                 <e p="Alibi.AssemblyInfo.cs" t="Include" />
@@ -58,12 +58,14 @@
         <e p="Server.cs" t="Include" />
         <e p="WebSocket" t="Include">
           <e p="TcpProxy.cs" t="Include" />
+          <e p="WebSocketConnectionEventArgs.cs" t="Include" />
           <e p="WebSocketProxy.cs" t="Include" />
           <e p="WebSocketSession.cs" t="Include" />
         </e>
       </e>
       <e p="Alibi.Plugins.API" t="IncludeRecursive">
         <e p="Alibi.Plugins.API.csproj" t="IncludeRecursive" />
+        <e p="AOPacket.cs" t="Include" />
         <e p="AreaUpdateType.cs" t="Include" />
         <e p="Attributes" t="Include">
           <e p="CommandHandlerAttribute.cs" t="Include" />
@@ -87,13 +89,12 @@
         <e p="IServer.cs" t="Include" />
         <e p="LogSeverity.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Alibi.Plugins.API.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="Packet.cs" t="Include" />
         <e p="Plugin.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="PublishProfiles" t="Include">
@@ -109,7 +110,7 @@
         <e p="Messages.cs" t="Include" />
         <e p="MuteInfo.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Alibi.Plugins.Cerberus.AssemblyInfo.cs" t="Include" />
             </e>
@@ -123,7 +124,7 @@
         <e p="Commands.cs" t="Include" />
         <e p="FunPlugin.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Alibi.Plugins.Fun.AssemblyInfo.cs" t="Include" />
             </e>
@@ -139,7 +140,7 @@
           <e p="TimeSpanExtensions.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Alibi.Plugins.Webhook.AssemblyInfo.cs" t="Include" />
             </e>

@@ -7,7 +7,7 @@ namespace Alibi.Helpers
     {
         /// <summary>Splits an enumeration based on a predicate.</summary>
         /// <remarks>
-        /// This method drops partitioning elements.
+        ///     This method drops partitioning elements.
         /// </remarks>
         public static IEnumerable<IEnumerable<TSource>> Split<TSource>(
             this IEnumerable<TSource> source,
@@ -15,12 +15,13 @@ namespace Alibi.Helpers
             bool removeEmptyEntries = false,
             int count = -1)
         {
-            int yielded = 0;
+            var yielded = 0;
             var items = new List<TSource>();
             foreach (var item in source)
-            {
                 if (!partitionBy(item))
+                {
                     items.Add(item);
+                }
                 else if (!removeEmptyEntries || items.Count > 0)
                 {
                     yield return items.ToArray();
@@ -28,7 +29,6 @@ namespace Alibi.Helpers
 
                     if (count > 0 && ++yielded == count) yield break;
                 }
-            }
 
             if (items.Count > 0) yield return items.ToArray();
         }

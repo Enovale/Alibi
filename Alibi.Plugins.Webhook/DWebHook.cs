@@ -4,15 +4,15 @@ using System.Net;
 
 namespace Alibi.Plugins.Webhook
 {
-
     public class DWebHook : IDisposable
     {
         public string WebHook { get; set; }
         public string Username { get; set; }
         public string AvatarUrl { get; set; }
 
-        private readonly WebClient _dWebClient;
         private static readonly NameValueCollection DiscordValues = new NameValueCollection();
+
+        private readonly WebClient _dWebClient;
 
         public DWebHook(string url = "")
         {

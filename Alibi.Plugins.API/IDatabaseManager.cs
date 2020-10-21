@@ -5,7 +5,6 @@ namespace Alibi.Plugins.API
     public interface IDatabaseManager
     {
         public bool AddUser(string hwid, string ip);
-        public void ChangeIp(string hwid, string oldIp, string newIp);
         public string[] GetHwidsfromIp(string ip);
         public bool IsHwidBanned(string hwid);
         public bool IsIpBanned(string ip);

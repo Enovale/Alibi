@@ -25,9 +25,67 @@
     <list default="true" id="eb983bd1-6298-4db3-b5d9-712dc4692a1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Alibi.Plugins.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Alibi.Plugins.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/AreaUpdateType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/AreaUpdateType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/ClientState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/ClientState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Handler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Handler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IAOPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IAOPacket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IArea.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IEvidence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IEvidence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IPluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IPluginManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/LogSeverity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/LogSeverity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Packet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/AOPacket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/CerberusConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/CerberusConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/8Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/8Ball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/Alibi.Plugins.Fun.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/Alibi.Plugins.Fun.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/Commands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/Commands.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/FunPlugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/FunPlugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Helpers/TimeSpanExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Helpers/TimeSpanExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/WebhookConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/WebhookConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Advertiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Advertiser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Alibi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Alibi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Area.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Area.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/ClientSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/ClientSession.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Commands/Commands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Commands/Commands.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Database/Login.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/Login.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Database/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Evidence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Evidence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/ArrayExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/ArrayExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/EnumerableExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/EnumerableExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/IPConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/IPConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/StringExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Logger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Logger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Protocol/IcValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/IcValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketProxy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketProxy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,55 +97,71 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Alibi/Protocol/Messages.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/318D2799-861E-4377-8FA8-7E428C96ED58/1F/Socket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/dc/a175eb65/TcpSession.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/c1/bb698048/WsSession.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/Server.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/ClientSession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/74/d76ded7e/TcpServer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/dd/25b67a72/WebSocket.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Alibi/Helpers/AssemblyExtensions.cs" />
         <option value="$PROJECT_DIR$/Alibi/Alibi.csproj" />
         <option value="$PROJECT_DIR$/Alibi/Program.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Packet.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/AOPacket.cs" />
         <option value="$PROJECT_DIR$/Alibi/Configuration.cs" />
-        <option value="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Class1.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" />
-        <option value="$PROJECT_DIR$/Alibi/ClientSession.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" />
         <option value="$PROJECT_DIR$/Alibi/Protocol/IcValidator.cs" />
         <option value="$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/CerberusConfiguration.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/Class1.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/Main.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/Alibi.Plugins.Fun.csproj" />
-        <option value="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" />
         <option value="$PROJECT_DIR$/Alibi/Advertiser.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Server.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/8Ball.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/IcValidationException.cs" />
+        <option value="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" />
         <option value="$PROJECT_DIR$/Alibi/Commands/Commands.cs" />
+        <option value="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Server.cs" />
         <option value="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Logger.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Evidence.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Database/User.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Database/Login.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" />
+        <option value="$PROJECT_DIR$/Alibi/ClientSession.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Area.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/FunPlugin.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Fun/Commands.cs" />
-        <option value="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/AOPacket.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" />
       </list>
     </option>
   </component>
@@ -109,7 +183,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Publish to folder.Publish Alibi Win64">
+  <component name="RunManager" selected=".NET Project.Alibi">
     <configuration name="Publish Alibi Linux x64" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish runtime="linux-x64" target_folder="$PROJECT_DIR$/Alibi/bin/Release/netcoreapp3.1/publish" target_framework="netcoreapp3.1" uuid_high="1178188384815890981" uuid_low="-5640002014155880641" />
       <method v="2">
@@ -198,110 +272,114 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="537" y="254" key="#com.intellij.tools.ToolEditorDialog/0.0.1536.824@0.0.1536.824" timestamp="1602832737933" />
+    <state x="516" y="257" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1603304128136">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="516" y="257" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.1536.824@0.0.1536.824" timestamp="1603304128136" />
     <state width="770" height="464" key="DebuggerActiveHint" timestamp="1603067232068">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="770" height="464" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1603067232068" />
     <state width="963" height="586" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1603051482481" />
-    <state width="1493" height="166" key="GridCell.Tab.0.bottom" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.0.bottom" timestamp="1603304062059">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603304062059" />
     <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.0.center" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.0.center" timestamp="1603304062058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603304062058" />
     <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975228" />
-    <state width="1493" height="166" key="GridCell.Tab.0.left" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.0.left" timestamp="1603304062058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603304062058" />
     <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975228" />
-    <state width="1493" height="166" key="GridCell.Tab.0.right" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.0.right" timestamp="1603304062058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603304062058" />
     <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975228" />
-    <state width="1493" height="166" key="GridCell.Tab.1.bottom" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.1.bottom" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.1.center" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.1.center" timestamp="1603304061821">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603304061821" />
     <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.1.left" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.1.left" timestamp="1603304061820">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603304061820" />
     <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.1.right" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.1.right" timestamp="1603304061821">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603304061821" />
     <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.2.bottom" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.2.bottom" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.2.center" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.2.center" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.2.left" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.2.left" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.2.right" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.2.right" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975229" />
-    <state width="1493" height="166" key="GridCell.Tab.3.bottom" timestamp="1603072683354">
+    <state width="1493" height="166" key="GridCell.Tab.3.bottom" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603072683354" />
+    <state width="1493" height="166" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.3.center" timestamp="1603072683353">
+    <state width="1493" height="166" key="GridCell.Tab.3.center" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1603072683353" />
+    <state width="1493" height="166" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.3.left" timestamp="1603072683352">
+    <state width="1493" height="166" key="GridCell.Tab.3.left" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1603072683352" />
+    <state width="1493" height="166" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.3.right" timestamp="1603072683353">
+    <state width="1493" height="166" key="GridCell.Tab.3.right" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1603072683353" />
+    <state width="1493" height="166" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.4.bottom" timestamp="1603072683354">
+    <state width="1493" height="166" key="GridCell.Tab.4.bottom" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603072683354" />
+    <state width="1493" height="166" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.4.center" timestamp="1603072683354">
+    <state width="1493" height="166" key="GridCell.Tab.4.center" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1603072683354" />
+    <state width="1493" height="166" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.4.left" timestamp="1603072683354">
+    <state width="1493" height="166" key="GridCell.Tab.4.left" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1603072683354" />
+    <state width="1493" height="166" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
-    <state width="1493" height="166" key="GridCell.Tab.4.right" timestamp="1603072683354">
+    <state width="1493" height="166" key="GridCell.Tab.4.right" timestamp="1603304061822">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="166" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1603072683354" />
+    <state width="1493" height="166" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1603304061822" />
     <state width="1877" height="375" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603055975230" />
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size" timestamp="1603064441900">
       <screen x="0" y="0" width="1536" height="824" />
@@ -311,10 +389,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="599" y="113" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1603064469796" />
-    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1602832589454">
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1603303452867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1602832589454" />
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1603303452867" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1602870652708">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

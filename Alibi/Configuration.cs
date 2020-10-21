@@ -1,8 +1,8 @@
-﻿using Alibi.Helpers;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
+using Alibi.Helpers;
+using Newtonsoft.Json;
 
 namespace Alibi
 {

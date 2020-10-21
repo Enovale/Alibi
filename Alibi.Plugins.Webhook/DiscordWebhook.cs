@@ -1,9 +1,9 @@
-﻿using Alibi.Plugins.API;
-using Alibi.Plugins.API.Attributes;
-using Alibi.Plugins.Webhook.Helpers;
-using System;
+﻿using System;
 using System.IO;
 using System.Text.Json;
+using Alibi.Plugins.API;
+using Alibi.Plugins.API.Attributes;
+using Alibi.Plugins.Webhook.Helpers;
 
 namespace Alibi.Plugins.Webhook
 {
@@ -13,10 +13,10 @@ namespace Alibi.Plugins.Webhook
         public override string Name => "DiscordWebhook";
 
         public WebhookConfig Configuration;
-        private bool _validConfig;
+        
         private bool _enabled = true;
-
         private DWebHook _hook;
+        private bool _validConfig;
 
         public override void Initialize()
         {
@@ -24,7 +24,8 @@ namespace Alibi.Plugins.Webhook
 
             if (!File.Exists(configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(configFile)))
             {
-                File.WriteAllText(configFile, JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions { WriteIndented = true }));
+                File.WriteAllText(configFile,
+                    JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions {WriteIndented = true}));
                 Log(LogSeverity.Error, "No config found. Check this mod's config JSON and add the needed values.");
                 return;
             }
@@ -32,7 +33,8 @@ namespace Alibi.Plugins.Webhook
             Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
-                Log(LogSeverity.Error, "Config file is empty, please fill in the webhook, username, and message in the JSON.");
+                Log(LogSeverity.Error,
+                    "Config file is empty, please fill in the webhook, username, and message in the JSON.");
                 return;
             }
 
@@ -63,7 +65,7 @@ namespace Alibi.Plugins.Webhook
         {
             if (_validConfig && _enabled)
             {
-                string decodedMessage = Configuration.ModMessage;
+                var decodedMessage = Configuration.ModMessage;
                 decodedMessage = decodedMessage.Replace("%ch", caller.CharacterName ?? "Spectator");
                 decodedMessage = decodedMessage.Replace("%a", caller.Area!.Name);
                 decodedMessage = decodedMessage.Replace("%r", reason);
@@ -80,7 +82,7 @@ namespace Alibi.Plugins.Webhook
         {
             if (_validConfig && _enabled)
             {
-                string decodedMessage = Configuration.BanMessage;
+                var decodedMessage = Configuration.BanMessage;
                 decodedMessage = decodedMessage.Replace("%ch", banned.CharacterName ?? "Spectator");
                 decodedMessage = decodedMessage.Replace("%e",
                     expires != null ? expires.Value.LargestIntervalWithUnits() : "Never.");

@@ -1,8 +1,8 @@
 ﻿#nullable enable
-using Alibi.Plugins.API;
-using Alibi.Plugins.API.Attributes;
 using System.Collections.Generic;
 using System.Reflection;
+using Alibi.Plugins.API;
+using Alibi.Plugins.API.Attributes;
 
 namespace Alibi.Protocol
 {
@@ -24,13 +24,17 @@ namespace Alibi.Protocol
                     var stateAttr = Handlers[packet.Type].Method.GetCustomAttribute<RequireStateAttribute>();
 
                     if (stateAttr != null)
+                    {
                         if (client.CurrentState != stateAttr.State && stateAttr.Kick)
                         {
                             client.Kick("Protocol violation.");
                             return;
                         }
-                        else if(client.CurrentState != stateAttr.State)
+                        else if (client.CurrentState != stateAttr.State)
+                        {
                             return;
+                        }
+                    }
 
                     Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] {client, packet});
                 }
@@ -43,7 +47,8 @@ namespace Alibi.Protocol
                 Server.Logger.Log(LogSeverity.Warning, $" Unknown client message: '{packet.Type}'", true);
         }
 
-        public static void RegisterMessageHandler(string messageName, MethodInfo handler, Plugin? target, bool overrideHandler = false)
+        public static void RegisterMessageHandler(string messageName, MethodInfo handler, Plugin? target,
+            bool overrideHandler = false)
         {
             if (!overrideHandler && Handlers.ContainsKey(messageName))
                 return;

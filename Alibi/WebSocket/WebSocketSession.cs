@@ -1,6 +1,7 @@
-﻿using Alibi.Plugins.API;
-using NetCoreServer;
+﻿using System.Collections.Generic;
 using System.Net;
+using Alibi.Plugins.API;
+using NetCoreServer;
 
 namespace Alibi.WebSocket
 {
@@ -8,14 +9,29 @@ namespace Alibi.WebSocket
     {
         private readonly TcpProxy _tcpSocket;
 
+        static WebSocketSession()
+        {
+            AwaitingEndPoints = new Queue<WebSocketConnectionEventArgs>();
+        }
+
         public WebSocketSession(WsServer server) : base(server)
         {
             _tcpSocket = new TcpProxy(this, IPAddress.Loopback, Alibi.Server.ServerConfiguration.Port);
         }
 
+        internal static Queue<WebSocketConnectionEventArgs> AwaitingEndPoints { get; }
+
         public override void OnWsConnected(HttpRequest request)
         {
-            Alibi.Server.Logger.Log(LogSeverity.Info, $"[{((IPEndPoint)Socket.RemoteEndPoint).Address}] Websocket connection.", true);
+            Alibi.Server.Logger.Log(LogSeverity.Info,
+                $"[{((IPEndPoint) Socket.RemoteEndPoint).Address}] Websocket connection.", true);
+            AwaitingEndPoints.Enqueue(
+                new WebSocketConnectionEventArgs(
+                    _tcpSocket,
+                    (IPEndPoint) Socket.RemoteEndPoint
+                )
+            );
+
             _tcpSocket.ConnectAsync();
         }
 

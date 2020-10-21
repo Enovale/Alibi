@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Alibi.Helpers
 {
@@ -11,9 +11,10 @@ namespace Alibi.Helpers
             writer.WriteValue(value.ToString());
         }
 
-        public override IPAddress ReadJson(JsonReader reader, Type objectType, IPAddress existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override IPAddress ReadJson(JsonReader reader, Type objectType, IPAddress existingValue,
+            bool hasExistingValue, JsonSerializer serializer)
         {
-            var s = (string)reader.Value;
+            var s = (string) reader.Value;
             return IPAddress.Parse(s);
         }
     }

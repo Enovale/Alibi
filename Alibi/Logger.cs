@@ -1,19 +1,19 @@
-﻿using Alibi.Plugins.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Alibi.Plugins.API;
 
 namespace Alibi
 {
     public class Logger
     {
         public const string LogsFolder = "Logs";
+        private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new Queue<Tuple<LogSeverity, string>>();
+        private readonly Queue<string> _logBuffer = new Queue<string>(Server.ServerConfiguration.LogBufferSize);
 
         private Server _server;
-        private Queue<string> _logBuffer = new Queue<string>(Server.ServerConfiguration.LogBufferSize);
-        private Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new Queue<Tuple<LogSeverity, string>>();
 
         public Logger(Server server)
         {
@@ -44,10 +44,12 @@ namespace Alibi
         }
 
         /// <summary>
-        /// Log a message of a specified severity (will change the console color)
+        ///     Log a message of a specified severity (will change the console color)
         /// </summary>
-        /// <param name="severity">Normal debug severities, though Special is for info that is
-        /// more relevant to server owners.</param>
+        /// <param name="severity">
+        ///     Normal debug severities, though Special is for info that is
+        ///     more relevant to server owners.
+        /// </param>
         /// <param name="message">The message to log</param>
         /// <param name="verbose">Should this only show when in verbose logs mode?</param>
         /// <param name="color">Manually override the log color</param>
@@ -55,17 +57,16 @@ namespace Alibi
         {
             if (verbose && !Server.ServerConfiguration.VerboseLogs)
                 return;
-            string debug = verbose ? "[DEBUG]" : "";
-            string log = $"{debug}[{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}][{severity}]{message}";
+            var debug = verbose ? "[DEBUG]" : "";
+            var log =
+                $"{debug}[{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}][{severity}]{message}";
             AddLog(severity, log);
         }
 
         private void AddLog(LogSeverity severity, string log)
         {
             if (_logBuffer.Count >= Server.ServerConfiguration.LogBufferSize)
-            {
                 _logBuffer.Dequeue();
-            }
 
             _logBuffer.Enqueue(log);
             _consoleLogQueue.Enqueue(new Tuple<LogSeverity, string>(severity, log));
@@ -79,8 +80,8 @@ namespace Alibi
 
         public void OocMessageLog(string message, IArea area = null, string name = null)
         {
-            string areaName = area == null ? "Global" : area.Name;
-            string person = name ?? "ServerRef";
+            var areaName = area == null ? "Global" : area.Name;
+            var person = name ?? "ServerRef";
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 

@@ -1,9 +1,10 @@
-﻿using Alibi.Helpers;
-using Alibi.Plugins.API;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Alibi.Helpers;
+using Alibi.Plugins.API;
+using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
 {
@@ -27,7 +28,7 @@ namespace Alibi
 
         private void OnConnect(IAsyncResult ar)
         {
-            ((Socket)ar.AsyncState)?.EndConnect(ar);
+            ((Socket) ar.AsyncState)?.EndConnect(ar);
 
             string ports;
             if (string.IsNullOrWhiteSpace(Server.ServerConfiguration.WebsocketPort.ToString()))

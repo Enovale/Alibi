@@ -1,10 +1,10 @@
 ﻿#nullable enable
-using Alibi.Plugins.API;
-using Alibi.Plugins.API.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Alibi.Plugins.API;
+using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
 
 namespace Alibi.Commands
@@ -13,7 +13,8 @@ namespace Alibi.Commands
     {
         internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
 
-        internal static readonly List<Tuple<string, string, bool>> HandlerInfo = new List<Tuple<string, string, bool>>();
+        internal static readonly List<Tuple<string, string, bool>>
+            HandlerInfo = new List<Tuple<string, string, bool>>();
 
         static CommandHandler()
         {
@@ -25,9 +26,7 @@ namespace Alibi.Commands
             if (Handlers.ContainsKey(command))
             {
                 for (var i = 0; i < args.Length; i++)
-                {
                     args[i] = args[i].Trim('"');
-                }
                 var handler = Handlers[command];
                 var modAttributes = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
                 try
@@ -35,17 +34,19 @@ namespace Alibi.Commands
                     if (modAttributes.Any())
                     {
                         if (client.Authed)
-                            Handlers[command].Method.Invoke(Handlers[command].Target, new object[] { client, args });
+                            Handlers[command].Method.Invoke(Handlers[command].Target, new object[] {client, args});
                         else
-                            client.SendOocMessage(((ModOnlyAttribute)modAttributes.First()).ErrorMsg);
+                            client.SendOocMessage(((ModOnlyAttribute) modAttributes.First()).ErrorMsg);
                     }
                     else
-                        Handlers[command].Method.Invoke(Handlers[command].Target, new object[] { client, args });
+                    {
+                        Handlers[command].Method.Invoke(Handlers[command].Target, new object[] {client, args});
+                    }
                 }
                 catch (TargetInvocationException e)
                 {
-                    if(e.InnerException?.GetType() == typeof(CommandException))
-                        client.SendOocMessage("Error: " + ((CommandException)e.InnerException!).Message);
+                    if (e.InnerException?.GetType() == typeof(CommandException))
+                        client.SendOocMessage("Error: " + ((CommandException) e.InnerException!).Message);
                     else
                         Server.Logger.Log(LogSeverity.Error, $" {e.InnerException}");
                 }

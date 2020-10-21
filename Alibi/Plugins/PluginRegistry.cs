@@ -1,7 +1,7 @@
-﻿using Alibi.Plugins.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Alibi.Plugins.API;
 
 namespace Alibi.Plugins
 {
@@ -9,16 +9,15 @@ namespace Alibi.Plugins
     {
         public List<Plugin> RegisteredPlugins { get; }
 
-        public PluginManager Owner { get; }
-
+        private PluginManager _owner;
+        
         public PluginRegistry(PluginManager owner)
         {
-            Owner = owner;
+            _owner = owner;
             RegisteredPlugins = new List<Plugin>();
         }
 
-        public bool IsPluginRegistered(string id)
-            => RegisteredPlugins.Exists(x => x.ID == id);
+        public bool IsPluginRegistered(string id) => RegisteredPlugins.Exists(x => x.ID == id);
 
         public Plugin GetPluginInstance(string id)
         {
@@ -36,5 +35,4 @@ namespace Alibi.Plugins
             RegisteredPlugins.Add(plugin);
         }
     }
-
 }

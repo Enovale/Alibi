@@ -1,17 +1,18 @@
 ﻿#nullable enable
-using Alibi.Helpers;
-using Alibi.Plugins.API;
 using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Alibi.Helpers;
+using Alibi.Plugins.API;
+using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
 {
     public class Client : IClient
     {
-        public ClientSession Session { get; private set; }
-        public IServer ServerRef { get; private set; }
+        public ClientSession Session { get; }
+        public IServer ServerRef { get; }
 
         public bool Connected { get; internal set; }
         public bool Authed { get; internal set; }
@@ -24,8 +25,9 @@ namespace Alibi
 
         public string? Password { get; internal set; }
         public int? Character { get; set; }
-        public string? CharacterName => Character != null ?
-            Server.CharactersList[(int)Character] : null;
+
+        public string? CharacterName => Character != null ? Server.CharactersList[(int) Character] : null;
+
         public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
         public bool Muted { get; set; } = false;
@@ -75,14 +77,14 @@ namespace Alibi
 
             if (Character != null)
             {
-                Area.TakenCharacters[(int)Character] = false;
+                Area.TakenCharacters[(int) Character] = false;
                 Area.UpdateTakenCharacters();
             }
 
-            ((Area)Area).PlayerCount--;
+            ((Area) Area).PlayerCount--;
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
             Area = ServerRef.Areas[index];
-            ((Area)Area).PlayerCount++;
+            ((Area) Area).PlayerCount++;
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
 
             Send(new AOPacket("HP", "1", Area.DefendantHp.ToString()));
@@ -92,14 +94,14 @@ namespace Alibi
 
             if (Character != null)
             {
-                if (Area.TakenCharacters[(int)Character])
+                if (Area.TakenCharacters[(int) Character])
                 {
                     Character = null;
                     Send(new AOPacket("DONE"));
                 }
                 else
                 {
-                    Area.TakenCharacters[(int)Character] = true;
+                    Area.TakenCharacters[(int) Character] = true;
                 }
             }
 
@@ -142,27 +144,16 @@ namespace Alibi
         public void BanIp(string reason, TimeSpan? expireDate)
         {
             foreach (var hwid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
-            {
                 ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate);
-            }
         }
 
-        public void Send(AOPacket packet)
+        public void Send(IAOPacket packet)
         {
             if (packet.Objects != null)
-            {
                 for (var i = 0; i < packet.Objects.Length; i++)
-                {
                     packet.Objects[i] = packet.Objects[i].EncodeToAOPacket();
-                }
-            }
 
-            Session.SendAsync(packet);
-        }
-
-        public void Send(IAOPacket packetInterface)
-        {
-            Send((AOPacket)packetInterface);
+            Session.SendAsync((AOPacket)packet);
         }
 
         public void SendOocMessage(string message, string? sender = null)
