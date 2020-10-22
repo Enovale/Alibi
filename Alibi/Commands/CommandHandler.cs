@@ -33,7 +33,7 @@ namespace Alibi.Commands
                 {
                     if (modAttributes.Any())
                     {
-                        if (client.Authed)
+                        if (client.Auth)
                             Handlers[command].Method.Invoke(Handlers[command].Target, new object[] {client, args});
                         else
                             client.SendOocMessage(((ModOnlyAttribute) modAttributes.First()).ErrorMsg);

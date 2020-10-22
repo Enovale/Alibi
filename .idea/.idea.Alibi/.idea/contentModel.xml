@@ -68,11 +68,13 @@
         <e p="AOPacket.cs" t="Include" />
         <e p="AreaUpdateType.cs" t="Include" />
         <e p="Attributes" t="Include">
+          <e p="AdminOnlyAttribute.cs" t="Include" />
           <e p="CommandHandlerAttribute.cs" t="Include" />
           <e p="MessageHandlerAttribute.cs" t="Include" />
           <e p="ModOnlyAttribute.cs" t="Include" />
           <e p="RequireStateAttribute.cs" t="Include" />
         </e>
+        <e p="AuthType.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="ClientState.cs" t="Include" />
         <e p="Exceptions" t="Include">

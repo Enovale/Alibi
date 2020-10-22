@@ -23,69 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb983bd1-6298-4db3-b5d9-712dc4692a1d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Alibi.Plugins.API/AuthType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alibi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Alibi.Plugins.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Alibi.Plugins.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/AreaUpdateType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/AreaUpdateType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/ClientState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/ClientState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Handler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Handler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IAOPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IAOPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IArea.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IEvidence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IEvidence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IPluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IPluginManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/LogSeverity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/LogSeverity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Packet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/AOPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/CerberusConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/CerberusConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MainPlugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/8Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/8Ball.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/Alibi.Plugins.Fun.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/Alibi.Plugins.Fun.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/Commands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/Commands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Fun/FunPlugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Fun/FunPlugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Helpers/TimeSpanExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/Helpers/TimeSpanExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi.Plugins.Webhook/WebhookConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi.Plugins.Webhook/WebhookConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Advertiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Advertiser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Alibi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Alibi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Area.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Area.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi/ClientSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/ClientSession.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Commands/Commands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Commands/Commands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Database/Login.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/Login.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Database/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Database/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Evidence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Evidence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/ArrayExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/ArrayExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/EnumerableExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/EnumerableExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/IPConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/IPConverter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Helpers/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Helpers/StringExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Logger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Logger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Protocol/IcValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/IcValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketProxy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketProxy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,15 +58,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Alibi/Alibi.csproj" />
-        <option value="$PROJECT_DIR$/Alibi/Program.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Packet.cs" />
         <option value="$PROJECT_DIR$/Alibi/Configuration.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Class1.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Messages.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/MuteInfo.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Plugin.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/Alibi.Plugins.Webhook.csproj" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Cerberus/Alibi.Plugins.Cerberus.csproj" />
@@ -135,7 +78,6 @@
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/IcValidationException.cs" />
         <option value="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Commands/Commands.cs" />
         <option value="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" />
         <option value="$PROJECT_DIR$/Alibi/Server.cs" />
         <option value="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" />
@@ -148,9 +90,6 @@
         <option value="$PROJECT_DIR$/Alibi/Database/User.cs" />
         <option value="$PROJECT_DIR$/Alibi/Database/Login.cs" />
         <option value="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" />
-        <option value="$PROJECT_DIR$/Alibi/ClientSession.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
         <option value="$PROJECT_DIR$/Alibi/Area.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" />
@@ -162,6 +101,14 @@
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" />
+        <option value="$PROJECT_DIR$/Alibi/ClientSession.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/AdminOnly.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Commands/Commands.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/AuthType.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" />
       </list>
     </option>
   </component>
@@ -238,6 +185,7 @@
       <workItem from="1603056172897" duration="221000" />
       <workItem from="1603062946298" duration="169000" />
       <workItem from="1603063219499" duration="10913000" />
+      <workItem from="1603324873098" duration="2200000" />
     </task>
     <servers />
   </component>

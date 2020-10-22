@@ -5,6 +5,9 @@ using System.Net;
 
 namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Represents the main server object.
+    /// </summary>
     public interface IServer
     {
         public static IPAddress MasterServerIp { get; }

@@ -47,8 +47,9 @@ These packets are not implemented:
 # TODO
 Some shit that needs to get done
 
+- [ ] Make websockets less terrible again.
 - [ ] Add a "primary admin" or something so only they can restart the server and create/remove logins, since mods shouldnt be able to remove mods.
-- [ ] ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
+- [X] ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
 - [X] Kick clients without HWIDs
 - [X] Clean up some of this shit code
 - [X] Become more thread safe (Maybe?)
