@@ -46,8 +46,6 @@ namespace Alibi
                     ip = ev.RemoteEndPoint.Address;
             }
 
-            Console.WriteLine(ip);
-
             if (Alibi.Server.ServerConfiguration.Advertise && ip.Equals(Alibi.Server.MasterServerIp))
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
             if (!IPAddress.IsLoopback(ip) &&
