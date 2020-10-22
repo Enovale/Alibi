@@ -1,9 +1,9 @@
 ﻿namespace Alibi.Plugins.API
 {
-    public enum AuthType
+    public static class AuthType
     {
-        User,
-        Moderator,
-        Admin
+        public const int USER = 0;
+        public const int MODERATOR = 1;
+        public const int ADMINISTRATOR = 2;
     }
 }

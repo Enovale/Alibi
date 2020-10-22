@@ -28,7 +28,8 @@ namespace Alibi.Database
                 _sql.Insert(new Login
                 {
                     UserName = "admin",
-                    PassHash = "$2y$11$Zz.qeWzmJPTMiS/IJi.1qeREWoHTavQji2lGC.xzWFuv4ceQgMP3y"
+                    PassHash = "$2y$11$Zz.qeWzmJPTMiS/IJi.1qeREWoHTavQji2lGC.xzWFuv4ceQgMP3y",
+                    PermissionsLevel = AuthType.ADMINISTRATOR
                 });
         }
 
@@ -125,7 +126,7 @@ namespace Alibi.Database
 
         public DateTime? GetBanExpiration(string hwid) => _sql.Table<User>().Single(u => u.Hwid == hwid).BanExpiration;
 
-        public bool AddLogin(string username, string password)
+        public bool AddLogin(string username, string password, int perms)
         {
             if (_sql.Table<Login>().Any(l => l.UserName.ToLower() == username.ToLower()))
                 return false;
@@ -133,15 +134,31 @@ namespace Alibi.Database
             var newLogin = new Login
             {
                 UserName = username,
-                PassHash = BCrypt.Net.BCrypt.HashPassword(password)
+                PassHash = BCrypt.Net.BCrypt.HashPassword(password),
+                PermissionsLevel = perms
             };
             _sql.Insert(newLogin);
 
             return true;
         }
 
+        public bool ChangeLoginPermissions(string username, int perms)
+        {
+            var login = _sql.Table<Login>().FirstOrDefault(l => l.UserName.ToLower() == username.ToLower());
+            if (login == null)
+                return false;
+            login.PermissionsLevel = perms;
+
+            _sql.Update(login);
+            return true;
+        }
+
         public bool RemoveLogin(string username)
         {
+            // Can't remove the last admin user.
+            if (_sql.Table<Login>().Count(l => l.PermissionsLevel == AuthType.ADMINISTRATOR) == 1)
+                return false;
+            
             if (_sql.Delete<Login>(username) == 0)
                 return false;
 
@@ -160,6 +177,13 @@ namespace Alibi.Database
                 return true;
 
             return false;
+        }
+
+        public int GetPermissionLevel(string username)
+        {
+            return _sql.Table<Login>()
+                .FirstOrDefault(l => 
+                    l.UserName.ToLower() == username.ToLower()).PermissionsLevel;
         }
     }
 }

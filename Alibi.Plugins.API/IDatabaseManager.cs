@@ -15,8 +15,10 @@ namespace Alibi.Plugins.API
         public void UnbanIp(string ip);
         public string[] GetBannedHwids();
         public DateTime? GetBanExpiration(string hwid);
-        public bool AddLogin(string username, string password);
+        public bool AddLogin(string username, string password, int perms);
+        public bool ChangeLoginPermissions(string username, int perms);
         public bool RemoveLogin(string username);
         public bool CheckCredentials(string username, string password);
+        public int GetPermissionLevel(string username);
     }
 }

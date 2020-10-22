@@ -9,7 +9,7 @@ namespace Alibi.Plugins.API
         public IServer ServerRef { get; }
 
         public bool Connected { get; }
-        public AuthType Auth { get; }
+        public int Auth { get; }
         public DateTime LastAlive { get; }
         public IPAddress IpAddress { get; }
         public string? HardwareId { get; }
