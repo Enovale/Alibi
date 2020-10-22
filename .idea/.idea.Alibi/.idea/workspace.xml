@@ -44,16 +44,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Alibi/Protocol/Messages.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/318D2799-861E-4377-8FA8-7E428C96ED58/1F/Socket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/dc/a175eb65/TcpSession.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/c1/bb698048/WsSession.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alibi/Server.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/ClientSession.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/74/d76ded7e/TcpServer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alibi/Server.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alibi/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EBC46198-D098-42C9-AB4A-D3A7FCA460D0/dd/25b67a72/WebSocket.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -77,10 +71,7 @@
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/CommandException.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Exceptions/IcValidationException.cs" />
         <option value="$PROJECT_DIR$/Alibi/WebSocket/WebSocketSession.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" />
         <option value="$PROJECT_DIR$/Alibi/WebSocket/TcpProxy.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Server.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" />
         <option value="$PROJECT_DIR$/Alibi/Protocol/MessageHandler.cs" />
         <option value="$PROJECT_DIR$/Alibi/Plugins/PluginRegistry.cs" />
         <option value="$PROJECT_DIR$/Alibi/Plugins/PluginManager.cs" />
@@ -88,8 +79,6 @@
         <option value="$PROJECT_DIR$/Alibi/Helpers/AOPacket.cs" />
         <option value="$PROJECT_DIR$/Alibi/Evidence.cs" />
         <option value="$PROJECT_DIR$/Alibi/Database/User.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Database/Login.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" />
         <option value="$PROJECT_DIR$/Alibi/Area.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DWebHook.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.Webhook/DiscordWebhook.cs" />
@@ -103,12 +92,17 @@
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/RequireStateAttribute.cs" />
         <option value="$PROJECT_DIR$/Alibi/ClientSession.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/IServer.cs" />
-        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/Attributes/AdminOnly.cs" />
-        <option value="$PROJECT_DIR$/Alibi/Commands/Commands.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Client.cs" />
         <option value="$PROJECT_DIR$/Alibi.Plugins.API/AuthType.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IClient.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Protocol/Messages.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Database/Login.cs" />
         <option value="$PROJECT_DIR$/Alibi/Commands/CommandHandler.cs" />
+        <option value="$PROJECT_DIR$/Alibi.Plugins.API/IDatabaseManager.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Server.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Database/DatabaseManager.cs" />
+        <option value="$PROJECT_DIR$/Alibi/Commands/Commands.cs" />
       </list>
     </option>
   </component>
@@ -128,6 +122,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Alibi">
@@ -186,6 +181,7 @@
       <workItem from="1603062946298" duration="169000" />
       <workItem from="1603063219499" duration="10913000" />
       <workItem from="1603324873098" duration="2200000" />
+      <workItem from="1603398365647" duration="3600000" />
     </task>
     <servers />
   </component>
@@ -337,6 +333,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="599" y="113" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1603064469796" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1603403768396">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603403768396" />
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1603303452867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

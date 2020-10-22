@@ -15,7 +15,7 @@ namespace Alibi
         public IServer ServerRef { get; }
 
         public bool Connected { get; internal set; }
-        public AuthType Auth { get; internal set; }
+        public int Auth { get; internal set; }
         public DateTime LastAlive { get; internal set; }
         public IPAddress IpAddress { get; internal set; }
         public string? HardwareId { get; internal set; }

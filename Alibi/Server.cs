@@ -62,7 +62,9 @@ namespace Alibi
             Database = new DatabaseManager();
             if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning,
-                    " Default moderator login is 'admin', password is 'ChangeThis'. Please change this immediately.");
+                    " Default admin login is 'admin', password is 'ChangeThis'. " +
+                    "Please change this immediately by logging into this user and running /addadmin, " + 
+                    "then removing the dummy user with /removelogin.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.ProductVersion;

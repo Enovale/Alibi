@@ -10,5 +10,7 @@ namespace Alibi.Database
         public string UserName { get; set; }
         [Column("passhash")]
         public string PassHash { get; set; }
+        [Column("permissions")]
+        public int PermissionsLevel { get; set; }
     }
 }

@@ -28,15 +28,23 @@ namespace Alibi.Commands
                 for (var i = 0; i < args.Length; i++)
                     args[i] = args[i].Trim('"');
                 var handler = Handlers[command];
-                var modAttributes = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
+                var modAttr = handler.Method.GetCustomAttributes(typeof(ModOnlyAttribute));
+                var adminAttr = handler.Method.GetCustomAttributes(typeof(AdminOnlyAttribute));
                 try
                 {
-                    if (modAttributes.Any())
+                    if (modAttr.Any())
                     {
-                        if (client.Auth)
+                        if (client.Auth >= AuthType.MODERATOR)
                             Handlers[command].Method.Invoke(Handlers[command].Target, new object[] {client, args});
                         else
-                            client.SendOocMessage(((ModOnlyAttribute) modAttributes.First()).ErrorMsg);
+                            client.SendOocMessage(((ModOnlyAttribute) modAttr.First()).ErrorMsg);
+                    }
+                    else if (adminAttr.Any())
+                    {
+                        if (client.Auth >= AuthType.ADMINISTRATOR)
+                            Handlers[command].Method.Invoke(Handlers[command].Target, new object[] {client, args});
+                        else
+                            client.SendOocMessage(((AdminOnlyAttribute) adminAttr.First()).ErrorMsg);
                     }
                     else
                     {

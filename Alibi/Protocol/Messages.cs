@@ -377,7 +377,7 @@ namespace Alibi.Protocol
                                                          $"{client.Area.Name} area, with reasoning: {packet.Objects[0]}");
 
             foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected))
-                if (c.Authed)
+                if (c.Auth >= AuthType.MODERATOR)
                     c.Send(packetToSend);
         }
 

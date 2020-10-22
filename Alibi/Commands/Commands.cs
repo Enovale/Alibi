@@ -24,7 +24,8 @@ namespace Alibi.Commands
         internal static void Help(IClient client, string[] args)
         {
             string finalResponse = "Commands:";
-            var commandsAvailable = CommandHandler.HandlerInfo.Where(t => client.Authed || !t.Item3).ToList();
+            var commandsAvailable = CommandHandler.HandlerInfo
+                .Where(t => client.Auth >= AuthType.MODERATOR || !t.Item3).ToList();
             var pageSize = 5;
             var page = 0;
             if (args.Length >= 1)
@@ -122,11 +123,11 @@ namespace Alibi.Commands
                 if (!client.Area.TakenCharacters[i])
                     continue;
                 var tchar = Server.CharactersList[i];
-                if (!client.Authed)
+                if (client.Auth < AuthType.MODERATOR)
                     output += "\n" + tchar + ", ID: " + i;
                 else
                     output +=
-                        $"\n{client.ServerRef.ClientsConnected.Single(c => c.Character == i).IpAddress}: " +
+                        $"\n{client.ServerRef.FindUser(tchar).IpAddress}: " +
                         $"{tchar}, ID: {client.Character}\n";
             }
 
@@ -288,7 +289,7 @@ namespace Alibi.Commands
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]
         internal static void Login(IClient client, string[] args)
         {
-            if (client.Authed)
+            if (client.Auth >= AuthType.MODERATOR)
                 throw new CommandException("You are already logged in.");
 
             if (args.Length < 2)
@@ -297,7 +298,7 @@ namespace Alibi.Commands
             if (!Server.Database.CheckCredentials(args[0], args[1]))
                 throw new CommandException("Incorrect credentials.");
 
-            ((Client) client).Authed = true;
+            ((Client) client).Auth = Server.Database.GetPermissionLevel(args[0]);
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
@@ -305,9 +306,9 @@ namespace Alibi.Commands
         [CommandHandler("logout", "De-authenticates you if you are logged in as a moderator.")]
         internal static void Logout(IClient client, string[] args)
         {
-            if (client.Authed)
+            if (client.Auth >= AuthType.MODERATOR)
             {
-                ((Client) client).Authed = false;
+                ((Client) client).Auth = AuthType.USER;
                 client.SendOocMessage("Logged out.");
             }
             else
@@ -347,31 +348,73 @@ namespace Alibi.Commands
                 throw new CommandException("No logs have been stored yet, can't dump.");
         }
 
-        [ModOnly]
-        [CommandHandler("addlogin", "Adds a moderator user to the database.")]
-        internal static void AddLogin(IClient client, string[] args)
+        [AdminOnly]
+        [CommandHandler("addmod", "Adds a moderator user to the database.")]
+        internal static void AddModerator(IClient client, string[] args)
         {
             if (args.Length < 2)
-                throw new CommandException("Usage: /addlogin <username> <password>");
+                throw new CommandException("Usage: /addmod <username> <password>");
 
             args[0] = args[0].ToLower();
-            if (Server.Database.AddLogin(args[0], args[1]))
+            if (Server.Database.AddLogin(args[0], args[1], AuthType.MODERATOR))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
                 throw new CommandException($"User {args[0]} already exists or another error occured.");
         }
 
-        [ModOnly]
-        [CommandHandler("removelogin", "Removes a moderator user from the database")]
+        [AdminOnly]
+        [CommandHandler("addadmin", "Adds an administrator user to the database.")]
+        internal static void AddAdministrator(IClient client, string[] args)
+        {
+            if (args.Length < 2)
+                throw new CommandException("Usage: /addadmin <username> <password>");
+
+            args[0] = args[0].ToLower();
+            if (Server.Database.AddLogin(args[0], args[1], AuthType.ADMINISTRATOR))
+                client.SendOocMessage($"User {args[0]} has been created.");
+            else
+                throw new CommandException($"User {args[0]} already exists or another error occured.");
+        }
+
+        [AdminOnly]
+        [CommandHandler("removelogin", "Removes a moderator user from the database.")]
         internal static void RemoveLogin(IClient client, string[] args)
         {
-            if (args.Length < 1)
+            if (args.Length <= 0)
                 throw new CommandException("Usage: /removelogin <username>");
 
             if (Server.Database.RemoveLogin(args[0].ToLower()))
-                client.SendOocMessage("Successfully removed user " + args[0] + ".");
+                client.SendOocMessage($"Successfully removed user {args[0]}.");
             else
-                throw new CommandException("Could not remove user " + args[0] + ". Does it exist?");
+                throw new CommandException($"Could not remove user {args[0]}. " +
+                                           $"Make sure this isn't the only admin and that " +
+                                           $"this username exists in the database.");
+        }
+
+        [AdminOnly]
+        [CommandHandler("promote", "Upgrades a moderator's permissions level to administrator.")]
+        internal static void PromoteLogin(IClient client, string[] args)
+        {
+            if(args.Length <= 0)
+                throw new CommandException("Usage: /promote <username>");
+            
+            if(Server.Database.ChangeLoginPermissions(args[0], AuthType.ADMINISTRATOR))
+                client.SendOocMessage($"Successfully promoted {args[0]} to Admin.");
+            else
+                throw new CommandException("Couldn't find that username.");
+        }
+
+        [AdminOnly]
+        [CommandHandler("demote", "Downgrades an admin's permissions level to a moderator.")]
+        internal static void DemoteLogin(IClient client, string[] args)
+        {
+            if(args.Length <= 0)
+                throw new CommandException("Usage: /demote <username>");
+            
+            if(Server.Database.ChangeLoginPermissions(args[0], AuthType.MODERATOR))
+                client.SendOocMessage($"Successfully demoted {args[0]} to Moderator.");
+            else
+                throw new CommandException("Couldn't find that username.");
         }
 
         [ModOnly]
@@ -386,7 +429,7 @@ namespace Alibi.Commands
 
         [ModOnly]
         [CommandHandler("unmute", "Allow a player to send messages again")]
-        internal static void Un(IClient client, string[] args)
+        internal static void UnMute(IClient client, string[] args)
         {
             if (args.Length <= 0)
                 throw new CommandException("Usage: /unmute <charid/name/oocname/hwid>");
