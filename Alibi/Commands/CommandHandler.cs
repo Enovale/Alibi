@@ -13,8 +13,8 @@ namespace Alibi.Commands
     {
         internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
 
-        internal static readonly List<Tuple<string, string, bool>>
-            HandlerInfo = new List<Tuple<string, string, bool>>();
+        internal static readonly List<Tuple<string, string, int>>
+            HandlerInfo = new List<Tuple<string, string, int>>();
 
         static CommandHandler()
         {
@@ -72,8 +72,12 @@ namespace Alibi.Commands
                 return;
 
             Handlers[attr.Command] = new Handler(handler, target);
-            var isModOnly = handler.GetCustomAttribute<ModOnlyAttribute>() != null;
-            HandlerInfo.Add(new Tuple<string, string, bool>(attr.Command, attr.ShortDesc, isModOnly));
+            var permissionNeeded = AuthType.USER;
+            if (handler.GetCustomAttribute<ModOnlyAttribute>() != null)
+                permissionNeeded = AuthType.MODERATOR;
+            if (handler.GetCustomAttribute<AdminOnlyAttribute>() != null)
+                permissionNeeded = AuthType.ADMINISTRATOR;
+            HandlerInfo.Add(new Tuple<string, string, int>(attr.Command, attr.ShortDesc, permissionNeeded));
             SortInfo();
         }
 
