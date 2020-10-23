@@ -9,9 +9,10 @@ namespace Alibi.WebSocket
     {
         private readonly WebSocketSession _session;
 
-
         public TcpProxy(WebSocketSession wsSession, IPAddress address, int port) : base(address, port)
         {
+            OptionReceiveBufferSize = 65536;
+            OptionSendBufferSize = 65536;
             _session = wsSession;
         }
 
@@ -40,7 +41,7 @@ namespace Alibi.WebSocket
             {
                 try
                 {
-                    _session.SendTextAsync(packet);
+                    _session.SendTextAsync(packet + "%");
                 }
                 catch
                 {

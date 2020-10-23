@@ -16,6 +16,8 @@ namespace Alibi.WebSocket
 
         public WebSocketSession(WsServer server) : base(server)
         {
+            OptionReceiveBufferSize = 65536;
+            OptionSendBufferSize = 65536;
             _tcpSocket = new TcpProxy(this, IPAddress.Loopback, Alibi.Server.ServerConfiguration.Port);
         }
 

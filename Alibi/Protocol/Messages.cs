@@ -31,8 +31,6 @@ namespace Alibi.Protocol
             client.KickIfBanned();
             client.CurrentState = ClientState.Handshook;
 
-            // Check if this player is hardware banned and kick them if so
-            // Also probably check if the max players is reached and kick them
             client.Send(new AOPacket("ID", "111111", "Alibi", Server.Version));
         }
 
@@ -200,7 +198,7 @@ namespace Alibi.Protocol
             if (!CanModifyEvidence(client))
                 return;
             if (int.TryParse(packet.Objects[0], out var id))
-                client.Area.EvidenceList.RemoveAt(id);
+                client.Area!.EvidenceList.RemoveAt(id);
             RequestEvidence(client, packet);
         }
 
@@ -383,7 +381,7 @@ namespace Alibi.Protocol
 
         private static bool CanModifyEvidence(IClient client)
         {
-            if (((Area) client.Area).EvidenceModifications <= 0)
+            if (((Area) client.Area)!.EvidenceModifications <= 0)
                 return true;
             if (((Area) client.Area).EvidenceModifications == 1 && client.Area.IsClientCM(client))
                 return true;

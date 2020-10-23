@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
+using Alibi.Plugins.API.Attributes;
 
 #pragma warning disable 8618
 
@@ -23,6 +24,7 @@ namespace Alibi.Plugins.Cerberus
 
         private string _configPath;
         private Dictionary<IClient, string?> _lastOocMsgDict;
+        private Dictionary<IArea, bool> _silencedAreas;
 
         public override void Initialize()
         {
@@ -37,6 +39,12 @@ namespace Alibi.Plugins.Cerberus
             foreach (var client in Server.ClientsConnected)
                 _clientDict.Add(client, new MuteInfo());
             _lastOocMsgDict = new Dictionary<IClient, string?>();
+            
+            _silencedAreas = new Dictionary<IArea, bool>(Server.Areas.Length);
+            for (var i = 0; i < Server.Areas.Length; i++)
+            {
+                _silencedAreas.Add(Server.Areas[i], false);
+            }
 
             MutedClientsCheck();
         }
@@ -98,6 +106,12 @@ namespace Alibi.Plugins.Cerberus
 
         public override bool OnIcMessage(IClient client, ref string message)
         {
+            if (_silencedAreas[client.Area!] && client.Auth < AuthType.MODERATOR)
+            {
+                client.SendOocMessage("Thy room has been silenced. Hush, mortal, whilst the gods speaketh.");
+                return false;
+            }
+            
             message = StripZalgo(message);
             if (Config.IcMuteLengthInSeconds < 0 || Config.MaxIcMessagesPerSecond < 0)
                 return true;
@@ -187,6 +201,22 @@ namespace Alibi.Plugins.Cerberus
             }
 
             return true;
+        }
+
+        [ModOnly]
+        [CommandHandler("silence", "Mute everyone in the area except for moderators.")]
+        public void Silence(IClient client, string[] args)
+        {
+            _silencedAreas[client.Area!] = true;
+            client.SendOocMessage("The room has been struck with fear and unable to speak.");
+        }
+
+        [ModOnly]
+        [CommandHandler("unsilence", "Allows the room to speak once more.")]
+        public void UnSilence(IClient client, string[] args)
+        {
+            _silencedAreas[client.Area!] = false;
+            client.SendOocMessage("The tension has lifted and they now may speak freely.");
         }
     }
 }

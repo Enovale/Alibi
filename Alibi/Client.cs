@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
@@ -26,7 +27,7 @@ namespace Alibi
         public string? Password { get; internal set; }
         public int? Character { get; set; }
 
-        public string? CharacterName => Character != null ? Server.CharactersList[(int) Character] : null;
+        public string CharacterName => Character != null ? Server.CharactersList[(int) Character] : "Spectator";
 
         public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
