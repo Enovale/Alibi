@@ -25,7 +25,7 @@ namespace Alibi.Commands
         {
             string finalResponse = "Commands:";
             var commandsAvailable = CommandHandler.HandlerInfo
-                .Where(t => client.Auth >= AuthType.MODERATOR || !t.Item3).ToList();
+                .Where(t => client.Auth >= t.Item3).ToList();
             var pageSize = 5;
             var page = 0;
             if (args.Length >= 1)
@@ -127,7 +127,7 @@ namespace Alibi.Commands
                     output += "\n" + tchar + ", ID: " + i;
                 else
                     output +=
-                        $"\n{client.ServerRef.FindUser(tchar).IpAddress}: " +
+                        $"\n{client.ServerRef.FindUser(tchar)!.IpAddress}: " +
                         $"{tchar}, ID: {client.Character}\n";
             }
 
