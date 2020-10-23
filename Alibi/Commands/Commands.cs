@@ -23,7 +23,7 @@ namespace Alibi.Commands
         [CommandHandler("help", "Show's this text.")]
         internal static void Help(IClient client, string[] args)
         {
-            string finalResponse = "Commands:";
+            string finalResponse = "\nCommands:\nUsage: /help [page]";
             var commandsAvailable = CommandHandler.HandlerInfo
                 .Where(t => client.Auth >= t.Item3).ToList();
             var pageSize = 5;
@@ -124,11 +124,11 @@ namespace Alibi.Commands
                     continue;
                 var tchar = Server.CharactersList[i];
                 if (client.Auth < AuthType.MODERATOR)
-                    output += "\n" + tchar + ", ID: " + i;
+                    output += $"\n{tchar}, ID: {i}";
                 else
                     output +=
                         $"\n{client.ServerRef.FindUser(tchar)!.IpAddress}: " +
-                        $"{tchar}, ID: {client.Character}\n";
+                        $"{tchar}, ID: {i}";
             }
 
             client.SendOocMessage(output);
@@ -318,6 +318,13 @@ namespace Alibi.Commands
         }
 
         [ModOnly]
+        [CommandHandler("serverinfo", "Gives some server info including all player info.")]
+        internal static void ServerInfo(IClient client, string[] args)
+        {
+            // stub
+        }
+
+        [ModOnly]
         [CommandHandler("announce", "Send a message to the entire server.")]
         internal static void Announce(IClient client, string[] args)
         {
@@ -326,7 +333,7 @@ namespace Alibi.Commands
             client.ServerRef.BroadcastOocMessage(string.Join(' ', args));
         }
 
-        [ModOnly]
+        [AdminOnly]
         [CommandHandler("restart", "Restart's the server.")]
         internal static void Restart(IClient client, string[] args)
         {

@@ -258,21 +258,22 @@ namespace Alibi.Protocol
             if (packet.Objects.Length <= 0)
                 return;
             var song = packet.Objects[0];
-            if (!client.ServerRef.OnMusicChange(client, ref song))
-                return;
-
-            foreach (var m in Server.MusicList)
+            
+            for (var i = 0; i < client.ServerRef.AreaNames.Length; i++)
             {
-                if (song == m)
+                if (song == client.ServerRef.AreaNames[i])
                 {
-                    client.Area!.Broadcast(packet);
+                    client.ChangeArea(i);
                     return;
                 }
             }
 
-            for (var i = 0; i < client.ServerRef.AreaNames.Length; i++)
-                if (song == client.ServerRef.AreaNames[i])
-                    client.ChangeArea(i);
+            if (!client.ServerRef.OnMusicChange(client, ref song))
+                return;
+
+            foreach (var m in Server.MusicList)
+                if (song == m)
+                    client.Area!.Broadcast(packet);
         }
 
         [MessageHandler("MS")]

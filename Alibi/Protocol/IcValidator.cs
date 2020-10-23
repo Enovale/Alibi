@@ -40,7 +40,6 @@ namespace Alibi.Protocol
             validatedObjects.Add(packet.Objects[2]);
 
             // Nothing should break if this isn't an existing emote
-            ((Client) client).StoredEmote = packet.Objects[3];
             validatedObjects.Add(packet.Objects[3]);
 
             // Make sure message is sanitized(eventually) and prevent double messages
@@ -55,6 +54,7 @@ namespace Alibi.Protocol
                 throw new IcValidationException("Cannot double-post without changing animation.");
             client.LastSentMessage = sentMessage;
             validatedObjects.Add(sentMessage);
+            ((Client) client).StoredEmote = packet.Objects[3];
 
             // Validated client side anyway
             validatedObjects.Add(packet.Objects[5]);
