@@ -38,11 +38,11 @@ namespace Alibi.Plugins.Fun
         {
             var maximum = 6;
             var rolls = 1;
-            if (args.Length < 2)
-                if (int.TryParse(args[1], out var maxTest))
+            if (args.Length == 1)
+                if (int.TryParse(args[0], out var maxTest))
                     maximum = maxTest;
             if (args.Length >= 2)
-                if (int.TryParse(args[0], out var rollTest))
+                if (int.TryParse(args[1], out var rollTest))
                     rolls = Math.Min(10, rollTest);
 
             client.SendOocMessage(GetRoll(maximum, rolls));
@@ -51,7 +51,7 @@ namespace Alibi.Plugins.Fun
         [CommandHandler("coinflip", "Flip a coin. The entire area can see the answer.")]
         public static void CoinFlip(IClient client, string[] args)
         {
-            client.Area!.BroadcastOocMessage("A coin was flipped: " + (Rand.Next(0, 1) == 1 ? "Heads" : "Tails"));
+            client.Area!.BroadcastOocMessage("A coin was flipped: " + (Rand.Next(0, 2) == 1 ? "Heads" : "Tails"));
         }
 
         [CommandHandler("8ball", "Ask the 8ball a question, and it shall be answered...")]
