@@ -157,7 +157,7 @@ namespace Alibi.Protocol
 
                 // Self offset
                 ((Client) client).StoredOffset = Math.Max(-100, Math.Min(100, packet.Objects[17].ToIntOrZero()));
-                validatedObjects.Add(client.StoredOffset.ToString());
+                validatedObjects.Add(paired ? client.StoredOffset.ToString() : "0");
                 validatedObjects.Add(otherData[2]);
                 validatedObjects.Add(otherData[3]);
 
