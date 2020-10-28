@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
@@ -60,6 +61,7 @@ namespace Alibi.Plugins.Fun
             if (args.Length <= 0)
                 throw new CommandException("Usage: /8ball <question>");
             var question = string.Join(' ', args);
+            question = question.Substring(0, Math.Min(question.Length, 256));
             client.Area!.BroadcastOocMessage(
                 $"{client.OocName} has asked the 8ball: \"{question}\"\n" +
                 $"The 8ball says: {Fun.EightBall.Responses[Rand.Next(Fun.EightBall.Responses.Length - 1)]}");
