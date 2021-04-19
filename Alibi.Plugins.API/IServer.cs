@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+#pragma warning disable 8618
 
 namespace Alibi.Plugins.API
 {

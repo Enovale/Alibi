@@ -33,7 +33,7 @@ namespace Alibi.Plugins.Cerberus
                 File.WriteAllText(_configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
                     new JsonSerializerOptions {WriteIndented = true}));
 
-            Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(_configPath));
+            Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(_configPath))!;
 
             _clientDict = new Dictionary<IClient, MuteInfo>();
             foreach (var client in Server.ClientsConnected)
