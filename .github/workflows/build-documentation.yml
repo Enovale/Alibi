@@ -6,14 +6,18 @@ on:
       - main
 
 jobs:
-  build:
-
+  build-docs:
     runs-on: ubuntu-18.04
 
     steps:
     # Checkout all repos
     - name: Checkout repo
       uses: actions/checkout@v1
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.x
 
     - uses: nikeee/docfx-action@v1.0.0
       name: Build Documentation
