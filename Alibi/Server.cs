@@ -63,7 +63,7 @@ namespace Alibi
             if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning,
                     " Default admin login is 'admin', password is 'ChangeThis'. " +
-                    "Please change this immediately by logging into this user and running /addadmin, " + 
+                    "Please change this immediately by logging into this user and running /addadmin, " +
                     "then removing the dummy user with /removelogin.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -78,14 +78,15 @@ namespace Alibi
 
             ReloadConfig();
 
-            Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
-            if (Areas == null || Areas.Length == 0)
+            var readAreas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
+            if (readAreas == null || readAreas.Length == 0)
             {
                 Logger.Log(LogSeverity.Warning,
                     "At least one area is required to start the server, writing default area...");
-                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(new[] {new Area()}, Formatting.Indented));
-                Areas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
+                readAreas = new[] {new Area()};
+                File.WriteAllText(AreasPath, JsonConvert.SerializeObject(readAreas, Formatting.Indented));
             }
+            Areas = readAreas;
 
             AreaNames = new string[Areas.Length];
             foreach (var area in Areas)

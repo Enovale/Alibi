@@ -17,6 +17,7 @@ namespace Alibi.Protocol
             if (packet.Objects.Length < 16)
                 throw new IcValidationException("Didn't provide a full Ic Message.");
 
+            var internalClient = (Client) client;
             var validatedObjects = new List<string>(packet.Objects.Length);
 
             // Validate that `chat` is either 0, 1, or "chat"
@@ -54,7 +55,7 @@ namespace Alibi.Protocol
                 throw new IcValidationException("Cannot double-post without changing animation.");
             client.LastSentMessage = sentMessage;
             validatedObjects.Add(sentMessage);
-            ((Client) client).StoredEmote = packet.Objects[3];
+            internalClient.StoredEmote = packet.Objects[3];
 
             // Validated client side anyway
             validatedObjects.Add(packet.Objects[5]);
@@ -102,7 +103,7 @@ namespace Alibi.Protocol
             var flip = packet.Objects[12].ToIntOrZero();
             if (flip != 0 && flip != 1)
                 throw new IcValidationException("Flip is invalid.");
-            ((Client) client).StoredFlip = flip == 1;
+            internalClient.StoredFlip = flip == 1;
             validatedObjects.Add(flip.ToString());
 
             // Make sure realization is 1 or 0 
@@ -129,7 +130,7 @@ namespace Alibi.Protocol
 
                 // First object is the charID, second is whether or not they're in front
                 var pair = packet.Objects[16].Split("^");
-                ((Client) client).PairingWith = pair[0].ToIntOrZero();
+                internalClient.PairingWith = pair[0].ToIntOrZero();
 
                 var paired = false;
                 // Other's name, emote, offset, and flip
@@ -156,8 +157,8 @@ namespace Alibi.Protocol
                 validatedObjects.Add(otherData[1]);
 
                 // Self offset
-                ((Client) client).StoredOffset = Math.Max(-100, Math.Min(100, packet.Objects[17].ToIntOrZero()));
-                validatedObjects.Add(paired ? client.StoredOffset.ToString() : "0");
+                internalClient.StoredOffset = Math.Max(-100, Math.Min(100, packet.Objects[17].ToIntOrZero()));
+                validatedObjects.Add(paired ? internalClient.StoredOffset.ToString() : "0");
                 validatedObjects.Add(otherData[2]);
                 validatedObjects.Add(otherData[3]);
 
