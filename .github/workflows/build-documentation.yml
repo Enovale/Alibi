@@ -22,7 +22,7 @@ jobs:
     - name: Setup DocFX
       uses: crazy-max/ghaction-chocolatey@v1
       with:
-        args: install docfx
+        args: install docfx rsync
 
     - name: Build docs
       run: docfx Alibi.Plugins.API/docfx/docfx.json
