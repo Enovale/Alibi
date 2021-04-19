@@ -21,8 +21,8 @@ jobs:
         args: Alibi.Plugins.API/docfx/docfx.json
 
     # Publish generated site using GitHub Pages
-    - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: Alibi.Plugins.API/docfx/_site # The folder the action should deploy.
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: Alibi.Plugins.API/docfx/_site # The folder the action should deploy.
