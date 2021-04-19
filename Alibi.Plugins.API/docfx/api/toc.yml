@@ -1,0 +1,52 @@
+### YamlMime:TableOfContent
+- uid: Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  items:
+  - uid: Alibi.Plugins.API.AOPacket
+    name: AOPacket
+  - uid: Alibi.Plugins.API.AreaUpdateType
+    name: AreaUpdateType
+  - uid: Alibi.Plugins.API.AuthType
+    name: AuthType
+  - uid: Alibi.Plugins.API.ClientState
+    name: ClientState
+  - uid: Alibi.Plugins.API.Handler
+    name: Handler
+  - uid: Alibi.Plugins.API.IAOPacket
+    name: IAOPacket
+  - uid: Alibi.Plugins.API.IArea
+    name: IArea
+  - uid: Alibi.Plugins.API.IClient
+    name: IClient
+  - uid: Alibi.Plugins.API.IDatabaseManager
+    name: IDatabaseManager
+  - uid: Alibi.Plugins.API.IEvidence
+    name: IEvidence
+  - uid: Alibi.Plugins.API.IPluginManager
+    name: IPluginManager
+  - uid: Alibi.Plugins.API.IServer
+    name: IServer
+  - uid: Alibi.Plugins.API.LogSeverity
+    name: LogSeverity
+  - uid: Alibi.Plugins.API.Plugin
+    name: Plugin
+- uid: Alibi.Plugins.API.Attributes
+  name: Alibi.Plugins.API.Attributes
+  items:
+  - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+    name: AdminOnlyAttribute
+  - uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+    name: CommandHandlerAttribute
+  - uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+    name: MessageHandlerAttribute
+  - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute
+    name: ModOnlyAttribute
+  - uid: Alibi.Plugins.API.Attributes.RequireStateAttribute
+    name: RequireStateAttribute
+- uid: Alibi.Plugins.API.Exceptions
+  name: Alibi.Plugins.API.Exceptions
+  items:
+  - uid: Alibi.Plugins.API.Exceptions.CommandException
+    name: CommandException
+  - uid: Alibi.Plugins.API.Exceptions.IcValidationException
+    name: IcValidationException

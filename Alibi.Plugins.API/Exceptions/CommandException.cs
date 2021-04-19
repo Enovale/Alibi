@@ -2,6 +2,9 @@
 
 namespace Alibi.Plugins.API.Exceptions
 {
+    /// <summary>
+    /// Exception meaning a command failed to execute in the server.
+    /// </summary>
     public class CommandException : Exception
     {
         public CommandException()

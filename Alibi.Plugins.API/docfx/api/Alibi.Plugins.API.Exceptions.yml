@@ -1,0 +1,28 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Exceptions
+  commentId: N:Alibi.Plugins.API.Exceptions
+  id: Alibi.Plugins.API.Exceptions
+  children:
+  - Alibi.Plugins.API.Exceptions.CommandException
+  - Alibi.Plugins.API.Exceptions.IcValidationException
+  langs:
+  - csharp
+  - vb
+  name: Alibi.Plugins.API.Exceptions
+  nameWithType: Alibi.Plugins.API.Exceptions
+  fullName: Alibi.Plugins.API.Exceptions
+  type: Namespace
+  assemblies:
+  - Alibi.Plugins.API
+references:
+- uid: Alibi.Plugins.API.Exceptions.CommandException
+  commentId: T:Alibi.Plugins.API.Exceptions.CommandException
+  name: CommandException
+  nameWithType: CommandException
+  fullName: Alibi.Plugins.API.Exceptions.CommandException
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException
+  commentId: T:Alibi.Plugins.API.Exceptions.IcValidationException
+  name: IcValidationException
+  nameWithType: IcValidationException
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException

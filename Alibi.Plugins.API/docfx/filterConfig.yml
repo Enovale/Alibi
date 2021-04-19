@@ -1,0 +1,5 @@
+apiRules:
+- exclude:
+    # mentioning types from System.* namespace
+    uidRegex: ^System\..*$
+    type: Type
