@@ -33,7 +33,7 @@ namespace Alibi
 
         private static string GetRealProcessDirectory()
         {
-            var execPath = Process.GetCurrentProcess().MainModule.FileName;
+            var execPath = Process.GetCurrentProcess().MainModule!.FileName!;
             return (execPath.EndsWith("dotnet.exe") ? Environment.CurrentDirectory : Path.GetDirectoryName(execPath))!;
         }
 

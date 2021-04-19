@@ -27,7 +27,7 @@ namespace Alibi
     {
         public static string PluginFolder = "Plugins";
         public static string PluginDepsFolder = "Dependencies";
-        public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName;
+        public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName!;
         public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
         public static string AreasPath = Path.Combine(ConfigFolder, "areas.json");
@@ -67,7 +67,7 @@ namespace Alibi
                     "then removing the dummy user with /removelogin.");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            Version = fileVersionInfo.ProductVersion;
+            Version = fileVersionInfo.ProductVersion!;
 
             ClientsConnected = new List<IClient>(ServerConfiguration.MaxPlayers);
             if (ServerConfiguration.Advertise)
