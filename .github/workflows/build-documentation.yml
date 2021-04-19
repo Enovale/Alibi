@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-docs:
-    runs-on: ubuntu-18.04
+    runs-on: windows-latest
 
     steps:
     # Checkout all repos
@@ -19,13 +19,13 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
-    - name: Get docfx
-      run: |
-        curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
-        unzip -d .docfx docfx.zip
+    - name: Setup DocFX
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install docfx
 
     - name: Build docs
-      run: dotnet .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
+      run: docfx Alibi.Plugins.API/docfx/docfx.json
 
     # Publish generated site using GitHub Pages
     - name: Deploy to GitHub Pages
