@@ -57,17 +57,16 @@ namespace Alibi
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
             ServerConfiguration = config;
+            Version asmVersion = Assembly.GetExecutingAssembly().GetName().Version!;
+            Version = $"{asmVersion.Major}.{asmVersion.Minor}.{asmVersion.Build}";
             Logger = new Logger(this);
-            Logger.Log(LogSeverity.Special, " Server starting up...");
+            Logger.Log(LogSeverity.Special, $" Server starting up running version {Version}...");
             Database = new DatabaseManager();
             if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning,
                     " Default admin login is 'admin', password is 'ChangeThis'. " +
                     "Please change this immediately by logging into this user and running /addadmin, " +
                     "then removing the dummy user with /removelogin.");
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            Version = fileVersionInfo.ProductVersion!;
 
             ClientsConnected = new List<IClient>(ServerConfiguration.MaxPlayers);
             if (ServerConfiguration.Advertise)
