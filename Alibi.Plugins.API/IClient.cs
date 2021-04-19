@@ -34,8 +34,8 @@ namespace Alibi.Plugins.API
         public void KickIfBanned();
         public void Kick(string reason);
         public string GetBanReason();
-        public void BanHwid(string reason, TimeSpan? expireDate);
-        public void BanIp(string reason, TimeSpan? expireDate);
+        public void BanHwid(string reason, TimeSpan? expireDate, IClient banner);
+        public void BanIp(string reason, TimeSpan? expireDate, IClient banner);
 
         public void Send(IAOPacket packet);
         public void SendOocMessage(string message, string? sender = null);

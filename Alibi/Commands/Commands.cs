@@ -481,11 +481,11 @@ namespace Alibi.Commands
                 // Gross
                 foreach (var c in new Queue<IClient>(
                     client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
-                    c.BanIp(reason, expireDate);
+                    c.BanIp(reason, expireDate, client);
             else
                 foreach (var c in new Queue<IClient>(
                     client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
-                    c.BanHwid(reason, expireDate);
+                    c.BanHwid(reason, expireDate, client);
 
             client.SendOocMessage($"{args[0]} has been banned.");
         }

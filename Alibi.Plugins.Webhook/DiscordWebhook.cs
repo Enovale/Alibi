@@ -78,18 +78,18 @@ namespace Alibi.Plugins.Webhook
             return true;
         }
 
-        public override bool OnBan(IClient banned, ref string reason, TimeSpan? expires = null)
+        public override bool OnBan(IClient client, IClient banner, ref string reason, TimeSpan? expires = null)
         {
             if (_validConfig && _enabled)
             {
                 var decodedMessage = Configuration.BanMessage;
-                decodedMessage = decodedMessage.Replace("%ch", banned.CharacterName ?? "Spectator");
+                decodedMessage = decodedMessage.Replace("%ch", client.CharacterName ?? "Spectator");
                 decodedMessage = decodedMessage.Replace("%e",
                     expires != null ? expires.Value.LargestIntervalWithUnits() : "Never.");
                 decodedMessage = decodedMessage.Replace("%r", reason);
-                decodedMessage = decodedMessage.Replace("%ip", banned.IpAddress.ToString());
-                decodedMessage = decodedMessage.Replace("%hwid", banned.HardwareId ?? "");
-                decodedMessage = decodedMessage.Replace("%lsm", banned.LastSentMessage ?? "");
+                decodedMessage = decodedMessage.Replace("%ip", client.IpAddress.ToString());
+                decodedMessage = decodedMessage.Replace("%hwid", client.HardwareId ?? "");
+                decodedMessage = decodedMessage.Replace("%lsm", client.LastSentMessage ?? "");
                 _hook.SendMessage(decodedMessage);
             }
 

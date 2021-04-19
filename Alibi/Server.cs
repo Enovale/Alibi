@@ -256,12 +256,12 @@ namespace Alibi
             return true;
         }
 
-        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null)
+        public bool OnBan(IClient client, IClient banner, ref string reason, TimeSpan? expires = null)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
                 try
                 {
-                    if (!p.OnBan(client, ref reason, expires))
+                    if (!p.OnBan(client, banner, ref reason, expires))
                         return false;
                 }
                 catch (Exception e)
