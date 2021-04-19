@@ -25,7 +25,9 @@ jobs:
         args: install docfx
 
     - name: Build docs
-      run: docfx Alibi.Plugins.API/docfx/docfx.json
+      run: |
+      docfx metadata Alibi.Plugins.API/docfx/docfx.json
+      docfx build Alibi.Plugins.API/docfx/docfx.json
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
