@@ -19,10 +19,13 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
-    - uses: nikeee/docfx-action@v1.0.0
-      name: Build Documentation
-      with:
-        args: Alibi.Plugins.API/docfx/docfx.json
+    - name: Get docfx
+      run: |
+        curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
+        unzip -d .docfx docfx.zip
+
+    - name: Build docs
+      run:  dotnet .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
 
     # Publish generated site using GitHub Pages
     - name: Deploy to GitHub Pages
