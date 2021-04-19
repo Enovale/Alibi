@@ -445,11 +445,11 @@ references:
   commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String)
   fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException(System.String)
   nameWithType: CommandException.CommandException(String)
-- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,Exception)
+- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,System.Exception)
   name: CommandException(String, Exception)
-  href: api/Alibi.Plugins.API.Exceptions.CommandException.html#Alibi_Plugins_API_Exceptions_CommandException__ctor_System_String_Exception_
-  commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,Exception)
-  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException(System.String, Exception)
+  href: api/Alibi.Plugins.API.Exceptions.CommandException.html#Alibi_Plugins_API_Exceptions_CommandException__ctor_System_String_System_Exception_
+  commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,System.Exception)
+  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException(System.String, System.Exception)
   nameWithType: CommandException.CommandException(String, Exception)
 - uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor*
   name: CommandException
@@ -476,11 +476,11 @@ references:
   commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
   fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String)
   nameWithType: IcValidationException.IcValidationException(String)
-- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,Exception)
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
   name: IcValidationException(String, Exception)
-  href: api/Alibi.Plugins.API.Exceptions.IcValidationException.html#Alibi_Plugins_API_Exceptions_IcValidationException__ctor_System_String_Exception_
-  commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,Exception)
-  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String, Exception)
+  href: api/Alibi.Plugins.API.Exceptions.IcValidationException.html#Alibi_Plugins_API_Exceptions_IcValidationException__ctor_System_String_System_Exception_
+  commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String, System.Exception)
   nameWithType: IcValidationException.IcValidationException(String, Exception)
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
   name: IcValidationException
@@ -495,11 +495,11 @@ references:
   commentId: T:Alibi.Plugins.API.Handler
   fullName: Alibi.Plugins.API.Handler
   nameWithType: Handler
-- uid: Alibi.Plugins.API.Handler.#ctor(MethodInfo,Alibi.Plugins.API.Plugin)
+- uid: Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
   name: Handler(MethodInfo, Plugin)
-  href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler__ctor_MethodInfo_Alibi_Plugins_API_Plugin_
-  commentId: M:Alibi.Plugins.API.Handler.#ctor(MethodInfo,Alibi.Plugins.API.Plugin)
-  fullName: Alibi.Plugins.API.Handler.Handler(MethodInfo, Alibi.Plugins.API.Plugin)
+  href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler__ctor_System_Reflection_MethodInfo_Alibi_Plugins_API_Plugin_
+  commentId: M:Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
+  fullName: Alibi.Plugins.API.Handler.Handler(System.Reflection.MethodInfo, Alibi.Plugins.API.Plugin)
   nameWithType: Handler.Handler(MethodInfo, Plugin)
 - uid: Alibi.Plugins.API.Handler.#ctor*
   name: Handler
@@ -850,13 +850,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.Auth
   nameWithType: IClient.Auth
-- uid: Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{TimeSpan},Alibi.Plugins.API.IClient)
+- uid: Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   name: BanHwid(String, Nullable<TimeSpan>, IClient)
-  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanHwid_System_String_System_Nullable_TimeSpan__Alibi_Plugins_API_IClient_
-  commentId: M:Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{TimeSpan},Alibi.Plugins.API.IClient)
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanHwid_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  commentId: M:Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   name.vb: BanHwid(String, Nullable(Of TimeSpan), IClient)
-  fullName: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable<TimeSpan>, Alibi.Plugins.API.IClient)
-  fullName.vb: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable(Of TimeSpan), Alibi.Plugins.API.IClient)
+  fullName: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
   nameWithType: IClient.BanHwid(String, Nullable<TimeSpan>, IClient)
   nameWithType.vb: IClient.BanHwid(String, Nullable(Of TimeSpan), IClient)
 - uid: Alibi.Plugins.API.IClient.BanHwid*
@@ -866,13 +866,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.BanHwid
   nameWithType: IClient.BanHwid
-- uid: Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{TimeSpan},Alibi.Plugins.API.IClient)
+- uid: Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   name: BanIp(String, Nullable<TimeSpan>, IClient)
-  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanIp_System_String_System_Nullable_TimeSpan__Alibi_Plugins_API_IClient_
-  commentId: M:Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{TimeSpan},Alibi.Plugins.API.IClient)
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanIp_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  commentId: M:Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   name.vb: BanIp(String, Nullable(Of TimeSpan), IClient)
-  fullName: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable<TimeSpan>, Alibi.Plugins.API.IClient)
-  fullName.vb: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable(Of TimeSpan), Alibi.Plugins.API.IClient)
+  fullName: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
   nameWithType: IClient.BanIp(String, Nullable<TimeSpan>, IClient)
   nameWithType.vb: IClient.BanIp(String, Nullable(Of TimeSpan), IClient)
 - uid: Alibi.Plugins.API.IClient.BanIp*
@@ -1116,15 +1116,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.Send
   nameWithType: IClient.Send
-- uid: Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.Nullable{System.String})
-  name: SendOocMessage(String, Nullable<String>)
-  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_SendOocMessage_System_String_System_Nullable_System_String__
-  commentId: M:Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.Nullable{System.String})
-  name.vb: SendOocMessage(String, Nullable(Of String))
-  fullName: Alibi.Plugins.API.IClient.SendOocMessage(System.String, System.Nullable<System.String>)
-  fullName.vb: Alibi.Plugins.API.IClient.SendOocMessage(System.String, System.Nullable(Of System.String))
-  nameWithType: IClient.SendOocMessage(String, Nullable<String>)
-  nameWithType.vb: IClient.SendOocMessage(String, Nullable(Of String))
+- uid: Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
+  name: SendOocMessage(String, String)
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_SendOocMessage_System_String_System_String_
+  commentId: M:Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
+  fullName: Alibi.Plugins.API.IClient.SendOocMessage(System.String, System.String)
+  nameWithType: IClient.SendOocMessage(String, String)
 - uid: Alibi.Plugins.API.IClient.SendOocMessage*
   name: SendOocMessage
   href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_SendOocMessage_
@@ -1216,13 +1213,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.AddUser
   nameWithType: IDatabaseManager.AddUser
-- uid: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{TimeSpan})
+- uid: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
   name: BanHwid(String, String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_TimeSpan__
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{TimeSpan})
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
   name.vb: BanHwid(String, String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable<TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable(Of TimeSpan))
+  fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable<System.TimeSpan>)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable(Of System.TimeSpan))
   nameWithType: IDatabaseManager.BanHwid(String, String, Nullable<TimeSpan>)
   nameWithType.vb: IDatabaseManager.BanHwid(String, String, Nullable(Of TimeSpan))
 - uid: Alibi.Plugins.API.IDatabaseManager.BanHwid*
@@ -1232,13 +1229,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid
   nameWithType: IDatabaseManager.BanHwid
-- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{TimeSpan})
+- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
   name: BanIp(String, String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_TimeSpan__
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{TimeSpan})
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan__
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
   name.vb: BanIp(String, String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable<TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable(Of TimeSpan))
+  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable<System.TimeSpan>)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable(Of System.TimeSpan))
   nameWithType: IDatabaseManager.BanIp(String, String, Nullable<TimeSpan>)
   nameWithType.vb: IDatabaseManager.BanIp(String, String, Nullable(Of TimeSpan))
 - uid: Alibi.Plugins.API.IDatabaseManager.BanIp*
@@ -1682,13 +1679,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.OnAllPluginsLoaded
   nameWithType: IServer.OnAllPluginsLoaded
-- uid: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{TimeSpan})
+- uid: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
   name: OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnBan_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IClient_System_String__System_Nullable_TimeSpan__
-  commentId: M:Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{TimeSpan})
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnBan_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IClient_System_String__System_Nullable_System_TimeSpan__
+  commentId: M:Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
   name.vb: OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ref System.String, System.Nullable<TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ByRef System.String, System.Nullable(Of TimeSpan))
+  fullName: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ref System.String, System.Nullable<System.TimeSpan>)
+  fullName.vb: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ByRef System.String, System.Nullable(Of System.TimeSpan))
   nameWithType: IServer.OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
   nameWithType.vb: IServer.OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
 - uid: Alibi.Plugins.API.IServer.OnBan*
@@ -1938,13 +1935,13 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Plugin.OnAllPluginsLoaded
   nameWithType: Plugin.OnAllPluginsLoaded
-- uid: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{TimeSpan})
+- uid: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
   name: OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_OnBan_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IClient_System_String__System_Nullable_TimeSpan__
-  commentId: M:Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{TimeSpan})
+  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_OnBan_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IClient_System_String__System_Nullable_System_TimeSpan__
+  commentId: M:Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
   name.vb: OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ref System.String, System.Nullable<TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ByRef System.String, System.Nullable(Of TimeSpan))
+  fullName: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ref System.String, System.Nullable<System.TimeSpan>)
+  fullName.vb: Alibi.Plugins.API.Plugin.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ByRef System.String, System.Nullable(Of System.TimeSpan))
   nameWithType: Plugin.OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
   nameWithType.vb: Plugin.OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
 - uid: Alibi.Plugins.API.Plugin.OnBan*
