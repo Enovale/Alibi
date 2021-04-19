@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
-    <PackageVersion>0.4</PackageVersion>
-    <AssemblyVersion>0.3</AssemblyVersion>
+    <PackageVersion>0.5</PackageVersion>
+    <AssemblyVersion>0.5</AssemblyVersion>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
 
@@ -26,17 +26,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.0" />
-    <PackageReference Include="NetCoreServer" Version="3.0.20" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="NetCoreServer" Version="5.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

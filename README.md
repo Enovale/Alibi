@@ -8,12 +8,12 @@ for this game. So I thought it would be fun to try and make one myself, to see i
 # Prerequisites
 Windows:
 
- - All you need is the [.NET Core 3.1 Runtime](https://cutt.ly/netcore31) installed.
+ - All you need is either the Desktop or Core version of the [.NET 5.0 Runtime](https://dotnet.microsoft.com/download/dotnet/5.0) installed.
 
 Linux/Unix:
  
  - Determine how to install the dotnet core runtime on your distribution: 
- [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu) 
+ [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux) 
  or [here](https://wiki.archlinux.org/index.php/.NET_Core#Installation) are a few.
 
 # Usage
@@ -29,7 +29,7 @@ Alibi
 
 # Plugins (Actual wiki coming soon)
 Surprisingly, this thing supports plugins! To make one, just make a new .Net Core 
-Class Library that targets 'Core 3.1, and reference the `Alibi.Plugins.API` 
+Class Library that targets net5.0, and reference the `Alibi.Plugins.API` 
 project of this repository, or install this 
 [NuGet package](https://www.nuget.org/packages/Alibi.Plugins.API/).
 

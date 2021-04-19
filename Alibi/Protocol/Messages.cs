@@ -317,8 +317,7 @@ namespace Alibi.Protocol
             if (message.StartsWith("/"))
             {
                 var command = message.Substring(1).Split(" ").First().Trim();
-                var arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries));
-                arguments.RemoveAt(0);
+                var arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries).Skip(1));
 
                 CommandHandler.HandleCommand(client, command, arguments.ToArray());
                 return;
