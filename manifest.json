@@ -1,0 +1,407 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/Alibi.Plugins.API/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AOPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AOPacket.html",
+          "hash": "HBYT1EtKiLCZJOgdOLnErw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AreaUpdateType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AreaUpdateType.html",
+          "hash": "HXe3kuFKV5iHi6BY9HUnBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.AdminOnlyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.AdminOnlyAttribute.html",
+          "hash": "EyzPy3BGC0LuuK5S+dhT5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.CommandHandlerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.CommandHandlerAttribute.html",
+          "hash": "Qh3AZLij+uDmj/9d/YoNPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.MessageHandlerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.MessageHandlerAttribute.html",
+          "hash": "HkN+5SHlgzIupF/xzC/5UA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.ModOnlyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.ModOnlyAttribute.html",
+          "hash": "ZoNrX5sPl6QoGi9uIDdxLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.RequireStateAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.RequireStateAttribute.html",
+          "hash": "fS2gKnH1xv37bbSY8FWHrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.html",
+          "hash": "ZO0avtJIplNBSxzBSXvjlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AuthType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AuthType.html",
+          "hash": "jjwrezCFpoLGD3/E41QVjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.ClientState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.ClientState.html",
+          "hash": "eTH/sHf3JXbwHRvQRcgySg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.CommandException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.CommandException.html",
+          "hash": "/By+WgE6kXvXdx/x8BFWMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.IcValidationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.IcValidationException.html",
+          "hash": "3iva2xkp4ghc0/ipMVtxgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.html",
+          "hash": "fJZWSuYGxcEEvUQ8UqjmIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Handler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Handler.html",
+          "hash": "WsowQu5qrR7QzKxYwnoQzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IAOPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IAOPacket.html",
+          "hash": "GgKQGyGyidv+BhBb7BUZkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IArea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IArea.html",
+          "hash": "6RfiFo/WrsHAAxtqIRbgdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IClient.html",
+          "hash": "d7pGHof3QVPpQk2zX+lBBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IDatabaseManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IDatabaseManager.html",
+          "hash": "k6y7E1UnyW0nghi1lm71dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IEvidence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IEvidence.html",
+          "hash": "rEx7cU9UXWuPAF+KAVEtuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IPluginManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IPluginManager.html",
+          "hash": "vmSXhYaHtZ0GTJqtQg0fRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IServer.html",
+          "hash": "dfNITslzt0T0th+V1TutXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.LogSeverity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.LogSeverity.html",
+          "hash": "EKnqGDivcFDYmYnzo39xXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Plugin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Plugin.html",
+          "hash": "heMLAZPXmcFujj/tqIAgxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.html",
+          "hash": "dYnjMP2F4YUHyFzYvafjhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "m6Es0t+2yUpL+FksGArO7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "wQCBJEfL3SpvqqVnivZFqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "djFpiTijGhvev2snj9UtQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "zztv5MIkrfyrZFRP8U6smA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 24,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
