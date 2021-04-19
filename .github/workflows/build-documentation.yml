@@ -26,10 +26,28 @@ jobs:
 
     - name: Build docs
       run: docfx Alibi.Plugins.API/docfx/docfx.json
+      
+    - name: Upload Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: docs
+          path: Alibi.Plugins.API/docfx/_site
 
-    # Publish generated site using GitHub Pages
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.1
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: Alibi.Plugins.API/docfx/_site # The folder the action should deploy.
+  deploy-docs:
+    needs: [build-docs] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      - name: Download Artifacts # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v1
+        with:
+          name: docs
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: "docs" # The deployment folder should match the name of the artifact. Even though our project builds into the 'build' folder the artifact name of 'site' must be placed here.
