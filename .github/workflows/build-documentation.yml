@@ -32,7 +32,9 @@ jobs:
         unzip -d .docfx docfx.zip
 
     - name: Build docs
-      run:  mono .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
+      run:  |
+        export PATH=/home/runner/.dotnet:/home/runner/.dotnet/tools:$PATH
+        mono .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
 
     # Publish generated site using GitHub Pages
     - name: Deploy to GitHub Pages
