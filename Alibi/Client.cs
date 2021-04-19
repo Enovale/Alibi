@@ -132,9 +132,9 @@ namespace Alibi
             return Server.Database.GetBanReason(IpAddress.ToString());
         }
 
-        public void BanHwid(string reason, TimeSpan? expireDate)
+        public void BanHwid(string reason, TimeSpan? expireDate, IClient banner)
         {
-            if (!ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, ref reason, expireDate))
+            if (!ServerRef.OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
                 return;
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
@@ -142,10 +142,10 @@ namespace Alibi
             Session.Disconnect();
         }
 
-        public void BanIp(string reason, TimeSpan? expireDate)
+        public void BanIp(string reason, TimeSpan? expireDate, IClient banner)
         {
             foreach (var hwid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
-                ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate);
+                ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate, banner);
         }
 
         public void Send(IAOPacket packet)

@@ -42,6 +42,6 @@ namespace Alibi.Plugins.API
         public bool OnOocMessage(IClient client, ref string message);
         public bool OnMusicChange(IClient client, ref string song);
         public bool OnModCall(IClient client, IAOPacket packet);
-        public bool OnBan(IClient client, ref string reason, TimeSpan? expires = null);
+        public bool OnBan(IClient client, IClient banner, ref string reason, TimeSpan? expires = null);
     }
 }

@@ -109,7 +109,7 @@ namespace Alibi
                 }
 
                 if (_packetCount >= Alibi.Server.ServerConfiguration.RateLimit)
-                    Client.BanIp("You have been rate limited.", Alibi.Server.ServerConfiguration.RateLimitBanLength);
+                    Client.BanIp("You have been rate limited.", Alibi.Server.ServerConfiguration.RateLimitBanLength, null);
                 _packetCount++;
                 _lastSentPacket = packet;
                 MessageHandler.HandleMessage(Client, AOPacket.FromMessage(packet));
