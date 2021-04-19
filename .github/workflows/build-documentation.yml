@@ -22,16 +22,16 @@ jobs:
     - name: Setup DocFX
       uses: crazy-max/ghaction-chocolatey@v1
       with:
-        args: install docfx rsync
+        args: install docfx
 
     - name: Build docs
       run: docfx Alibi.Plugins.API/docfx/docfx.json
       
     - name: Upload Artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: docs
-          path: Alibi.Plugins.API/docfx/_site
+      uses: actions/upload-artifact@v1
+      with:
+        name: docs
+        path: Alibi.Plugins.API/docfx/_site
 
   deploy-docs:
     needs: [build-docs] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
