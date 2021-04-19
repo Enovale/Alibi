@@ -14,20 +14,10 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v1
 
-    - name: Install Zlib
-      run: sudo apt-get update && sudo apt-get install zlib1g-dev
-
     - name: Setup dotnet
-      uses: actions/setup-dotnet@master
+      uses: actions/setup-dotnet@main
       with:
         dotnet-version: 5.0.x
-
-    - name: Get mono
-      run: |
-        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-        echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-        sudo apt-get update
-        sudo apt-get install mono-complete --yes
 
     - name: Get docfx
       run: |
@@ -35,9 +25,7 @@ jobs:
         unzip -d .docfx docfx.zip
 
     - name: Build docs
-      run:  |
-        export PATH=/home/runner/.dotnet:/home/runner/.dotnet/tools:$PATH
-        mono .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
+      run: dotnet .docfx/docfx.exe Alibi.Plugins.API/docfx/docfx.json
 
     # Publish generated site using GitHub Pages
     - name: Deploy to GitHub Pages
