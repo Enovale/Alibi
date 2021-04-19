@@ -1,0 +1,1272 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.IClient
+  commentId: T:Alibi.Plugins.API.IClient
+  id: IClient
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.IClient.Area
+  - Alibi.Plugins.API.IClient.Auth
+  - Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
+  - Alibi.Plugins.API.IClient.Character
+  - Alibi.Plugins.API.IClient.CharacterName
+  - Alibi.Plugins.API.IClient.Connected
+  - Alibi.Plugins.API.IClient.CurrentState
+  - Alibi.Plugins.API.IClient.GetBanReason
+  - Alibi.Plugins.API.IClient.HardwareId
+  - Alibi.Plugins.API.IClient.IpAddress
+  - Alibi.Plugins.API.IClient.Kick(System.String)
+  - Alibi.Plugins.API.IClient.KickIfBanned
+  - Alibi.Plugins.API.IClient.LastAlive
+  - Alibi.Plugins.API.IClient.LastSentMessage
+  - Alibi.Plugins.API.IClient.Muted
+  - Alibi.Plugins.API.IClient.OocName
+  - Alibi.Plugins.API.IClient.PairingWith
+  - Alibi.Plugins.API.IClient.Password
+  - Alibi.Plugins.API.IClient.Position
+  - Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  - Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
+  - Alibi.Plugins.API.IClient.ServerRef
+  - Alibi.Plugins.API.IClient.StoredEmote
+  - Alibi.Plugins.API.IClient.StoredFlip
+  - Alibi.Plugins.API.IClient.StoredOffset
+  langs:
+  - csharp
+  - vb
+  name: IClient
+  nameWithType: IClient
+  fullName: Alibi.Plugins.API.IClient
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IClient
+    path: ../IClient.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public interface IClient
+    content.vb: Public Interface IClient
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.IClient.ServerRef
+  commentId: P:Alibi.Plugins.API.IClient.ServerRef
+  id: ServerRef
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: ServerRef
+  nameWithType: IClient.ServerRef
+  fullName: Alibi.Plugins.API.IClient.ServerRef
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ServerRef
+    path: ../IClient.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: IServer ServerRef { get; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.IServer
+    content.vb: ReadOnly Property ServerRef As IServer
+  overload: Alibi.Plugins.API.IClient.ServerRef*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.Connected
+  commentId: P:Alibi.Plugins.API.IClient.Connected
+  id: Connected
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Connected
+  nameWithType: IClient.Connected
+  fullName: Alibi.Plugins.API.IClient.Connected
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Connected
+    path: ../IClient.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool Connected { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property Connected As Boolean
+  overload: Alibi.Plugins.API.IClient.Connected*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.Auth
+  commentId: P:Alibi.Plugins.API.IClient.Auth
+  id: Auth
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Auth
+  nameWithType: IClient.Auth
+  fullName: Alibi.Plugins.API.IClient.Auth
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Auth
+    path: ../IClient.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int Auth { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Auth As Integer
+  overload: Alibi.Plugins.API.IClient.Auth*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.LastAlive
+  commentId: P:Alibi.Plugins.API.IClient.LastAlive
+  id: LastAlive
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: LastAlive
+  nameWithType: IClient.LastAlive
+  fullName: Alibi.Plugins.API.IClient.LastAlive
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: LastAlive
+    path: ../IClient.cs
+    startLine: 12
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: DateTime LastAlive { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: ReadOnly Property LastAlive As Date
+  overload: Alibi.Plugins.API.IClient.LastAlive*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.IpAddress
+  commentId: P:Alibi.Plugins.API.IClient.IpAddress
+  id: IpAddress
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: IpAddress
+  nameWithType: IClient.IpAddress
+  fullName: Alibi.Plugins.API.IClient.IpAddress
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IpAddress
+    path: ../IClient.cs
+    startLine: 13
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: IPAddress IpAddress { get; }
+    parameters: []
+    return:
+      type: System.Net.IPAddress
+    content.vb: ReadOnly Property IpAddress As IPAddress
+  overload: Alibi.Plugins.API.IClient.IpAddress*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.HardwareId
+  commentId: P:Alibi.Plugins.API.IClient.HardwareId
+  id: HardwareId
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: HardwareId
+  nameWithType: IClient.HardwareId
+  fullName: Alibi.Plugins.API.IClient.HardwareId
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: HardwareId
+    path: ../IClient.cs
+    startLine: 14
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string HardwareId { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property HardwareId As String
+  overload: Alibi.Plugins.API.IClient.HardwareId*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.Area
+  commentId: P:Alibi.Plugins.API.IClient.Area
+  id: Area
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Area
+  nameWithType: IClient.Area
+  fullName: Alibi.Plugins.API.IClient.Area
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Area
+    path: ../IClient.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: IArea Area { get; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.IArea
+    content.vb: ReadOnly Property Area As IArea
+  overload: Alibi.Plugins.API.IClient.Area*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.Position
+  commentId: P:Alibi.Plugins.API.IClient.Position
+  id: Position
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: IClient.Position
+  fullName: Alibi.Plugins.API.IClient.Position
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Position
+    path: ../IClient.cs
+    startLine: 16
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Position { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Position As String
+  overload: Alibi.Plugins.API.IClient.Position*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IClient.CurrentState
+  commentId: P:Alibi.Plugins.API.IClient.CurrentState
+  id: CurrentState
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: CurrentState
+  nameWithType: IClient.CurrentState
+  fullName: Alibi.Plugins.API.IClient.CurrentState
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CurrentState
+    path: ../IClient.cs
+    startLine: 17
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: ClientState CurrentState { get; set; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.ClientState
+    content.vb: Property CurrentState As ClientState
+  overload: Alibi.Plugins.API.IClient.CurrentState*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IClient.Password
+  commentId: P:Alibi.Plugins.API.IClient.Password
+  id: Password
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Password
+  nameWithType: IClient.Password
+  fullName: Alibi.Plugins.API.IClient.Password
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Password
+    path: ../IClient.cs
+    startLine: 19
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Password { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Password As String
+  overload: Alibi.Plugins.API.IClient.Password*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.Character
+  commentId: P:Alibi.Plugins.API.IClient.Character
+  id: Character
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Character
+  nameWithType: IClient.Character
+  fullName: Alibi.Plugins.API.IClient.Character
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Character
+    path: ../IClient.cs
+    startLine: 20
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int? Character { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Property Character As Integer?
+  overload: Alibi.Plugins.API.IClient.Character*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IClient.CharacterName
+  commentId: P:Alibi.Plugins.API.IClient.CharacterName
+  id: CharacterName
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: CharacterName
+  nameWithType: IClient.CharacterName
+  fullName: Alibi.Plugins.API.IClient.CharacterName
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CharacterName
+    path: ../IClient.cs
+    startLine: 21
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string CharacterName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property CharacterName As String
+  overload: Alibi.Plugins.API.IClient.CharacterName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.OocName
+  commentId: P:Alibi.Plugins.API.IClient.OocName
+  id: OocName
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: OocName
+  nameWithType: IClient.OocName
+  fullName: Alibi.Plugins.API.IClient.OocName
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: OocName
+    path: ../IClient.cs
+    startLine: 22
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string OocName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property OocName As String
+  overload: Alibi.Plugins.API.IClient.OocName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.LastSentMessage
+  commentId: P:Alibi.Plugins.API.IClient.LastSentMessage
+  id: LastSentMessage
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: LastSentMessage
+  nameWithType: IClient.LastSentMessage
+  fullName: Alibi.Plugins.API.IClient.LastSentMessage
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: LastSentMessage
+    path: ../IClient.cs
+    startLine: 23
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string LastSentMessage { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property LastSentMessage As String
+  overload: Alibi.Plugins.API.IClient.LastSentMessage*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IClient.Muted
+  commentId: P:Alibi.Plugins.API.IClient.Muted
+  id: Muted
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Muted
+  nameWithType: IClient.Muted
+  fullName: Alibi.Plugins.API.IClient.Muted
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Muted
+    path: ../IClient.cs
+    startLine: 24
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool Muted { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Property Muted As Boolean
+  overload: Alibi.Plugins.API.IClient.Muted*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IClient.PairingWith
+  commentId: P:Alibi.Plugins.API.IClient.PairingWith
+  id: PairingWith
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: PairingWith
+  nameWithType: IClient.PairingWith
+  fullName: Alibi.Plugins.API.IClient.PairingWith
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: PairingWith
+    path: ../IClient.cs
+    startLine: 27
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int PairingWith { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property PairingWith As Integer
+  overload: Alibi.Plugins.API.IClient.PairingWith*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.StoredEmote
+  commentId: P:Alibi.Plugins.API.IClient.StoredEmote
+  id: StoredEmote
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: StoredEmote
+  nameWithType: IClient.StoredEmote
+  fullName: Alibi.Plugins.API.IClient.StoredEmote
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: StoredEmote
+    path: ../IClient.cs
+    startLine: 28
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string StoredEmote { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property StoredEmote As String
+  overload: Alibi.Plugins.API.IClient.StoredEmote*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.StoredOffset
+  commentId: P:Alibi.Plugins.API.IClient.StoredOffset
+  id: StoredOffset
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: StoredOffset
+  nameWithType: IClient.StoredOffset
+  fullName: Alibi.Plugins.API.IClient.StoredOffset
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: StoredOffset
+    path: ../IClient.cs
+    startLine: 29
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int StoredOffset { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property StoredOffset As Integer
+  overload: Alibi.Plugins.API.IClient.StoredOffset*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.StoredFlip
+  commentId: P:Alibi.Plugins.API.IClient.StoredFlip
+  id: StoredFlip
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: StoredFlip
+  nameWithType: IClient.StoredFlip
+  fullName: Alibi.Plugins.API.IClient.StoredFlip
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: StoredFlip
+    path: ../IClient.cs
+    startLine: 30
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool StoredFlip { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property StoredFlip As Boolean
+  overload: Alibi.Plugins.API.IClient.StoredFlip*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
+  commentId: M:Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
+  id: ChangeArea(System.Int32)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: ChangeArea(Int32)
+  nameWithType: IClient.ChangeArea(Int32)
+  fullName: Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ChangeArea
+    path: ../IClient.cs
+    startLine: 32
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void ChangeArea(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Sub ChangeArea(index As Integer)
+  overload: Alibi.Plugins.API.IClient.ChangeArea*
+- uid: Alibi.Plugins.API.IClient.KickIfBanned
+  commentId: M:Alibi.Plugins.API.IClient.KickIfBanned
+  id: KickIfBanned
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: KickIfBanned()
+  nameWithType: IClient.KickIfBanned()
+  fullName: Alibi.Plugins.API.IClient.KickIfBanned()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: KickIfBanned
+    path: ../IClient.cs
+    startLine: 33
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void KickIfBanned()
+    content.vb: Sub KickIfBanned
+  overload: Alibi.Plugins.API.IClient.KickIfBanned*
+- uid: Alibi.Plugins.API.IClient.Kick(System.String)
+  commentId: M:Alibi.Plugins.API.IClient.Kick(System.String)
+  id: Kick(System.String)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Kick(String)
+  nameWithType: IClient.Kick(String)
+  fullName: Alibi.Plugins.API.IClient.Kick(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Kick
+    path: ../IClient.cs
+    startLine: 34
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void Kick(string reason)
+    parameters:
+    - id: reason
+      type: System.String
+    content.vb: Sub Kick(reason As String)
+  overload: Alibi.Plugins.API.IClient.Kick*
+- uid: Alibi.Plugins.API.IClient.GetBanReason
+  commentId: M:Alibi.Plugins.API.IClient.GetBanReason
+  id: GetBanReason
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: GetBanReason()
+  nameWithType: IClient.GetBanReason()
+  fullName: Alibi.Plugins.API.IClient.GetBanReason()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: GetBanReason
+    path: ../IClient.cs
+    startLine: 35
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string GetBanReason()
+    return:
+      type: System.String
+    content.vb: Function GetBanReason As String
+  overload: Alibi.Plugins.API.IClient.GetBanReason*
+- uid: Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  id: BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: BanHwid(String, Nullable<TimeSpan>, IClient)
+  nameWithType: IClient.BanHwid(String, Nullable<TimeSpan>, IClient)
+  fullName: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: BanHwid
+    path: ../IClient.cs
+    startLine: 36
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void BanHwid(string reason, TimeSpan? expireDate, IClient banner)
+    parameters:
+    - id: reason
+      type: System.String
+    - id: expireDate
+      type: System.Nullable{System.TimeSpan}
+    - id: banner
+      type: Alibi.Plugins.API.IClient
+    content.vb: Sub BanHwid(reason As String, expireDate As TimeSpan?, banner As IClient)
+  overload: Alibi.Plugins.API.IClient.BanHwid*
+  nameWithType.vb: IClient.BanHwid(String, Nullable(Of TimeSpan), IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
+  name.vb: BanHwid(String, Nullable(Of TimeSpan), IClient)
+- uid: Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  id: BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: BanIp(String, Nullable<TimeSpan>, IClient)
+  nameWithType: IClient.BanIp(String, Nullable<TimeSpan>, IClient)
+  fullName: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: BanIp
+    path: ../IClient.cs
+    startLine: 37
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void BanIp(string reason, TimeSpan? expireDate, IClient banner)
+    parameters:
+    - id: reason
+      type: System.String
+    - id: expireDate
+      type: System.Nullable{System.TimeSpan}
+    - id: banner
+      type: Alibi.Plugins.API.IClient
+    content.vb: Sub BanIp(reason As String, expireDate As TimeSpan?, banner As IClient)
+  overload: Alibi.Plugins.API.IClient.BanIp*
+  nameWithType.vb: IClient.BanIp(String, Nullable(Of TimeSpan), IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
+  name.vb: BanIp(String, Nullable(Of TimeSpan), IClient)
+- uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  id: Send(Alibi.Plugins.API.IAOPacket)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Send(IAOPacket)
+  nameWithType: IClient.Send(IAOPacket)
+  fullName: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Send
+    path: ../IClient.cs
+    startLine: 39
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void Send(IAOPacket packet)
+    parameters:
+    - id: packet
+      type: Alibi.Plugins.API.IAOPacket
+    content.vb: Sub Send(packet As IAOPacket)
+  overload: Alibi.Plugins.API.IClient.Send*
+- uid: Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
+  commentId: M:Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
+  id: SendOocMessage(System.String,System.String)
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: SendOocMessage(String, String)
+  nameWithType: IClient.SendOocMessage(String, String)
+  fullName: Alibi.Plugins.API.IClient.SendOocMessage(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: SendOocMessage
+    path: ../IClient.cs
+    startLine: 40
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void SendOocMessage(string message, string sender = null)
+    parameters:
+    - id: message
+      type: System.String
+    - id: sender
+      type: System.String
+    content.vb: Sub SendOocMessage(message As String, sender As String = Nothing)
+  overload: Alibi.Plugins.API.IClient.SendOocMessage*
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IClient.ServerRef*
+  commentId: Overload:Alibi.Plugins.API.IClient.ServerRef
+  name: ServerRef
+  nameWithType: IClient.ServerRef
+  fullName: Alibi.Plugins.API.IClient.ServerRef
+- uid: Alibi.Plugins.API.IServer
+  commentId: T:Alibi.Plugins.API.IServer
+  parent: Alibi.Plugins.API
+  name: IServer
+  nameWithType: IServer
+  fullName: Alibi.Plugins.API.IServer
+- uid: Alibi.Plugins.API.IClient.Connected*
+  commentId: Overload:Alibi.Plugins.API.IClient.Connected
+  name: Connected
+  nameWithType: IClient.Connected
+  fullName: Alibi.Plugins.API.IClient.Connected
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.IClient.Auth*
+  commentId: Overload:Alibi.Plugins.API.IClient.Auth
+  name: Auth
+  nameWithType: IClient.Auth
+  fullName: Alibi.Plugins.API.IClient.Auth
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Alibi.Plugins.API.IClient.LastAlive*
+  commentId: Overload:Alibi.Plugins.API.IClient.LastAlive
+  name: LastAlive
+  nameWithType: IClient.LastAlive
+  fullName: Alibi.Plugins.API.IClient.LastAlive
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+- uid: Alibi.Plugins.API.IClient.IpAddress*
+  commentId: Overload:Alibi.Plugins.API.IClient.IpAddress
+  name: IpAddress
+  nameWithType: IClient.IpAddress
+  fullName: Alibi.Plugins.API.IClient.IpAddress
+- uid: System.Net.IPAddress
+  commentId: T:System.Net.IPAddress
+  parent: System.Net
+  isExternal: true
+  name: IPAddress
+  nameWithType: IPAddress
+  fullName: System.Net.IPAddress
+- uid: System.Net
+  commentId: N:System.Net
+  isExternal: true
+  name: System.Net
+  nameWithType: System.Net
+  fullName: System.Net
+- uid: Alibi.Plugins.API.IClient.HardwareId*
+  commentId: Overload:Alibi.Plugins.API.IClient.HardwareId
+  name: HardwareId
+  nameWithType: IClient.HardwareId
+  fullName: Alibi.Plugins.API.IClient.HardwareId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Alibi.Plugins.API.IClient.Area*
+  commentId: Overload:Alibi.Plugins.API.IClient.Area
+  name: Area
+  nameWithType: IClient.Area
+  fullName: Alibi.Plugins.API.IClient.Area
+- uid: Alibi.Plugins.API.IArea
+  commentId: T:Alibi.Plugins.API.IArea
+  parent: Alibi.Plugins.API
+  name: IArea
+  nameWithType: IArea
+  fullName: Alibi.Plugins.API.IArea
+- uid: Alibi.Plugins.API.IClient.Position*
+  commentId: Overload:Alibi.Plugins.API.IClient.Position
+  name: Position
+  nameWithType: IClient.Position
+  fullName: Alibi.Plugins.API.IClient.Position
+- uid: Alibi.Plugins.API.IClient.CurrentState*
+  commentId: Overload:Alibi.Plugins.API.IClient.CurrentState
+  name: CurrentState
+  nameWithType: IClient.CurrentState
+  fullName: Alibi.Plugins.API.IClient.CurrentState
+- uid: Alibi.Plugins.API.ClientState
+  commentId: T:Alibi.Plugins.API.ClientState
+  parent: Alibi.Plugins.API
+  name: ClientState
+  nameWithType: ClientState
+  fullName: Alibi.Plugins.API.ClientState
+- uid: Alibi.Plugins.API.IClient.Password*
+  commentId: Overload:Alibi.Plugins.API.IClient.Password
+  name: Password
+  nameWithType: IClient.Password
+  fullName: Alibi.Plugins.API.IClient.Password
+- uid: Alibi.Plugins.API.IClient.Character*
+  commentId: Overload:Alibi.Plugins.API.IClient.Character
+  name: Character
+  nameWithType: IClient.Character
+  fullName: Alibi.Plugins.API.IClient.Character
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Alibi.Plugins.API.IClient.CharacterName*
+  commentId: Overload:Alibi.Plugins.API.IClient.CharacterName
+  name: CharacterName
+  nameWithType: IClient.CharacterName
+  fullName: Alibi.Plugins.API.IClient.CharacterName
+- uid: Alibi.Plugins.API.IClient.OocName*
+  commentId: Overload:Alibi.Plugins.API.IClient.OocName
+  name: OocName
+  nameWithType: IClient.OocName
+  fullName: Alibi.Plugins.API.IClient.OocName
+- uid: Alibi.Plugins.API.IClient.LastSentMessage*
+  commentId: Overload:Alibi.Plugins.API.IClient.LastSentMessage
+  name: LastSentMessage
+  nameWithType: IClient.LastSentMessage
+  fullName: Alibi.Plugins.API.IClient.LastSentMessage
+- uid: Alibi.Plugins.API.IClient.Muted*
+  commentId: Overload:Alibi.Plugins.API.IClient.Muted
+  name: Muted
+  nameWithType: IClient.Muted
+  fullName: Alibi.Plugins.API.IClient.Muted
+- uid: Alibi.Plugins.API.IClient.PairingWith*
+  commentId: Overload:Alibi.Plugins.API.IClient.PairingWith
+  name: PairingWith
+  nameWithType: IClient.PairingWith
+  fullName: Alibi.Plugins.API.IClient.PairingWith
+- uid: Alibi.Plugins.API.IClient.StoredEmote*
+  commentId: Overload:Alibi.Plugins.API.IClient.StoredEmote
+  name: StoredEmote
+  nameWithType: IClient.StoredEmote
+  fullName: Alibi.Plugins.API.IClient.StoredEmote
+- uid: Alibi.Plugins.API.IClient.StoredOffset*
+  commentId: Overload:Alibi.Plugins.API.IClient.StoredOffset
+  name: StoredOffset
+  nameWithType: IClient.StoredOffset
+  fullName: Alibi.Plugins.API.IClient.StoredOffset
+- uid: Alibi.Plugins.API.IClient.StoredFlip*
+  commentId: Overload:Alibi.Plugins.API.IClient.StoredFlip
+  name: StoredFlip
+  nameWithType: IClient.StoredFlip
+  fullName: Alibi.Plugins.API.IClient.StoredFlip
+- uid: Alibi.Plugins.API.IClient.ChangeArea*
+  commentId: Overload:Alibi.Plugins.API.IClient.ChangeArea
+  name: ChangeArea
+  nameWithType: IClient.ChangeArea
+  fullName: Alibi.Plugins.API.IClient.ChangeArea
+- uid: Alibi.Plugins.API.IClient.KickIfBanned*
+  commentId: Overload:Alibi.Plugins.API.IClient.KickIfBanned
+  name: KickIfBanned
+  nameWithType: IClient.KickIfBanned
+  fullName: Alibi.Plugins.API.IClient.KickIfBanned
+- uid: Alibi.Plugins.API.IClient.Kick*
+  commentId: Overload:Alibi.Plugins.API.IClient.Kick
+  name: Kick
+  nameWithType: IClient.Kick
+  fullName: Alibi.Plugins.API.IClient.Kick
+- uid: Alibi.Plugins.API.IClient.GetBanReason*
+  commentId: Overload:Alibi.Plugins.API.IClient.GetBanReason
+  name: GetBanReason
+  nameWithType: IClient.GetBanReason
+  fullName: Alibi.Plugins.API.IClient.GetBanReason
+- uid: Alibi.Plugins.API.IClient.BanHwid*
+  commentId: Overload:Alibi.Plugins.API.IClient.BanHwid
+  name: BanHwid
+  nameWithType: IClient.BanHwid
+  fullName: Alibi.Plugins.API.IClient.BanHwid
+- uid: System.Nullable{System.TimeSpan}
+  commentId: T:System.Nullable{System.TimeSpan}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<TimeSpan>
+  nameWithType: Nullable<TimeSpan>
+  fullName: System.Nullable<System.TimeSpan>
+  nameWithType.vb: Nullable(Of TimeSpan)
+  fullName.vb: System.Nullable(Of System.TimeSpan)
+  name.vb: Nullable(Of TimeSpan)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Alibi.Plugins.API.IClient
+  commentId: T:Alibi.Plugins.API.IClient
+  parent: Alibi.Plugins.API
+  name: IClient
+  nameWithType: IClient
+  fullName: Alibi.Plugins.API.IClient
+- uid: Alibi.Plugins.API.IClient.BanIp*
+  commentId: Overload:Alibi.Plugins.API.IClient.BanIp
+  name: BanIp
+  nameWithType: IClient.BanIp
+  fullName: Alibi.Plugins.API.IClient.BanIp
+- uid: Alibi.Plugins.API.IClient.Send*
+  commentId: Overload:Alibi.Plugins.API.IClient.Send
+  name: Send
+  nameWithType: IClient.Send
+  fullName: Alibi.Plugins.API.IClient.Send
+- uid: Alibi.Plugins.API.IAOPacket
+  commentId: T:Alibi.Plugins.API.IAOPacket
+  parent: Alibi.Plugins.API
+  name: IAOPacket
+  nameWithType: IAOPacket
+  fullName: Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.IClient.SendOocMessage*
+  commentId: Overload:Alibi.Plugins.API.IClient.SendOocMessage
+  name: SendOocMessage
+  nameWithType: IClient.SendOocMessage
+  fullName: Alibi.Plugins.API.IClient.SendOocMessage

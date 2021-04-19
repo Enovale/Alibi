@@ -1,0 +1,992 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.IArea
+  commentId: T:Alibi.Plugins.API.IArea
+  id: IArea
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IArea.Background
+  - Alibi.Plugins.API.IArea.BackgroundLocked
+  - Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  - Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  - Alibi.Plugins.API.IArea.CanLock
+  - Alibi.Plugins.API.IArea.CurrentCaseManagers
+  - Alibi.Plugins.API.IArea.DefendantHp
+  - Alibi.Plugins.API.IArea.Document
+  - Alibi.Plugins.API.IArea.EvidenceList
+  - Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IArea.IniSwappingAllowed
+  - Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IArea.Locked
+  - Alibi.Plugins.API.IArea.Name
+  - Alibi.Plugins.API.IArea.PlayerCount
+  - Alibi.Plugins.API.IArea.ProsecutorHp
+  - Alibi.Plugins.API.IArea.Status
+  - Alibi.Plugins.API.IArea.TakenCharacters
+  - Alibi.Plugins.API.IArea.UpdateTakenCharacters
+  langs:
+  - csharp
+  - vb
+  name: IArea
+  nameWithType: IArea
+  fullName: Alibi.Plugins.API.IArea
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IArea
+    path: ../IArea.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public interface IArea
+    content.vb: Public Interface IArea
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.IArea.Name
+  commentId: P:Alibi.Plugins.API.IArea.Name
+  id: Name
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IArea.Name
+  fullName: Alibi.Plugins.API.IArea.Name
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Name
+    path: ../IArea.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Name As String
+  overload: Alibi.Plugins.API.IArea.Name*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.Background
+  commentId: P:Alibi.Plugins.API.IArea.Background
+  id: Background
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Background
+  nameWithType: IArea.Background
+  fullName: Alibi.Plugins.API.IArea.Background
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Background
+    path: ../IArea.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Background { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Background As String
+  overload: Alibi.Plugins.API.IArea.Background*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.CanLock
+  commentId: P:Alibi.Plugins.API.IArea.CanLock
+  id: CanLock
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: CanLock
+  nameWithType: IArea.CanLock
+  fullName: Alibi.Plugins.API.IArea.CanLock
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CanLock
+    path: ../IArea.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool CanLock { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property CanLock As Boolean
+  overload: Alibi.Plugins.API.IArea.CanLock*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.BackgroundLocked
+  commentId: P:Alibi.Plugins.API.IArea.BackgroundLocked
+  id: BackgroundLocked
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: BackgroundLocked
+  nameWithType: IArea.BackgroundLocked
+  fullName: Alibi.Plugins.API.IArea.BackgroundLocked
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: BackgroundLocked
+    path: ../IArea.cs
+    startLine: 9
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool BackgroundLocked { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property BackgroundLocked As Boolean
+  overload: Alibi.Plugins.API.IArea.BackgroundLocked*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.IniSwappingAllowed
+  commentId: P:Alibi.Plugins.API.IArea.IniSwappingAllowed
+  id: IniSwappingAllowed
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: IniSwappingAllowed
+  nameWithType: IArea.IniSwappingAllowed
+  fullName: Alibi.Plugins.API.IArea.IniSwappingAllowed
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IniSwappingAllowed
+    path: ../IArea.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool IniSwappingAllowed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IniSwappingAllowed As Boolean
+  overload: Alibi.Plugins.API.IArea.IniSwappingAllowed*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.Status
+  commentId: P:Alibi.Plugins.API.IArea.Status
+  id: Status
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Status
+  nameWithType: IArea.Status
+  fullName: Alibi.Plugins.API.IArea.Status
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Status
+    path: ../IArea.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Status { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Status As String
+  overload: Alibi.Plugins.API.IArea.Status*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IArea.Locked
+  commentId: P:Alibi.Plugins.API.IArea.Locked
+  id: Locked
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Locked
+  nameWithType: IArea.Locked
+  fullName: Alibi.Plugins.API.IArea.Locked
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Locked
+    path: ../IArea.cs
+    startLine: 12
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Locked { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Locked As String
+  overload: Alibi.Plugins.API.IArea.Locked*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IArea.PlayerCount
+  commentId: P:Alibi.Plugins.API.IArea.PlayerCount
+  id: PlayerCount
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: PlayerCount
+  nameWithType: IArea.PlayerCount
+  fullName: Alibi.Plugins.API.IArea.PlayerCount
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: PlayerCount
+    path: ../IArea.cs
+    startLine: 13
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int PlayerCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property PlayerCount As Integer
+  overload: Alibi.Plugins.API.IArea.PlayerCount*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.CurrentCaseManagers
+  commentId: P:Alibi.Plugins.API.IArea.CurrentCaseManagers
+  id: CurrentCaseManagers
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: CurrentCaseManagers
+  nameWithType: IArea.CurrentCaseManagers
+  fullName: Alibi.Plugins.API.IArea.CurrentCaseManagers
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CurrentCaseManagers
+    path: ../IArea.cs
+    startLine: 14
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: List<IClient> CurrentCaseManagers { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Alibi.Plugins.API.IClient}
+    content.vb: ReadOnly Property CurrentCaseManagers As List(Of IClient)
+  overload: Alibi.Plugins.API.IArea.CurrentCaseManagers*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.Document
+  commentId: P:Alibi.Plugins.API.IArea.Document
+  id: Document
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Document
+  nameWithType: IArea.Document
+  fullName: Alibi.Plugins.API.IArea.Document
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Document
+    path: ../IArea.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Document { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Document As String
+  overload: Alibi.Plugins.API.IArea.Document*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IArea.DefendantHp
+  commentId: P:Alibi.Plugins.API.IArea.DefendantHp
+  id: DefendantHp
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: DefendantHp
+  nameWithType: IArea.DefendantHp
+  fullName: Alibi.Plugins.API.IArea.DefendantHp
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: DefendantHp
+    path: ../IArea.cs
+    startLine: 16
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int DefendantHp { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property DefendantHp As Integer
+  overload: Alibi.Plugins.API.IArea.DefendantHp*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IArea.ProsecutorHp
+  commentId: P:Alibi.Plugins.API.IArea.ProsecutorHp
+  id: ProsecutorHp
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: ProsecutorHp
+  nameWithType: IArea.ProsecutorHp
+  fullName: Alibi.Plugins.API.IArea.ProsecutorHp
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ProsecutorHp
+    path: ../IArea.cs
+    startLine: 17
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: int ProsecutorHp { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property ProsecutorHp As Integer
+  overload: Alibi.Plugins.API.IArea.ProsecutorHp*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IArea.TakenCharacters
+  commentId: P:Alibi.Plugins.API.IArea.TakenCharacters
+  id: TakenCharacters
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: TakenCharacters
+  nameWithType: IArea.TakenCharacters
+  fullName: Alibi.Plugins.API.IArea.TakenCharacters
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: TakenCharacters
+    path: ../IArea.cs
+    startLine: 18
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool[] TakenCharacters { get; }
+    parameters: []
+    return:
+      type: System.Boolean[]
+    content.vb: ReadOnly Property TakenCharacters As Boolean()
+  overload: Alibi.Plugins.API.IArea.TakenCharacters*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.EvidenceList
+  commentId: P:Alibi.Plugins.API.IArea.EvidenceList
+  id: EvidenceList
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: EvidenceList
+  nameWithType: IArea.EvidenceList
+  fullName: Alibi.Plugins.API.IArea.EvidenceList
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: EvidenceList
+    path: ../IArea.cs
+    startLine: 19
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: List<IEvidence> EvidenceList { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Alibi.Plugins.API.IEvidence}
+    content.vb: ReadOnly Property EvidenceList As List(Of IEvidence)
+  overload: Alibi.Plugins.API.IArea.EvidenceList*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  id: Broadcast(Alibi.Plugins.API.IAOPacket)
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: Broadcast(IAOPacket)
+  nameWithType: IArea.Broadcast(IAOPacket)
+  fullName: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Broadcast
+    path: ../IArea.cs
+    startLine: 21
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void Broadcast(IAOPacket packet)
+    parameters:
+    - id: packet
+      type: Alibi.Plugins.API.IAOPacket
+    content.vb: Sub Broadcast(packet As IAOPacket)
+  overload: Alibi.Plugins.API.IArea.Broadcast*
+- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  id: BroadcastOocMessage(System.String)
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: BroadcastOocMessage(String)
+  nameWithType: IArea.BroadcastOocMessage(String)
+  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: BroadcastOocMessage
+    path: ../IArea.cs
+    startLine: 22
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void BroadcastOocMessage(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Sub BroadcastOocMessage(message As String)
+  overload: Alibi.Plugins.API.IArea.BroadcastOocMessage*
+- uid: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
+  id: AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: AreaUpdate(AreaUpdateType, IClient)
+  nameWithType: IArea.AreaUpdate(AreaUpdateType, IClient)
+  fullName: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType, Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: AreaUpdate
+    path: ../IArea.cs
+    startLine: 23
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void AreaUpdate(AreaUpdateType type, IClient client = null)
+    parameters:
+    - id: type
+      type: Alibi.Plugins.API.AreaUpdateType
+    - id: client
+      type: Alibi.Plugins.API.IClient
+    content.vb: Sub AreaUpdate(type As AreaUpdateType, client As IClient = Nothing)
+  overload: Alibi.Plugins.API.IArea.AreaUpdate*
+- uid: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  id: FullUpdate(Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: FullUpdate(IClient)
+  nameWithType: IArea.FullUpdate(IClient)
+  fullName: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: FullUpdate
+    path: ../IArea.cs
+    startLine: 24
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void FullUpdate(IClient client = null)
+    parameters:
+    - id: client
+      type: Alibi.Plugins.API.IClient
+    content.vb: Sub FullUpdate(client As IClient = Nothing)
+  overload: Alibi.Plugins.API.IArea.FullUpdate*
+- uid: Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
+  id: IsClientCM(Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: IsClientCM(IClient)
+  nameWithType: IArea.IsClientCM(IClient)
+  fullName: Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IsClientCM
+    path: ../IArea.cs
+    startLine: 25
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool IsClientCM(IClient client)
+    parameters:
+    - id: client
+      type: Alibi.Plugins.API.IClient
+    return:
+      type: System.Boolean
+    content.vb: Function IsClientCM(client As IClient) As Boolean
+  overload: Alibi.Plugins.API.IArea.IsClientCM*
+- uid: Alibi.Plugins.API.IArea.UpdateTakenCharacters
+  commentId: M:Alibi.Plugins.API.IArea.UpdateTakenCharacters
+  id: UpdateTakenCharacters
+  parent: Alibi.Plugins.API.IArea
+  langs:
+  - csharp
+  - vb
+  name: UpdateTakenCharacters()
+  nameWithType: IArea.UpdateTakenCharacters()
+  fullName: Alibi.Plugins.API.IArea.UpdateTakenCharacters()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IArea.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: UpdateTakenCharacters
+    path: ../IArea.cs
+    startLine: 26
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void UpdateTakenCharacters()
+    content.vb: Sub UpdateTakenCharacters
+  overload: Alibi.Plugins.API.IArea.UpdateTakenCharacters*
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IArea.Name*
+  commentId: Overload:Alibi.Plugins.API.IArea.Name
+  name: Name
+  nameWithType: IArea.Name
+  fullName: Alibi.Plugins.API.IArea.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.IArea.Background*
+  commentId: Overload:Alibi.Plugins.API.IArea.Background
+  name: Background
+  nameWithType: IArea.Background
+  fullName: Alibi.Plugins.API.IArea.Background
+- uid: Alibi.Plugins.API.IArea.CanLock*
+  commentId: Overload:Alibi.Plugins.API.IArea.CanLock
+  name: CanLock
+  nameWithType: IArea.CanLock
+  fullName: Alibi.Plugins.API.IArea.CanLock
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Alibi.Plugins.API.IArea.BackgroundLocked*
+  commentId: Overload:Alibi.Plugins.API.IArea.BackgroundLocked
+  name: BackgroundLocked
+  nameWithType: IArea.BackgroundLocked
+  fullName: Alibi.Plugins.API.IArea.BackgroundLocked
+- uid: Alibi.Plugins.API.IArea.IniSwappingAllowed*
+  commentId: Overload:Alibi.Plugins.API.IArea.IniSwappingAllowed
+  name: IniSwappingAllowed
+  nameWithType: IArea.IniSwappingAllowed
+  fullName: Alibi.Plugins.API.IArea.IniSwappingAllowed
+- uid: Alibi.Plugins.API.IArea.Status*
+  commentId: Overload:Alibi.Plugins.API.IArea.Status
+  name: Status
+  nameWithType: IArea.Status
+  fullName: Alibi.Plugins.API.IArea.Status
+- uid: Alibi.Plugins.API.IArea.Locked*
+  commentId: Overload:Alibi.Plugins.API.IArea.Locked
+  name: Locked
+  nameWithType: IArea.Locked
+  fullName: Alibi.Plugins.API.IArea.Locked
+- uid: Alibi.Plugins.API.IArea.PlayerCount*
+  commentId: Overload:Alibi.Plugins.API.IArea.PlayerCount
+  name: PlayerCount
+  nameWithType: IArea.PlayerCount
+  fullName: Alibi.Plugins.API.IArea.PlayerCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Alibi.Plugins.API.IArea.CurrentCaseManagers*
+  commentId: Overload:Alibi.Plugins.API.IArea.CurrentCaseManagers
+  name: CurrentCaseManagers
+  nameWithType: IArea.CurrentCaseManagers
+  fullName: Alibi.Plugins.API.IArea.CurrentCaseManagers
+- uid: System.Collections.Generic.List{Alibi.Plugins.API.IClient}
+  commentId: T:System.Collections.Generic.List{Alibi.Plugins.API.IClient}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<IClient>
+  nameWithType: List<IClient>
+  fullName: System.Collections.Generic.List<Alibi.Plugins.API.IClient>
+  nameWithType.vb: List(Of IClient)
+  fullName.vb: System.Collections.Generic.List(Of Alibi.Plugins.API.IClient)
+  name.vb: List(Of IClient)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Alibi.Plugins.API.IClient
+    name: IClient
+    nameWithType: IClient
+    fullName: Alibi.Plugins.API.IClient
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Alibi.Plugins.API.IClient
+    name: IClient
+    nameWithType: IClient
+    fullName: Alibi.Plugins.API.IClient
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: Alibi.Plugins.API.IArea.Document*
+  commentId: Overload:Alibi.Plugins.API.IArea.Document
+  name: Document
+  nameWithType: IArea.Document
+  fullName: Alibi.Plugins.API.IArea.Document
+- uid: Alibi.Plugins.API.IArea.DefendantHp*
+  commentId: Overload:Alibi.Plugins.API.IArea.DefendantHp
+  name: DefendantHp
+  nameWithType: IArea.DefendantHp
+  fullName: Alibi.Plugins.API.IArea.DefendantHp
+- uid: Alibi.Plugins.API.IArea.ProsecutorHp*
+  commentId: Overload:Alibi.Plugins.API.IArea.ProsecutorHp
+  name: ProsecutorHp
+  nameWithType: IArea.ProsecutorHp
+  fullName: Alibi.Plugins.API.IArea.ProsecutorHp
+- uid: Alibi.Plugins.API.IArea.TakenCharacters*
+  commentId: Overload:Alibi.Plugins.API.IArea.TakenCharacters
+  name: TakenCharacters
+  nameWithType: IArea.TakenCharacters
+  fullName: Alibi.Plugins.API.IArea.TakenCharacters
+- uid: System.Boolean[]
+  isExternal: true
+  name: Boolean[]
+  nameWithType: Boolean[]
+  fullName: System.Boolean[]
+  nameWithType.vb: Boolean()
+  fullName.vb: System.Boolean()
+  name.vb: Boolean()
+  spec.csharp:
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Alibi.Plugins.API.IArea.EvidenceList*
+  commentId: Overload:Alibi.Plugins.API.IArea.EvidenceList
+  name: EvidenceList
+  nameWithType: IArea.EvidenceList
+  fullName: Alibi.Plugins.API.IArea.EvidenceList
+- uid: System.Collections.Generic.List{Alibi.Plugins.API.IEvidence}
+  commentId: T:System.Collections.Generic.List{Alibi.Plugins.API.IEvidence}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<IEvidence>
+  nameWithType: List<IEvidence>
+  fullName: System.Collections.Generic.List<Alibi.Plugins.API.IEvidence>
+  nameWithType.vb: List(Of IEvidence)
+  fullName.vb: System.Collections.Generic.List(Of Alibi.Plugins.API.IEvidence)
+  name.vb: List(Of IEvidence)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Alibi.Plugins.API.IEvidence
+    name: IEvidence
+    nameWithType: IEvidence
+    fullName: Alibi.Plugins.API.IEvidence
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Alibi.Plugins.API.IEvidence
+    name: IEvidence
+    nameWithType: IEvidence
+    fullName: Alibi.Plugins.API.IEvidence
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Alibi.Plugins.API.IArea.Broadcast*
+  commentId: Overload:Alibi.Plugins.API.IArea.Broadcast
+  name: Broadcast
+  nameWithType: IArea.Broadcast
+  fullName: Alibi.Plugins.API.IArea.Broadcast
+- uid: Alibi.Plugins.API.IAOPacket
+  commentId: T:Alibi.Plugins.API.IAOPacket
+  parent: Alibi.Plugins.API
+  name: IAOPacket
+  nameWithType: IAOPacket
+  fullName: Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage*
+  commentId: Overload:Alibi.Plugins.API.IArea.BroadcastOocMessage
+  name: BroadcastOocMessage
+  nameWithType: IArea.BroadcastOocMessage
+  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage
+- uid: Alibi.Plugins.API.IArea.AreaUpdate*
+  commentId: Overload:Alibi.Plugins.API.IArea.AreaUpdate
+  name: AreaUpdate
+  nameWithType: IArea.AreaUpdate
+  fullName: Alibi.Plugins.API.IArea.AreaUpdate
+- uid: Alibi.Plugins.API.AreaUpdateType
+  commentId: T:Alibi.Plugins.API.AreaUpdateType
+  parent: Alibi.Plugins.API
+  name: AreaUpdateType
+  nameWithType: AreaUpdateType
+  fullName: Alibi.Plugins.API.AreaUpdateType
+- uid: Alibi.Plugins.API.IClient
+  commentId: T:Alibi.Plugins.API.IClient
+  parent: Alibi.Plugins.API
+  name: IClient
+  nameWithType: IClient
+  fullName: Alibi.Plugins.API.IClient
+- uid: Alibi.Plugins.API.IArea.FullUpdate*
+  commentId: Overload:Alibi.Plugins.API.IArea.FullUpdate
+  name: FullUpdate
+  nameWithType: IArea.FullUpdate
+  fullName: Alibi.Plugins.API.IArea.FullUpdate
+- uid: Alibi.Plugins.API.IArea.IsClientCM*
+  commentId: Overload:Alibi.Plugins.API.IArea.IsClientCM
+  name: IsClientCM
+  nameWithType: IArea.IsClientCM
+  fullName: Alibi.Plugins.API.IArea.IsClientCM
+- uid: Alibi.Plugins.API.IArea.UpdateTakenCharacters*
+  commentId: Overload:Alibi.Plugins.API.IArea.UpdateTakenCharacters
+  name: UpdateTakenCharacters
+  nameWithType: IArea.UpdateTakenCharacters
+  fullName: Alibi.Plugins.API.IArea.UpdateTakenCharacters

@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.AuthType
+  commentId: T:Alibi.Plugins.API.AuthType
+  id: AuthType
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.AuthType.ADMINISTRATOR
+  - Alibi.Plugins.API.AuthType.MODERATOR
+  - Alibi.Plugins.API.AuthType.USER
+  langs:
+  - csharp
+  - vb
+  name: AuthType
+  nameWithType: AuthType
+  fullName: Alibi.Plugins.API.AuthType
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/AuthType.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: AuthType
+    path: ../AuthType.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public static class AuthType
+    content.vb: Public Module AuthType
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Alibi.Plugins.API.AuthType.USER
+  commentId: F:Alibi.Plugins.API.AuthType.USER
+  id: USER
+  parent: Alibi.Plugins.API.AuthType
+  langs:
+  - csharp
+  - vb
+  name: USER
+  nameWithType: AuthType.USER
+  fullName: Alibi.Plugins.API.AuthType.USER
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/AuthType.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: USER
+    path: ../AuthType.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public const int USER = 0
+    return:
+      type: System.Int32
+    content.vb: Public Const USER As Integer = 0
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.AuthType.MODERATOR
+  commentId: F:Alibi.Plugins.API.AuthType.MODERATOR
+  id: MODERATOR
+  parent: Alibi.Plugins.API.AuthType
+  langs:
+  - csharp
+  - vb
+  name: MODERATOR
+  nameWithType: AuthType.MODERATOR
+  fullName: Alibi.Plugins.API.AuthType.MODERATOR
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/AuthType.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MODERATOR
+    path: ../AuthType.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public const int MODERATOR = 1
+    return:
+      type: System.Int32
+    content.vb: Public Const MODERATOR As Integer = 1
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.AuthType.ADMINISTRATOR
+  commentId: F:Alibi.Plugins.API.AuthType.ADMINISTRATOR
+  id: ADMINISTRATOR
+  parent: Alibi.Plugins.API.AuthType
+  langs:
+  - csharp
+  - vb
+  name: ADMINISTRATOR
+  nameWithType: AuthType.ADMINISTRATOR
+  fullName: Alibi.Plugins.API.AuthType.ADMINISTRATOR
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/AuthType.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ADMINISTRATOR
+    path: ../AuthType.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public const int ADMINISTRATOR = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const ADMINISTRATOR As Integer = 2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

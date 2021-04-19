@@ -1,0 +1,168 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  id: AdminOnlyAttribute
+  parent: Alibi.Plugins.API.Attributes
+  children:
+  - Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor(System.String)
+  - Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  langs:
+  - csharp
+  - vb
+  name: AdminOnlyAttribute
+  nameWithType: AdminOnlyAttribute
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: AdminOnlyAttribute
+    path: ../Attributes/AdminOnlyAttribute.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  summary: "\nMakes sure a command can oly be run as an admin user.\n"
+  example: []
+  syntax:
+    content: >-
+      [AttributeUsage(AttributeTargets.Method)]
+
+      public class AdminOnlyAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Method)>
+
+      Public Class AdminOnlyAttribute
+
+          Inherits Attribute
+  inheritance:
+  - System.Object
+  - System.Attribute
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 64
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  commentId: P:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  id: ErrorMsg
+  parent: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  langs:
+  - csharp
+  - vb
+  name: ErrorMsg
+  nameWithType: AdminOnlyAttribute.ErrorMsg
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ErrorMsg
+    path: ../Attributes/AdminOnlyAttribute.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public string ErrorMsg { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ErrorMsg As String
+  overload: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor(System.String)
+  commentId: M:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  langs:
+  - csharp
+  - vb
+  name: AdminOnlyAttribute(String)
+  nameWithType: AdminOnlyAttribute.AdminOnlyAttribute(String)
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.AdminOnlyAttribute(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Attributes/AdminOnlyAttribute.cs
+    startLine: 13
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  example: []
+  syntax:
+    content: public AdminOnlyAttribute(string errorMsg = "You are not an admin, and can't run this command.")
+    parameters:
+    - id: errorMsg
+      type: System.String
+      description: The error message to send in the OOC if the user is not admin.
+    content.vb: Public Sub New(errorMsg As String = "You are not an admin, and can't run this command.")
+  overload: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Attributes
+  commentId: N:Alibi.Plugins.API.Attributes
+  name: Alibi.Plugins.API.Attributes
+  nameWithType: Alibi.Plugins.API.Attributes
+  fullName: Alibi.Plugins.API.Attributes
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Attribute
+  commentId: T:System.Attribute
+  parent: System
+  isExternal: true
+  name: Attribute
+  nameWithType: Attribute
+  fullName: System.Attribute
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg*
+  commentId: Overload:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  name: ErrorMsg
+  nameWithType: AdminOnlyAttribute.ErrorMsg
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor
+  name: AdminOnlyAttribute
+  nameWithType: AdminOnlyAttribute.AdminOnlyAttribute
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.AdminOnlyAttribute

@@ -1,0 +1,183 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Exceptions.CommandException
+  commentId: T:Alibi.Plugins.API.Exceptions.CommandException
+  id: CommandException
+  parent: Alibi.Plugins.API.Exceptions
+  children:
+  - Alibi.Plugins.API.Exceptions.CommandException.#ctor
+  - Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String)
+  - Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,System.Exception)
+  langs:
+  - csharp
+  - vb
+  name: CommandException
+  nameWithType: CommandException
+  fullName: Alibi.Plugins.API.Exceptions.CommandException
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/CommandException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CommandException
+    path: ../Exceptions/CommandException.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  summary: "\nException meaning a command failed to execute in the server.\n"
+  example: []
+  syntax:
+    content: 'public class CommandException : Exception, ISerializable'
+    content.vb: >-
+      Public Class CommandException
+
+          Inherits Exception
+
+          Implements ISerializable
+  inheritance:
+  - System.Object
+  - System.Exception
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor
+  commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor
+  id: '#ctor'
+  parent: Alibi.Plugins.API.Exceptions.CommandException
+  langs:
+  - csharp
+  - vb
+  name: CommandException()
+  nameWithType: CommandException.CommandException()
+  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException()
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/CommandException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/CommandException.cs
+    startLine: 9
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public CommandException()
+    content.vb: Public Sub New
+  overload: Alibi.Plugins.API.Exceptions.CommandException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String)
+  commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Alibi.Plugins.API.Exceptions.CommandException
+  langs:
+  - csharp
+  - vb
+  name: CommandException(String)
+  nameWithType: CommandException.CommandException(String)
+  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/CommandException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/CommandException.cs
+    startLine: 13
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public CommandException(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub New(message As String)
+  overload: Alibi.Plugins.API.Exceptions.CommandException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,System.Exception)
+  commentId: M:Alibi.Plugins.API.Exceptions.CommandException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Alibi.Plugins.API.Exceptions.CommandException
+  langs:
+  - csharp
+  - vb
+  name: CommandException(String, Exception)
+  nameWithType: CommandException.CommandException(String, Exception)
+  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/CommandException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/CommandException.cs
+    startLine: 18
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public CommandException(string message, Exception inner)
+    parameters:
+    - id: message
+      type: System.String
+    - id: inner
+      type: System.Exception
+    content.vb: Public Sub New(message As String, inner As Exception)
+  overload: Alibi.Plugins.API.Exceptions.CommandException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Exceptions
+  commentId: N:Alibi.Plugins.API.Exceptions
+  name: Alibi.Plugins.API.Exceptions
+  nameWithType: Alibi.Plugins.API.Exceptions
+  fullName: Alibi.Plugins.API.Exceptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Exceptions.CommandException.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Exceptions.CommandException.#ctor
+  name: CommandException
+  nameWithType: CommandException.CommandException
+  fullName: Alibi.Plugins.API.Exceptions.CommandException.CommandException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

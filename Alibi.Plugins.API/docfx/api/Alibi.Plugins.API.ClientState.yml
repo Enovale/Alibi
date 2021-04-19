@@ -1,0 +1,178 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.ClientState
+  commentId: T:Alibi.Plugins.API.ClientState
+  id: ClientState
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.ClientState.Handshook
+  - Alibi.Plugins.API.ClientState.Identified
+  - Alibi.Plugins.API.ClientState.InArea
+  - Alibi.Plugins.API.ClientState.NewClient
+  langs:
+  - csharp
+  - vb
+  name: ClientState
+  nameWithType: ClientState
+  fullName: Alibi.Plugins.API.ClientState
+  type: Enum
+  source:
+    remote:
+      path: Alibi.Plugins.API/ClientState.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ClientState
+    path: ../ClientState.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public enum ClientState
+    content.vb: Public Enum ClientState
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Alibi.Plugins.API.ClientState.NewClient
+  commentId: F:Alibi.Plugins.API.ClientState.NewClient
+  id: NewClient
+  parent: Alibi.Plugins.API.ClientState
+  langs:
+  - csharp
+  - vb
+  name: NewClient
+  nameWithType: ClientState.NewClient
+  fullName: Alibi.Plugins.API.ClientState.NewClient
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/ClientState.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: NewClient
+    path: ../ClientState.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: NewClient = 0
+    return:
+      type: Alibi.Plugins.API.ClientState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.ClientState.Handshook
+  commentId: F:Alibi.Plugins.API.ClientState.Handshook
+  id: Handshook
+  parent: Alibi.Plugins.API.ClientState
+  langs:
+  - csharp
+  - vb
+  name: Handshook
+  nameWithType: ClientState.Handshook
+  fullName: Alibi.Plugins.API.ClientState.Handshook
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/ClientState.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Handshook
+    path: ../ClientState.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Handshook = 1
+    return:
+      type: Alibi.Plugins.API.ClientState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.ClientState.Identified
+  commentId: F:Alibi.Plugins.API.ClientState.Identified
+  id: Identified
+  parent: Alibi.Plugins.API.ClientState
+  langs:
+  - csharp
+  - vb
+  name: Identified
+  nameWithType: ClientState.Identified
+  fullName: Alibi.Plugins.API.ClientState.Identified
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/ClientState.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Identified
+    path: ../ClientState.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Identified = 2
+    return:
+      type: Alibi.Plugins.API.ClientState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.ClientState.InArea
+  commentId: F:Alibi.Plugins.API.ClientState.InArea
+  id: InArea
+  parent: Alibi.Plugins.API.ClientState
+  langs:
+  - csharp
+  - vb
+  name: InArea
+  nameWithType: ClientState.InArea
+  fullName: Alibi.Plugins.API.ClientState.InArea
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/ClientState.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: InArea
+    path: ../ClientState.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: InArea = 3
+    return:
+      type: Alibi.Plugins.API.ClientState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.ClientState
+  commentId: T:Alibi.Plugins.API.ClientState
+  parent: Alibi.Plugins.API
+  name: ClientState
+  nameWithType: ClientState
+  fullName: Alibi.Plugins.API.ClientState

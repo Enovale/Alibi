@@ -1,0 +1,201 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.IEvidence
+  commentId: T:Alibi.Plugins.API.IEvidence
+  id: IEvidence
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.IEvidence.Description
+  - Alibi.Plugins.API.IEvidence.Name
+  - Alibi.Plugins.API.IEvidence.Photo
+  - Alibi.Plugins.API.IEvidence.ToPacket
+  langs:
+  - csharp
+  - vb
+  name: IEvidence
+  nameWithType: IEvidence
+  fullName: Alibi.Plugins.API.IEvidence
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/IEvidence.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IEvidence
+    path: ../IEvidence.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public interface IEvidence
+    content.vb: Public Interface IEvidence
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.IEvidence.Name
+  commentId: P:Alibi.Plugins.API.IEvidence.Name
+  id: Name
+  parent: Alibi.Plugins.API.IEvidence
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IEvidence.Name
+  fullName: Alibi.Plugins.API.IEvidence.Name
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IEvidence.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Name
+    path: ../IEvidence.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Name As String
+  overload: Alibi.Plugins.API.IEvidence.Name*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IEvidence.Description
+  commentId: P:Alibi.Plugins.API.IEvidence.Description
+  id: Description
+  parent: Alibi.Plugins.API.IEvidence
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: IEvidence.Description
+  fullName: Alibi.Plugins.API.IEvidence.Description
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IEvidence.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Description
+    path: ../IEvidence.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Description As String
+  overload: Alibi.Plugins.API.IEvidence.Description*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IEvidence.Photo
+  commentId: P:Alibi.Plugins.API.IEvidence.Photo
+  id: Photo
+  parent: Alibi.Plugins.API.IEvidence
+  langs:
+  - csharp
+  - vb
+  name: Photo
+  nameWithType: IEvidence.Photo
+  fullName: Alibi.Plugins.API.IEvidence.Photo
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IEvidence.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Photo
+    path: ../IEvidence.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string Photo { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Photo As String
+  overload: Alibi.Plugins.API.IEvidence.Photo*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Alibi.Plugins.API.IEvidence.ToPacket
+  commentId: M:Alibi.Plugins.API.IEvidence.ToPacket
+  id: ToPacket
+  parent: Alibi.Plugins.API.IEvidence
+  langs:
+  - csharp
+  - vb
+  name: ToPacket()
+  nameWithType: IEvidence.ToPacket()
+  fullName: Alibi.Plugins.API.IEvidence.ToPacket()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IEvidence.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ToPacket
+    path: ../IEvidence.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string ToPacket()
+    return:
+      type: System.String
+    content.vb: Function ToPacket As String
+  overload: Alibi.Plugins.API.IEvidence.ToPacket*
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IEvidence.Name*
+  commentId: Overload:Alibi.Plugins.API.IEvidence.Name
+  name: Name
+  nameWithType: IEvidence.Name
+  fullName: Alibi.Plugins.API.IEvidence.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.IEvidence.Description*
+  commentId: Overload:Alibi.Plugins.API.IEvidence.Description
+  name: Description
+  nameWithType: IEvidence.Description
+  fullName: Alibi.Plugins.API.IEvidence.Description
+- uid: Alibi.Plugins.API.IEvidence.Photo*
+  commentId: Overload:Alibi.Plugins.API.IEvidence.Photo
+  name: Photo
+  nameWithType: IEvidence.Photo
+  fullName: Alibi.Plugins.API.IEvidence.Photo
+- uid: Alibi.Plugins.API.IEvidence.ToPacket*
+  commentId: Overload:Alibi.Plugins.API.IEvidence.ToPacket
+  name: ToPacket
+  nameWithType: IEvidence.ToPacket
+  fullName: Alibi.Plugins.API.IEvidence.ToPacket

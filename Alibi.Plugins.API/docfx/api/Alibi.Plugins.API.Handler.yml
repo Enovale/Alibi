@@ -1,0 +1,179 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Handler
+  commentId: T:Alibi.Plugins.API.Handler
+  id: Handler
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
+  - Alibi.Plugins.API.Handler.Method
+  - Alibi.Plugins.API.Handler.Target
+  langs:
+  - csharp
+  - vb
+  name: Handler
+  nameWithType: Handler
+  fullName: Alibi.Plugins.API.Handler
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Handler.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Handler
+    path: ../Handler.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public class Handler
+    content.vb: Public Class Handler
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Handler.Method
+  commentId: F:Alibi.Plugins.API.Handler.Method
+  id: Method
+  parent: Alibi.Plugins.API.Handler
+  langs:
+  - csharp
+  - vb
+  name: Method
+  nameWithType: Handler.Method
+  fullName: Alibi.Plugins.API.Handler.Method
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/Handler.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Method
+    path: ../Handler.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public MethodInfo Method
+    return:
+      type: System.Reflection.MethodInfo
+    content.vb: Public Method As MethodInfo
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Handler.Target
+  commentId: F:Alibi.Plugins.API.Handler.Target
+  id: Target
+  parent: Alibi.Plugins.API.Handler
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: Handler.Target
+  fullName: Alibi.Plugins.API.Handler.Target
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/Handler.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Target
+    path: ../Handler.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public Plugin Target
+    return:
+      type: Alibi.Plugins.API.Plugin
+    content.vb: Public Target As Plugin
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
+  commentId: M:Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
+  id: '#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)'
+  parent: Alibi.Plugins.API.Handler
+  langs:
+  - csharp
+  - vb
+  name: Handler(MethodInfo, Plugin)
+  nameWithType: Handler.Handler(MethodInfo, Plugin)
+  fullName: Alibi.Plugins.API.Handler.Handler(System.Reflection.MethodInfo, Alibi.Plugins.API.Plugin)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Handler.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Handler.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public Handler(MethodInfo method, Plugin target)
+    parameters:
+    - id: method
+      type: System.Reflection.MethodInfo
+    - id: target
+      type: Alibi.Plugins.API.Plugin
+    content.vb: Public Sub New(method As MethodInfo, target As Plugin)
+  overload: Alibi.Plugins.API.Handler.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Reflection.MethodInfo
+  commentId: T:System.Reflection.MethodInfo
+  parent: System.Reflection
+  isExternal: true
+  name: MethodInfo
+  nameWithType: MethodInfo
+  fullName: System.Reflection.MethodInfo
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: Alibi.Plugins.API.Plugin
+  commentId: T:Alibi.Plugins.API.Plugin
+  parent: Alibi.Plugins.API
+  name: Plugin
+  nameWithType: Plugin
+  fullName: Alibi.Plugins.API.Plugin
+- uid: Alibi.Plugins.API.Handler.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Handler.#ctor
+  name: Handler
+  nameWithType: Handler.Handler
+  fullName: Alibi.Plugins.API.Handler.Handler

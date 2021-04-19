@@ -1,0 +1,263 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  id: CommandHandlerAttribute
+  parent: Alibi.Plugins.API.Attributes
+  children:
+  - Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor(System.String,System.String,System.Boolean)
+  - Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+  - Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+  - Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+  langs:
+  - csharp
+  - vb
+  name: CommandHandlerAttribute
+  nameWithType: CommandHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: CommandHandlerAttribute
+    path: ../Attributes/CommandHandlerAttribute.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  summary: "\nSpecifies a command to register in the server\n"
+  example: []
+  syntax:
+    content: >-
+      [AttributeUsage(AttributeTargets.Method)]
+
+      public class CommandHandlerAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Method)>
+
+      Public Class CommandHandlerAttribute
+
+          Inherits Attribute
+  inheritance:
+  - System.Object
+  - System.Attribute
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 64
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+  commentId: P:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+  id: Command
+  parent: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: Command
+  nameWithType: CommandHandlerAttribute.Command
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Command
+    path: ../Attributes/CommandHandlerAttribute.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public string Command { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Command As String
+  overload: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+  commentId: P:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+  id: ShortDesc
+  parent: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: ShortDesc
+  nameWithType: CommandHandlerAttribute.ShortDesc
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ShortDesc
+    path: ../Attributes/CommandHandlerAttribute.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public string ShortDesc { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ShortDesc As String
+  overload: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+  commentId: P:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+  id: Override
+  parent: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: Override
+  nameWithType: CommandHandlerAttribute.Override
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Override
+    path: ../Attributes/CommandHandlerAttribute.cs
+    startLine: 12
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public bool Override { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Override As Boolean
+  overload: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor(System.String,System.String,System.Boolean)
+  commentId: M:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor(System.String,System.String,System.Boolean)
+  id: '#ctor(System.String,System.String,System.Boolean)'
+  parent: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: CommandHandlerAttribute(String, String, Boolean)
+  nameWithType: CommandHandlerAttribute.CommandHandlerAttribute(String, String, Boolean)
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.CommandHandlerAttribute(System.String, System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/CommandHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Attributes/CommandHandlerAttribute.cs
+    startLine: 17
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  example: []
+  syntax:
+    content: public CommandHandlerAttribute(string commandName, string desc = "", bool overrideHandler = false)
+    parameters:
+    - id: commandName
+      type: System.String
+      description: The name of the command, the user will type a / followed by this name.
+    - id: desc
+      type: System.String
+      description: Optional description of the command to be shown in /help
+    - id: overrideHandler
+      type: System.Boolean
+      description: Should this command overwrite a registered server command?
+    content.vb: Public Sub New(commandName As String, desc As String = "", overrideHandler As Boolean = False)
+  overload: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Attributes
+  commentId: N:Alibi.Plugins.API.Attributes
+  name: Alibi.Plugins.API.Attributes
+  nameWithType: Alibi.Plugins.API.Attributes
+  fullName: Alibi.Plugins.API.Attributes
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Attribute
+  commentId: T:System.Attribute
+  parent: System
+  isExternal: true
+  name: Attribute
+  nameWithType: Attribute
+  fullName: System.Attribute
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command*
+  commentId: Overload:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+  name: Command
+  nameWithType: CommandHandlerAttribute.Command
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc*
+  commentId: Overload:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+  name: ShortDesc
+  nameWithType: CommandHandlerAttribute.ShortDesc
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.ShortDesc
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override*
+  commentId: Overload:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+  name: Override
+  nameWithType: CommandHandlerAttribute.Override
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Override
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.#ctor
+  name: CommandHandlerAttribute
+  nameWithType: CommandHandlerAttribute.CommandHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.CommandHandlerAttribute

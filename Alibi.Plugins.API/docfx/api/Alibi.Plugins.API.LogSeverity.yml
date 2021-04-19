@@ -1,0 +1,178 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.LogSeverity
+  commentId: T:Alibi.Plugins.API.LogSeverity
+  id: LogSeverity
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.LogSeverity.Error
+  - Alibi.Plugins.API.LogSeverity.Info
+  - Alibi.Plugins.API.LogSeverity.Special
+  - Alibi.Plugins.API.LogSeverity.Warning
+  langs:
+  - csharp
+  - vb
+  name: LogSeverity
+  nameWithType: LogSeverity
+  fullName: Alibi.Plugins.API.LogSeverity
+  type: Enum
+  source:
+    remote:
+      path: Alibi.Plugins.API/LogSeverity.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: LogSeverity
+    path: ../LogSeverity.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public enum LogSeverity
+    content.vb: Public Enum LogSeverity
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Alibi.Plugins.API.LogSeverity.Info
+  commentId: F:Alibi.Plugins.API.LogSeverity.Info
+  id: Info
+  parent: Alibi.Plugins.API.LogSeverity
+  langs:
+  - csharp
+  - vb
+  name: Info
+  nameWithType: LogSeverity.Info
+  fullName: Alibi.Plugins.API.LogSeverity.Info
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/LogSeverity.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Info
+    path: ../LogSeverity.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Info = 0
+    return:
+      type: Alibi.Plugins.API.LogSeverity
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.LogSeverity.Special
+  commentId: F:Alibi.Plugins.API.LogSeverity.Special
+  id: Special
+  parent: Alibi.Plugins.API.LogSeverity
+  langs:
+  - csharp
+  - vb
+  name: Special
+  nameWithType: LogSeverity.Special
+  fullName: Alibi.Plugins.API.LogSeverity.Special
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/LogSeverity.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Special
+    path: ../LogSeverity.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Special = 1
+    return:
+      type: Alibi.Plugins.API.LogSeverity
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.LogSeverity.Warning
+  commentId: F:Alibi.Plugins.API.LogSeverity.Warning
+  id: Warning
+  parent: Alibi.Plugins.API.LogSeverity
+  langs:
+  - csharp
+  - vb
+  name: Warning
+  nameWithType: LogSeverity.Warning
+  fullName: Alibi.Plugins.API.LogSeverity.Warning
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/LogSeverity.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Warning
+    path: ../LogSeverity.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Warning = 2
+    return:
+      type: Alibi.Plugins.API.LogSeverity
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Alibi.Plugins.API.LogSeverity.Error
+  commentId: F:Alibi.Plugins.API.LogSeverity.Error
+  id: Error
+  parent: Alibi.Plugins.API.LogSeverity
+  langs:
+  - csharp
+  - vb
+  name: Error
+  nameWithType: LogSeverity.Error
+  fullName: Alibi.Plugins.API.LogSeverity.Error
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/LogSeverity.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Error
+    path: ../LogSeverity.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Error = 3
+    return:
+      type: Alibi.Plugins.API.LogSeverity
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.LogSeverity
+  commentId: T:Alibi.Plugins.API.LogSeverity
+  parent: Alibi.Plugins.API
+  name: LogSeverity
+  nameWithType: LogSeverity
+  fullName: Alibi.Plugins.API.LogSeverity

@@ -1,0 +1,183 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException
+  commentId: T:Alibi.Plugins.API.Exceptions.IcValidationException
+  id: IcValidationException
+  parent: Alibi.Plugins.API.Exceptions
+  children:
+  - Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
+  - Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
+  - Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
+  langs:
+  - csharp
+  - vb
+  name: IcValidationException
+  nameWithType: IcValidationException
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IcValidationException
+    path: ../Exceptions/IcValidationException.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  summary: "\nException meaning an Ic message failed to be verified. This usually means\nimproper data was sent, or the message contains something disallowed.\n"
+  example: []
+  syntax:
+    content: 'public class IcValidationException : Exception, ISerializable'
+    content.vb: >-
+      Public Class IcValidationException
+
+          Inherits Exception
+
+          Implements ISerializable
+  inheritance:
+  - System.Object
+  - System.Exception
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
+  commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
+  id: '#ctor'
+  parent: Alibi.Plugins.API.Exceptions.IcValidationException
+  langs:
+  - csharp
+  - vb
+  name: IcValidationException()
+  nameWithType: IcValidationException.IcValidationException()
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException()
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/IcValidationException.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public IcValidationException()
+    content.vb: Public Sub New
+  overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
+  commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Alibi.Plugins.API.Exceptions.IcValidationException
+  langs:
+  - csharp
+  - vb
+  name: IcValidationException(String)
+  nameWithType: IcValidationException.IcValidationException(String)
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/IcValidationException.cs
+    startLine: 14
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public IcValidationException(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub New(message As String)
+  overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
+  commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Alibi.Plugins.API.Exceptions.IcValidationException
+  langs:
+  - csharp
+  - vb
+  name: IcValidationException(String, Exception)
+  nameWithType: IcValidationException.IcValidationException(String, Exception)
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Exceptions/IcValidationException.cs
+    startLine: 19
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Exceptions
+  syntax:
+    content: public IcValidationException(string message, Exception inner)
+    parameters:
+    - id: message
+      type: System.String
+    - id: inner
+      type: System.Exception
+    content.vb: Public Sub New(message As String, inner As Exception)
+  overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Exceptions
+  commentId: N:Alibi.Plugins.API.Exceptions
+  name: Alibi.Plugins.API.Exceptions
+  nameWithType: Alibi.Plugins.API.Exceptions
+  fullName: Alibi.Plugins.API.Exceptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
+  name: IcValidationException
+  nameWithType: IcValidationException.IcValidationException
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

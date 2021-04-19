@@ -1,0 +1,219 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  id: MessageHandlerAttribute
+  parent: Alibi.Plugins.API.Attributes
+  children:
+  - Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor(System.String,System.Boolean)
+  - Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+  - Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+  langs:
+  - csharp
+  - vb
+  name: MessageHandlerAttribute
+  nameWithType: MessageHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MessageHandlerAttribute
+    path: ../Attributes/MessageHandlerAttribute.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  summary: "\nSpecifies a packet handler to register in the server\n"
+  example: []
+  syntax:
+    content: >-
+      [AttributeUsage(AttributeTargets.Method)]
+
+      public class MessageHandlerAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Method)>
+
+      Public Class MessageHandlerAttribute
+
+          Inherits Attribute
+  inheritance:
+  - System.Object
+  - System.Attribute
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 64
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+  commentId: P:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+  id: MessageName
+  parent: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: MessageName
+  nameWithType: MessageHandlerAttribute.MessageName
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MessageName
+    path: ../Attributes/MessageHandlerAttribute.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public string MessageName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MessageName As String
+  overload: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+  commentId: P:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+  id: Override
+  parent: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: Override
+  nameWithType: MessageHandlerAttribute.Override
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Override
+    path: ../Attributes/MessageHandlerAttribute.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public bool Override { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Override As Boolean
+  overload: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor(System.String,System.Boolean)
+  commentId: M:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor(System.String,System.Boolean)
+  id: '#ctor(System.String,System.Boolean)'
+  parent: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  langs:
+  - csharp
+  - vb
+  name: MessageHandlerAttribute(String, Boolean)
+  nameWithType: MessageHandlerAttribute.MessageHandlerAttribute(String, Boolean)
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageHandlerAttribute(System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/MessageHandlerAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Attributes/MessageHandlerAttribute.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  example: []
+  syntax:
+    content: public MessageHandlerAttribute(string messageName, bool overrideHandler = false)
+    parameters:
+    - id: messageName
+      type: System.String
+      description: The packet ID to register
+    - id: overrideHandler
+      type: System.Boolean
+      description: Should this handler overwrite a default server packet handler?
+    content.vb: Public Sub New(messageName As String, overrideHandler As Boolean = False)
+  overload: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Attributes
+  commentId: N:Alibi.Plugins.API.Attributes
+  name: Alibi.Plugins.API.Attributes
+  nameWithType: Alibi.Plugins.API.Attributes
+  fullName: Alibi.Plugins.API.Attributes
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Attribute
+  commentId: T:System.Attribute
+  parent: System
+  isExternal: true
+  name: Attribute
+  nameWithType: Attribute
+  fullName: System.Attribute
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName*
+  commentId: Overload:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+  name: MessageName
+  nameWithType: MessageHandlerAttribute.MessageName
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override*
+  commentId: Overload:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+  name: Override
+  nameWithType: MessageHandlerAttribute.Override
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.Override
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Attributes.MessageHandlerAttribute.#ctor
+  name: MessageHandlerAttribute
+  nameWithType: MessageHandlerAttribute.MessageHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.MessageHandlerAttribute

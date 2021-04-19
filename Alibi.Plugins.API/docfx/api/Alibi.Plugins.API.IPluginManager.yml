@@ -1,0 +1,223 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.IPluginManager
+  commentId: T:Alibi.Plugins.API.IPluginManager
+  id: IPluginManager
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.IPluginManager.GetConfigFolder(System.String)
+  - Alibi.Plugins.API.IPluginManager.IsPluginLoaded(System.String)
+  - Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
+  - Alibi.Plugins.API.IPluginManager.RequestPluginInstance(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IPluginManager
+  nameWithType: IPluginManager
+  fullName: Alibi.Plugins.API.IPluginManager
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/IPluginManager.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IPluginManager
+    path: ../IPluginManager.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public interface IPluginManager
+    content.vb: Public Interface IPluginManager
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.IPluginManager.IsPluginLoaded(System.String)
+  commentId: M:Alibi.Plugins.API.IPluginManager.IsPluginLoaded(System.String)
+  id: IsPluginLoaded(System.String)
+  parent: Alibi.Plugins.API.IPluginManager
+  langs:
+  - csharp
+  - vb
+  name: IsPluginLoaded(String)
+  nameWithType: IPluginManager.IsPluginLoaded(String)
+  fullName: Alibi.Plugins.API.IPluginManager.IsPluginLoaded(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IPluginManager.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IsPluginLoaded
+    path: ../IPluginManager.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: bool IsPluginLoaded(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Function IsPluginLoaded(id As String) As Boolean
+  overload: Alibi.Plugins.API.IPluginManager.IsPluginLoaded*
+- uid: Alibi.Plugins.API.IPluginManager.RequestPluginInstance(System.String)
+  commentId: M:Alibi.Plugins.API.IPluginManager.RequestPluginInstance(System.String)
+  id: RequestPluginInstance(System.String)
+  parent: Alibi.Plugins.API.IPluginManager
+  langs:
+  - csharp
+  - vb
+  name: RequestPluginInstance(String)
+  nameWithType: IPluginManager.RequestPluginInstance(String)
+  fullName: Alibi.Plugins.API.IPluginManager.RequestPluginInstance(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IPluginManager.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: RequestPluginInstance
+    path: ../IPluginManager.cs
+    startLine: 5
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: dynamic RequestPluginInstance(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Function RequestPluginInstance(id As String) As Object
+  overload: Alibi.Plugins.API.IPluginManager.RequestPluginInstance*
+- uid: Alibi.Plugins.API.IPluginManager.GetConfigFolder(System.String)
+  commentId: M:Alibi.Plugins.API.IPluginManager.GetConfigFolder(System.String)
+  id: GetConfigFolder(System.String)
+  parent: Alibi.Plugins.API.IPluginManager
+  langs:
+  - csharp
+  - vb
+  name: GetConfigFolder(String)
+  nameWithType: IPluginManager.GetConfigFolder(String)
+  fullName: Alibi.Plugins.API.IPluginManager.GetConfigFolder(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IPluginManager.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: GetConfigFolder
+    path: ../IPluginManager.cs
+    startLine: 6
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string GetConfigFolder(string id)
+    parameters:
+    - id: id
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Function GetConfigFolder(id As String) As String
+  overload: Alibi.Plugins.API.IPluginManager.GetConfigFolder*
+- uid: Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
+  commentId: M:Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
+  id: Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
+  parent: Alibi.Plugins.API.IPluginManager
+  langs:
+  - csharp
+  - vb
+  name: Log(LogSeverity, String, Boolean)
+  nameWithType: IPluginManager.Log(LogSeverity, String, Boolean)
+  fullName: Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IPluginManager.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Log
+    path: ../IPluginManager.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: void Log(LogSeverity severity, string message, bool verbose)
+    parameters:
+    - id: severity
+      type: Alibi.Plugins.API.LogSeverity
+    - id: message
+      type: System.String
+    - id: verbose
+      type: System.Boolean
+    content.vb: Sub Log(severity As LogSeverity, message As String, verbose As Boolean)
+  overload: Alibi.Plugins.API.IPluginManager.Log*
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IPluginManager.IsPluginLoaded*
+  commentId: Overload:Alibi.Plugins.API.IPluginManager.IsPluginLoaded
+  name: IsPluginLoaded
+  nameWithType: IPluginManager.IsPluginLoaded
+  fullName: Alibi.Plugins.API.IPluginManager.IsPluginLoaded
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.IPluginManager.RequestPluginInstance*
+  commentId: Overload:Alibi.Plugins.API.IPluginManager.RequestPluginInstance
+  name: RequestPluginInstance
+  nameWithType: IPluginManager.RequestPluginInstance
+  fullName: Alibi.Plugins.API.IPluginManager.RequestPluginInstance
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Alibi.Plugins.API.IPluginManager.GetConfigFolder*
+  commentId: Overload:Alibi.Plugins.API.IPluginManager.GetConfigFolder
+  name: GetConfigFolder
+  nameWithType: IPluginManager.GetConfigFolder
+  fullName: Alibi.Plugins.API.IPluginManager.GetConfigFolder
+- uid: Alibi.Plugins.API.IPluginManager.Log*
+  commentId: Overload:Alibi.Plugins.API.IPluginManager.Log
+  name: Log
+  nameWithType: IPluginManager.Log
+  fullName: Alibi.Plugins.API.IPluginManager.Log
+- uid: Alibi.Plugins.API.LogSeverity
+  commentId: T:Alibi.Plugins.API.LogSeverity
+  parent: Alibi.Plugins.API
+  name: LogSeverity
+  nameWithType: LogSeverity
+  fullName: Alibi.Plugins.API.LogSeverity

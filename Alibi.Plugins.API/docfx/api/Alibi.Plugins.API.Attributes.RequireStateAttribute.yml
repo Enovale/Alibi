@@ -1,0 +1,223 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.RequireStateAttribute
+  id: RequireStateAttribute
+  parent: Alibi.Plugins.API.Attributes
+  children:
+  - Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor(Alibi.Plugins.API.ClientState,System.Boolean)
+  - Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+  - Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+  langs:
+  - csharp
+  - vb
+  name: RequireStateAttribute
+  nameWithType: RequireStateAttribute
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/RequireStateAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: RequireStateAttribute
+    path: ../Attributes/RequireStateAttribute.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  summary: "\nSpecifies that a message handler requires the client to be in a specific state in order to process.\n"
+  example: []
+  syntax:
+    content: >-
+      [AttributeUsage(AttributeTargets.Method)]
+
+      public class RequireStateAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Method)>
+
+      Public Class RequireStateAttribute
+
+          Inherits Attribute
+  inheritance:
+  - System.Object
+  - System.Attribute
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 64
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+  commentId: P:Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+  id: State
+  parent: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: RequireStateAttribute.State
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/RequireStateAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: State
+    path: ../Attributes/RequireStateAttribute.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public ClientState State { get; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.ClientState
+    content.vb: Public ReadOnly Property State As ClientState
+  overload: Alibi.Plugins.API.Attributes.RequireStateAttribute.State*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+  commentId: P:Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+  id: Kick
+  parent: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  langs:
+  - csharp
+  - vb
+  name: Kick
+  nameWithType: RequireStateAttribute.Kick
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/RequireStateAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Kick
+    path: ../Attributes/RequireStateAttribute.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  syntax:
+    content: public bool Kick { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Kick As Boolean
+  overload: Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor(Alibi.Plugins.API.ClientState,System.Boolean)
+  commentId: M:Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor(Alibi.Plugins.API.ClientState,System.Boolean)
+  id: '#ctor(Alibi.Plugins.API.ClientState,System.Boolean)'
+  parent: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  langs:
+  - csharp
+  - vb
+  name: RequireStateAttribute(ClientState, Boolean)
+  nameWithType: RequireStateAttribute.RequireStateAttribute(ClientState, Boolean)
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.RequireStateAttribute(Alibi.Plugins.API.ClientState, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Alibi.Plugins.API/Attributes/RequireStateAttribute.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: .ctor
+    path: ../Attributes/RequireStateAttribute.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API.Attributes
+  example: []
+  syntax:
+    content: public RequireStateAttribute(ClientState requiredState, bool kickIfFalse = true)
+    parameters:
+    - id: requiredState
+      type: Alibi.Plugins.API.ClientState
+      description: The state the client must be in for the message to be handled.
+    - id: kickIfFalse
+      type: System.Boolean
+      description: Should we kick the player if the state is mismatched?
+    content.vb: Public Sub New(requiredState As ClientState, kickIfFalse As Boolean = True)
+  overload: Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Alibi.Plugins.API.Attributes
+  commentId: N:Alibi.Plugins.API.Attributes
+  name: Alibi.Plugins.API.Attributes
+  nameWithType: Alibi.Plugins.API.Attributes
+  fullName: Alibi.Plugins.API.Attributes
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Attribute
+  commentId: T:System.Attribute
+  parent: System
+  isExternal: true
+  name: Attribute
+  nameWithType: Attribute
+  fullName: System.Attribute
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.State*
+  commentId: Overload:Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+  name: State
+  nameWithType: RequireStateAttribute.State
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.State
+- uid: Alibi.Plugins.API.ClientState
+  commentId: T:Alibi.Plugins.API.ClientState
+  parent: Alibi.Plugins.API
+  name: ClientState
+  nameWithType: ClientState
+  fullName: Alibi.Plugins.API.ClientState
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick*
+  commentId: Overload:Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+  name: Kick
+  nameWithType: RequireStateAttribute.Kick
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.Kick
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Attributes.RequireStateAttribute.#ctor
+  name: RequireStateAttribute
+  nameWithType: RequireStateAttribute.RequireStateAttribute
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute.RequireStateAttribute

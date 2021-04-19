@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.Attributes
+  commentId: N:Alibi.Plugins.API.Attributes
+  id: Alibi.Plugins.API.Attributes
+  children:
+  - Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  - Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  - Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  - Alibi.Plugins.API.Attributes.ModOnlyAttribute
+  - Alibi.Plugins.API.Attributes.RequireStateAttribute
+  langs:
+  - csharp
+  - vb
+  name: Alibi.Plugins.API.Attributes
+  nameWithType: Alibi.Plugins.API.Attributes
+  fullName: Alibi.Plugins.API.Attributes
+  type: Namespace
+  assemblies:
+  - Alibi.Plugins.API
+references:
+- uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  name: AdminOnlyAttribute
+  nameWithType: AdminOnlyAttribute
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+- uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  name: CommandHandlerAttribute
+  nameWithType: CommandHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+- uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  name: MessageHandlerAttribute
+  nameWithType: MessageHandlerAttribute
+  fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+- uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.ModOnlyAttribute
+  name: ModOnlyAttribute
+  nameWithType: ModOnlyAttribute
+  fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute
+- uid: Alibi.Plugins.API.Attributes.RequireStateAttribute
+  commentId: T:Alibi.Plugins.API.Attributes.RequireStateAttribute
+  name: RequireStateAttribute
+  nameWithType: RequireStateAttribute
+  fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute
