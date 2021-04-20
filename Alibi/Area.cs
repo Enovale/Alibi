@@ -10,8 +10,7 @@ namespace Alibi
 {
     public class Area : IArea
     {
-        [JsonIgnore]
-        internal Server Server;
+        [JsonIgnore] internal Server Server;
 
         /// <summary>
         ///     Permission level needed to modify evidence
@@ -28,29 +27,21 @@ namespace Alibi
         public bool IniSwappingAllowed { get; set; } = true;
         public string Status { get; set; } = "IDLE";
 
-        [JsonIgnore]
-        public string Locked { get; set; } = "FREE";
+        [JsonIgnore] public string Locked { get; set; } = "FREE";
 
-        [JsonIgnore]
-        public int PlayerCount { get; set; } = 0;
+        [JsonIgnore] public int PlayerCount { get; set; } = 0;
 
-        [JsonIgnore]
-        public List<IClient> CurrentCaseManagers { get; } = new List<IClient>();
+        [JsonIgnore] public List<IClient> CurrentCaseManagers { get; } = new List<IClient>();
 
-        [JsonIgnore]
-        public string Document { get; set; }
+        [JsonIgnore] public string Document { get; set; }
 
-        [JsonIgnore]
-        public int DefendantHp { get; set; } = 10;
+        [JsonIgnore] public int DefendantHp { get; set; } = 10;
 
-        [JsonIgnore]
-        public int ProsecutorHp { get; set; } = 10;
+        [JsonIgnore] public int ProsecutorHp { get; set; } = 10;
 
-        [JsonIgnore]
-        public bool[] TakenCharacters { get; set; }
+        [JsonIgnore] public bool[] TakenCharacters { get; set; }
 
-        [JsonIgnore]
-        public List<IEvidence> EvidenceList { get; } = new List<IEvidence>();
+        [JsonIgnore] public List<IEvidence> EvidenceList { get; } = new List<IEvidence>();
 
         public void Broadcast(IAOPacket packet)
         {
@@ -68,10 +59,11 @@ namespace Alibi
             Broadcast(new AOPacket("CT", "Server", message, "1"));
         }
 
-        public void AreaUpdate(AreaUpdateType type, IClient client = null)
+        public void AreaUpdate(AreaUpdateType type) => AreaUpdate(type, null);
+
+        public void AreaUpdate(AreaUpdateType type, IClient client)
         {
-            var updateData = new List<string>();
-            updateData.Add(((int) type).ToString());
+            var updateData = new List<string> {((int) type).ToString()};
             foreach (var area in Server.Areas)
                 switch (type)
                 {
@@ -82,11 +74,9 @@ namespace Alibi
                         updateData.Add(area.Status);
                         break;
                     case AreaUpdateType.CourtManager:
-                        if (area.CurrentCaseManagers.Count <= 0)
-                            updateData.Add("FREE");
-                        else
-                            updateData.Add(
-                                string.Join(',', area.CurrentCaseManagers.Select(c => c.CharacterName)));
+                        updateData.Add(area.CurrentCaseManagers.Count <= 0
+                            ? "FREE"
+                            : string.Join(',', area.CurrentCaseManagers.Select(c => c.CharacterName)));
                         break;
                     case AreaUpdateType.Locked:
                         updateData.Add(area.Locked);
@@ -101,7 +91,9 @@ namespace Alibi
                 client.Send(new AOPacket("ARUP", updateData.ToArray()));
         }
 
-        public void FullUpdate(IClient client = null)
+        public void FullUpdate() => FullUpdate(null);
+
+        public void FullUpdate(IClient client)
         {
             AreaUpdate(AreaUpdateType.PlayerCount, client);
             AreaUpdate(AreaUpdateType.Status, client);

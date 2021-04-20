@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Specifies a handler for commands, or packets.
+    /// </summary>
     public class Handler
     {
         public MethodInfo Method { get; }

@@ -29,13 +29,13 @@ namespace Alibi.Protocol
             ((Client) client).HardwareId = packet.Objects[0];
             Server.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
             client.KickIfBanned();
-            client.CurrentState = ClientState.Handshook;
+            client.CurrentState = ClientState.PostHandshake;
 
             client.Send(new AOPacket("ID", "111111", "Alibi", Server.Version));
         }
 
         [MessageHandler("ID")]
-        [RequireState(ClientState.Handshook)]
+        [RequireState(ClientState.PostHandshake)]
         internal static void SoftwareId(IClient client, IAOPacket packet)
         {
             client.CurrentState = ClientState.Identified;
