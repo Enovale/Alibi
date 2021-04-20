@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Alibi.Plugins.API;
 
 namespace Alibi.Helpers
@@ -55,11 +56,11 @@ namespace Alibi.Helpers
         {
             if (pkt.Objects == null) return pkt.Type + "#%";
 
-            var final = pkt.Type + "#";
-            foreach (var o in pkt.Objects) final += o + "#";
+            var final = new StringBuilder(pkt.Type + "#");
+            foreach (var o in pkt.Objects) final.Append(o + "#");
 
-            final += "%";
-            return final;
+            final.Append('%');
+            return final.ToString();
         }
     }
 }

@@ -25,10 +25,10 @@ namespace Alibi
 {
     public class Server : TcpServer, IServer
     {
-        public static string PluginFolder = "Plugins";
-        public static string PluginDepsFolder = "Dependencies";
+        public const string PluginFolder = "Plugins";
+        public const string PluginDepsFolder = "Dependencies";
+        public const string ConfigFolder = "Config";
         public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName!;
-        public static string ConfigFolder = "Config";
         public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
         public static string AreasPath = Path.Combine(ConfigFolder, "areas.json");
         public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
@@ -284,7 +284,6 @@ namespace Alibi
 
         private async void CheckCorpses(CancellationToken token)
         {
-            var delayTask = Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
             Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
             var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
             while (clientQueue.Any())
@@ -300,7 +299,7 @@ namespace Alibi
 
             try
             {
-                await delayTask;
+                await Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token).ConfigureAwait(false);
             }
             catch (TaskCanceledException)
             {
@@ -312,8 +311,6 @@ namespace Alibi
 
         private async void UnbanExpires(CancellationToken token)
         {
-            // Wait a minute each time because that's the minimum unit of measurement
-            var delayTask = Task.Delay(60000, token);
             Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
             foreach (var bannedHwid in Database.GetBannedHwids())
                 if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
@@ -321,7 +318,8 @@ namespace Alibi
 
             try
             {
-                await delayTask;
+                // Wait a minute each time because that's the minimum unit of measurement
+                await Task.Delay(60000, token).ConfigureAwait(false);
             }
             catch (TaskCanceledException)
             {
@@ -340,10 +338,12 @@ namespace Alibi
         {
             Logger.Log(LogSeverity.Warning, "Stopping server...");
             _cancelTasksToken.Cancel();
+            _cancelTasksToken.Dispose();
             _advertiser.Stop();
             _wsProxy.Stop();
             Logger.Dump();
             Program.ResetEvent.Set();
+            Dispose();
         }
     }
 }
