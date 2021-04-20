@@ -61,7 +61,8 @@ namespace Alibi.Plugins
                 catch
                 {
                     Server.Logger.Log(LogSeverity.Error,
-                        $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, did you implement the Plugin base?");
+                        $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, " +
+                        $"did you implement the Plugin base?");
                     continue;
                 }
 
