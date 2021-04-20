@@ -13,7 +13,7 @@ namespace Alibi
         private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new Queue<Tuple<LogSeverity, string>>();
         private readonly Queue<string> _logBuffer = new Queue<string>(Server.ServerConfiguration.LogBufferSize);
 
-        private Server _server;
+        private readonly Server _server;
 
         public Logger(Server server)
         {

@@ -20,9 +20,8 @@ namespace Alibi.Plugins.Cerberus
 
         public static CerberusConfiguration Config;
 
-        private Dictionary<IClient, MuteInfo> _clientDict;
-
         private string _configPath;
+        private Dictionary<IClient, MuteInfo> _clientDict;
         private Dictionary<IClient, string?> _lastOocMsgDict;
         private Dictionary<IArea, bool> _silencedAreas;
 
