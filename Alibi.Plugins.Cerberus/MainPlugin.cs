@@ -20,19 +20,18 @@ namespace Alibi.Plugins.Cerberus
 
         public static CerberusConfiguration Config;
 
-        private string _configPath;
         private Dictionary<IClient, MuteInfo> _clientDict;
         private Dictionary<IClient, string?> _lastOocMsgDict;
         private Dictionary<IArea, bool> _silencedAreas;
 
         public override void Initialize()
         {
-            _configPath = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
-            if (!File.Exists(_configPath) || new FileInfo(_configPath).Length <= 0)
-                File.WriteAllText(_configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
+            var configPath = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
+            if (!File.Exists(configPath) || new FileInfo(configPath).Length <= 0)
+                File.WriteAllText(configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
                     new JsonSerializerOptions {WriteIndented = true}));
 
-            Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(_configPath))!;
+            Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(configPath))!;
 
             _clientDict = new Dictionary<IClient, MuteInfo>();
             foreach (var client in Server.ClientsConnected)

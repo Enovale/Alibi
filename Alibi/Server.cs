@@ -152,8 +152,6 @@ namespace Alibi
         {
             if (int.TryParse(str, out var id))
                 return ClientsConnected.FirstOrDefault(c => c.Character == id) ?? null;
-            //if (IPAddress.TryParse(str, out IPAddress ip))
-            //    return ClientsConnected.FirstOrDefault(c => Equals(c.IpAddress, ip)) ?? null;
             var hwidSearch = ClientsConnected.FirstOrDefault(c => c.HardwareId == str) ?? null;
             if (hwidSearch != null)
                 return hwidSearch;

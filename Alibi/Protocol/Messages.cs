@@ -298,7 +298,6 @@ namespace Alibi.Protocol
             catch (IcValidationException e)
             {
                 client.SendOocMessage(e.Message);
-                //Server.Logger.Log(LogSeverity.Error, e.Message, true);
             }
         }
 

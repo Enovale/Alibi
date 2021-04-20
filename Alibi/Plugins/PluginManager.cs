@@ -9,23 +9,23 @@ namespace Alibi.Plugins
 {
     public class PluginManager : IPluginManager
     {
-        public readonly IReadOnlyList<Plugin> LoadedPlugins;
+        public IReadOnlyList<Plugin> LoadedPlugins { get; }
 
-        private string PluginFolder { get; }
-        private PluginRegistry Registry { get; }
+        private readonly string _pluginFolder;
+        private readonly PluginRegistry _registry;
 
         public PluginManager(string path)
         {
-            PluginFolder = path;
-            Directory.CreateDirectory(PluginFolder);
-            Directory.CreateDirectory(Path.Combine(PluginFolder, Server.PluginDepsFolder));
-            Registry = new PluginRegistry(this);
-            LoadedPlugins = Registry.RegisteredPlugins;
+            _pluginFolder = path;
+            Directory.CreateDirectory(_pluginFolder);
+            Directory.CreateDirectory(Path.Combine(_pluginFolder, Server.PluginDepsFolder));
+            _registry = new PluginRegistry(this);
+            LoadedPlugins = _registry.RegisteredPlugins;
         }
 
-        public bool IsPluginLoaded(string id) => Registry.IsPluginRegistered(id);
+        public bool IsPluginLoaded(string id) => _registry.IsPluginRegistered(id);
 
-        public dynamic RequestPluginInstance(string id) => Registry.GetPluginInstance(id);
+        public dynamic RequestPluginInstance(string id) => _registry.GetPluginInstance(id);
 
         public string GetConfigFolder(string id) => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
 
@@ -33,7 +33,7 @@ namespace Alibi.Plugins
 
         internal void LoadPlugins(IServer server)
         {
-            var paths = Directory.GetFiles(PluginFolder, "*.dll");
+            var paths = Directory.GetFiles(_pluginFolder, "*.dll");
 
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
@@ -79,7 +79,7 @@ namespace Alibi.Plugins
 
                 try
                 {
-                    Registry.RegisterPlugin(instance);
+                    _registry.RegisterPlugin(instance);
                 }
                 catch (Exception e)
                 {
@@ -121,7 +121,7 @@ namespace Alibi.Plugins
             // and append the base path of the original assembly (ie. look in the same dir)
             var filename = args.Name.Split(',')[0] + ".dll".ToLower();
 
-            var asmFile = Path.Combine(PluginFolder, Server.PluginDepsFolder, filename);
+            var asmFile = Path.Combine(_pluginFolder, Server.PluginDepsFolder, filename);
 
             try
             {

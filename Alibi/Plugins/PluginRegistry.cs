@@ -9,7 +9,7 @@ namespace Alibi.Plugins
     {
         public List<Plugin> RegisteredPlugins { get; }
 
-        private PluginManager _owner;
+        private readonly PluginManager _owner;
         
         public PluginRegistry(PluginManager owner)
         {
