@@ -397,12 +397,6 @@ references:
   commentId: T:Alibi.Plugins.API.ClientState
   fullName: Alibi.Plugins.API.ClientState
   nameWithType: ClientState
-- uid: Alibi.Plugins.API.ClientState.Handshook
-  name: Handshook
-  href: api/Alibi.Plugins.API.ClientState.html#Alibi_Plugins_API_ClientState_Handshook
-  commentId: F:Alibi.Plugins.API.ClientState.Handshook
-  fullName: Alibi.Plugins.API.ClientState.Handshook
-  nameWithType: ClientState.Handshook
 - uid: Alibi.Plugins.API.ClientState.Identified
   name: Identified
   href: api/Alibi.Plugins.API.ClientState.html#Alibi_Plugins_API_ClientState_Identified
@@ -421,6 +415,12 @@ references:
   commentId: F:Alibi.Plugins.API.ClientState.NewClient
   fullName: Alibi.Plugins.API.ClientState.NewClient
   nameWithType: ClientState.NewClient
+- uid: Alibi.Plugins.API.ClientState.PostHandshake
+  name: PostHandshake
+  href: api/Alibi.Plugins.API.ClientState.html#Alibi_Plugins_API_ClientState_PostHandshake
+  commentId: F:Alibi.Plugins.API.ClientState.PostHandshake
+  fullName: Alibi.Plugins.API.ClientState.PostHandshake
+  nameWithType: ClientState.PostHandshake
 - uid: Alibi.Plugins.API.Exceptions
   name: Alibi.Plugins.API.Exceptions
   href: api/Alibi.Plugins.API.Exceptions.html
@@ -572,6 +572,12 @@ references:
   commentId: T:Alibi.Plugins.API.IArea
   fullName: Alibi.Plugins.API.IArea
   nameWithType: IArea
+- uid: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
+  name: AreaUpdate(AreaUpdateType)
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_AreaUpdate_Alibi_Plugins_API_AreaUpdateType_
+  commentId: M:Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
+  fullName: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
+  nameWithType: IArea.AreaUpdate(AreaUpdateType)
 - uid: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
   name: AreaUpdate(AreaUpdateType, IClient)
   href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_AreaUpdate_Alibi_Plugins_API_AreaUpdateType_Alibi_Plugins_API_IClient_
@@ -702,6 +708,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IArea.EvidenceList
   nameWithType: IArea.EvidenceList
+- uid: Alibi.Plugins.API.IArea.FullUpdate
+  name: FullUpdate()
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_FullUpdate
+  commentId: M:Alibi.Plugins.API.IArea.FullUpdate
+  fullName: Alibi.Plugins.API.IArea.FullUpdate()
+  nameWithType: IArea.FullUpdate()
 - uid: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
   name: FullUpdate(IClient)
   href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_FullUpdate_Alibi_Plugins_API_IClient_
