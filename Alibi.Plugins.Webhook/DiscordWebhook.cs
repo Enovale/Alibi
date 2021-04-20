@@ -12,13 +12,13 @@ namespace Alibi.Plugins.Webhook
         public override string ID => "com.elijahzawesome.DiscordWebhook";
         public override string Name => "DiscordWebhook";
 
-        public WebhookConfig Configuration;
+        public WebhookConfig Configuration { get; }
         
         private bool _enabled = true;
         private DWebHook _hook;
         private bool _validConfig;
 
-        public override void Initialize()
+        public DiscordWebhook()
         {
             var configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
 
@@ -31,6 +31,10 @@ namespace Alibi.Plugins.Webhook
             }
 
             Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
+        }
+
+        public override void Initialize()
+        {
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
                 Log(LogSeverity.Error,

@@ -5,8 +5,8 @@ namespace Alibi.Plugins.API
 {
     public class Handler
     {
-        public MethodInfo Method;
-        public Plugin? Target;
+        public MethodInfo Method { get; }
+        public Plugin? Target { get; }
 
         public Handler(MethodInfo method, Plugin? target)
         {
