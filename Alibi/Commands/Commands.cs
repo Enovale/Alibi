@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Text;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -19,11 +21,12 @@ namespace Alibi.Commands
     internal static class Commands
     {
         private static readonly Random _random = new Random();
+        private static readonly Ping _pinger = new Ping();
 
         [CommandHandler("help", "Show's this text.")]
         internal static void Help(IClient client, string[] args)
         {
-            string finalResponse = "\nCommands:\nUsage: /help [page]";
+            var finalResponse = new StringBuilder("\nCommands:\nUsage: /help [page]");
             var commandsAvailable = CommandHandler.HandlerInfo
                 .Where(t => client.Auth >= t.Item3).ToList();
             var pageSize = 5;
@@ -33,10 +36,10 @@ namespace Alibi.Commands
                     page = Math.Max(0, Math.Min(givenPage - 1, (commandsAvailable.Count - 1) / pageSize));
             var totalPages = (int) Math.Max(0, Math.Floor((float) commandsAvailable.Count / pageSize));
             foreach (var (command, desc, modOnly) in commandsAvailable.Skip(page * pageSize).Take(pageSize))
-                finalResponse += $"\n/{command}: {desc}";
-            finalResponse += $"\n====PAGE {page + 1} of {totalPages + 1}====";
+                finalResponse.Append($"\n/{command}: {desc}");
+            finalResponse.Append($"\n====PAGE {page + 1} of {totalPages + 1}====");
 
-            client.SendOocMessage(finalResponse);
+            client.SendOocMessage(finalResponse.ToString());
         }
 
         [CommandHandler("randomchar", "Changes you to a random character.")]
@@ -117,21 +120,22 @@ namespace Alibi.Commands
         [CommandHandler("areainfo", "Display area info, including players and name.")]
         internal static void AreaInfo(IClient client, string[] args)
         {
-            string output = $"{client.Area!.Name}:";
+            var output = new StringBuilder($"{client.Area!.Name}:");
             for (var i = 0; i < client.Area.TakenCharacters.Length; i++)
             {
                 if (!client.Area.TakenCharacters[i])
                     continue;
                 var tchar = Server.CharactersList[i];
                 if (client.Auth < AuthType.MODERATOR)
-                    output += $"\n{tchar}, ID: {i}";
+                    output.Append($"\n{tchar}, ID: {i}");
                 else
-                    output +=
+                    output.Append(
                         $"\n{client.ServerRef.FindUser(tchar)!.IpAddress}: " +
-                        $"{tchar}, ID: {i}";
+                        $"{tchar}, ID: {i}"
+                    );
             }
 
-            client.SendOocMessage(output);
+            client.SendOocMessage(output.ToString());
         }
 
         [CommandHandler("arealock", "Set the lock on the current area. 0 = FREE, 1 = SPECTATABLE, 2 = LOCKED.")]
@@ -286,6 +290,10 @@ namespace Alibi.Commands
             client.SendOocMessage("Document removed.");
         }
 
+        [CommandHandler("ping", "Get your ping to and from the server.")]
+        internal static void Ping(IClient client, string[] args) =>
+            client.SendOocMessage($"Ping: {_pinger.Send(client.IpAddress).RoundtripTime}ms");
+
         [CommandHandler("login", "Authenticates you to the server as a moderator.")]
         internal static void Login(IClient client, string[] args)
         {
@@ -303,25 +311,33 @@ namespace Alibi.Commands
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
 
-        [CommandHandler("logout", "De-authenticates you if you are logged in as a moderator.")]
+        [ModOnly]
+        [CommandHandler("logout", "De-authenticates you.")]
         internal static void Logout(IClient client, string[] args)
         {
-            if (client.Auth >= AuthType.MODERATOR)
-            {
-                ((Client) client).Auth = AuthType.USER;
-                client.SendOocMessage("Logged out.");
-            }
-            else
-            {
-                throw new CommandException("You are not logged in.");
-            }
+            ((Client) client).Auth = AuthType.USER;
+            client.SendOocMessage("Logged out.");
         }
 
         [ModOnly]
-        [CommandHandler("serverinfo", "Gives some server info including all player info.")]
+        [CommandHandler("serverinfo", "Gives some server info including all player info. (EXPENSIVE)")]
         internal static void ServerInfo(IClient client, string[] args)
         {
-            // stub
+            client.SendOocMessage($@"====== SERVER INFO ======
+Name: {Server.ServerConfiguration.ServerName}
+Server Version: {Server.Version}
+Areas: {client.ServerRef.Areas.Length}
+Verbose: {client.ServerRef.VerboseLogs}
+Music: {Server.MusicList.Length}
+Characters: {Server.CharactersList.Length}
+Connected Players: {client.ServerRef.ConnectedPlayers}
+Connected Dead/Alive Clients: {client.ServerRef.ClientsConnected.Count}
+Max Players: {Server.ServerConfiguration.MaxPlayers}
+Moderators Online: {client.ServerRef.ClientsConnected.Count(c => c.Auth >= AuthType.MODERATOR)}
+Admins Online: {client.ServerRef.ClientsConnected.Count(c => c.Auth >= AuthType.ADMINISTRATOR)}
+Ping: {_pinger.Send(client.IpAddress).RoundtripTime}
+Commands Registered: {CommandHandler.Handlers.Count}
+Packet Handlers Registered: {MessageHandler.Handlers.Count}");
         }
 
         [ModOnly]
@@ -409,10 +425,10 @@ namespace Alibi.Commands
         [CommandHandler("promote", "Upgrades a moderator's permissions level to administrator.")]
         internal static void PromoteLogin(IClient client, string[] args)
         {
-            if(args.Length <= 0)
+            if (args.Length <= 0)
                 throw new CommandException("Usage: /promote <username>");
-            
-            if(Server.Database.ChangeLoginPermissions(args[0], AuthType.ADMINISTRATOR))
+
+            if (Server.Database.ChangeLoginPermissions(args[0], AuthType.ADMINISTRATOR))
                 client.SendOocMessage($"Successfully promoted {args[0]} to Admin.");
             else
                 throw new CommandException("Couldn't find that username.");
@@ -422,10 +438,10 @@ namespace Alibi.Commands
         [CommandHandler("demote", "Downgrades an admin's permissions level to a moderator.")]
         internal static void DemoteLogin(IClient client, string[] args)
         {
-            if(args.Length <= 0)
+            if (args.Length <= 0)
                 throw new CommandException("Usage: /demote <username>");
-            
-            if(Server.Database.ChangeLoginPermissions(args[0], AuthType.MODERATOR))
+
+            if (Server.Database.ChangeLoginPermissions(args[0], AuthType.MODERATOR))
                 client.SendOocMessage($"Successfully demoted {args[0]} to Moderator.");
             else
                 throw new CommandException("Couldn't find that username.");
@@ -545,9 +561,9 @@ namespace Alibi.Commands
                 .ToArray();
             if (ipSearch.Length > 0)
             {
-                string output = "Hwids: ";
-                foreach (var c in ipSearch) output += $"\n\"{c.HardwareId}\"";
-                client.SendOocMessage(output);
+                var output = new StringBuilder("Hwids: ");
+                foreach (var c in ipSearch) output.Append($"\n\"{c.HardwareId}\"");
+                client.SendOocMessage(output.ToString());
                 return;
             }
 
