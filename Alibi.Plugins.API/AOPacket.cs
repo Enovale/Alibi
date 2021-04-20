@@ -3,8 +3,11 @@
 namespace Alibi.Plugins.API
 {
     /// <summary>
-    /// Helper class to create packets from the API (internal server uses it's own class)
+    /// Helper class to create packets from the API
     /// </summary>
+    /// <remarks>
+    /// (internal server uses it's own class)
+    /// </remarks>
     public class AOPacket : IAOPacket
     {
         /// <summary>
