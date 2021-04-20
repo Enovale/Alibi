@@ -511,13 +511,27 @@ references:
 - uid: Alibi.Plugins.API.Handler.Method
   name: Method
   href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler_Method
-  commentId: F:Alibi.Plugins.API.Handler.Method
+  commentId: P:Alibi.Plugins.API.Handler.Method
+  fullName: Alibi.Plugins.API.Handler.Method
+  nameWithType: Handler.Method
+- uid: Alibi.Plugins.API.Handler.Method*
+  name: Method
+  href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler_Method_
+  commentId: Overload:Alibi.Plugins.API.Handler.Method
+  isSpec: "True"
   fullName: Alibi.Plugins.API.Handler.Method
   nameWithType: Handler.Method
 - uid: Alibi.Plugins.API.Handler.Target
   name: Target
   href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler_Target
-  commentId: F:Alibi.Plugins.API.Handler.Target
+  commentId: P:Alibi.Plugins.API.Handler.Target
+  fullName: Alibi.Plugins.API.Handler.Target
+  nameWithType: Handler.Target
+- uid: Alibi.Plugins.API.Handler.Target*
+  name: Target
+  href: api/Alibi.Plugins.API.Handler.html#Alibi_Plugins_API_Handler_Target_
+  commentId: Overload:Alibi.Plugins.API.Handler.Target
+  isSpec: "True"
   fullName: Alibi.Plugins.API.Handler.Target
   nameWithType: Handler.Target
 - uid: Alibi.Plugins.API.IAOPacket
