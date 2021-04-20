@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
 
 namespace Alibi.Plugins.Fun
 {
-    public class Commands
+    public static class Commands
     {
-        public static Random Rand = new Random();
+        public static readonly Random Rand = new Random();
 
         private static string GetRoll(int max, int times)
         {
-            var rollResult = "Rolled:";
+            var rollResult = new StringBuilder("Rolled:");
             for (var i = 0; i < times; i++)
-                rollResult += $"\n{Rand.Next(max)}";
+                rollResult.Append($"\n{Rand.Next(max)}");
 
-            return rollResult;
+            return rollResult.ToString();
         }
 
         [CommandHandler("roll", "Roll the dice and get a number.")]

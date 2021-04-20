@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 
 namespace Alibi.Plugins.API
 {
@@ -76,20 +77,30 @@ namespace Alibi.Plugins.API
             return str.Replace("%", "<percent>").Replace("#", "<num>").Replace("$", "<dollar>").Replace("&", "<and>");
         }
 
+        /// <summary>
+        /// Decode a constructed packet string so that special characters are no longer escaped.
+        /// </summary>
+        /// <param name="str">The constructed packet to decode</param>
+        /// <returns>A decoded packet that should NOT be sent.</returns>
         public static string DecodeFromAOPacket(string str)
         {
             return str.Replace("<percent>", "%").Replace("<num>", "#").Replace("<dollar>", "$").Replace("<and>", "&");
         }
 
+        /// <summary>
+        /// Converts this packet into a decoded, constructed string implicitely.
+        /// </summary>
+        /// <param name="pkt">The packet object</param>
+        /// <returns>A decoded, constructed string</returns>
         public static implicit operator string(AOPacket pkt)
         {
             if (pkt.Objects == null) return pkt.Type + "#%";
 
-            var final = pkt.Type + "#";
-            foreach (var o in pkt.Objects) final += o + "#";
+            var final = new StringBuilder(pkt.Type + "#");
+            foreach (var o in pkt.Objects) final.Append(o + "#");
 
-            final += "%";
-            return final;
+            final.Append('%');
+            return final.ToString();
         }
     }
 }
