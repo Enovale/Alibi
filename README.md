@@ -1,4 +1,7 @@
 # Alibi
+[![License: MIT](https://img.shields.io/github/license/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE) [![Fork This Repo](https://img.shields.io/github/forks/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE) [![Star This Repo](https://img.shields.io/github/stars/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2510cdd5beb741f99a991626762cd7a1)](https://www.codacy.com/gh/ElijahZAwesome/Alibi/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ElijahZAwesome/Alibi&amp;utm_campaign=Badge_Grade)
 Attorney Online 2 Server Implementation in C# .NET Core
  
 # What is it?
@@ -12,9 +15,8 @@ Windows:
 
 Linux/Unix:
  
- - Determine how to install the dotnet core runtime on your distribution: 
- [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux) 
- or [here](https://wiki.archlinux.org/index.php/.NET_Core#Installation) are a few.
+ - Determine how to install the dotnet core runtime on your distribution:
+ [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux) or [here](https://wiki.archlinux.org/index.php/.NET_Core#Installation) are a few.
 
 # Usage
 To run the most basic possible server, all you have to do is download the latest 
@@ -27,7 +29,11 @@ Double click or run this in the console (currently no command line arguments):
 Alibi
 ```
 
-# Plugins (Actual wiki coming soon)
+# Documentation:
+You can go to the [documentation](https://elijahzawesome.github.io/Alibi) page if you wanna find out how to use the server, make plugins, and the various other articles ~~ill eventually make~~. However, this page is still WIP, so don't expect a full tutorial.
+
+# Plugins
+
 Surprisingly, this thing supports plugins! To make one, just make a new .Net Core 
 Class Library that targets net5.0, and reference the `Alibi.Plugins.API` 
 project of this repository, or install this 
