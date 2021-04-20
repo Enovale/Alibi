@@ -81,10 +81,11 @@ namespace Alibi
             if (readAreas == null || readAreas.Length == 0)
             {
                 Logger.Log(LogSeverity.Warning,
-                    "At least one area is required to start the server, writing default area...");
+                    " At least one area is required to start the server, writing default area...");
                 readAreas = new[] {new Area()};
                 File.WriteAllText(AreasPath, JsonConvert.SerializeObject(readAreas, Formatting.Indented));
             }
+
             Areas = readAreas;
 
             AreaNames = new string[Areas.Length];
@@ -159,8 +160,7 @@ namespace Alibi
             var oocSearch = ClientsConnected.FirstOrDefault(c => c.OocName == str) ?? null;
             if (oocSearch != null)
                 return oocSearch;
-            var charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ??
-                             null;
+            var charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ?? null;
             if (charSearch != null)
                 return charSearch;
             return null;
@@ -343,6 +343,7 @@ namespace Alibi
             _advertiser.Stop();
             _wsProxy.Stop();
             Logger.Dump();
+            Program.ResetEvent.Set();
         }
     }
 }

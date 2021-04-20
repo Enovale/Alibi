@@ -345,6 +345,13 @@ namespace Alibi.Commands
             Environment.Exit(0);
         }
 
+        [AdminOnly]
+        [CommandHandler("stop", "Shutdown the server.")]
+        internal static void Stop(IClient client, string[] args)
+        {
+            client.ServerRef.Stop();
+        }
+
         [ModOnly]
         [CommandHandler("getlogs", "Retrieves the server logs and dumps them.")]
         internal static void GetLogs(IClient client, string[] args)

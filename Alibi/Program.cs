@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 
@@ -9,12 +10,13 @@ namespace Alibi
 {
     internal static class Program
     {
-#pragma warning disable 8618
-        private static Server _server;
-#pragma warning restore 8618
+        internal static readonly ManualResetEvent ResetEvent;
+        
+        private static readonly Server _server;
 
-        private static void Main(string[] args)
+        static Program()
         {
+            ResetEvent = new ManualResetEvent(false);
             Environment.CurrentDirectory = GetRealProcessDirectory();
             if (!File.Exists(Server.ConfigPath)
                 || new FileInfo(Server.ConfigPath).Length <= 0)
@@ -22,13 +24,16 @@ namespace Alibi
             _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
             Console.Title = "Alibi - Running";
             _server.Start();
+        }
 
+        private static void Main(string[] args)
+        {
             AppDomain.CurrentDomain.ProcessExit += ExitProgram;
             Console.CancelKeyPress += ExitProgram;
             AppDomain.CurrentDomain.UnhandledException += ExitProgram;
             TaskScheduler.UnobservedTaskException += ExitProgram;
 
-            while (true) ;
+            ResetEvent.WaitOne();
         }
 
         private static string GetRealProcessDirectory()
