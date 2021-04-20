@@ -108,6 +108,7 @@ namespace Alibi
                     _banCheckTime = DateTime.Now;
                 }
 
+                // TODO: Make a better rate limiting system that doesn't use the banning system
                 if (_packetCount >= Alibi.Server.ServerConfiguration.RateLimit)
                     Client.BanIp("You have been rate limited.", Alibi.Server.ServerConfiguration.RateLimitBanLength, null);
                 _packetCount++;
