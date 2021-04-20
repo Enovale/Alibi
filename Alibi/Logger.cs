@@ -35,9 +35,7 @@ namespace Alibi
                         LogSeverity.Error => ConsoleColor.Red,
                         _ => Console.ForegroundColor
                     };
-
                     Console.WriteLine(log.Item2);
-
                     Console.ResetColor();
                 }
             }
