@@ -170,7 +170,7 @@ namespace Alibi.Protocol
             client.Send(new AOPacket("FA", client.ServerRef.AreaNames));
             client.Send(new AOPacket("BN", client.Area!.Background));
             client.Send(new AOPacket("DONE"));
-            client.SendOocMessage(Server.ServerConfiguration.MOTD);
+            client.SendOocMessage(Server.ServerConfiguration.Motd);
 
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the server.");
         }
