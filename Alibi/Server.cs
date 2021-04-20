@@ -28,11 +28,11 @@ namespace Alibi
         public const string PluginFolder = "Plugins";
         public const string PluginDepsFolder = "Dependencies";
         public const string ConfigFolder = "Config";
-        public static string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName!;
-        public static string ConfigPath = Path.Combine(ConfigFolder, "config.json");
-        public static string AreasPath = Path.Combine(ConfigFolder, "areas.json");
-        public static string MusicPath = Path.Combine(ConfigFolder, "music.txt");
-        public static string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
+        public static readonly string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName!;
+        public static readonly string ConfigPath = Path.Combine(ConfigFolder, "config.json");
+        public static readonly string AreasPath = Path.Combine(ConfigFolder, "areas.json");
+        public static readonly string MusicPath = Path.Combine(ConfigFolder, "music.txt");
+        public static readonly string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
 
         public static IPAddress MasterServerIp { get; private set; }
 

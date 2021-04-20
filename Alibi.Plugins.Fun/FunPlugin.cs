@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Alibi.Plugins.API;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace Alibi.Plugins.Fun
 {
@@ -10,14 +11,13 @@ namespace Alibi.Plugins.Fun
         public override string ID => "com.elijahzawesome.Fun";
         public override string Name => "Fun";
 
-        public static Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();
-        public static Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
+        public static readonly Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();
+        public static readonly Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
         public static string EightBallConfigPath;
 
         public override void Initialize()
         {
             EightBallConfigPath = Path.Combine(PluginManager.GetConfigFolder(ID), "8ball.json");
-            var _ = EightBall.Responses;
         }
 
         public override void OnPlayerJoined(IClient client)

@@ -6,7 +6,7 @@ namespace Alibi.Plugins.Fun
 {
     public static class EightBall
     {
-        public static string[] Responses;
+        public static readonly string[] Responses;
 
         private static readonly string[] _defaultResponses =
         {
