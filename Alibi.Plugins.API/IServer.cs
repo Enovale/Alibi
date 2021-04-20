@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+// ReSharper disable UnassignedGetOnlyAutoProperty
 #pragma warning disable 8618
 
 namespace Alibi.Plugins.API
@@ -11,6 +12,7 @@ namespace Alibi.Plugins.API
     /// </summary>
     public interface IServer
     {
+        public static IConfiguration ServerConfiguration { get; }
         public static IPAddress MasterServerIp { get; }
         public static IDatabaseManager Database { get; }
         public static string[] MusicList { get; }

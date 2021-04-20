@@ -61,7 +61,7 @@ namespace Alibi.Commands
         [CommandHandler("motd", "Displays the MOTD sent upon joining.")]
         internal static void Motd(IClient client, string[] args)
         {
-            client.SendOocMessage(Server.ServerConfiguration.MOTD);
+            client.SendOocMessage(Server.ServerConfiguration.Motd);
         }
 
         [CommandHandler("online", "Shows the player count.")]
