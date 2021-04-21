@@ -31,10 +31,25 @@ namespace Alibi.Plugins.API
         }
 
         /// <summary>
-        /// Called when a player joins the server.
+        /// Called when a player joins the server, NOT when they are identified
         /// </summary>
         /// <param name="client">The client who just joined</param>
+        /// <remarks>
+        /// This player is not ready to be sent messages and should only
+        /// be used to initialize starting data that is needed asap.
+        /// </remarks>
         public virtual void OnPlayerJoined(IClient client)
+        {
+        }
+
+        /// <summary>
+        /// Called when a player fully identifies and joins the first area.
+        /// </summary>
+        /// <param name="client">The client who just joined</param>
+        /// <remarks>
+        /// You can assume this player is ready to play and be sent messages.
+        /// </remarks>
+        public virtual void OnPlayerConnected(IClient client)
         {
         }
 

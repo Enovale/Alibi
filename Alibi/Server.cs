@@ -190,6 +190,19 @@ namespace Alibi
                 }
         }
 
+        public void OnPlayerConnected(IClient client)
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    p.OnPlayerConnected(client);
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnPlayerConnected(), {e}");
+                }
+        }
+
         public bool OnIcMessage(IClient client, ref string message)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
