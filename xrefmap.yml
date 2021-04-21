@@ -1971,109 +1971,6 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.MusicList
   nameWithType: IServer.MusicList
-- uid: Alibi.Plugins.API.IServer.OnAllPluginsLoaded
-  name: OnAllPluginsLoaded()
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnAllPluginsLoaded
-  commentId: M:Alibi.Plugins.API.IServer.OnAllPluginsLoaded
-  fullName: Alibi.Plugins.API.IServer.OnAllPluginsLoaded()
-  nameWithType: IServer.OnAllPluginsLoaded()
-- uid: Alibi.Plugins.API.IServer.OnAllPluginsLoaded*
-  name: OnAllPluginsLoaded
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnAllPluginsLoaded_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnAllPluginsLoaded
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnAllPluginsLoaded
-  nameWithType: IServer.OnAllPluginsLoaded
-- uid: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
-  name: OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnBan_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IClient_System_String__System_Nullable_System_TimeSpan__
-  commentId: M:Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IClient,System.String@,System.Nullable{System.TimeSpan})
-  name.vb: OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ref System.String, System.Nullable<System.TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.IServer.OnBan(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IClient, ByRef System.String, System.Nullable(Of System.TimeSpan))
-  nameWithType: IServer.OnBan(IClient, IClient, ref String, Nullable<TimeSpan>)
-  nameWithType.vb: IServer.OnBan(IClient, IClient, ByRef String, Nullable(Of TimeSpan))
-- uid: Alibi.Plugins.API.IServer.OnBan*
-  name: OnBan
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnBan_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnBan
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnBan
-  nameWithType: IServer.OnBan
-- uid: Alibi.Plugins.API.IServer.OnIcMessage(Alibi.Plugins.API.IClient,System.String@)
-  name: OnIcMessage(IClient, ref String)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnIcMessage_Alibi_Plugins_API_IClient_System_String__
-  commentId: M:Alibi.Plugins.API.IServer.OnIcMessage(Alibi.Plugins.API.IClient,System.String@)
-  name.vb: OnIcMessage(IClient, ByRef String)
-  fullName: Alibi.Plugins.API.IServer.OnIcMessage(Alibi.Plugins.API.IClient, ref System.String)
-  fullName.vb: Alibi.Plugins.API.IServer.OnIcMessage(Alibi.Plugins.API.IClient, ByRef System.String)
-  nameWithType: IServer.OnIcMessage(IClient, ref String)
-  nameWithType.vb: IServer.OnIcMessage(IClient, ByRef String)
-- uid: Alibi.Plugins.API.IServer.OnIcMessage*
-  name: OnIcMessage
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnIcMessage_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnIcMessage
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnIcMessage
-  nameWithType: IServer.OnIcMessage
-- uid: Alibi.Plugins.API.IServer.OnModCall(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IAOPacket)
-  name: OnModCall(IClient, IAOPacket)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnModCall_Alibi_Plugins_API_IClient_Alibi_Plugins_API_IAOPacket_
-  commentId: M:Alibi.Plugins.API.IServer.OnModCall(Alibi.Plugins.API.IClient,Alibi.Plugins.API.IAOPacket)
-  fullName: Alibi.Plugins.API.IServer.OnModCall(Alibi.Plugins.API.IClient, Alibi.Plugins.API.IAOPacket)
-  nameWithType: IServer.OnModCall(IClient, IAOPacket)
-- uid: Alibi.Plugins.API.IServer.OnModCall*
-  name: OnModCall
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnModCall_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnModCall
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnModCall
-  nameWithType: IServer.OnModCall
-- uid: Alibi.Plugins.API.IServer.OnMusicChange(Alibi.Plugins.API.IClient,System.String@)
-  name: OnMusicChange(IClient, ref String)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnMusicChange_Alibi_Plugins_API_IClient_System_String__
-  commentId: M:Alibi.Plugins.API.IServer.OnMusicChange(Alibi.Plugins.API.IClient,System.String@)
-  name.vb: OnMusicChange(IClient, ByRef String)
-  fullName: Alibi.Plugins.API.IServer.OnMusicChange(Alibi.Plugins.API.IClient, ref System.String)
-  fullName.vb: Alibi.Plugins.API.IServer.OnMusicChange(Alibi.Plugins.API.IClient, ByRef System.String)
-  nameWithType: IServer.OnMusicChange(IClient, ref String)
-  nameWithType.vb: IServer.OnMusicChange(IClient, ByRef String)
-- uid: Alibi.Plugins.API.IServer.OnMusicChange*
-  name: OnMusicChange
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnMusicChange_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnMusicChange
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnMusicChange
-  nameWithType: IServer.OnMusicChange
-- uid: Alibi.Plugins.API.IServer.OnOocMessage(Alibi.Plugins.API.IClient,System.String@)
-  name: OnOocMessage(IClient, ref String)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnOocMessage_Alibi_Plugins_API_IClient_System_String__
-  commentId: M:Alibi.Plugins.API.IServer.OnOocMessage(Alibi.Plugins.API.IClient,System.String@)
-  name.vb: OnOocMessage(IClient, ByRef String)
-  fullName: Alibi.Plugins.API.IServer.OnOocMessage(Alibi.Plugins.API.IClient, ref System.String)
-  fullName.vb: Alibi.Plugins.API.IServer.OnOocMessage(Alibi.Plugins.API.IClient, ByRef System.String)
-  nameWithType: IServer.OnOocMessage(IClient, ref String)
-  nameWithType.vb: IServer.OnOocMessage(IClient, ByRef String)
-- uid: Alibi.Plugins.API.IServer.OnOocMessage*
-  name: OnOocMessage
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnOocMessage_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnOocMessage
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnOocMessage
-  nameWithType: IServer.OnOocMessage
-- uid: Alibi.Plugins.API.IServer.OnPlayerJoined(Alibi.Plugins.API.IClient)
-  name: OnPlayerJoined(IClient)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnPlayerJoined_Alibi_Plugins_API_IClient_
-  commentId: M:Alibi.Plugins.API.IServer.OnPlayerJoined(Alibi.Plugins.API.IClient)
-  fullName: Alibi.Plugins.API.IServer.OnPlayerJoined(Alibi.Plugins.API.IClient)
-  nameWithType: IServer.OnPlayerJoined(IClient)
-- uid: Alibi.Plugins.API.IServer.OnPlayerJoined*
-  name: OnPlayerJoined
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_OnPlayerJoined_
-  commentId: Overload:Alibi.Plugins.API.IServer.OnPlayerJoined
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IServer.OnPlayerJoined
-  nameWithType: IServer.OnPlayerJoined
 - uid: Alibi.Plugins.API.IServer.ReloadConfig
   name: ReloadConfig()
   href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_ReloadConfig
@@ -2330,6 +2227,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Plugin.OnOocMessage
   nameWithType: Plugin.OnOocMessage
+- uid: Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  name: OnPlayerConnected(IClient)
+  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_OnPlayerConnected_Alibi_Plugins_API_IClient_
+  commentId: M:Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  fullName: Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  nameWithType: Plugin.OnPlayerConnected(IClient)
+- uid: Alibi.Plugins.API.Plugin.OnPlayerConnected*
+  name: OnPlayerConnected
+  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_OnPlayerConnected_
+  commentId: Overload:Alibi.Plugins.API.Plugin.OnPlayerConnected
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.Plugin.OnPlayerConnected
+  nameWithType: Plugin.OnPlayerConnected
 - uid: Alibi.Plugins.API.Plugin.OnPlayerJoined(Alibi.Plugins.API.IClient)
   name: OnPlayerJoined(IClient)
   href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_OnPlayerJoined_Alibi_Plugins_API_IClient_

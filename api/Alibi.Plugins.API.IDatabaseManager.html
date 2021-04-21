@@ -85,14 +85,15 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L18">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L92">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_AddLogin_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddLogin*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)">AddLogin(String, String, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Registers an account with higher permissions in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -111,17 +112,20 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The username this player will use to login</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The password this player will use to login</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">perms</span></td>
-        <td></td>
+        <td><p>What permissions this account has, refer to AuthType</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -136,20 +140,26 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Passwords are stored as a BCrypt hash in the database
+and the plain text version is immediately thrown away.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddUser(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddUser(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L7">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L13">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_AddUser_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddUser*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)">AddUser(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Add a user to the database, with default info.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -168,12 +178,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">hwid</span></td>
-        <td></td>
+        <td><p>The hardware ID of this user</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address of this user</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -188,20 +200,23 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not the user was successfully added to the database.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L12">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L48">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_BanHwid_" data-uid="Alibi.Plugins.API.IDatabaseManager.BanHwid*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})">BanHwid(String, String, Nullable&lt;TimeSpan&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Registers a ban for an HWID in the database. This won't take effect
+until the player rejoins the server. Instead use IClient.BanHwid</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -220,30 +235,35 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">hwid</span></td>
-        <td></td>
+        <td><p>The HWID to ban</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">reason</span></td>
-        <td></td>
+        <td><p>Why they were banned</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
         <td><span class="parametername">expireTime</span></td>
-        <td></td>
+        <td><p>When to let this ban expire (null if indefinite)</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanIp(System.String%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanIp(System.String%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L13">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L59">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_BanIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.BanIp*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})">BanIp(String, String, Nullable&lt;TimeSpan&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Registers a ban for an IP in the database. This won't take effect
+until the player rejoins the server. Instead use IClient.BanIP</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -262,30 +282,37 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address to ban</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">reason</span></td>
-        <td></td>
+        <td><p>Why they are being banned</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
         <td><span class="parametername">expireTime</span></td>
-        <td></td>
+        <td><p>When to let this  ban expire (null if indefinite)</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Try to never use this ban method as it is insecure. Use HWID banning whenever possible.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L19">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L99">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_" data-uid="Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_" data-uid="Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)">ChangeLoginPermissions(String, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Change the permission level of a given login in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -304,12 +331,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The login username to change permissions of</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">perms</span></td>
-        <td></td>
+        <td><p>The permissions to change the login to</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -324,20 +353,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L21">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L117">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_CheckCredentials_" data-uid="Alibi.Plugins.API.IDatabaseManager.CheckCredentials*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)">CheckCredentials(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if the given username and password matches the one registered in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -356,12 +387,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The username to check</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The password to check (in plaintext)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -376,20 +409,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not the authentication was successful</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L17">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L80">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanExpiration*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)">GetBanExpiration(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Fetches when an HWID will be unbanned.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -408,7 +443,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">hwid</span></td>
-        <td></td>
+        <td><p>The HWID to search for</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -423,20 +459,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.DateTime</span>&gt;</td>
-        <td></td>
+        <td><p>A DateTime representing when this ban will expire.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBannedHwids.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBannedHwids%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBannedHwids.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBannedHwids%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L16">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L74">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_GetBannedHwids_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBannedHwids*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBannedHwids" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBannedHwids">GetBannedHwids()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a list of every banned Hardware ID in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -453,20 +491,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
-        <td></td>
+        <td><p>An array of HWIDs that are banned in the database</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L11">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L40">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanReason*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)">GetBanReason(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the ban reasoning stored in the database for an IP Address.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -485,7 +525,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address to search for</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -500,20 +541,25 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The reason this IP was banned</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This isn't available for HWIDs for technical reasons.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L8">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L19">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)">GetHwidsfromIp(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get all hardware IDs associated with a given IP Address</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -532,7 +578,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address to search the database for</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -547,20 +594,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
-        <td></td>
+        <td><p>An array of hardware IDs associated with this IP</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L22">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L123">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)">GetPermissionLevel(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns the permission level of a given login.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -579,7 +628,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The login to check</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -594,20 +644,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>What permission level they have</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L9">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L25">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsHwidBanned*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)">IsHwidBanned(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Check if a given hardware ID is banned in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -626,7 +678,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">hwid</span></td>
-        <td></td>
+        <td><p>The hardware ID to search for</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -641,20 +694,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not this HWID is banned</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L10">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L31">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_IsIpBanned_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsIpBanned*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)">IsIpBanned(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Check if a given IP Address is banned in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -673,7 +728,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address to check</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -688,20 +744,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not this IP Address is banned</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L20">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L110">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_" data-uid="Alibi.Plugins.API.IDatabaseManager.RemoveLogin*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)">RemoveLogin(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Deletes a login registered in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -720,7 +778,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The login to delete</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -735,20 +794,27 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Doing this will NOT log out players that already used this login.
+Do not use this as a token revocation system of sorts, unless you
+also find those logged in users and log them out.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L14">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L64">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_UnbanHwid_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanHwid*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)">UnbanHwid(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Lifts a ban for an HWID in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -767,20 +833,22 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">hwid</span></td>
-        <td></td>
+        <td><p>The Hardware ID to unban</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L15">View Source</a>
+    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L69">View Source</a>
   </span>
   <a id="Alibi_Plugins_API_IDatabaseManager_UnbanIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanIp*"></a>
   <h4 id="Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)">UnbanIp(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Lifts a ban for an IP Address in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -799,7 +867,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ip</span></td>
-        <td></td>
+        <td><p>The IP Address to unban</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -811,10 +880,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ElijahZAwesome/Alibi/new/37944fb24dcc03b50613399a63eee26d41181d4a/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ElijahZAwesome/Alibi/new/30335231aabe65c5b97307ca028973df39835024/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ElijahZAwesome/Alibi/blob/37944fb24dcc03b50613399a63eee26d41181d4a/Alibi.Plugins.API/IDatabaseManager.cs/#L5" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ElijahZAwesome/Alibi/blob/30335231aabe65c5b97307ca028973df39835024/Alibi.Plugins.API/IDatabaseManager.cs/#L5" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
