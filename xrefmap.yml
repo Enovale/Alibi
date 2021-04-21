@@ -708,6 +708,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IArea.EvidenceList
   nameWithType: IArea.EvidenceList
+- uid: Alibi.Plugins.API.IArea.EvidenceModifications
+  name: EvidenceModifications
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_EvidenceModifications
+  commentId: P:Alibi.Plugins.API.IArea.EvidenceModifications
+  fullName: Alibi.Plugins.API.IArea.EvidenceModifications
+  nameWithType: IArea.EvidenceModifications
+- uid: Alibi.Plugins.API.IArea.EvidenceModifications*
+  name: EvidenceModifications
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_EvidenceModifications_
+  commentId: Overload:Alibi.Plugins.API.IArea.EvidenceModifications
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IArea.EvidenceModifications
+  nameWithType: IArea.EvidenceModifications
 - uid: Alibi.Plugins.API.IArea.FullUpdate
   name: FullUpdate()
   href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_FullUpdate
