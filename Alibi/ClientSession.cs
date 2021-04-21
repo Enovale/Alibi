@@ -59,8 +59,7 @@ namespace Alibi
                 return;
             }
 
-            Client = new Client((Server) Server, this, ip);
-            Client.LastAlive = DateTime.Now;
+            Client = new Client((Server) Server, this, ip) {LastAlive = DateTime.Now};
             Client.KickIfBanned();
 
             ((Server) Server).OnPlayerJoined(Client);

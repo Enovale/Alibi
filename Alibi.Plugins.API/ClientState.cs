@@ -1,5 +1,8 @@
 ﻿namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Represents the protocol state of a client.
+    /// </summary>
     public enum ClientState
     {
         /// <summary>

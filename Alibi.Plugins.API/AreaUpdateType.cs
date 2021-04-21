@@ -1,5 +1,8 @@
 ﻿namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Specifies which information to update about an area.
+    /// </summary>
     public enum AreaUpdateType
     {
         PlayerCount = 0,

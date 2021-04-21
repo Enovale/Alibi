@@ -160,6 +160,7 @@ namespace Alibi.Protocol
             ((Client) client).Connected = true;
             client.CurrentState = ClientState.InArea;
             client.ServerRef.ConnectedPlayers++;
+            ((Server)client.ServerRef).OnPlayerConnected(client);
             ((Area) client.Area)!.PlayerCount++;
             client.Area.FullUpdate(client);
             // Tell all the other clients that someone has joined
@@ -268,7 +269,7 @@ namespace Alibi.Protocol
                 }
             }
 
-            if (!client.ServerRef.OnMusicChange(client, ref song))
+            if (!((Server)client.ServerRef).OnMusicChange(client, ref song))
                 return;
 
             foreach (var m in Server.MusicList)
@@ -286,7 +287,7 @@ namespace Alibi.Protocol
             {
                 var validPacket = IcValidator.ValidateIcPacket(packet, client);
 
-                if (!client.ServerRef.OnIcMessage(client, ref validPacket.Objects[4])) // 4 is the message
+                if (!((Server)client.ServerRef).OnIcMessage(client, ref validPacket.Objects[4])) // 4 is the message
                     return;
 
                 if (validPacket.Objects[4].Length > Server.ServerConfiguration.MaxMessageSize)
@@ -322,7 +323,7 @@ namespace Alibi.Protocol
                 return;
             }
 
-            if (!client.ServerRef.OnOocMessage(client, ref message))
+            if (!((Server)client.ServerRef).OnOocMessage(client, ref message))
                 return;
             packet.Objects[1] = message;
 
@@ -365,7 +366,7 @@ namespace Alibi.Protocol
         [RequireState(ClientState.InArea)]
         internal static void ModCall(IClient client, IAOPacket packet)
         {
-            if (!client.ServerRef.OnModCall(client, packet))
+            if (!((Server)client.ServerRef).OnModCall(client, packet))
                 return;
 
             Server.Logger.Log(LogSeverity.Special, $"[{client.Area!.Name}][{client.IpAddress}] " +
