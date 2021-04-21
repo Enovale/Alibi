@@ -12,14 +12,7 @@ namespace Alibi
     {
         [JsonIgnore] internal Server Server;
 
-        /// <summary>
-        ///     Permission level needed to modify evidence
-        ///     0 = FFA
-        ///     1 = CM
-        ///     2 = No-one
-        /// </summary>
         public int EvidenceModifications { get; set; } = 0;
-
         public string Name { get; set; } = "AreaName";
         public string Background { get; set; } = "gs4";
         public bool CanLock { get; set; } = true;
