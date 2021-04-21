@@ -8,6 +8,14 @@ namespace Alibi.Plugins.API
     public interface IArea
     {
         public string Name { get; }
+        
+        /// <summary>
+        /// Permission level needed to modify evidence
+        ///     0 = Free for All
+        ///     1 = Case Manager
+        ///     2 = No-one
+        /// </summary>
+        public int EvidenceModifications { get; set; }
 
         /// <summary>
         /// The background image this area tells clients to use

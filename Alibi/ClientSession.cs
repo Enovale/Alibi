@@ -90,8 +90,8 @@ namespace Alibi
             if (offset + size >= buffer.Length)
                 return;
             var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
-            var dissallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
-            if (dissallowedRequests.Any(r => msg.StartsWith(r)))
+            var disallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
+            if (disallowedRequests.Any(r => msg.StartsWith(r)))
                 return;
             var packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)

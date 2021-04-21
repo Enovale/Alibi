@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text.Json;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -42,9 +43,11 @@ namespace Alibi.Plugins.Webhook
                 return;
             }
 
-            _hook = new DWebHook(Configuration.WebhookUrl);
-            _hook.Username = Configuration.Username;
-            _hook.AvatarUrl = Configuration.AvatarURL;
+            _hook = new DWebHook(Configuration.WebhookUrl)
+            {
+                Username = Configuration.Username,
+                AvatarUrl = Configuration.AvatarURL
+            };
             _validConfig = true;
 
             Log(LogSeverity.Info, "Discord Webhook loaded.");
