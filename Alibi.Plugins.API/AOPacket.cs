@@ -12,8 +12,11 @@ namespace Alibi.Plugins.API
     public class AOPacket : IAOPacket
     {
         /// <summary>
-        /// The type (ID) of this packet. E.g HI, RT, CT
+        /// The type (ID) of this packet.
         /// </summary>
+        /// <example>
+        /// HI, RT, CT
+        /// </example>
         public string Type { get; set; }
         /// <summary>
         /// Data contained in this packet, that will be joined together when sent.
@@ -72,6 +75,9 @@ namespace Alibi.Plugins.API
         /// </summary>
         /// <param name="str">The constructed packet to encode</param>
         /// <returns>An encoded packet ready to be sent.</returns>
+        /// <code>
+        /// EncodeToAOPacket("HI#1234#%"); // returns "HI<num>1234<num><percent>"
+        /// </code>
         public static string EncodeToAOPacket(string str)
         {
             return str.Replace("%", "<percent>").Replace("#", "<num>").Replace("$", "<dollar>").Replace("&", "<and>");
@@ -82,16 +88,22 @@ namespace Alibi.Plugins.API
         /// </summary>
         /// <param name="str">The constructed packet to decode</param>
         /// <returns>A decoded packet that should NOT be sent.</returns>
+        /// <code>
+        /// EncodeToAOPacket("HI<num>1234<num><percent>"); // returns "HI#1234#%"
+        /// </code>
         public static string DecodeFromAOPacket(string str)
         {
             return str.Replace("<percent>", "%").Replace("<num>", "#").Replace("<dollar>", "$").Replace("<and>", "&");
         }
 
         /// <summary>
-        /// Converts this packet into a decoded, constructed string implicitely.
+        /// Converts this packet into a decoded, constructed string implicitly.
         /// </summary>
         /// <param name="pkt">The packet object</param>
         /// <returns>A decoded, constructed string</returns>
+        /// <code>
+        /// Console.WriteLine(new AOPacket("HI", new[] { 1234 })) // Prints "HI#1234#%"
+        /// </code>
         public static implicit operator string(AOPacket pkt)
         {
             if (pkt.Objects == null) return pkt.Type + "#%";

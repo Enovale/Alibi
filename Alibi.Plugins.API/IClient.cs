@@ -4,6 +4,9 @@ using System.Net;
 
 namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Represents a client connected to the server (not necessarily an identified player).
+    /// </summary>
     public interface IClient
     {
         /// <summary>
