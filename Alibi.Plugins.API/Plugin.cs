@@ -8,19 +8,38 @@ namespace Alibi.Plugins.API
     /// </summary>
     public abstract class Plugin
     {
-        public abstract string ID { get; }
-        public abstract string Name { get; }
-        public IServer Server { get; set; }
-        public IPluginManager PluginManager { get; set; }
-        public Assembly Assembly { get; set; }
-        
         /// <summary>
-        /// Called when this plugin gets loaded first.
-        /// Other plugins you might depend on may not
-        /// be loaded, so use OnAllPluginsLoaded if you
-        /// need to know the state of another plugin.
+        /// The ID of this plugin. Can be anything, but it is
+        /// recommended to use the com.author.project format.
         /// </summary>
-        public abstract void Initialize();
+        /// <remarks>
+        /// This is used to determine the config folder name,
+        /// and for other plugins to find this plugin.
+        /// </remarks>
+        public abstract string ID { get; }
+
+        /// <summary>
+        /// The arbitrary name of this plugin.
+        /// Doesn't matter if duplicated, and is only used for logs.
+        /// </summary>
+        public abstract string Name { get; }
+
+        private readonly IServer _server;
+        private readonly IPluginManager _pluginManager;
+
+        /// <summary>
+        /// Constructs a new Plugin, providing some internal object to interface with.
+        /// </summary>
+        /// <param name="server">The internal server interface</param>
+        /// <param name="pluginManager">
+        /// The internal plugin manager interface, for
+        /// configuration and interacting with other plugins
+        /// </param>
+        protected Plugin(IServer server, IPluginManager pluginManager)
+        {
+            _server = server;
+            _pluginManager = pluginManager;
+        }
 
         /// <summary>
         /// Called once all plugins for the server have loaded.
@@ -120,10 +139,10 @@ namespace Alibi.Plugins.API
         /// <param name="verbose">Should this log only be output if the server is in verbose mode?</param>
         public void Log(LogSeverity severity, string message, bool verbose = false)
         {
-            if (verbose && !Server.VerboseLogs)
+            if (verbose && !_server.VerboseLogs)
                 return;
 
-            PluginManager.Log(severity, $"[{Name}] {message}", verbose);
+            _pluginManager.Log(severity, $"[{Name}] {message}", verbose);
         }
     }
 }

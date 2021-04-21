@@ -24,9 +24,9 @@ namespace Alibi.Plugins.Cerberus
         private Dictionary<IClient, string?> _lastOocMsgDict;
         private Dictionary<IArea, bool> _silencedAreas;
 
-        public override void Initialize()
+        public MainPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {
-            var configPath = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
+            var configPath = Path.Combine(pluginManager.GetConfigFolder(ID), "config.json");
             if (!File.Exists(configPath) || new FileInfo(configPath).Length <= 0)
                 File.WriteAllText(configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
                     new JsonSerializerOptions {WriteIndented = true}));
@@ -34,14 +34,14 @@ namespace Alibi.Plugins.Cerberus
             Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(configPath))!;
 
             _clientDict = new Dictionary<IClient, MuteInfo>();
-            foreach (var client in Server.ClientsConnected)
+            foreach (var client in server.ClientsConnected)
                 _clientDict.Add(client, new MuteInfo());
             _lastOocMsgDict = new Dictionary<IClient, string?>();
             
-            _silencedAreas = new Dictionary<IArea, bool>(Server.Areas.Length);
-            for (var i = 0; i < Server.Areas.Length; i++)
+            _silencedAreas = new Dictionary<IArea, bool>(server.Areas.Length);
+            for (var i = 0; i < server.Areas.Length; i++)
             {
-                _silencedAreas.Add(Server.Areas[i], false);
+                _silencedAreas.Add(server.Areas[i], false);
             }
 
             MutedClientsCheck();

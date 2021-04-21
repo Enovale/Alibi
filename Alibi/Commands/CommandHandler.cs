@@ -103,7 +103,7 @@ namespace Alibi.Commands
         public static void AddCustomHandler(Plugin plugin)
         {
             // Add custom plugin handlers
-            var types = plugin.Assembly.GetTypes();
+            var types = plugin.GetType().Assembly.GetTypes();
             foreach (var type in types)
             {
                 var methods = type.GetRuntimeMethods();

@@ -16,12 +16,12 @@ namespace Alibi.Plugins.Webhook
         public WebhookConfig Configuration { get; }
         
         private bool _enabled = true;
-        private DWebHook _hook;
-        private bool _validConfig;
+        private readonly DWebHook _hook;
+        private readonly bool _validConfig;
 
-        public DiscordWebhook()
+        public DiscordWebhook(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {
-            var configFile = Path.Combine(PluginManager.GetConfigFolder(ID), "config.json");
+            var configFile = Path.Combine(pluginManager.GetConfigFolder(ID), "config.json");
 
             if (!File.Exists(configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(configFile)))
             {
@@ -32,10 +32,7 @@ namespace Alibi.Plugins.Webhook
             }
 
             Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
-        }
-
-        public override void Initialize()
-        {
+            
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
                 Log(LogSeverity.Error,

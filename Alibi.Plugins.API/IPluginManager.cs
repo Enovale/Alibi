@@ -25,7 +25,7 @@
         public dynamic RequestPluginInstance(string id);
         /// <summary>
         /// Gets the absolute path to the configuration folder assigned to this plugin.
-        /// ONLY use this folder as otherwise users will be confused and it creates confusing code.
+        /// ONLY use this folder as otherwise users will be confused and it creates non-standard code.
         /// </summary>
         /// <param name="id">The ID of the plugin to fetch the config folder of (not necessarily your own)</param>
         /// <returns>An absolute path to that plugin's config folder</returns>
