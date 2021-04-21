@@ -11,24 +11,28 @@ namespace Alibi.Plugins.API
         /// <param name="ip">The IP Address of this user</param>
         /// <returns>Whether or not the user was successfully added to the database.</returns>
         public bool AddUser(string hwid, string ip);
+
         /// <summary>
         /// Get all hardware IDs associated with a given IP Address
         /// </summary>
         /// <param name="ip">The IP Address to search the database for</param>
         /// <returns>An array of hardware IDs associated with this IP</returns>
         public string[] GetHwidsfromIp(string ip);
+
         /// <summary>
         /// Check if a given hardware ID is banned in the database.
         /// </summary>
         /// <param name="hwid">The hardware ID to search for</param>
         /// <returns>Whether or not this HWID is banned</returns>
         public bool IsHwidBanned(string hwid);
+
         /// <summary>
         /// Check if a given IP Address is banned in the database.
         /// </summary>
         /// <param name="ip">The IP Address to check</param>
         /// <returns>Whether or not this IP Address is banned</returns>
         public bool IsIpBanned(string ip);
+
         /// <summary>
         /// Gets the ban reasoning stored in the database for an IP Address.
         /// </summary>
@@ -38,6 +42,7 @@ namespace Alibi.Plugins.API
         /// This isn't available for HWIDs for technical reasons.
         /// </remarks>
         public string GetBanReason(string ip);
+
         /// <summary>
         /// Registers a ban for an HWID in the database. This won't take effect
         /// until the player rejoins the server. Instead use IClient.BanHwid
@@ -46,6 +51,7 @@ namespace Alibi.Plugins.API
         /// <param name="reason">Why they were banned</param>
         /// <param name="expireTime">When to let this ban expire (null if indefinite)</param>
         public void BanHwid(string hwid, string reason, TimeSpan? expireTime = null);
+
         /// <summary>
         /// Registers a ban for an IP in the database. This won't take effect
         /// until the player rejoins the server. Instead use IClient.BanIP
@@ -57,27 +63,32 @@ namespace Alibi.Plugins.API
         /// Try to never use this ban method as it is insecure. Use HWID banning whenever possible.
         /// </remarks>
         public void BanIp(string ip, string reason, TimeSpan? expireTime = null);
+
         /// <summary>
         /// Lifts a ban for an HWID in the database.
         /// </summary>
         /// <param name="hwid">The Hardware ID to unban</param>
         public void UnbanHwid(string hwid);
+
         /// <summary>
         /// Lifts a ban for an IP Address in the database.
         /// </summary>
         /// <param name="ip">The IP Address to unban</param>
         public void UnbanIp(string ip);
+
         /// <summary>
         /// Gets a list of every banned Hardware ID in the database.
         /// </summary>
         /// <returns>An array of HWIDs that are banned in the database</returns>
         public string[] GetBannedHwids();
+
         /// <summary>
         /// Fetches when an HWID will be unbanned.
         /// </summary>
         /// <param name="hwid">The HWID to search for</param>
         /// <returns>A DateTime representing when this ban will expire.</returns>
         public DateTime? GetBanExpiration(string hwid);
+
         /// <summary>
         /// Registers an account with higher permissions in the database.
         /// </summary>
@@ -90,6 +101,7 @@ namespace Alibi.Plugins.API
         /// and the plain text version is immediately thrown away.
         /// </remarks>
         public bool AddLogin(string username, string password, int perms);
+
         /// <summary>
         /// Change the permission level of a given login in the database.
         /// </summary>
@@ -97,6 +109,7 @@ namespace Alibi.Plugins.API
         /// <param name="perms">The permissions to change the login to</param>
         /// <returns>Whether or not this operation was successful</returns>
         public bool ChangeLoginPermissions(string username, int perms);
+
         /// <summary>
         /// Deletes a login registered in the database.
         /// </summary>
@@ -108,6 +121,7 @@ namespace Alibi.Plugins.API
         /// also find those logged in users and log them out.
         /// </remarks>
         public bool RemoveLogin(string username);
+
         /// <summary>
         /// Checks if the given username and password matches the one registered in the database.
         /// </summary>
@@ -115,6 +129,7 @@ namespace Alibi.Plugins.API
         /// <param name="password">The password to check (in plaintext)</param>
         /// <returns>Whether or not the authentication was successful</returns>
         public bool CheckCredentials(string username, string password);
+
         /// <summary>
         /// Returns the permission level of a given login.
         /// </summary>

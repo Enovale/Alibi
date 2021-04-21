@@ -27,9 +27,11 @@ namespace Alibi.Plugins
 
         public dynamic RequestPluginInstance(string id) => _registry.GetPluginInstance(id);
 
-        public string GetConfigFolder(string id) => Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
+        public string GetConfigFolder(string id) =>
+            Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
 
-        public void Log(LogSeverity severity, string message, bool verbose) => Server.Logger.Log(severity, message, verbose);
+        public void Log(LogSeverity severity, string message, bool verbose) =>
+            Server.Logger.Log(severity, message, verbose);
 
         internal void LoadPlugins(IServer server)
         {
