@@ -3,6 +3,9 @@ using System.Net;
 
 namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Represents the server configuration on disk.
+    /// </summary>
     public interface IConfiguration
     {
         string ServerName { get; }

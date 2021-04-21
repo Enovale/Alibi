@@ -2,6 +2,9 @@
 
 namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Provides an interface to interact with the internal database. Be careful.
+    /// </summary>
     public interface IDatabaseManager
     {
         /// <summary>

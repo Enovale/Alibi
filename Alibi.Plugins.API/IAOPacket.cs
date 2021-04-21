@@ -1,5 +1,9 @@
 ﻿namespace Alibi.Plugins.API
 {
+    /// <summary>
+    /// Represents an internal or API AO2 compatible
+    /// packet to send to and receive from clients.
+    /// </summary>
     public interface IAOPacket
     {
         /// <summary>
