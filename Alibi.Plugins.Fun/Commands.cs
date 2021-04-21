@@ -27,10 +27,10 @@ namespace Alibi.Plugins.Fun
             var rolls = 1;
             if (args.Length == 1)
                 if (int.TryParse(args[0], out var rollTest))
-                    rolls = rollTest;
+                    rolls = Math.Min(10, rollTest);
             if (args.Length >= 2)
                 if (int.TryParse(args[1], out var maxTest))
-                    maximum = Math.Min(10, maxTest);
+                    maximum = maxTest;
 
             client.Area!.BroadcastOocMessage(GetRoll(maximum, rolls));
         }
@@ -42,10 +42,10 @@ namespace Alibi.Plugins.Fun
             var rolls = 1;
             if (args.Length == 1)
                 if (int.TryParse(args[0], out var rollTest))
-                    rolls = rollTest;
+                    rolls = Math.Min(10, rollTest);
             if (args.Length >= 2)
                 if (int.TryParse(args[1], out var maxTest))
-                    maximum = Math.Min(10, maxTest);
+                    maximum = maxTest;
 
             client.SendOocMessage(GetRoll(maximum, rolls));
         }
