@@ -2085,19 +2085,19 @@ references:
   commentId: T:Alibi.Plugins.API.Plugin
   fullName: Alibi.Plugins.API.Plugin
   nameWithType: Plugin
-- uid: Alibi.Plugins.API.Plugin.Assembly
-  name: Assembly
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Assembly
-  commentId: P:Alibi.Plugins.API.Plugin.Assembly
-  fullName: Alibi.Plugins.API.Plugin.Assembly
-  nameWithType: Plugin.Assembly
-- uid: Alibi.Plugins.API.Plugin.Assembly*
-  name: Assembly
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Assembly_
-  commentId: Overload:Alibi.Plugins.API.Plugin.Assembly
+- uid: Alibi.Plugins.API.Plugin.#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)
+  name: Plugin(IServer, IPluginManager)
+  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin__ctor_Alibi_Plugins_API_IServer_Alibi_Plugins_API_IPluginManager_
+  commentId: M:Alibi.Plugins.API.Plugin.#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)
+  fullName: Alibi.Plugins.API.Plugin.Plugin(Alibi.Plugins.API.IServer, Alibi.Plugins.API.IPluginManager)
+  nameWithType: Plugin.Plugin(IServer, IPluginManager)
+- uid: Alibi.Plugins.API.Plugin.#ctor*
+  name: Plugin
+  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin__ctor_
+  commentId: Overload:Alibi.Plugins.API.Plugin.#ctor
   isSpec: "True"
-  fullName: Alibi.Plugins.API.Plugin.Assembly
-  nameWithType: Plugin.Assembly
+  fullName: Alibi.Plugins.API.Plugin.Plugin
+  nameWithType: Plugin.Plugin
 - uid: Alibi.Plugins.API.Plugin.ID
   name: ID
   href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_ID
@@ -2111,19 +2111,6 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Plugin.ID
   nameWithType: Plugin.ID
-- uid: Alibi.Plugins.API.Plugin.Initialize
-  name: Initialize()
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Initialize
-  commentId: M:Alibi.Plugins.API.Plugin.Initialize
-  fullName: Alibi.Plugins.API.Plugin.Initialize()
-  nameWithType: Plugin.Initialize()
-- uid: Alibi.Plugins.API.Plugin.Initialize*
-  name: Initialize
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Initialize_
-  commentId: Overload:Alibi.Plugins.API.Plugin.Initialize
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.Plugin.Initialize
-  nameWithType: Plugin.Initialize
 - uid: Alibi.Plugins.API.Plugin.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
   name: Log(LogSeverity, String, Boolean)
   href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Log_Alibi_Plugins_API_LogSeverity_System_String_System_Boolean_
@@ -2266,29 +2253,3 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Plugin.OnPlayerJoined
   nameWithType: Plugin.OnPlayerJoined
-- uid: Alibi.Plugins.API.Plugin.PluginManager
-  name: PluginManager
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_PluginManager
-  commentId: P:Alibi.Plugins.API.Plugin.PluginManager
-  fullName: Alibi.Plugins.API.Plugin.PluginManager
-  nameWithType: Plugin.PluginManager
-- uid: Alibi.Plugins.API.Plugin.PluginManager*
-  name: PluginManager
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_PluginManager_
-  commentId: Overload:Alibi.Plugins.API.Plugin.PluginManager
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.Plugin.PluginManager
-  nameWithType: Plugin.PluginManager
-- uid: Alibi.Plugins.API.Plugin.Server
-  name: Server
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Server
-  commentId: P:Alibi.Plugins.API.Plugin.Server
-  fullName: Alibi.Plugins.API.Plugin.Server
-  nameWithType: Plugin.Server
-- uid: Alibi.Plugins.API.Plugin.Server*
-  name: Server
-  href: api/Alibi.Plugins.API.Plugin.html#Alibi_Plugins_API_Plugin_Server_
-  commentId: Overload:Alibi.Plugins.API.Plugin.Server
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.Plugin.Server
-  nameWithType: Plugin.Server
