@@ -15,9 +15,9 @@ namespace Alibi.Plugins.Fun
         public static readonly Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
         public static string EightBallConfigPath;
 
-        public override void Initialize()
+        public FunPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {
-            EightBallConfigPath = Path.Combine(PluginManager.GetConfigFolder(ID), "8ball.json");
+            EightBallConfigPath = Path.Combine(pluginManager.GetConfigFolder(ID), "8ball.json");
         }
 
         public override void OnPlayerJoined(IClient client)

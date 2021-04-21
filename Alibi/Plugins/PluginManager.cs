@@ -75,7 +75,7 @@ namespace Alibi.Plugins
                 Plugin instance;
                 try
                 {
-                    instance = (Plugin) Activator.CreateInstance(pluginType);
+                    instance = (Plugin) Activator.CreateInstance(pluginType, server, this);
                 }
                 catch (Exception e)
                 {
@@ -92,20 +92,6 @@ namespace Alibi.Plugins
                 {
                     Server.Logger.Log(LogSeverity.Error, $"[PluginLoader] Unable to register {instance!.ID}: {e}");
                     continue;
-                }
-
-                try
-                {
-                    instance!.Server = server;
-                    instance!.PluginManager = this;
-                    instance!.Assembly = asm;
-                    instance!.Initialize();
-                }
-                catch (Exception e)
-                {
-                    Server.Logger.Log(LogSeverity.Error,
-                        $"[PluginLoader] Could not run initialization on {instance!.ID}: {e}" +
-                        (server.VerboseLogs ? $"\n{e.StackTrace}" : ""));
                 }
             }
 

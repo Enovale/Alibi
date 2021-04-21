@@ -77,7 +77,7 @@ namespace Alibi.Protocol
 
         public static void AddCustomHandler(Plugin plugin)
         {
-            var types = plugin.Assembly.GetTypes();
+            var types = plugin.GetType().Assembly.GetTypes();
             foreach (var type in types)
             {
                 var methods = type.GetRuntimeMethods();
