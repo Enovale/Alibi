@@ -41,6 +41,10 @@ namespace Alibi.Plugins
 
             foreach (var path in paths)
             {
+                // ReSharper disable once RedundantNameQualifier
+                if (path.EndsWith(nameof(Alibi.Plugins.API) + ".dll"))
+                    continue;
+                
                 Server.Logger.Log(LogSeverity.Special,
                     $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
                 Assembly asm;

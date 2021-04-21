@@ -134,7 +134,7 @@ namespace Alibi.Protocol
 
                 var paired = false;
                 // Other's name, emote, offset, and flip
-                string[] otherData = {"0", "0", "0", "0"};
+                string[] otherData = {"-1", "-1", "-1", "-1"};
                 foreach (var otherClient in client.ServerRef.ClientsConnected)
                     if (otherClient.PairingWith == client.Character &&
                         otherClient.Character == pair[0].ToIntOrZero() &&
@@ -147,11 +147,7 @@ namespace Alibi.Protocol
                         paired = true;
                     }
 
-                string pairStr;
-                if (!paired)
-                    pairStr = "-1";
-                else
-                    pairStr = packet.Objects[16];
+                var pairStr = paired ? packet.Objects[16] : "-1";
                 validatedObjects.Add(pairStr);
                 validatedObjects.Add(otherData[0]);
                 validatedObjects.Add(otherData[1]);

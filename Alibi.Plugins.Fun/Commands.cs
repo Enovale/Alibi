@@ -20,32 +20,32 @@ namespace Alibi.Plugins.Fun
             return rollResult.ToString();
         }
 
-        [CommandHandler("roll", "Roll the dice and get a number.")]
+        [CommandHandler("roll", "Roll the dice and get a number. (/roll |times| |max|)")]
         public static void Roll(IClient client, string[] args)
         {
             var maximum = 6;
             var rolls = 1;
             if (args.Length == 1)
-                if (int.TryParse(args[0], out var maxTest))
-                    maximum = maxTest;
+                if (int.TryParse(args[0], out var rollTest))
+                    rolls = rollTest;
             if (args.Length >= 2)
-                if (int.TryParse(args[1], out var rollTest))
-                    rolls = Math.Min(10, rollTest);
+                if (int.TryParse(args[1], out var maxTest))
+                    maximum = Math.Min(10, maxTest);
 
             client.Area!.BroadcastOocMessage(GetRoll(maximum, rolls));
         }
 
-        [CommandHandler("rollp", "Roll the dice and get a number, which is sent privately.")]
+        [CommandHandler("rollp", "Roll the dice and get a number, which is sent privately. (/rollp |times| |max|)")]
         public static void RollPrivately(IClient client, string[] args)
         {
             var maximum = 6;
             var rolls = 1;
             if (args.Length == 1)
-                if (int.TryParse(args[0], out var maxTest))
-                    maximum = maxTest;
+                if (int.TryParse(args[0], out var rollTest))
+                    rolls = rollTest;
             if (args.Length >= 2)
-                if (int.TryParse(args[1], out var rollTest))
-                    rolls = Math.Min(10, rollTest);
+                if (int.TryParse(args[1], out var maxTest))
+                    maximum = Math.Min(10, maxTest);
 
             client.SendOocMessage(GetRoll(maximum, rolls));
         }
@@ -62,7 +62,7 @@ namespace Alibi.Plugins.Fun
             if (args.Length <= 0)
                 throw new CommandException("Usage: /8ball <question>");
             var question = string.Join(' ', args);
-            question = question.Substring(0, Math.Min(question.Length, 256));
+            question = question.Substring(0, Math.Min(question.Length, IServer.ServerConfiguration.MaxMessageSize));
             client.Area!.BroadcastOocMessage(
                 $"{client.OocName} has asked the 8ball: \"{question}\"\n" +
                 $"The 8ball says: {Fun.EightBall.Responses[Rand.Next(Fun.EightBall.Responses.Length - 1)]}");
