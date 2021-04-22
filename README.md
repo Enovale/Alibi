@@ -51,6 +51,9 @@ These packets are not implemented:
 - [ ] CASEA
 - [ ] Slow loading packets (needed because client is bugged lol)
 
+# Contributing
+I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is ElijahZAwesome#6933.
+
 # TODO
 Some shit that needs to get done
 
