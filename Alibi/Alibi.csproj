@@ -13,8 +13,8 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-    <PackageVersion>0.6</PackageVersion>
-    <AssemblyVersion>0.6</AssemblyVersion>
+    <PackageVersion>0.6.1</PackageVersion>
+    <AssemblyVersion>0.6.1</AssemblyVersion>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
 
