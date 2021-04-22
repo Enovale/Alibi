@@ -37,7 +37,6 @@ items:
       <AttributeUsage(AttributeTargets.Method)>
 
       Public Class RequireStateAttribute
-
           Inherits Attribute
   inheritance:
   - System.Object

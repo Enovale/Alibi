@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Runtime.Serialization;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Newtonsoft.Json;

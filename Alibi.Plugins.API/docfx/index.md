@@ -2,10 +2,10 @@
 Here be server usage instructions, plugin maker instructions, and various other useful articles.
 
 ## Getting Started:
-- If you just wanna use the damn server already, head to [the articles](./articles/intro.html) and check out the [Getting Started](./articles/getting_started.html) page.
-- If you wanna make some plugins, first check out the article on [Making Plugins](./articles/plugins.html), then check out the [Api Documentation](./api/) for help while you're working.
+- If you just wanna use the damn server already, head to [the articles](./articles/intro.md) and check out the [Getting Started](./articles/getting_started.md) page.
+- If you wanna make some plugins, first check out the article on [Making Plugins](./articles/plugins.md), then check out the [Api Documentation](./api/index.md) for help while you're working.
 
-### [About Alibi](./articles/about.html)
+### [About Alibi](./articles/about.md)
 (My English class skills came out for this one, needs it's own article)
 
 ### About Me

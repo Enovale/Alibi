@@ -16,7 +16,7 @@ This plugin for Alibi adds a discord webhook that sends a message to the webhook
 
 - `%ch` is the character name of the caller.
 - `%e` a date representing when the ban will be lifted.
-- `%r` is the reasoning provided by the caller.
+- `%r` is the reasoning provided by the banner.
 - `%ip` is the IP address of the caller.
 - `%hwid` is the hardware ID of the caller.
 - `%lsm` is the last sent message of the caller in the server.
