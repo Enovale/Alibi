@@ -55,7 +55,7 @@ namespace Alibi
 
         public static Configuration LoadFromFile(string path)
         {
-            var jsonSettings = new JsonSerializerSettings() {ContractResolver = new JsonResolver()};
+            var jsonSettings = new JsonSerializerSettings {ContractResolver = new JsonResolver()};
             jsonSettings.Converters.Add(new IpConverter());
             var conf = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path), jsonSettings);
             File.WriteAllText(path, JsonConvert.SerializeObject(conf, Formatting.Indented, jsonSettings));
