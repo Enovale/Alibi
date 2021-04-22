@@ -87,7 +87,7 @@ namespace Alibi
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            if (offset + size >= buffer.Length)
+            if (offset + size >= buffer.Length || Client == null)
                 return;
             var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             var disallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');

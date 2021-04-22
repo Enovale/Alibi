@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Newtonsoft.Json;
@@ -13,8 +14,8 @@ namespace Alibi
 #pragma warning disable CA2235 // Mark all non-serializable fields
         public string ServerName { get; internal set; } = "Test ServerRef";
         public string ServerDescription { get; internal set; } = "Example server description.";
-        public string Motd { get; internal set; } = "Welcome to my test server! Type /help for a list of commands you can run.";
-
+        public string Motd { get; internal set; } =
+            "Welcome to my test server! Type /help for a list of commands you can run.";
         public IPAddress BoundIpAddress { get; internal set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; internal set; } = 27016;
         public int WebsocketPort { get; internal set; } = 27017;
@@ -54,7 +55,7 @@ namespace Alibi
 
         public static Configuration LoadFromFile(string path)
         {
-            var jsonSettings = new JsonSerializerSettings();
+            var jsonSettings = new JsonSerializerSettings() {ContractResolver = new JsonResolver()};
             jsonSettings.Converters.Add(new IpConverter());
             var conf = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path), jsonSettings);
             File.WriteAllText(path, JsonConvert.SerializeObject(conf, Formatting.Indented, jsonSettings));
