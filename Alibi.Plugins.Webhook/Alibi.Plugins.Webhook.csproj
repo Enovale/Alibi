@@ -8,6 +8,7 @@
     <Description>Discord webhook plugin for Alibi, my AO2 Server</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>8</LangVersion>
+    <AssemblyVersion>1.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
