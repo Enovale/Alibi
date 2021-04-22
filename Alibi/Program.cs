@@ -20,8 +20,7 @@ namespace Alibi
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             ResetEvent = new ManualResetEvent(false);
             Environment.CurrentDirectory = GetRealProcessDirectory();
-            if (!File.Exists(Server.ConfigPath)
-                || new FileInfo(Server.ConfigPath).Length <= 0)
+            if (!File.Exists(Server.ConfigPath) || new FileInfo(Server.ConfigPath).Length <= 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
             _server = new Server(Configuration.LoadFromFile(Server.ConfigPath));
             Console.Title = "Alibi - Running";
