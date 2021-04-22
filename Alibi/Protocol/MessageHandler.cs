@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Alibi.Plugins.API;
@@ -39,6 +40,11 @@ namespace Alibi.Protocol
                     Handlers[packet.Type].Method.Invoke(Handlers[packet.Type].Target, new object[] {client, packet});
                 }
                 catch (TargetInvocationException e)
+                {
+                    Server.Logger.Log(LogSeverity.Error, 
+                        $" Error executing message handler for '{packet.Type}': {e}");
+                }
+                catch (Exception e)
                 {
                     Server.Logger.Log(LogSeverity.Error, $" Error handling message: {e}");
                 }
