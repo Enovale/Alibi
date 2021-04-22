@@ -28,13 +28,16 @@ namespace Alibi.Plugins.API
         private readonly IPluginManager _pluginManager;
 
         /// <summary>
-        /// Constructs a new Plugin, providing some internal object to interface with.
+        /// Constructs a new Plugin, providing some internal objects to interface with.
         /// </summary>
         /// <param name="server">The internal server interface</param>
         /// <param name="pluginManager">
         /// The internal plugin manager interface, for
         /// configuration and interacting with other plugins
         /// </param>
+        /// <remarks>
+        /// Must be implemented in order to create a new plugin derived from this class.
+        /// </remarks>
         protected Plugin(IServer server, IPluginManager pluginManager)
         {
             _server = server;

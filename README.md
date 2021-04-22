@@ -40,7 +40,7 @@ Class Library that targets net5.0, and reference the `Alibi.Plugins.API`
 project of this repository, or install this 
 [NuGet package](https://www.nuget.org/packages/Alibi.Plugins.API/).
 
-Then, make a class that inherits from `Plugin`, and implement it's required members.
+Then, make a class that inherits from `Plugin`, and implement it's required members, and the constructor.
 You should now have a bare-bones working plugin! Build it and put the .dll in the `Plugins`
 folder of Alibi, and restart the server.
 
@@ -54,18 +54,19 @@ These packets are not implemented:
 # TODO
 Some shit that needs to get done
 
-- [ ] Make websockets less terrible again.
-- [ ] Add a "primary admin" or something so only they can restart the server and create/remove logins, since mods shouldnt be able to remove mods.
-- [X] ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
-- [X] Kick clients without HWIDs
-- [X] Clean up some of this shit code
-- [X] Become more thread safe (Maybe?)
-- [X] Plugins
-- [X] Areas
-- [X] Commands (Some commands are in but need more)
-- [X] Logging architecture
-- [X] Database
-- [ ] Implement standard commands
-- [ ] Test/Stress test this bitch
-- [ ] Document server
-- [ ] Document Plugin API
+- [ ]  Make websockets less terrible again.
+- [ ]  ~~Add a "primary admin" or something so only they can restart the server and create/remove logins, since mods shouldnt be able to remove mods.~~
+- [X]  Multiple levels of permissions, User, Moderator, Administrator
+- [X]  ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
+- [X]  Kick clients without HWIDs
+- [X]  Clean up some of this shit code
+- [X]  Become more thread safe (Maybe?)
+- [X]  Plugins
+- [X]  Areas
+- [X]  Commands (Some commands are in but need more)
+- [X]  Logging architecture
+- [X]  Database
+- [X] *I think the command paradigm currently implemented is good enough. Any Tsuserver3 commands that users want can be added by request or through usermade plugins  ~~Implement standard commands~~
+- [ ]  Test/Stress test this bitch
+- [ ]  Document server
+- [ ]  Document Plugin API
