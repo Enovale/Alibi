@@ -39,7 +39,7 @@ namespace Alibi
             "yellowtext", "prezoom", "flipping", "customobjections",
             "deskmod", "evidence", "cccc_ic_support",
             "arup", "casing_alerts", "modcall_reason",
-            "looping_sfx", "additive", "effects"
+            "looping_sfx", "additive", "effects", "expanded_desk_mods"
         };
 
         public void SaveToFile(string path)

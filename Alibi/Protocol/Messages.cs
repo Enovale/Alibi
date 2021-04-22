@@ -48,6 +48,15 @@ namespace Alibi.Protocol
         }
 
         // Slow loading, ugh.
+        [MessageHandler("askchaa")]
+        [RequireState(ClientState.Identified)]
+        internal static void RequestResourceCounts(IClient client, IAOPacket packet)
+        {
+            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(),
+                client.ServerRef.Areas.First().EvidenceList.Count.ToString(),
+                (client.ServerRef.Areas.Length + Server.MusicList.Length).ToString()));
+        }
+        
         [MessageHandler("askchar2")]
         [RequireState(ClientState.Identified)]
         internal static void RequestCharactersSlow(IClient client, IAOPacket packet)
@@ -59,35 +68,51 @@ namespace Alibi.Protocol
         [RequireState(ClientState.Identified)]
         internal static void RequestCharacterPageSlow(IClient client, IAOPacket packet)
         {
-            // According to current client
-            var page = int.Parse(packet.Objects[0]);
-            var pageSize = 10 * 9;
-            var pageOffset = pageSize * page;
-
-            if (pageOffset >= Server.CharactersList.Length)
+            if (int.TryParse(packet.Objects[0], out var page))
             {
-                client.Send(new AOPacket("EI", page.ToString(), ""));
-                return;
-            }
+                // According to current client
+                var pageSize = 10 * 9;
+                var pageOffset = pageSize * page;
 
-            var finalPacket = new AOPacket("CI",
-                Server.CharactersList.Skip(pageOffset).TakeWhile((c, i) => i < Server.CharactersList.Length).ToArray());
-            client.Send(finalPacket);
+                if (pageOffset >= Server.CharactersList.Length)
+                {
+                    RequestEvidenceSlow(client, new AOPacket("EI", "1"));
+                    return;
+                }
+
+                var chars = new List<string>() {page.ToString()};
+                chars.AddRange(Server.CharactersList.Skip(pageOffset).Take(pageSize));
+
+                var finalPacket = new AOPacket("CI", chars.ToArray());
+                client.Send(finalPacket);
+            }
         }
 
         [MessageHandler("AE")]
         [RequireState(ClientState.Identified)]
         internal static void RequestEvidenceSlow(IClient client, IAOPacket packet)
         {
-            if (int.TryParse(packet.Objects[0], out var index))
+            if (int.TryParse(packet.Objects[0], out var page))
             {
-                index = Math.Max(0, Math.Min(client.Area!.EvidenceList.Count, index));
+                // According to current client
+                var pageSize = 6 * 2;
+                var pageOffset = pageSize * page;
+                var area = client.ServerRef.Areas.First();
 
-                client.Send(new AOPacket("EI", index.ToString(), client.Area.EvidenceList[index].ToPacket()));
+                if (pageOffset >= area.EvidenceList.Count)
+                {
+                    RequestMusicSlow(client, new AOPacket("EM", "0"));
+                    return;
+                }
+
+                var finalPacket = new AOPacket("EI", new[] {page.ToString()}
+                    .Concatenate(area.EvidenceList.Skip(pageOffset)
+                    .Take(pageSize).Select(e => e.ToPacket()).ToArray()));
+                client.Send(finalPacket);
             }
         }
 
-        [MessageHandler("AM")]
+        [MessageHandler("EM")]
         [RequireState(ClientState.Identified)]
         internal static void RequestMusicSlow(IClient client, IAOPacket packet)
         {
@@ -108,15 +133,6 @@ namespace Alibi.Protocol
             }
         }
 
-        [MessageHandler("askchaa")]
-        [RequireState(ClientState.Identified)]
-        internal static void RequestResourceCounts(IClient client, IAOPacket packet)
-        {
-            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(),
-                client.ServerRef.Areas.First().EvidenceList.Count.ToString(),
-                (client.ServerRef.Areas.Length + Server.MusicList.Length).ToString()));
-        }
-
         [MessageHandler("RC")]
         [RequireState(ClientState.Identified)]
         internal static void RequestCharacters(IClient client, IAOPacket packet)
@@ -125,14 +141,14 @@ namespace Alibi.Protocol
         }
 
         [MessageHandler("RE")]
-        [RequireState(ClientState.InArea, false)]
+        [RequireState(ClientState.InArea)]
         internal static void RequestEvidence(IClient client, IAOPacket packet)
         {
             var evidenceList = new string[client.Area!.EvidenceList.Count];
             for (var i = 0; i < client.Area.EvidenceList.Count; i++)
                 evidenceList[i] = client.Area.EvidenceList[i].ToPacket();
 
-            client.Area.Broadcast(new AOPacket("LE", evidenceList));
+            client.Send(new AOPacket("LE", evidenceList));
         }
 
         [MessageHandler("RM")]
@@ -165,9 +181,11 @@ namespace Alibi.Protocol
             client.Area.FullUpdate(client);
             // Tell all the other clients that someone has joined
             client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
+            client.Area.UpdateTakenCharacters();
+            RequestEvidence(client, new AOPacket("RE"));
 
             client.Send(new AOPacket("HP", "1", client.Area.DefendantHp.ToString()));
-            client.Send(new AOPacket("HP", "2", client.Area!.ProsecutorHp.ToString()));
+            client.Send(new AOPacket("HP", "2", client.Area.ProsecutorHp.ToString()));
             client.Send(new AOPacket("FA", client.ServerRef.AreaNames));
             client.Send(new AOPacket("BN", client.Area!.Background));
             client.Send(new AOPacket("DONE"));
