@@ -46,10 +46,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IClient
     path: ../IClient.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRepresents a client connected to the server (not necessarily an identified player).\n"
+  example: []
   syntax:
     content: public interface IClient
     content.vb: Public Interface IClient
@@ -77,10 +79,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ServerRef
     path: ../IClient.cs
-    startLine: 8
+    startLine: 18
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nQuick reference to the main server.\n"
+  remarks: "\nUse this in your message/command handlers so you don&apos;t have to\npass around references to the server.\n"
+  example: []
   syntax:
     content: IServer ServerRef { get; }
     parameters: []
@@ -110,10 +115,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Connected
     path: ../IClient.cs
-    startLine: 10
+    startLine: 24
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nWhether or not this client has given us a handshake and identified.\nA connected client is in an area and is playing.\n"
+  example: []
   syntax:
     content: bool Connected { get; }
     parameters: []
@@ -143,10 +150,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Auth
     path: ../IClient.cs
-    startLine: 11
+    startLine: 31
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe authentication level of this client.\nThis is increased when calling /login\nand decreased when calling /logout\n"
+  example: []
   syntax:
     content: int Auth { get; }
     parameters: []
@@ -176,10 +185,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: LastAlive
     path: ../IClient.cs
-    startLine: 12
+    startLine: 40
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe last time the client gave us a keepalive packet.\n"
+  remarks: "\nUse this to determine if a client is idle and/or\ntheir network has been disconnected.\n"
+  example: []
   syntax:
     content: DateTime LastAlive { get; }
     parameters: []
@@ -209,7 +221,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IpAddress
     path: ../IClient.cs
-    startLine: 13
+    startLine: 42
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -242,10 +254,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: HardwareId
     path: ../IClient.cs
-    startLine: 14
+    startLine: 49
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe hardware ID of this player. Should be\ncompletely unique for every player, and is\nnot reused across sessions or reconnects.\n"
+  example: []
   syntax:
     content: string HardwareId { get; }
     parameters: []
@@ -275,10 +289,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Area
     path: ../IClient.cs
-    startLine: 15
+    startLine: 57
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nWhich area is this client currently in?\n"
+  remarks: "\nCan be null when the player hasn&apos;t done the handshake yet.\n"
+  example: []
   syntax:
     content: IArea Area { get; }
     parameters: []
@@ -308,10 +325,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Position
     path: ../IClient.cs
-    startLine: 16
+    startLine: 65
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe court position of this client, such as pro, def, or jud\n"
+  remarks: "\nCan be null if the client hasn&apos;t joined an area yet.\n"
+  example: []
   syntax:
     content: string Position { get; set; }
     parameters: []
@@ -340,10 +360,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CurrentState
     path: ../IClient.cs
-    startLine: 17
+    startLine: 71
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe protocol-dependent state of this client. Use this to determine\nif a client is breaking protocol, or to tell if they&apos;re identified.\n"
+  example: []
   syntax:
     content: ClientState CurrentState { get; set; }
     parameters: []
@@ -372,10 +394,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Password
     path: ../IClient.cs
-    startLine: 19
+    startLine: 76
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe password this client input in order to unlock the character they&apos;re playing.\n"
+  example: []
   syntax:
     content: string Password { get; }
     parameters: []
@@ -405,10 +429,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Character
     path: ../IClient.cs
-    startLine: 20
+    startLine: 82
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe character this player is currently playing as,\nas an index based on IServer.CharacterList.\n"
+  example: []
   syntax:
     content: int? Character { get; set; }
     parameters: []
@@ -437,10 +463,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CharacterName
     path: ../IClient.cs
-    startLine: 21
+    startLine: 90
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe actual string name of the character this player is using.\n"
+  remarks: "\nThis is arbitrary based on server configuration. Try not to hardcode anything.\n"
+  example: []
   syntax:
     content: string CharacterName { get; }
     parameters: []
@@ -470,10 +499,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OocName
     path: ../IClient.cs
-    startLine: 22
+    startLine: 99
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe last name this player used when sending a message in Out of Context chat\n"
+  remarks: "\nPlayers are not forced to keep names and multiple players can have the same name.\nDo not use this for authentication or to identify a single player.\n"
+  example: []
   syntax:
     content: string OocName { get; }
     parameters: []
@@ -503,10 +535,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: LastSentMessage
     path: ../IClient.cs
-    startLine: 23
+    startLine: 104
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe last message this player has sent in the In-Character chat.\n"
+  example: []
   syntax:
     content: string LastSentMessage { get; set; }
     parameters: []
@@ -535,10 +569,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Muted
     path: ../IClient.cs
-    startLine: 24
+    startLine: 109
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nWhether or not this player is able to speak.\n"
+  example: []
   syntax:
     content: bool Muted { get; set; }
     parameters: []
@@ -567,10 +603,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: PairingWith
     path: ../IClient.cs
-    startLine: 27
+    startLine: 116
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nWhich character (not player) this player is trying to pair with,\nas an index of IServer.CharacterList\n"
+  example: []
   syntax:
     content: int PairingWith { get; }
     parameters: []
@@ -600,10 +638,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredEmote
     path: ../IClient.cs
-    startLine: 28
+    startLine: 121
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe emote this player is trying to send in a pair.\n"
+  example: []
   syntax:
     content: string StoredEmote { get; }
     parameters: []
@@ -633,10 +673,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredOffset
     path: ../IClient.cs
-    startLine: 29
+    startLine: 126
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe X offset this player is trying to use in a pair.\n"
+  example: []
   syntax:
     content: int StoredOffset { get; }
     parameters: []
@@ -666,10 +708,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredFlip
     path: ../IClient.cs
-    startLine: 30
+    startLine: 131
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nWhether or not this player wants to flip in their pair message.\n"
+  example: []
   syntax:
     content: bool StoredFlip { get; }
     parameters: []
@@ -699,15 +743,18 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ChangeArea
     path: ../IClient.cs
-    startLine: 32
+    startLine: 137
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nChanges the area of this client gracefully.\n"
+  example: []
   syntax:
     content: void ChangeArea(int index)
     parameters:
     - id: index
       type: System.Int32
+      description: Index of the area to switch to using IServer.Areas
     content.vb: Sub ChangeArea(index As Integer)
   overload: Alibi.Plugins.API.IClient.ChangeArea*
 - uid: Alibi.Plugins.API.IClient.KickIfBanned
@@ -728,10 +775,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: KickIfBanned
     path: ../IClient.cs
-    startLine: 33
+    startLine: 145
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nKick this player from the server, only if they area banned.\n"
+  remarks: "\nShouldn&apos;t really run this often as it&apos;s already used internally\n"
+  example: []
   syntax:
     content: void KickIfBanned()
     content.vb: Sub KickIfBanned
@@ -754,15 +804,18 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Kick
     path: ../IClient.cs
-    startLine: 34
+    startLine: 151
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nKick a player from the server, using the reason specified.\n"
+  example: []
   syntax:
     content: void Kick(string reason)
     parameters:
     - id: reason
       type: System.String
+      description: The reason to give to the client as to why they were kicked.
     content.vb: Sub Kick(reason As String)
   overload: Alibi.Plugins.API.IClient.Kick*
 - uid: Alibi.Plugins.API.IClient.GetBanReason
@@ -783,14 +836,17 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetBanReason
     path: ../IClient.cs
-    startLine: 35
+    startLine: 157
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nFetch the reason for why a client was banned from the database.\n"
+  example: []
   syntax:
     content: string GetBanReason()
     return:
       type: System.String
+      description: Why the client was banned.
     content.vb: Function GetBanReason As String
   overload: Alibi.Plugins.API.IClient.GetBanReason*
 - uid: Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
@@ -811,19 +867,25 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanHwid
     path: ../IClient.cs
-    startLine: 36
+    startLine: 169
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nBan this player&apos;s hardware ID, ensuring they don&apos;t rejoin under a proxy.\n"
+  remarks: "\nIf possible, this should always be used when banning, on top of IP banning.\nIt ensures the player can&apos;t use a proxy, VPN, or a change of IP to bypass the ban.\n"
+  example: []
   syntax:
     content: void BanHwid(string reason, TimeSpan? expireDate, IClient banner)
     parameters:
     - id: reason
       type: System.String
+      description: Why the client is being banned
     - id: expireDate
       type: System.Nullable{System.TimeSpan}
+      description: When their ban will expire (null for an indefinite ban)
     - id: banner
       type: Alibi.Plugins.API.IClient
+      description: Who banned this client (null if the server banned them)
     content.vb: Sub BanHwid(reason As String, expireDate As TimeSpan?, banner As IClient)
   overload: Alibi.Plugins.API.IClient.BanHwid*
   nameWithType.vb: IClient.BanHwid(String, Nullable(Of TimeSpan), IClient)
@@ -847,19 +909,25 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanIp
     path: ../IClient.cs
-    startLine: 37
+    startLine: 182
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nBan this player&apos;s IP address, which is easily changing.\n"
+  remarks: "\nWhen trying to ban a player, this should almost always be accompanied by BanHwid, otherwise\na player can simply change IPs using a VPN, Proxy, or a reset of their router to join the\nserver again. However, if using this as a method of rate limiting, banning only their IP is acceptable.\n"
+  example: []
   syntax:
     content: void BanIp(string reason, TimeSpan? expireDate, IClient banner)
     parameters:
     - id: reason
       type: System.String
+      description: Why the client is being banned
     - id: expireDate
       type: System.Nullable{System.TimeSpan}
+      description: When their ban will expire (null for an indefinite ban)
     - id: banner
       type: Alibi.Plugins.API.IClient
+      description: Who banned this client (null if the server banned them)
     content.vb: Sub BanIp(reason As String, expireDate As TimeSpan?, banner As IClient)
   overload: Alibi.Plugins.API.IClient.BanIp*
   nameWithType.vb: IClient.BanIp(String, Nullable(Of TimeSpan), IClient)
@@ -883,15 +951,18 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Send
     path: ../IClient.cs
-    startLine: 39
+    startLine: 188
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nSend this client a packet.\n"
+  example: []
   syntax:
     content: void Send(IAOPacket packet)
     parameters:
     - id: packet
       type: Alibi.Plugins.API.IAOPacket
+      description: The packet to send.
     content.vb: Sub Send(packet As IAOPacket)
   overload: Alibi.Plugins.API.IClient.Send*
 - uid: Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
@@ -912,17 +983,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: SendOocMessage
     path: ../IClient.cs
-    startLine: 40
+    startLine: 195
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nSend this player a message to be displayed in the Out of Context chat.\n"
+  example: []
   syntax:
     content: void SendOocMessage(string message, string sender = null)
     parameters:
     - id: message
       type: System.String
+      description: The message to send
     - id: sender
       type: System.String
+      description: Who sent it? (null if the server sent it)
     content.vb: Sub SendOocMessage(message As String, sender As String = Nothing)
   overload: Alibi.Plugins.API.IClient.SendOocMessage*
 references:

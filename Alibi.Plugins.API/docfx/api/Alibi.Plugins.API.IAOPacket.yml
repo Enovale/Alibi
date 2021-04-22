@@ -21,10 +21,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IAOPacket
     path: ../IAOPacket.cs
-    startLine: 2
+    startLine: 6
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRepresents an internal or API AO2 compatible\npacket to send to and receive from clients.\n"
+  example: []
   syntax:
     content: public interface IAOPacket
     content.vb: Public Interface IAOPacket
@@ -52,10 +54,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Type
     path: ../IAOPacket.cs
-    startLine: 4
+    startLine: 11
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe type (ID) of this packet. E.g HI, RT, CT\n"
+  example: []
   syntax:
     content: string Type { get; set; }
     parameters: []
@@ -84,10 +88,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Objects
     path: ../IAOPacket.cs
-    startLine: 5
+    startLine: 16
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nData contained in this packet, that will be joined together when sent.\n"
+  example: []
   syntax:
     content: string[] Objects { get; set; }
     parameters: []

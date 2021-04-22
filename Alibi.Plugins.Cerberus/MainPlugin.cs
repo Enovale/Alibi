@@ -15,8 +15,8 @@ namespace Alibi.Plugins.Cerberus
 {
     public class MainPlugin : Plugin
     {
-        public override string ID => "com.elijahzawesome.Cerberus";
-        public override string Name => "Cerberus";
+        public sealed override string ID => "com.elijahzawesome.Cerberus";
+        public sealed override string Name => "Cerberus";
 
         public readonly CerberusConfiguration Config;
 
@@ -39,10 +39,8 @@ namespace Alibi.Plugins.Cerberus
             _lastOocMsgDict = new Dictionary<IClient, string?>();
             
             _silencedAreas = new Dictionary<IArea, bool>(server.Areas.Length);
-            for (var i = 0; i < server.Areas.Length; i++)
-            {
-                _silencedAreas.Add(server.Areas[i], false);
-            }
+            foreach (var area in server.Areas)
+                _silencedAreas.Add(area, false);
 
             MutedClientsCheck();
         }

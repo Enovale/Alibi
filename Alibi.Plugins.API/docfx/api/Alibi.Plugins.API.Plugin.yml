@@ -5,9 +5,8 @@ items:
   id: Plugin
   parent: Alibi.Plugins.API
   children:
-  - Alibi.Plugins.API.Plugin.Assembly
+  - Alibi.Plugins.API.Plugin.#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)
   - Alibi.Plugins.API.Plugin.ID
-  - Alibi.Plugins.API.Plugin.Initialize
   - Alibi.Plugins.API.Plugin.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
   - Alibi.Plugins.API.Plugin.Name
   - Alibi.Plugins.API.Plugin.OnAllPluginsLoaded
@@ -16,9 +15,8 @@ items:
   - Alibi.Plugins.API.Plugin.OnModCall(Alibi.Plugins.API.IClient,System.String)
   - Alibi.Plugins.API.Plugin.OnMusicChange(Alibi.Plugins.API.IClient,System.String@)
   - Alibi.Plugins.API.Plugin.OnOocMessage(Alibi.Plugins.API.IClient,System.String@)
+  - Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
   - Alibi.Plugins.API.Plugin.OnPlayerJoined(Alibi.Plugins.API.IClient)
-  - Alibi.Plugins.API.Plugin.PluginManager
-  - Alibi.Plugins.API.Plugin.Server
   langs:
   - csharp
   - vb
@@ -33,7 +31,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Plugin
     path: ../Plugin.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -70,10 +68,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ID
     path: ../Plugin.cs
-    startLine: 10
+    startLine: 17
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe ID of this plugin. Can be anything, but it is\nrecommended to use the com.author.project format.\n"
+  remarks: "\nThis is used to determine the config folder name,\nand for other plugins to find this plugin.\n"
+  example: []
   syntax:
     content: public abstract string ID { get; }
     parameters: []
@@ -107,10 +108,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Name
     path: ../Plugin.cs
-    startLine: 11
+    startLine: 23
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe arbitrary name of this plugin.\nDoesn&apos;t matter if duplicated, and is only used for logs.\n"
+  example: []
   syntax:
     content: public abstract string Name { get; }
     parameters: []
@@ -126,145 +129,46 @@ items:
   - Public
   - MustOverride
   - ReadOnly
-- uid: Alibi.Plugins.API.Plugin.Server
-  commentId: P:Alibi.Plugins.API.Plugin.Server
-  id: Server
+- uid: Alibi.Plugins.API.Plugin.#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)
+  commentId: M:Alibi.Plugins.API.Plugin.#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)
+  id: '#ctor(Alibi.Plugins.API.IServer,Alibi.Plugins.API.IPluginManager)'
   parent: Alibi.Plugins.API.Plugin
   langs:
   - csharp
   - vb
-  name: Server
-  nameWithType: Plugin.Server
-  fullName: Alibi.Plugins.API.Plugin.Server
-  type: Property
+  name: Plugin(IServer, IPluginManager)
+  nameWithType: Plugin.Plugin(IServer, IPluginManager)
+  fullName: Alibi.Plugins.API.Plugin.Plugin(Alibi.Plugins.API.IServer, Alibi.Plugins.API.IPluginManager)
+  type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/Plugin.cs
       branch: main
       repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: Server
+    id: .ctor
     path: ../Plugin.cs
-    startLine: 12
+    startLine: 39
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  syntax:
-    content: public IServer Server { get; set; }
-    parameters: []
-    return:
-      type: Alibi.Plugins.API.IServer
-    content.vb: Public Property Server As IServer
-  overload: Alibi.Plugins.API.Plugin.Server*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Alibi.Plugins.API.Plugin.PluginManager
-  commentId: P:Alibi.Plugins.API.Plugin.PluginManager
-  id: PluginManager
-  parent: Alibi.Plugins.API.Plugin
-  langs:
-  - csharp
-  - vb
-  name: PluginManager
-  nameWithType: Plugin.PluginManager
-  fullName: Alibi.Plugins.API.Plugin.PluginManager
-  type: Property
-  source:
-    remote:
-      path: Alibi.Plugins.API/Plugin.cs
-      branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: PluginManager
-    path: ../Plugin.cs
-    startLine: 13
-  assemblies:
-  - Alibi.Plugins.API
-  namespace: Alibi.Plugins.API
-  syntax:
-    content: public IPluginManager PluginManager { get; set; }
-    parameters: []
-    return:
-      type: Alibi.Plugins.API.IPluginManager
-    content.vb: Public Property PluginManager As IPluginManager
-  overload: Alibi.Plugins.API.Plugin.PluginManager*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Alibi.Plugins.API.Plugin.Assembly
-  commentId: P:Alibi.Plugins.API.Plugin.Assembly
-  id: Assembly
-  parent: Alibi.Plugins.API.Plugin
-  langs:
-  - csharp
-  - vb
-  name: Assembly
-  nameWithType: Plugin.Assembly
-  fullName: Alibi.Plugins.API.Plugin.Assembly
-  type: Property
-  source:
-    remote:
-      path: Alibi.Plugins.API/Plugin.cs
-      branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: Assembly
-    path: ../Plugin.cs
-    startLine: 14
-  assemblies:
-  - Alibi.Plugins.API
-  namespace: Alibi.Plugins.API
-  syntax:
-    content: public Assembly Assembly { get; set; }
-    parameters: []
-    return:
-      type: System.Reflection.Assembly
-    content.vb: Public Property Assembly As Assembly
-  overload: Alibi.Plugins.API.Plugin.Assembly*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Alibi.Plugins.API.Plugin.Initialize
-  commentId: M:Alibi.Plugins.API.Plugin.Initialize
-  id: Initialize
-  parent: Alibi.Plugins.API.Plugin
-  langs:
-  - csharp
-  - vb
-  name: Initialize()
-  nameWithType: Plugin.Initialize()
-  fullName: Alibi.Plugins.API.Plugin.Initialize()
-  type: Method
-  source:
-    remote:
-      path: Alibi.Plugins.API/Plugin.cs
-      branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: Initialize
-    path: ../Plugin.cs
-    startLine: 22
-  assemblies:
-  - Alibi.Plugins.API
-  namespace: Alibi.Plugins.API
-  summary: "\nCalled when this plugin gets loaded first.\nOther plugins you might depend on may not\nbe loaded, so use OnAllPluginsLoaded if you\nneed to know the state of another plugin.\n"
+  summary: "\nConstructs a new Plugin, providing some internal objects to interface with.\n"
+  remarks: "\nMust be implemented in order to create a new plugin derived from this class.\n"
   example: []
   syntax:
-    content: public abstract void Initialize()
-    content.vb: Public MustOverride Sub Initialize
-  overload: Alibi.Plugins.API.Plugin.Initialize*
+    content: protected Plugin(IServer server, IPluginManager pluginManager)
+    parameters:
+    - id: server
+      type: Alibi.Plugins.API.IServer
+      description: The internal server interface
+    - id: pluginManager
+      type: Alibi.Plugins.API.IPluginManager
+      description: "\nThe internal plugin manager interface, for\nconfiguration and interacting with other plugins\n"
+    content.vb: Protected Sub New(server As IServer, pluginManager As IPluginManager)
+  overload: Alibi.Plugins.API.Plugin.#ctor*
   modifiers.csharp:
-  - public
-  - abstract
+  - protected
   modifiers.vb:
-  - Public
-  - MustOverride
+  - Protected
 - uid: Alibi.Plugins.API.Plugin.OnAllPluginsLoaded
   commentId: M:Alibi.Plugins.API.Plugin.OnAllPluginsLoaded
   id: OnAllPluginsLoaded
@@ -283,7 +187,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnAllPluginsLoaded
     path: ../Plugin.cs
-    startLine: 28
+    startLine: 49
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -317,11 +221,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnPlayerJoined
     path: ../Plugin.cs
-    startLine: 36
+    startLine: 61
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCalled when a player joins the server.\n"
+  summary: "\nCalled when a player joins the server, NOT when they are identified\n"
+  remarks: "\nThis player is not ready to be sent messages and should only\nbe used to initialize starting data that is needed asap.\n"
   example: []
   syntax:
     content: public virtual void OnPlayerJoined(IClient client)
@@ -331,6 +236,45 @@ items:
       description: The client who just joined
     content.vb: Public Overridable Sub OnPlayerJoined(client As IClient)
   overload: Alibi.Plugins.API.Plugin.OnPlayerJoined*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  id: OnPlayerConnected(Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.Plugin
+  langs:
+  - csharp
+  - vb
+  name: OnPlayerConnected(IClient)
+  nameWithType: Plugin.OnPlayerConnected(IClient)
+  fullName: Alibi.Plugins.API.Plugin.OnPlayerConnected(Alibi.Plugins.API.IClient)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/Plugin.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: OnPlayerConnected
+    path: ../Plugin.cs
+    startLine: 72
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nCalled when a player fully identifies and joins the first area.\n"
+  remarks: "\nYou can assume this player is ready to play and be sent messages.\n"
+  example: []
+  syntax:
+    content: public virtual void OnPlayerConnected(IClient client)
+    parameters:
+    - id: client
+      type: Alibi.Plugins.API.IClient
+      description: The client who just joined
+    content.vb: Public Overridable Sub OnPlayerConnected(client As IClient)
+  overload: Alibi.Plugins.API.Plugin.OnPlayerConnected*
   modifiers.csharp:
   - public
   - virtual
@@ -355,7 +299,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnIcMessage
     path: ../Plugin.cs
-    startLine: 46
+    startLine: 82
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -402,7 +346,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnOocMessage
     path: ../Plugin.cs
-    startLine: 57
+    startLine: 93
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -449,7 +393,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnMusicChange
     path: ../Plugin.cs
-    startLine: 70
+    startLine: 106
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -496,7 +440,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnModCall
     path: ../Plugin.cs
-    startLine: 81
+    startLine: 117
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -540,7 +484,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnBan
     path: ../Plugin.cs
-    startLine: 94
+    startLine: 130
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -593,7 +537,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Log
     path: ../Plugin.cs
-    startLine: 105
+    startLine: 141
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -653,51 +597,23 @@ references:
   name: Name
   nameWithType: Plugin.Name
   fullName: Alibi.Plugins.API.Plugin.Name
-- uid: Alibi.Plugins.API.Plugin.Server*
-  commentId: Overload:Alibi.Plugins.API.Plugin.Server
-  name: Server
-  nameWithType: Plugin.Server
-  fullName: Alibi.Plugins.API.Plugin.Server
+- uid: Alibi.Plugins.API.Plugin.#ctor*
+  commentId: Overload:Alibi.Plugins.API.Plugin.#ctor
+  name: Plugin
+  nameWithType: Plugin.Plugin
+  fullName: Alibi.Plugins.API.Plugin.Plugin
 - uid: Alibi.Plugins.API.IServer
   commentId: T:Alibi.Plugins.API.IServer
   parent: Alibi.Plugins.API
   name: IServer
   nameWithType: IServer
   fullName: Alibi.Plugins.API.IServer
-- uid: Alibi.Plugins.API.Plugin.PluginManager*
-  commentId: Overload:Alibi.Plugins.API.Plugin.PluginManager
-  name: PluginManager
-  nameWithType: Plugin.PluginManager
-  fullName: Alibi.Plugins.API.Plugin.PluginManager
 - uid: Alibi.Plugins.API.IPluginManager
   commentId: T:Alibi.Plugins.API.IPluginManager
   parent: Alibi.Plugins.API
   name: IPluginManager
   nameWithType: IPluginManager
   fullName: Alibi.Plugins.API.IPluginManager
-- uid: Alibi.Plugins.API.Plugin.Assembly*
-  commentId: Overload:Alibi.Plugins.API.Plugin.Assembly
-  name: Assembly
-  nameWithType: Plugin.Assembly
-  fullName: Alibi.Plugins.API.Plugin.Assembly
-- uid: System.Reflection.Assembly
-  commentId: T:System.Reflection.Assembly
-  parent: System.Reflection
-  isExternal: true
-  name: Assembly
-  nameWithType: Assembly
-  fullName: System.Reflection.Assembly
-- uid: System.Reflection
-  commentId: N:System.Reflection
-  isExternal: true
-  name: System.Reflection
-  nameWithType: System.Reflection
-  fullName: System.Reflection
-- uid: Alibi.Plugins.API.Plugin.Initialize*
-  commentId: Overload:Alibi.Plugins.API.Plugin.Initialize
-  name: Initialize
-  nameWithType: Plugin.Initialize
-  fullName: Alibi.Plugins.API.Plugin.Initialize
 - uid: Alibi.Plugins.API.Plugin.OnAllPluginsLoaded*
   commentId: Overload:Alibi.Plugins.API.Plugin.OnAllPluginsLoaded
   name: OnAllPluginsLoaded
@@ -714,6 +630,11 @@ references:
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
+- uid: Alibi.Plugins.API.Plugin.OnPlayerConnected*
+  commentId: Overload:Alibi.Plugins.API.Plugin.OnPlayerConnected
+  name: OnPlayerConnected
+  nameWithType: Plugin.OnPlayerConnected
+  fullName: Alibi.Plugins.API.Plugin.OnPlayerConnected
 - uid: Alibi.Plugins.API.Plugin.OnIcMessage*
   commentId: Overload:Alibi.Plugins.API.Plugin.OnIcMessage
   name: OnIcMessage

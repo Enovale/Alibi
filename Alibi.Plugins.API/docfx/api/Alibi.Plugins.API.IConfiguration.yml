@@ -1,0 +1,977 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.IConfiguration
+  commentId: T:Alibi.Plugins.API.IConfiguration
+  id: IConfiguration
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.IConfiguration.Advertise
+  - Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  - Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  - Alibi.Plugins.API.IConfiguration.FeatureList
+  - Alibi.Plugins.API.IConfiguration.LogBufferSize
+  - Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  - Alibi.Plugins.API.IConfiguration.MasterServerPort
+  - Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  - Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  - Alibi.Plugins.API.IConfiguration.MaxPlayers
+  - Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  - Alibi.Plugins.API.IConfiguration.Motd
+  - Alibi.Plugins.API.IConfiguration.Port
+  - Alibi.Plugins.API.IConfiguration.RateLimit
+  - Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  - Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  - Alibi.Plugins.API.IConfiguration.ServerDescription
+  - Alibi.Plugins.API.IConfiguration.ServerName
+  - Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  - Alibi.Plugins.API.IConfiguration.VerboseLogs
+  - Alibi.Plugins.API.IConfiguration.WebsocketPort
+  langs:
+  - csharp
+  - vb
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: Alibi.Plugins.API.IConfiguration
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: IConfiguration
+    path: ../IConfiguration.cs
+    startLine: 8
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nRepresents the server configuration on disk.\n"
+  example: []
+  syntax:
+    content: public interface IConfiguration
+    content.vb: Public Interface IConfiguration
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.IConfiguration.ServerName
+  commentId: P:Alibi.Plugins.API.IConfiguration.ServerName
+  id: ServerName
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: ServerName
+  nameWithType: IConfiguration.ServerName
+  fullName: Alibi.Plugins.API.IConfiguration.ServerName
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ServerName
+    path: ../IConfiguration.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string ServerName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property ServerName As String
+  overload: Alibi.Plugins.API.IConfiguration.ServerName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.ServerDescription
+  commentId: P:Alibi.Plugins.API.IConfiguration.ServerDescription
+  id: ServerDescription
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: ServerDescription
+  nameWithType: IConfiguration.ServerDescription
+  fullName: Alibi.Plugins.API.IConfiguration.ServerDescription
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ServerDescription
+    path: ../IConfiguration.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: string ServerDescription { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property ServerDescription As String
+  overload: Alibi.Plugins.API.IConfiguration.ServerDescription*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.Motd
+  commentId: P:Alibi.Plugins.API.IConfiguration.Motd
+  id: Motd
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: Motd
+  nameWithType: IConfiguration.Motd
+  fullName: Alibi.Plugins.API.IConfiguration.Motd
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Motd
+    path: ../IConfiguration.cs
+    startLine: 16
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nMessage of the Day that is sent to clients in the Out of Context chat when they join.\n"
+  example: []
+  syntax:
+    content: string Motd { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property Motd As String
+  overload: Alibi.Plugins.API.IConfiguration.Motd*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  commentId: P:Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  id: BoundIpAddress
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: BoundIpAddress
+  nameWithType: IConfiguration.BoundIpAddress
+  fullName: Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: BoundIpAddress
+    path: ../IConfiguration.cs
+    startLine: 21
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nWhich IP Address to bind this server to internally.\n"
+  example: []
+  syntax:
+    content: IPAddress BoundIpAddress { get; }
+    parameters: []
+    return:
+      type: System.Net.IPAddress
+    content.vb: ReadOnly Property BoundIpAddress As IPAddress
+  overload: Alibi.Plugins.API.IConfiguration.BoundIpAddress*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.Port
+  commentId: P:Alibi.Plugins.API.IConfiguration.Port
+  id: Port
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: Port
+  nameWithType: IConfiguration.Port
+  fullName: Alibi.Plugins.API.IConfiguration.Port
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Port
+    path: ../IConfiguration.cs
+    startLine: 26
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe port that all native clients will connect to. (Cannot be the same as the Websocket Port)\n"
+  example: []
+  syntax:
+    content: int Port { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Port As Integer
+  overload: Alibi.Plugins.API.IConfiguration.Port*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.WebsocketPort
+  commentId: P:Alibi.Plugins.API.IConfiguration.WebsocketPort
+  id: WebsocketPort
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: WebsocketPort
+  nameWithType: IConfiguration.WebsocketPort
+  fullName: Alibi.Plugins.API.IConfiguration.WebsocketPort
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: WebsocketPort
+    path: ../IConfiguration.cs
+    startLine: 32
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe port that all websocket clients (WebAO) clients will connect to\n(Cannot be the same as the Native Port)\n"
+  example: []
+  syntax:
+    content: int WebsocketPort { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property WebsocketPort As Integer
+  overload: Alibi.Plugins.API.IConfiguration.WebsocketPort*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  commentId: P:Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  id: MasterServerAddress
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MasterServerAddress
+  nameWithType: IConfiguration.MasterServerAddress
+  fullName: Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MasterServerAddress
+    path: ../IConfiguration.cs
+    startLine: 37
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe address of the AO2 masterserver that this server advertises to.\n"
+  example: []
+  syntax:
+    content: string MasterServerAddress { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property MasterServerAddress As String
+  overload: Alibi.Plugins.API.IConfiguration.MasterServerAddress*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MasterServerPort
+  commentId: P:Alibi.Plugins.API.IConfiguration.MasterServerPort
+  id: MasterServerPort
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MasterServerPort
+  nameWithType: IConfiguration.MasterServerPort
+  fullName: Alibi.Plugins.API.IConfiguration.MasterServerPort
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MasterServerPort
+    path: ../IConfiguration.cs
+    startLine: 42
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe AO2 masterserver port to advertise on\n"
+  example: []
+  syntax:
+    content: int MasterServerPort { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MasterServerPort As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MasterServerPort*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.LogBufferSize
+  commentId: P:Alibi.Plugins.API.IConfiguration.LogBufferSize
+  id: LogBufferSize
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: LogBufferSize
+  nameWithType: IConfiguration.LogBufferSize
+  fullName: Alibi.Plugins.API.IConfiguration.LogBufferSize
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: LogBufferSize
+    path: ../IConfiguration.cs
+    startLine: 48
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow many logs to store for when the server crashes and dumps them.\n"
+  remarks: This is 500 by default.
+  example: []
+  syntax:
+    content: int LogBufferSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property LogBufferSize As Integer
+  overload: Alibi.Plugins.API.IConfiguration.LogBufferSize*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.VerboseLogs
+  commentId: P:Alibi.Plugins.API.IConfiguration.VerboseLogs
+  id: VerboseLogs
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: VerboseLogs
+  nameWithType: IConfiguration.VerboseLogs
+  fullName: Alibi.Plugins.API.IConfiguration.VerboseLogs
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: VerboseLogs
+    path: ../IConfiguration.cs
+    startLine: 53
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nShould the server process logs that are marked verbose?\n"
+  example: []
+  syntax:
+    content: bool VerboseLogs { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property VerboseLogs As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.VerboseLogs*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.Advertise
+  commentId: P:Alibi.Plugins.API.IConfiguration.Advertise
+  id: Advertise
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: Advertise
+  nameWithType: IConfiguration.Advertise
+  fullName: Alibi.Plugins.API.IConfiguration.Advertise
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Advertise
+    path: ../IConfiguration.cs
+    startLine: 63
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nShould this server tell the AO2 masterserver of its existence?\n"
+  remarks: "\nNot doing this will mean you have to add a manual favorite\nfor the local server, and name/description information will\nnot be visible. Unless debugging, this should always be true.\n"
+  example: []
+  syntax:
+    content: bool Advertise { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property Advertise As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.Advertise*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  commentId: P:Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  id: AllowDoublePostsIfDifferentAnim
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: AllowDoublePostsIfDifferentAnim
+  nameWithType: IConfiguration.AllowDoublePostsIfDifferentAnim
+  fullName: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: AllowDoublePostsIfDifferentAnim
+    path: ../IConfiguration.cs
+    startLine: 69
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nWhether or not players should be able to post the same message twice in\nIn-Character chat even if they change the emote used\n"
+  example: []
+  syntax:
+    content: bool AllowDoublePostsIfDifferentAnim { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property AllowDoublePostsIfDifferentAnim As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MaxPlayers
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxPlayers
+  id: MaxPlayers
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MaxPlayers
+  nameWithType: IConfiguration.MaxPlayers
+  fullName: Alibi.Plugins.API.IConfiguration.MaxPlayers
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MaxPlayers
+    path: ../IConfiguration.cs
+    startLine: 74
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe maximum amount of clients allowed to join the server.\n"
+  example: []
+  syntax:
+    content: int MaxPlayers { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MaxPlayers As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MaxPlayers*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  id: MaxMultiClients
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MaxMultiClients
+  nameWithType: IConfiguration.MaxMultiClients
+  fullName: Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MaxMultiClients
+    path: ../IConfiguration.cs
+    startLine: 79
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow many clients one machine is allowed to connect to this server.\n"
+  example: []
+  syntax:
+    content: int MaxMultiClients { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MaxMultiClients As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MaxMultiClients*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  commentId: P:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  id: TimeoutSeconds
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: TimeoutSeconds
+  nameWithType: IConfiguration.TimeoutSeconds
+  fullName: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: TimeoutSeconds
+    path: ../IConfiguration.cs
+    startLine: 84
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow long until an idle (not sending keepalives) client is kicked from the server.\n"
+  example: []
+  syntax:
+    content: int TimeoutSeconds { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property TimeoutSeconds As Integer
+  overload: Alibi.Plugins.API.IConfiguration.TimeoutSeconds*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  id: MaxMessageSize
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MaxMessageSize
+  nameWithType: IConfiguration.MaxMessageSize
+  fullName: Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MaxMessageSize
+    path: ../IConfiguration.cs
+    startLine: 93
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow long an Ic or OoC message can be. Longer messages will return an error to the player.\n"
+  remarks: "\nDiacritics, emojis, and other weird unicode shit may count as multiple\ncharacters, so don&apos;t expect that 1 character always equals 1 size.\n"
+  example: []
+  syntax:
+    content: int MaxMessageSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MaxMessageSize As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MaxMessageSize*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  id: MaxShownameSize
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MaxShownameSize
+  nameWithType: IConfiguration.MaxShownameSize
+  fullName: Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MaxShownameSize
+    path: ../IConfiguration.cs
+    startLine: 101
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow long a showname can be.\n"
+  remarks: "\nThis should be pretty short because there is not much space allocated for this on the client.\n"
+  example: []
+  syntax:
+    content: int MaxShownameSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MaxShownameSize As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MaxShownameSize*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.RateLimit
+  commentId: P:Alibi.Plugins.API.IConfiguration.RateLimit
+  id: RateLimit
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: RateLimit
+  nameWithType: IConfiguration.RateLimit
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimit
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: RateLimit
+    path: ../IConfiguration.cs
+    startLine: 106
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow many packets the client can send within the RateLimitResetTime before they are rate limited.\n"
+  example: []
+  syntax:
+    content: int RateLimit { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property RateLimit As Integer
+  overload: Alibi.Plugins.API.IConfiguration.RateLimit*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  commentId: P:Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  id: RateLimitResetTime
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: RateLimitResetTime
+  nameWithType: IConfiguration.RateLimitResetTime
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: RateLimitResetTime
+    path: ../IConfiguration.cs
+    startLine: 111
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow long (in seconds) until the rate limit timer is reset.\n"
+  example: []
+  syntax:
+    content: int RateLimitResetTime { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property RateLimitResetTime As Integer
+  overload: Alibi.Plugins.API.IConfiguration.RateLimitResetTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  commentId: P:Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  id: RateLimitBanLength
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: RateLimitBanLength
+  nameWithType: IConfiguration.RateLimitBanLength
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: RateLimitBanLength
+    path: ../IConfiguration.cs
+    startLine: 116
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow long until a rate limit is lifted.\n"
+  example: []
+  syntax:
+    content: TimeSpan RateLimitBanLength { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: ReadOnly Property RateLimitBanLength As TimeSpan
+  overload: Alibi.Plugins.API.IConfiguration.RateLimitBanLength*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.FeatureList
+  commentId: P:Alibi.Plugins.API.IConfiguration.FeatureList
+  id: FeatureList
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: FeatureList
+  nameWithType: IConfiguration.FeatureList
+  fullName: Alibi.Plugins.API.IConfiguration.FeatureList
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: FeatureList
+    path: ../IConfiguration.cs
+    startLine: 125
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nWhat AO2 protocol features this server supports\n"
+  remarks: "\nNon-default features should not be added to this list. The option is only here\nto allow users to disable certain features they don&apos;t want/need.\n"
+  example: []
+  syntax:
+    content: string[] FeatureList { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: ReadOnly Property FeatureList As String()
+  overload: Alibi.Plugins.API.IConfiguration.FeatureList*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IConfiguration.ServerName*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.ServerName
+  name: ServerName
+  nameWithType: IConfiguration.ServerName
+  fullName: Alibi.Plugins.API.IConfiguration.ServerName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.IConfiguration.ServerDescription*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.ServerDescription
+  name: ServerDescription
+  nameWithType: IConfiguration.ServerDescription
+  fullName: Alibi.Plugins.API.IConfiguration.ServerDescription
+- uid: Alibi.Plugins.API.IConfiguration.Motd*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.Motd
+  name: Motd
+  nameWithType: IConfiguration.Motd
+  fullName: Alibi.Plugins.API.IConfiguration.Motd
+- uid: Alibi.Plugins.API.IConfiguration.BoundIpAddress*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  name: BoundIpAddress
+  nameWithType: IConfiguration.BoundIpAddress
+  fullName: Alibi.Plugins.API.IConfiguration.BoundIpAddress
+- uid: System.Net.IPAddress
+  commentId: T:System.Net.IPAddress
+  parent: System.Net
+  isExternal: true
+  name: IPAddress
+  nameWithType: IPAddress
+  fullName: System.Net.IPAddress
+- uid: System.Net
+  commentId: N:System.Net
+  isExternal: true
+  name: System.Net
+  nameWithType: System.Net
+  fullName: System.Net
+- uid: Alibi.Plugins.API.IConfiguration.Port*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.Port
+  name: Port
+  nameWithType: IConfiguration.Port
+  fullName: Alibi.Plugins.API.IConfiguration.Port
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Alibi.Plugins.API.IConfiguration.WebsocketPort*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.WebsocketPort
+  name: WebsocketPort
+  nameWithType: IConfiguration.WebsocketPort
+  fullName: Alibi.Plugins.API.IConfiguration.WebsocketPort
+- uid: Alibi.Plugins.API.IConfiguration.MasterServerAddress*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  name: MasterServerAddress
+  nameWithType: IConfiguration.MasterServerAddress
+  fullName: Alibi.Plugins.API.IConfiguration.MasterServerAddress
+- uid: Alibi.Plugins.API.IConfiguration.MasterServerPort*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MasterServerPort
+  name: MasterServerPort
+  nameWithType: IConfiguration.MasterServerPort
+  fullName: Alibi.Plugins.API.IConfiguration.MasterServerPort
+- uid: Alibi.Plugins.API.IConfiguration.LogBufferSize*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.LogBufferSize
+  name: LogBufferSize
+  nameWithType: IConfiguration.LogBufferSize
+  fullName: Alibi.Plugins.API.IConfiguration.LogBufferSize
+- uid: Alibi.Plugins.API.IConfiguration.VerboseLogs*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.VerboseLogs
+  name: VerboseLogs
+  nameWithType: IConfiguration.VerboseLogs
+  fullName: Alibi.Plugins.API.IConfiguration.VerboseLogs
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Alibi.Plugins.API.IConfiguration.Advertise*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.Advertise
+  name: Advertise
+  nameWithType: IConfiguration.Advertise
+  fullName: Alibi.Plugins.API.IConfiguration.Advertise
+- uid: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  name: AllowDoublePostsIfDifferentAnim
+  nameWithType: IConfiguration.AllowDoublePostsIfDifferentAnim
+  fullName: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+- uid: Alibi.Plugins.API.IConfiguration.MaxPlayers*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxPlayers
+  name: MaxPlayers
+  nameWithType: IConfiguration.MaxPlayers
+  fullName: Alibi.Plugins.API.IConfiguration.MaxPlayers
+- uid: Alibi.Plugins.API.IConfiguration.MaxMultiClients*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  name: MaxMultiClients
+  nameWithType: IConfiguration.MaxMultiClients
+  fullName: Alibi.Plugins.API.IConfiguration.MaxMultiClients
+- uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  name: TimeoutSeconds
+  nameWithType: IConfiguration.TimeoutSeconds
+  fullName: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+- uid: Alibi.Plugins.API.IConfiguration.MaxMessageSize*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  name: MaxMessageSize
+  nameWithType: IConfiguration.MaxMessageSize
+  fullName: Alibi.Plugins.API.IConfiguration.MaxMessageSize
+- uid: Alibi.Plugins.API.IConfiguration.MaxShownameSize*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  name: MaxShownameSize
+  nameWithType: IConfiguration.MaxShownameSize
+  fullName: Alibi.Plugins.API.IConfiguration.MaxShownameSize
+- uid: Alibi.Plugins.API.IConfiguration.RateLimit*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimit
+  name: RateLimit
+  nameWithType: IConfiguration.RateLimit
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimit
+- uid: Alibi.Plugins.API.IConfiguration.RateLimitResetTime*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  name: RateLimitResetTime
+  nameWithType: IConfiguration.RateLimitResetTime
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+- uid: Alibi.Plugins.API.IConfiguration.RateLimitBanLength*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  name: RateLimitBanLength
+  nameWithType: IConfiguration.RateLimitBanLength
+  fullName: Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Alibi.Plugins.API.IConfiguration.FeatureList*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.FeatureList
+  name: FeatureList
+  nameWithType: IConfiguration.FeatureList
+  fullName: Alibi.Plugins.API.IConfiguration.FeatureList
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

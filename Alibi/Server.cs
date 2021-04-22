@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Alibi.Commands;
 using Alibi.Database;
-using Alibi.Helpers;
 using Alibi.Plugins;
 using Alibi.Plugins.API;
 using Alibi.Protocol;

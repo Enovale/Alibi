@@ -5,10 +5,10 @@ items:
   id: ClientState
   parent: Alibi.Plugins.API
   children:
-  - Alibi.Plugins.API.ClientState.Handshook
   - Alibi.Plugins.API.ClientState.Identified
   - Alibi.Plugins.API.ClientState.InArea
   - Alibi.Plugins.API.ClientState.NewClient
+  - Alibi.Plugins.API.ClientState.PostHandshake
   langs:
   - csharp
   - vb
@@ -23,10 +23,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ClientState
     path: ../ClientState.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRepresents the protocol state of a client.\n"
+  example: []
   syntax:
     content: public enum ClientState
     content.vb: Public Enum ClientState
@@ -54,10 +56,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: NewClient
     path: ../ClientState.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nBrand new client: Has not sent any packets yet\n"
+  example: []
   syntax:
     content: NewClient = 0
     return:
@@ -68,30 +72,32 @@ items:
   modifiers.vb:
   - Public
   - Const
-- uid: Alibi.Plugins.API.ClientState.Handshook
-  commentId: F:Alibi.Plugins.API.ClientState.Handshook
-  id: Handshook
+- uid: Alibi.Plugins.API.ClientState.PostHandshake
+  commentId: F:Alibi.Plugins.API.ClientState.PostHandshake
+  id: PostHandshake
   parent: Alibi.Plugins.API.ClientState
   langs:
   - csharp
   - vb
-  name: Handshook
-  nameWithType: ClientState.Handshook
-  fullName: Alibi.Plugins.API.ClientState.Handshook
+  name: PostHandshake
+  nameWithType: ClientState.PostHandshake
+  fullName: Alibi.Plugins.API.ClientState.PostHandshake
   type: Field
   source:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
       repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: Handshook
+    id: PostHandshake
     path: ../ClientState.cs
-    startLine: 5
+    startLine: 14
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nHas sent the server a protocol-correct handshake, but has not identified yet.\n"
+  example: []
   syntax:
-    content: Handshook = 1
+    content: PostHandshake = 1
     return:
       type: Alibi.Plugins.API.ClientState
   modifiers.csharp:
@@ -118,10 +124,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Identified
     path: ../ClientState.cs
-    startLine: 6
+    startLine: 18
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nHas told the server their client, we are about to send them server features\n"
+  example: []
   syntax:
     content: Identified = 2
     return:
@@ -150,10 +158,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: InArea
     path: ../ClientState.cs
-    startLine: 7
+    startLine: 22
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe client is fully connected, and has joined an area. Ready to play.\n"
+  example: []
   syntax:
     content: InArea = 3
     return:

@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Alibi.Plugins.API;
+
 // ReSharper disable ClassNeverInstantiated.Global
 
 namespace Alibi.Plugins.Fun
 {
     public class FunPlugin : Plugin
     {
-        public override string ID => "com.elijahzawesome.Fun";
-        public override string Name => "Fun";
+        public sealed override string ID => "com.elijahzawesome.Fun";
+        public sealed override string Name => "Fun";
 
         public static readonly Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();
         public static readonly Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
@@ -30,13 +32,9 @@ namespace Alibi.Plugins.Fun
         {
             if (Disemvoweled[client])
             {
-                string[] vowels =
-                {
-                    "A", "E", "I", "O", "U", "Y",
-                    "a", "e", "e", "o", "u", "y"
-                };
+                string[] vowels = { "A", "E", "I", "O", "U", "Y" };
                 foreach (var vowel in vowels)
-                    message = message.Replace(vowel, "");
+                    message = message.Replace(vowel, "", true, CultureInfo.InvariantCulture);
             }
 
             if (Shaken[client])

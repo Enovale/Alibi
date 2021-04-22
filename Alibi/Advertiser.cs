@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Alibi.Helpers;
 using Alibi.Plugins.API;
 using AOPacket = Alibi.Helpers.AOPacket;
 

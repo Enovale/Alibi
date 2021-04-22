@@ -27,17 +27,17 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AOPacket
     path: ../AOPacket.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHelper class to create packets from the API (internal server uses it&apos;s own class)\n"
+  summary: "\nHelper class to create packets from the API\n"
+  remarks: "\n(internal server uses it&apos;s own class)\n"
   example: []
   syntax:
     content: 'public class AOPacket : IAOPacket'
     content.vb: >-
       Public Class AOPacket
-
           Implements IAOPacket
   inheritance:
   - System.Object
@@ -67,12 +67,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Type
     path: ../AOPacket.cs
-    startLine: 12
+    startLine: 19
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe type (ID) of this packet. E.g HI, RT, CT\n"
-  example: []
+  summary: "\nThe type (ID) of this packet.\n"
+  example:
+  - "\nHI, RT, CT\n"
   syntax:
     content: public string Type { get; set; }
     parameters: []
@@ -106,7 +107,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Objects
     path: ../AOPacket.cs
-    startLine: 16
+    startLine: 23
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -145,7 +146,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 20
+    startLine: 27
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -186,7 +187,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 27
+    startLine: 34
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -221,7 +222,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: FromMessage
     path: ../AOPacket.cs
-    startLine: 45
+    startLine: 52
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -262,21 +263,17 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: EncodeToAOPacket
     path: ../AOPacket.cs
-    startLine: 70
+    startLine: 80
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nEncode a constructed packet string so that special characters escape properly.\n"
-  example: []
   syntax:
     content: public static string EncodeToAOPacket(string str)
     parameters:
     - id: str
       type: System.String
-      description: The constructed packet to encode
     return:
       type: System.String
-      description: An encoded packet ready to be sent.
     content.vb: Public Shared Function EncodeToAOPacket(str As String) As String
   overload: Alibi.Plugins.API.AOPacket.EncodeToAOPacket*
   modifiers.csharp:
@@ -303,7 +300,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: DecodeFromAOPacket
     path: ../AOPacket.cs
-    startLine: 75
+    startLine: 93
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -340,17 +337,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: op_Implicit
     path: ../AOPacket.cs
-    startLine: 80
+    startLine: 106
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nConverts this packet into a decoded, constructed string implicitly.\n"
+  example: []
   syntax:
     content: public static implicit operator string (AOPacket pkt)
     parameters:
     - id: pkt
       type: Alibi.Plugins.API.AOPacket
+      description: The packet object
     return:
       type: System.String
+      description: A decoded, constructed string
     content.vb: Public Shared Widening Operator CType(pkt As AOPacket) As String
   overload: Alibi.Plugins.API.AOPacket.op_Implicit*
   nameWithType.vb: AOPacket.Widening(AOPacket to String)

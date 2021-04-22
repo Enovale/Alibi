@@ -23,10 +23,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IPluginManager
     path: ../IPluginManager.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nProvides an interface to the internal plugin manager.\nUse this to interface with other plugins, or to get\npaths to configuration information, and log errors.\n"
+  example: []
   syntax:
     content: public interface IPluginManager
     content.vb: Public Interface IPluginManager
@@ -54,17 +56,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IsPluginLoaded
     path: ../IPluginManager.cs
-    startLine: 4
+    startLine: 14
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nCheck if a given plugin is loaded.\n"
+  example: []
   syntax:
     content: bool IsPluginLoaded(string id)
     parameters:
     - id: id
       type: System.String
+      description: The ID of the plugin to check (not necessarily your own)
     return:
       type: System.Boolean
+      description: Whether or not this plugin has been loaded yet or hasn&apos;t crashed.
     content.vb: Function IsPluginLoaded(id As String) As Boolean
   overload: Alibi.Plugins.API.IPluginManager.IsPluginLoaded*
 - uid: Alibi.Plugins.API.IPluginManager.RequestPluginInstance(System.String)
@@ -85,17 +91,22 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: RequestPluginInstance
     path: ../IPluginManager.cs
-    startLine: 5
+    startLine: 24
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nFetches an instance of the plugin.\n"
+  remarks: "\nThis is dynamic so it can be literally any class.\nBe careful what you cast, or you may burn.\n"
+  example: []
   syntax:
     content: dynamic RequestPluginInstance(string id)
     parameters:
     - id: id
       type: System.String
+      description: The ID of the plugin to fetch
     return:
       type: System.Object
+      description: The plugin&apos;s instance that derives from Plugin
     content.vb: Function RequestPluginInstance(id As String) As Object
   overload: Alibi.Plugins.API.IPluginManager.RequestPluginInstance*
 - uid: Alibi.Plugins.API.IPluginManager.GetConfigFolder(System.String)
@@ -116,17 +127,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetConfigFolder
     path: ../IPluginManager.cs
-    startLine: 6
+    startLine: 31
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nGets the absolute path to the configuration folder assigned to this plugin.\nONLY use this folder as otherwise users will be confused and it creates non-standard code.\n"
+  example: []
   syntax:
     content: string GetConfigFolder(string id)
     parameters:
     - id: id
       type: System.String
+      description: The ID of the plugin to fetch the config folder of (not necessarily your own)
     return:
       type: System.String
+      description: An absolute path to that plugin&apos;s config folder
     content.vb: Function GetConfigFolder(id As String) As String
   overload: Alibi.Plugins.API.IPluginManager.GetConfigFolder*
 - uid: Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
@@ -147,19 +162,25 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Log
     path: ../IPluginManager.cs
-    startLine: 7
+    startLine: 41
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nLogs a message to the server console and log buffer, associated with the Plugin Manager.\n"
+  example:
+  - "\n[Date][Info][PluginManager] I am a Log!\n"
   syntax:
     content: void Log(LogSeverity severity, string message, bool verbose)
     parameters:
     - id: severity
       type: Alibi.Plugins.API.LogSeverity
+      description: How severe the log is (determines color and prefix)
     - id: message
       type: System.String
+      description: The message to be logged
     - id: verbose
       type: System.Boolean
+      description: Should this log only be displayed if the server is Verbose
     content.vb: Sub Log(severity As LogSeverity, message As String, verbose As Boolean)
   overload: Alibi.Plugins.API.IPluginManager.Log*
 references:

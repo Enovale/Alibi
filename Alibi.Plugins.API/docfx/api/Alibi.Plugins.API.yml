@@ -12,6 +12,7 @@ items:
   - Alibi.Plugins.API.IAOPacket
   - Alibi.Plugins.API.IArea
   - Alibi.Plugins.API.IClient
+  - Alibi.Plugins.API.IConfiguration
   - Alibi.Plugins.API.IDatabaseManager
   - Alibi.Plugins.API.IEvidence
   - Alibi.Plugins.API.IPluginManager
@@ -74,6 +75,12 @@ references:
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
+- uid: Alibi.Plugins.API.IConfiguration
+  commentId: T:Alibi.Plugins.API.IConfiguration
+  parent: Alibi.Plugins.API
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: Alibi.Plugins.API.IConfiguration
 - uid: Alibi.Plugins.API.IDatabaseManager
   commentId: T:Alibi.Plugins.API.IDatabaseManager
   parent: Alibi.Plugins.API

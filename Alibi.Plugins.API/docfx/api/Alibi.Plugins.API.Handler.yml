@@ -22,10 +22,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Handler
     path: ../Handler.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nSpecifies a handler for commands, or packets.\n"
+  example: []
   syntax:
     content: public class Handler
     content.vb: Public Class Handler
@@ -38,7 +40,7 @@ items:
   - Public
   - Class
 - uid: Alibi.Plugins.API.Handler.Method
-  commentId: F:Alibi.Plugins.API.Handler.Method
+  commentId: P:Alibi.Plugins.API.Handler.Method
   id: Method
   parent: Alibi.Plugins.API.Handler
   langs:
@@ -47,7 +49,7 @@ items:
   name: Method
   nameWithType: Handler.Method
   fullName: Alibi.Plugins.API.Handler.Method
-  type: Field
+  type: Property
   source:
     remote:
       path: Alibi.Plugins.API/Handler.cs
@@ -55,21 +57,25 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Method
     path: ../Handler.cs
-    startLine: 7
+    startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   syntax:
-    content: public MethodInfo Method
+    content: public MethodInfo Method { get; }
+    parameters: []
     return:
       type: System.Reflection.MethodInfo
-    content.vb: Public Method As MethodInfo
+    content.vb: Public ReadOnly Property Method As MethodInfo
+  overload: Alibi.Plugins.API.Handler.Method*
   modifiers.csharp:
   - public
+  - get
   modifiers.vb:
   - Public
+  - ReadOnly
 - uid: Alibi.Plugins.API.Handler.Target
-  commentId: F:Alibi.Plugins.API.Handler.Target
+  commentId: P:Alibi.Plugins.API.Handler.Target
   id: Target
   parent: Alibi.Plugins.API.Handler
   langs:
@@ -78,7 +84,7 @@ items:
   name: Target
   nameWithType: Handler.Target
   fullName: Alibi.Plugins.API.Handler.Target
-  type: Field
+  type: Property
   source:
     remote:
       path: Alibi.Plugins.API/Handler.cs
@@ -86,19 +92,23 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Target
     path: ../Handler.cs
-    startLine: 8
+    startLine: 11
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   syntax:
-    content: public Plugin Target
+    content: public Plugin Target { get; }
+    parameters: []
     return:
       type: Alibi.Plugins.API.Plugin
-    content.vb: Public Target As Plugin
+    content.vb: Public ReadOnly Property Target As Plugin
+  overload: Alibi.Plugins.API.Handler.Target*
   modifiers.csharp:
   - public
+  - get
   modifiers.vb:
   - Public
+  - ReadOnly
 - uid: Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
   commentId: M:Alibi.Plugins.API.Handler.#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)
   id: '#ctor(System.Reflection.MethodInfo,Alibi.Plugins.API.Plugin)'
@@ -117,7 +127,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../Handler.cs
-    startLine: 10
+    startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -153,6 +163,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Alibi.Plugins.API.Handler.Method*
+  commentId: Overload:Alibi.Plugins.API.Handler.Method
+  name: Method
+  nameWithType: Handler.Method
+  fullName: Alibi.Plugins.API.Handler.Method
 - uid: System.Reflection.MethodInfo
   commentId: T:System.Reflection.MethodInfo
   parent: System.Reflection
@@ -166,6 +181,11 @@ references:
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
+- uid: Alibi.Plugins.API.Handler.Target*
+  commentId: Overload:Alibi.Plugins.API.Handler.Target
+  name: Target
+  nameWithType: Handler.Target
+  fullName: Alibi.Plugins.API.Handler.Target
 - uid: Alibi.Plugins.API.Plugin
   commentId: T:Alibi.Plugins.API.Plugin
   parent: Alibi.Plugins.API

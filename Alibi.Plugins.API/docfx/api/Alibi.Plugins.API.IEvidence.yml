@@ -23,10 +23,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IEvidence
     path: ../IEvidence.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRepresents a piece of evidence in the server.\n"
+  example: []
   syntax:
     content: public interface IEvidence
     content.vb: Public Interface IEvidence
@@ -54,10 +56,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Name
     path: ../IEvidence.cs
-    startLine: 4
+    startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe name of this piece of evidence.\n"
+  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  example: []
   syntax:
     content: string Name { get; set; }
     parameters: []
@@ -86,10 +91,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Description
     path: ../IEvidence.cs
-    startLine: 5
+    startLine: 20
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe description for this piece of evidence.\n"
+  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  example: []
   syntax:
     content: string Description { get; set; }
     parameters: []
@@ -118,10 +126,13 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Photo
     path: ../IEvidence.cs
-    startLine: 6
+    startLine: 27
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe photo name of this piece of evidence.\n"
+  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  example: []
   syntax:
     content: string Photo { get; set; }
     parameters: []
@@ -150,14 +161,17 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ToPacket
     path: ../IEvidence.cs
-    startLine: 8
+    startLine: 36
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nConverts this piece of evidence into a packet that can be sent to players\n"
+  example: []
   syntax:
     content: string ToPacket()
     return:
       type: System.String
+      description: A packet version of this piece of evidence, to be used as data in a packet.
     content.vb: Function ToPacket As String
   overload: Alibi.Plugins.API.IEvidence.ToPacket*
 references:

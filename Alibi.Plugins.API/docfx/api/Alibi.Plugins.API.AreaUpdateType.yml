@@ -23,10 +23,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AreaUpdateType
     path: ../AreaUpdateType.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nSpecifies which information to update about an area.\n"
+  example: []
   syntax:
     content: public enum AreaUpdateType
     content.vb: Public Enum AreaUpdateType
@@ -54,7 +56,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: PlayerCount
     path: ../AreaUpdateType.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -86,10 +88,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Status
     path: ../AreaUpdateType.cs
-    startLine: 5
+    startLine: 11
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nUpdate the status string for this area (determines area color, and joining rules)\n"
+  example: []
   syntax:
     content: Status = 1
     return:
@@ -118,7 +122,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CourtManager
     path: ../AreaUpdateType.cs
-    startLine: 6
+    startLine: 12
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -150,7 +154,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Locked
     path: ../AreaUpdateType.cs
-    startLine: 7
+    startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API

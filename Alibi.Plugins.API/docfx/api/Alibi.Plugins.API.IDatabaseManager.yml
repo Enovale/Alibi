@@ -35,10 +35,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IDatabaseManager
     path: ../IDatabaseManager.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nProvides an interface to interact with the internal database. Be careful.\n"
+  example: []
   syntax:
     content: public interface IDatabaseManager
     content.vb: Public Interface IDatabaseManager
@@ -66,19 +68,24 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AddUser
     path: ../IDatabaseManager.cs
-    startLine: 6
+    startLine: 15
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nAdd a user to the database, with default info.\n"
+  example: []
   syntax:
     content: bool AddUser(string hwid, string ip)
     parameters:
     - id: hwid
       type: System.String
+      description: The hardware ID of this user
     - id: ip
       type: System.String
+      description: The IP Address of this user
     return:
       type: System.Boolean
+      description: Whether or not the user was successfully added to the database.
     content.vb: Function AddUser(hwid As String, ip As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.AddUser*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
@@ -99,17 +106,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetHwidsfromIp
     path: ../IDatabaseManager.cs
-    startLine: 7
+    startLine: 22
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nGet all hardware IDs associated with a given IP Address\n"
+  example: []
   syntax:
     content: string[] GetHwidsfromIp(string ip)
     parameters:
     - id: ip
       type: System.String
+      description: The IP Address to search the database for
     return:
       type: System.String[]
+      description: An array of hardware IDs associated with this IP
     content.vb: Function GetHwidsfromIp(ip As String) As String()
   overload: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*
 - uid: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)
@@ -130,17 +141,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IsHwidBanned
     path: ../IDatabaseManager.cs
-    startLine: 8
+    startLine: 29
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nCheck if a given hardware ID is banned in the database.\n"
+  example: []
   syntax:
     content: bool IsHwidBanned(string hwid)
     parameters:
     - id: hwid
       type: System.String
+      description: The hardware ID to search for
     return:
       type: System.Boolean
+      description: Whether or not this HWID is banned
     content.vb: Function IsHwidBanned(hwid As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned*
 - uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
@@ -161,17 +176,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IsIpBanned
     path: ../IDatabaseManager.cs
-    startLine: 9
+    startLine: 36
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nCheck if a given IP Address is banned in the database.\n"
+  example: []
   syntax:
     content: bool IsIpBanned(string ip)
     parameters:
     - id: ip
       type: System.String
+      description: The IP Address to check
     return:
       type: System.Boolean
+      description: Whether or not this IP Address is banned
     content.vb: Function IsIpBanned(ip As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.IsIpBanned*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
@@ -192,17 +211,22 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetBanReason
     path: ../IDatabaseManager.cs
-    startLine: 10
+    startLine: 46
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nGets the ban reasoning stored in the database for an IP Address.\n"
+  remarks: "\nThis isn&apos;t available for HWIDs for technical reasons.\n"
+  example: []
   syntax:
     content: string GetBanReason(string ip)
     parameters:
     - id: ip
       type: System.String
+      description: The IP Address to search for
     return:
       type: System.String
+      description: The reason this IP was banned
     content.vb: Function GetBanReason(ip As String) As String
   overload: Alibi.Plugins.API.IDatabaseManager.GetBanReason*
 - uid: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
@@ -223,19 +247,24 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanHwid
     path: ../IDatabaseManager.cs
-    startLine: 11
+    startLine: 55
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRegisters a ban for an HWID in the database. This won&apos;t take effect\nuntil the player rejoins the server. Instead use IClient.BanHwid\n"
+  example: []
   syntax:
     content: void BanHwid(string hwid, string reason, TimeSpan? expireTime = default(TimeSpan? ))
     parameters:
     - id: hwid
       type: System.String
+      description: The HWID to ban
     - id: reason
       type: System.String
+      description: Why they were banned
     - id: expireTime
       type: System.Nullable{System.TimeSpan}
+      description: When to let this ban expire (null if indefinite)
     content.vb: Sub BanHwid(hwid As String, reason As String, expireTime As TimeSpan? = Nothing)
   overload: Alibi.Plugins.API.IDatabaseManager.BanHwid*
   nameWithType.vb: IDatabaseManager.BanHwid(String, String, Nullable(Of TimeSpan))
@@ -259,19 +288,25 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanIp
     path: ../IDatabaseManager.cs
-    startLine: 12
+    startLine: 67
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRegisters a ban for an IP in the database. This won&apos;t take effect\nuntil the player rejoins the server. Instead use IClient.BanIP\n"
+  remarks: "\nTry to never use this ban method as it is insecure. Use HWID banning whenever possible.\n"
+  example: []
   syntax:
     content: void BanIp(string ip, string reason, TimeSpan? expireTime = default(TimeSpan? ))
     parameters:
     - id: ip
       type: System.String
+      description: The IP Address to ban
     - id: reason
       type: System.String
+      description: Why they are being banned
     - id: expireTime
       type: System.Nullable{System.TimeSpan}
+      description: When to let this  ban expire (null if indefinite)
     content.vb: Sub BanIp(ip As String, reason As String, expireTime As TimeSpan? = Nothing)
   overload: Alibi.Plugins.API.IDatabaseManager.BanIp*
   nameWithType.vb: IDatabaseManager.BanIp(String, String, Nullable(Of TimeSpan))
@@ -295,15 +330,18 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: UnbanHwid
     path: ../IDatabaseManager.cs
-    startLine: 13
+    startLine: 73
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nLifts a ban for an HWID in the database.\n"
+  example: []
   syntax:
     content: void UnbanHwid(string hwid)
     parameters:
     - id: hwid
       type: System.String
+      description: The Hardware ID to unban
     content.vb: Sub UnbanHwid(hwid As String)
   overload: Alibi.Plugins.API.IDatabaseManager.UnbanHwid*
 - uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
@@ -324,15 +362,18 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: UnbanIp
     path: ../IDatabaseManager.cs
-    startLine: 14
+    startLine: 79
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nLifts a ban for an IP Address in the database.\n"
+  example: []
   syntax:
     content: void UnbanIp(string ip)
     parameters:
     - id: ip
       type: System.String
+      description: The IP Address to unban
     content.vb: Sub UnbanIp(ip As String)
   overload: Alibi.Plugins.API.IDatabaseManager.UnbanIp*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
@@ -353,14 +394,17 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetBannedHwids
     path: ../IDatabaseManager.cs
-    startLine: 15
+    startLine: 85
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nGets a list of every banned Hardware ID in the database.\n"
+  example: []
   syntax:
     content: string[] GetBannedHwids()
     return:
       type: System.String[]
+      description: An array of HWIDs that are banned in the database
     content.vb: Function GetBannedHwids As String()
   overload: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)
@@ -381,17 +425,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetBanExpiration
     path: ../IDatabaseManager.cs
-    startLine: 16
+    startLine: 92
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nFetches when an HWID will be unbanned.\n"
+  example: []
   syntax:
     content: DateTime? GetBanExpiration(string hwid)
     parameters:
     - id: hwid
       type: System.String
+      description: The HWID to search for
     return:
       type: System.Nullable{System.DateTime}
+      description: A DateTime representing when this ban will expire.
     content.vb: Function GetBanExpiration(hwid As String) As Date?
   overload: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration*
 - uid: Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)
@@ -412,21 +460,28 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AddLogin
     path: ../IDatabaseManager.cs
-    startLine: 17
+    startLine: 105
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nRegisters an account with higher permissions in the database.\n"
+  remarks: "\nPasswords are stored as a BCrypt hash in the database\nand the plain text version is immediately thrown away.\n"
+  example: []
   syntax:
     content: bool AddLogin(string username, string password, int perms)
     parameters:
     - id: username
       type: System.String
+      description: The username this player will use to login
     - id: password
       type: System.String
+      description: The password this player will use to login
     - id: perms
       type: System.Int32
+      description: What permissions this account has, refer to AuthType
     return:
       type: System.Boolean
+      description: Whether or not this operation was successful
     content.vb: Function AddLogin(username As String, password As String, perms As Integer) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.AddLogin*
 - uid: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)
@@ -447,19 +502,24 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ChangeLoginPermissions
     path: ../IDatabaseManager.cs
-    startLine: 18
+    startLine: 113
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nChange the permission level of a given login in the database.\n"
+  example: []
   syntax:
     content: bool ChangeLoginPermissions(string username, int perms)
     parameters:
     - id: username
       type: System.String
+      description: The login username to change permissions of
     - id: perms
       type: System.Int32
+      description: The permissions to change the login to
     return:
       type: System.Boolean
+      description: Whether or not this operation was successful
     content.vb: Function ChangeLoginPermissions(username As String, perms As Integer) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions*
 - uid: Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)
@@ -480,17 +540,22 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: RemoveLogin
     path: ../IDatabaseManager.cs
-    startLine: 19
+    startLine: 125
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nDeletes a login registered in the database.\n"
+  remarks: "\nDoing this will NOT log out players that already used this login.\nDo not use this as a token revocation system of sorts, unless you\nalso find those logged in users and log them out.\n"
+  example: []
   syntax:
     content: bool RemoveLogin(string username)
     parameters:
     - id: username
       type: System.String
+      description: The login to delete
     return:
       type: System.Boolean
+      description: Whether or not this operation was successful
     content.vb: Function RemoveLogin(username As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.RemoveLogin*
 - uid: Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)
@@ -511,19 +576,24 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CheckCredentials
     path: ../IDatabaseManager.cs
-    startLine: 20
+    startLine: 133
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nChecks if the given username and password matches the one registered in the database.\n"
+  example: []
   syntax:
     content: bool CheckCredentials(string username, string password)
     parameters:
     - id: username
       type: System.String
+      description: The username to check
     - id: password
       type: System.String
+      description: The password to check (in plaintext)
     return:
       type: System.Boolean
+      description: Whether or not the authentication was successful
     content.vb: Function CheckCredentials(username As String, password As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.CheckCredentials*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)
@@ -544,17 +614,21 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetPermissionLevel
     path: ../IDatabaseManager.cs
-    startLine: 21
+    startLine: 140
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nReturns the permission level of a given login.\n"
+  example: []
   syntax:
     content: int GetPermissionLevel(string username)
     parameters:
     - id: username
       type: System.String
+      description: The login to check
     return:
       type: System.Int32
+      description: What permission level they have
     content.vb: Function GetPermissionLevel(username As String) As Integer
   overload: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel*
 references:

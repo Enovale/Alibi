@@ -22,10 +22,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AuthType
     path: ../AuthType.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nContains constants for player authentication levels\n"
+  example: []
   syntax:
     content: public static class AuthType
     content.vb: Public Module AuthType
@@ -56,10 +58,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: USER
     path: ../AuthType.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe basic level of player rights. Every new player will have this.\n"
+  example: []
   syntax:
     content: public const int USER = 0
     return:
@@ -89,10 +93,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: MODERATOR
     path: ../AuthType.cs
-    startLine: 5
+    startLine: 15
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nSuperior level of player rights. Can do almost anything\nexcept deliberately shut down the server with /stop or /restart\n"
+  example: []
   syntax:
     content: public const int MODERATOR = 1
     return:
@@ -122,10 +128,12 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ADMINISTRATOR
     path: ../AuthType.cs
-    startLine: 6
+    startLine: 19
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
+  summary: "\nThe highest level of player rights. Can do anything.\n"
+  example: []
   syntax:
     content: public const int ADMINISTRATOR = 2
     return:
