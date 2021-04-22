@@ -18,11 +18,11 @@ namespace Alibi.Plugins.Cerberus
         public override string ID => "com.elijahzawesome.Cerberus";
         public override string Name => "Cerberus";
 
-        public static CerberusConfiguration Config;
+        public readonly CerberusConfiguration Config;
 
-        private Dictionary<IClient, MuteInfo> _clientDict;
-        private Dictionary<IClient, string?> _lastOocMsgDict;
-        private Dictionary<IArea, bool> _silencedAreas;
+        private readonly Dictionary<IClient, MuteInfo> _clientDict;
+        private readonly Dictionary<IClient, string?> _lastOocMsgDict;
+        private readonly Dictionary<IArea, bool> _silencedAreas;
 
         public MainPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {

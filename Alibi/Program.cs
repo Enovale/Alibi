@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Alibi
 
         static Program()
         {
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             ResetEvent = new ManualResetEvent(false);
             Environment.CurrentDirectory = GetRealProcessDirectory();
             if (!File.Exists(Server.ConfigPath)
