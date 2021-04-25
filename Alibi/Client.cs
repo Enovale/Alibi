@@ -106,6 +106,10 @@ namespace Alibi
                     Area.TakenCharacters[(int) Character] = true;
                 }
             }
+            else
+            {
+                Send(new AOPacket("DONE"));
+            }
 
             Area.FullUpdate(this);
             Area.UpdateTakenCharacters();
