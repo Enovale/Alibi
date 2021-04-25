@@ -42,15 +42,14 @@ namespace Alibi
         }
 
         /// <summary>
-        ///     Log a message of a specified severity (will change the console color)
+        /// Log a message of a specified severity (will change the console color)
         /// </summary>
         /// <param name="severity">
-        ///     Normal debug severities, though Special is for info that is
-        ///     more relevant to server owners.
+        /// Normal debug severities, though Special is for info that is
+        /// more relevant to server owners.
         /// </param>
         /// <param name="message">The message to log</param>
         /// <param name="verbose">Should this only show when in verbose logs mode?</param>
-        /// <param name="color">Manually override the log color</param>
         public void Log(LogSeverity severity, string message, bool verbose = false)
         {
             if (verbose && !Server.ServerConfiguration.VerboseLogs)

@@ -174,23 +174,11 @@ namespace Alibi.Protocol
             if (client.Connected)
                 return;
 
-            ((Client) client).Area = client.ServerRef.Areas.First(a => a.Locked == "FREE");
             ((Client) client).Connected = true;
             client.CurrentState = ClientState.InArea;
             client.ServerRef.ConnectedPlayers++;
             ((Server) client.ServerRef).OnPlayerConnected(client);
-            ((Area) client.Area)!.PlayerCount++;
-            client.Area.FullUpdate(client);
-            // Tell all the other clients that someone has joined
-            client.Area.AreaUpdate(AreaUpdateType.PlayerCount);
-            client.Area.UpdateTakenCharacters();
-            RequestEvidence(client, new AOPacket("RE"));
-
-            client.Send(new AOPacket("HP", "1", client.Area.DefendantHp.ToString()));
-            client.Send(new AOPacket("HP", "2", client.Area.ProsecutorHp.ToString()));
-            client.Send(new AOPacket("FA", client.ServerRef.AreaNames));
-            client.Send(new AOPacket("BN", client.Area!.Background));
-            client.Send(new AOPacket("DONE"));
+            client.ChangeArea(Array.FindIndex(client.ServerRef.Areas, a => a.Locked == "FREE"));
             client.SendOocMessage(Server.ServerConfiguration.Motd);
 
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the server.");

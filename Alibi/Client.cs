@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
+using Alibi.Protocol;
 using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
@@ -53,39 +54,40 @@ namespace Alibi
             if (!Connected)
                 return;
 
-            if (index == Array.IndexOf(ServerRef.Areas, Area))
+            if (Area != null)
             {
-                SendOocMessage($"Can't enter area \"{ServerRef.AreaNames[index]}\" because you're already in it.");
-                return;
+                if (index == Array.IndexOf(ServerRef.Areas, Area))
+                {
+                    SendOocMessage($"Can't enter area \"{ServerRef.AreaNames[index]}\" because you're already in it.");
+                    return;
+                }
+
+                if (ServerRef.Areas[index].Locked == "LOCKED")
+                {
+                    SendOocMessage($"Area \"{ServerRef.AreaNames[index]}\" is locked.");
+                    return;
+                }
+
+                if (ServerRef.Areas[index].Locked == "SPECTATABLE" && Character == null)
+                {
+                    SendOocMessage($"Area \"{ServerRef.AreaNames[index]}\" is spectater-only.");
+                    return;
+                }
+
+                if (Character != null)
+                {
+                    Area.TakenCharacters[(int) Character] = false;
+                    Area.UpdateTakenCharacters();
+                }
+
+                ((Area) Area!).PlayerCount--;
+                Area.AreaUpdate(AreaUpdateType.PlayerCount);
             }
 
-            if (ServerRef.Areas[index].Locked == "LOCKED")
-            {
-                SendOocMessage($"Area \"{ServerRef.AreaNames[index]}\" is locked.");
-                return;
-            }
-
-            if (ServerRef.Areas[index].Locked == "SPECTATABLE" && Character == null)
-            {
-                SendOocMessage($"Area \"{ServerRef.AreaNames[index]}\" is spectater-only.");
-                return;
-            }
-
-            // Mostly to make the nullable warnings to shut up
-            if (Area == null)
-                Area = ServerRef.Areas.First();
-
-            if (Character != null)
-            {
-                Area.TakenCharacters[(int) Character] = false;
-                Area.UpdateTakenCharacters();
-            }
-
-            ((Area) Area).PlayerCount--;
-            Area.AreaUpdate(AreaUpdateType.PlayerCount);
             Area = ServerRef.Areas[index];
             ((Area) Area).PlayerCount++;
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
+            Messages.RequestEvidence(this, new AOPacket("RE"));
 
             Send(new AOPacket("HP", "1", Area.DefendantHp.ToString()));
             Send(new AOPacket("HP", "2", Area.ProsecutorHp.ToString()));
@@ -105,6 +107,7 @@ namespace Alibi
                 }
             }
 
+            Area.FullUpdate(this);
             Area.UpdateTakenCharacters();
             SendOocMessage($"Successfully changed to area \"{Area.Name}\"");
         }
