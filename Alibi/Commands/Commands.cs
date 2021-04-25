@@ -112,6 +112,11 @@ namespace Alibi.Commands
                 else
                     client.Area.Broadcast(new AOPacket("BN", client.Area.Background));
             }
+            else
+            {
+                throw new CommandException(
+                    "Could not change this area's background: This area has locked the background.");
+            }
 
             client.SendOocMessage($"You have changed the background to {args[0]}");
         }
