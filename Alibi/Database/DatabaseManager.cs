@@ -28,6 +28,7 @@ namespace Alibi.Database
                 _sql.Insert(new Login
                 {
                     UserName = "admin",
+                    // BCrypt Hashed version of 'ChangeThis'
                     PassHash = "$2y$11$Zz.qeWzmJPTMiS/IJi.1qeREWoHTavQji2lGC.xzWFuv4ceQgMP3y",
                     PermissionsLevel = AuthType.ADMINISTRATOR
                 });
