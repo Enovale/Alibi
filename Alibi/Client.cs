@@ -67,7 +67,7 @@ namespace Alibi
             
             if (!IPAddress.IsLoopback(IpAddress) &&
                 ((Server) ServerRef).ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
-                >= Server.ServerConfiguration.MaxMultiClients)
+                > Server.ServerConfiguration.MaxMultiClients)
             {
                 Send(new AOPacket("BD", "Not a real ban: Can't have more than " +
                                         $"{Server.ServerConfiguration.MaxMultiClients} clients at a time."));
