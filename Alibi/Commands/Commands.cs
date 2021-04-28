@@ -289,7 +289,7 @@ namespace Alibi.Commands
             if (!client.Area!.IsClientCM(client))
                 throw new CommandException("Must be a CM to change the document.");
 
-            client.Area!.Document = null;
+            client.Area!.Document = null!;
             client.SendOocMessage("Document removed.");
         }
 

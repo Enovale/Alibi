@@ -55,7 +55,7 @@ namespace Alibi.Plugins.API
         /// An arbitrary string that should reference some kind of case documentation
         /// for players to refer to. Typically a hyperlink to a website containing a document.
         /// </summary>
-        public string Document { get; set; }
+        public string? Document { get; set; }
 
         /// <summary>
         /// Tells clients how much to fill the Defendant HP bar. Doesn't actually do anything.
@@ -106,7 +106,7 @@ namespace Alibi.Plugins.API
         /// </summary>
         /// <param name="type">What kind of update is this?</param>
         /// <param name="client">The client to which the update will be sent</param>
-        public void AreaUpdate(AreaUpdateType type, IClient client);
+        public void AreaUpdate(AreaUpdateType type, IClient? client);
 
         /// <summary>
         /// Broadcast an update of all types to all players.
@@ -120,7 +120,7 @@ namespace Alibi.Plugins.API
         /// Sends an update of all types to this client.
         /// </summary>
         /// <param name="client">Which client to send the updates to</param>
-        public void FullUpdate(IClient client);
+        public void FullUpdate(IClient? client);
 
         /// <summary>
         /// Returns whether or not this client is a Case Manager.

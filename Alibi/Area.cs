@@ -9,7 +9,7 @@ namespace Alibi
 {
     public class Area : IArea
     {
-        [JsonIgnore] internal Server Server;
+        [JsonIgnore] internal Server Server = null!;
 
         public int EvidenceModifications { get; set; } = 0;
         public string Name { get; set; } = "AreaName";
@@ -25,13 +25,13 @@ namespace Alibi
 
         [JsonIgnore] public List<IClient> CurrentCaseManagers { get; } = new List<IClient>();
 
-        [JsonIgnore] public string Document { get; set; }
+        [JsonIgnore] public string? Document { get; set; }
 
         [JsonIgnore] public int DefendantHp { get; set; } = 10;
 
         [JsonIgnore] public int ProsecutorHp { get; set; } = 10;
 
-        [JsonIgnore] public bool[] TakenCharacters { get; set; }
+        [JsonIgnore] public bool[] TakenCharacters { get; set; } = null!;
 
         [JsonIgnore] public List<IEvidence> EvidenceList { get; } = new List<IEvidence>();
 
@@ -53,7 +53,7 @@ namespace Alibi
 
         public void AreaUpdate(AreaUpdateType type) => AreaUpdate(type, null);
 
-        public void AreaUpdate(AreaUpdateType type, IClient client)
+        public void AreaUpdate(AreaUpdateType type, IClient? client)
         {
             var updateData = new List<string> {((int) type).ToString()};
             foreach (var area in Server.Areas)
@@ -85,7 +85,7 @@ namespace Alibi
 
         public void FullUpdate() => FullUpdate(null);
 
-        public void FullUpdate(IClient client)
+        public void FullUpdate(IClient? client)
         {
             AreaUpdate(AreaUpdateType.PlayerCount, client);
             AreaUpdate(AreaUpdateType.Status, client);

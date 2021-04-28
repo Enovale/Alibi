@@ -5,11 +5,8 @@ using System.Text;
 namespace Alibi.Plugins.API
 {
     /// <summary>
-    /// Helper class to create packets from the API
+    /// Class to create packets to send and receive from clients
     /// </summary>
-    /// <remarks>
-    /// (internal server uses it's own class)
-    /// </remarks>
     public class AOPacket
     {
         /// <summary>
