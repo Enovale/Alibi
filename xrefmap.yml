@@ -534,38 +534,6 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Handler.Target
   nameWithType: Handler.Target
-- uid: Alibi.Plugins.API.IAOPacket
-  name: IAOPacket
-  href: api/Alibi.Plugins.API.IAOPacket.html
-  commentId: T:Alibi.Plugins.API.IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
-  nameWithType: IAOPacket
-- uid: Alibi.Plugins.API.IAOPacket.Objects
-  name: Objects
-  href: api/Alibi.Plugins.API.IAOPacket.html#Alibi_Plugins_API_IAOPacket_Objects
-  commentId: P:Alibi.Plugins.API.IAOPacket.Objects
-  fullName: Alibi.Plugins.API.IAOPacket.Objects
-  nameWithType: IAOPacket.Objects
-- uid: Alibi.Plugins.API.IAOPacket.Objects*
-  name: Objects
-  href: api/Alibi.Plugins.API.IAOPacket.html#Alibi_Plugins_API_IAOPacket_Objects_
-  commentId: Overload:Alibi.Plugins.API.IAOPacket.Objects
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IAOPacket.Objects
-  nameWithType: IAOPacket.Objects
-- uid: Alibi.Plugins.API.IAOPacket.Type
-  name: Type
-  href: api/Alibi.Plugins.API.IAOPacket.html#Alibi_Plugins_API_IAOPacket_Type
-  commentId: P:Alibi.Plugins.API.IAOPacket.Type
-  fullName: Alibi.Plugins.API.IAOPacket.Type
-  nameWithType: IAOPacket.Type
-- uid: Alibi.Plugins.API.IAOPacket.Type*
-  name: Type
-  href: api/Alibi.Plugins.API.IAOPacket.html#Alibi_Plugins_API_IAOPacket_Type_
-  commentId: Overload:Alibi.Plugins.API.IAOPacket.Type
-  isSpec: "True"
-  fullName: Alibi.Plugins.API.IAOPacket.Type
-  nameWithType: IAOPacket.Type
 - uid: Alibi.Plugins.API.IArea
   name: IArea
   href: api/Alibi.Plugins.API.IArea.html
@@ -617,12 +585,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IArea.BackgroundLocked
   nameWithType: IArea.BackgroundLocked
-- uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
-  name: Broadcast(IAOPacket)
-  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Broadcast_Alibi_Plugins_API_IAOPacket_
-  commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
-  fullName: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
-  nameWithType: IArea.Broadcast(IAOPacket)
+- uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
+  name: Broadcast(AOPacket)
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Broadcast_Alibi_Plugins_API_AOPacket_
+  commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
+  fullName: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
+  nameWithType: IArea.Broadcast(AOPacket)
 - uid: Alibi.Plugins.API.IArea.Broadcast*
   name: Broadcast
   href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Broadcast_
@@ -630,12 +598,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IArea.Broadcast
   nameWithType: IArea.Broadcast
-- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
-  name: BroadcastOocMessage(String)
-  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_BroadcastOocMessage_System_String_
-  commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
-  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
-  nameWithType: IArea.BroadcastOocMessage(String)
+- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String,System.String)
+  name: BroadcastOocMessage(String, String)
+  href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_BroadcastOocMessage_System_String_System_String_
+  commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String,System.String)
+  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String, System.String)
+  nameWithType: IArea.BroadcastOocMessage(String, String)
 - uid: Alibi.Plugins.API.IArea.BroadcastOocMessage*
   name: BroadcastOocMessage
   href: api/Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_BroadcastOocMessage_
@@ -1142,12 +1110,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.Position
   nameWithType: IClient.Position
-- uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
-  name: Send(IAOPacket)
-  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Send_Alibi_Plugins_API_IAOPacket_
-  commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
-  fullName: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
-  nameWithType: IClient.Send(IAOPacket)
+- uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
+  name: Send(AOPacket)
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Send_Alibi_Plugins_API_AOPacket_
+  commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
+  fullName: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
+  nameWithType: IClient.Send(AOPacket)
 - uid: Alibi.Plugins.API.IClient.Send*
   name: Send
   href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Send_
@@ -1330,6 +1298,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IConfiguration.MasterServerPort
   nameWithType: IConfiguration.MasterServerPort
+- uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  name: MaxClientsOnOneNetwork
+  href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxClientsOnOneNetwork
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  fullName: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  nameWithType: IConfiguration.MaxClientsOnOneNetwork
+- uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork*
+  name: MaxClientsOnOneNetwork
+  href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxClientsOnOneNetwork_
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  nameWithType: IConfiguration.MaxClientsOnOneNetwork
 - uid: Alibi.Plugins.API.IConfiguration.MaxMessageSize
   name: MaxMessageSize
   href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxMessageSize
@@ -1880,12 +1861,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.Areas
   nameWithType: IServer.Areas
-- uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
-  name: Broadcast(IAOPacket)
-  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Broadcast_Alibi_Plugins_API_IAOPacket_
-  commentId: M:Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
-  fullName: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
-  nameWithType: IServer.Broadcast(IAOPacket)
+- uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
+  name: Broadcast(AOPacket)
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Broadcast_Alibi_Plugins_API_AOPacket_
+  commentId: M:Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
+  fullName: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
+  nameWithType: IServer.Broadcast(AOPacket)
 - uid: Alibi.Plugins.API.IServer.Broadcast*
   name: Broadcast
   href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Broadcast_
@@ -2329,3 +2310,48 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.Plugin.OnPlayerJoined
   nameWithType: Plugin.OnPlayerJoined
+- uid: Alibi.Plugins.API.StringExtensions
+  name: StringExtensions
+  href: api/Alibi.Plugins.API.StringExtensions.html
+  commentId: T:Alibi.Plugins.API.StringExtensions
+  fullName: Alibi.Plugins.API.StringExtensions
+  nameWithType: StringExtensions
+- uid: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  name: DecodeFromAOPacket(String)
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_DecodeFromAOPacket_System_String_
+  commentId: M:Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  fullName: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  nameWithType: StringExtensions.DecodeFromAOPacket(String)
+- uid: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket*
+  name: DecodeFromAOPacket
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_DecodeFromAOPacket_
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket
+  nameWithType: StringExtensions.DecodeFromAOPacket
+- uid: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  name: EncodeToAOPacket(String)
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_EncodeToAOPacket_System_String_
+  commentId: M:Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  fullName: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  nameWithType: StringExtensions.EncodeToAOPacket(String)
+- uid: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket*
+  name: EncodeToAOPacket
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_EncodeToAOPacket_
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.EncodeToAOPacket
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket
+  nameWithType: StringExtensions.EncodeToAOPacket
+- uid: Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  name: ToIntOrZero(String)
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_ToIntOrZero_System_String_
+  commentId: M:Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  fullName: Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  nameWithType: StringExtensions.ToIntOrZero(String)
+- uid: Alibi.Plugins.API.StringExtensions.ToIntOrZero*
+  name: ToIntOrZero
+  href: api/Alibi.Plugins.API.StringExtensions.html#Alibi_Plugins_API_StringExtensions_ToIntOrZero_
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.ToIntOrZero
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.StringExtensions.ToIntOrZero
+  nameWithType: StringExtensions.ToIntOrZero
