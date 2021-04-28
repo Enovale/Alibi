@@ -31,7 +31,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Plugin
     path: ../Plugin.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -68,7 +68,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ID
     path: ../Plugin.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -108,7 +108,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Name
     path: ../Plugin.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -147,7 +147,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../Plugin.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -187,7 +187,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnAllPluginsLoaded
     path: ../Plugin.cs
-    startLine: 49
+    startLine: 50
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -221,7 +221,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnPlayerJoined
     path: ../Plugin.cs
-    startLine: 61
+    startLine: 62
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -260,7 +260,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnPlayerConnected
     path: ../Plugin.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -299,7 +299,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnIcMessage
     path: ../Plugin.cs
-    startLine: 82
+    startLine: 83
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -346,7 +346,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnOocMessage
     path: ../Plugin.cs
-    startLine: 93
+    startLine: 94
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -393,7 +393,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnMusicChange
     path: ../Plugin.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -440,7 +440,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnModCall
     path: ../Plugin.cs
-    startLine: 117
+    startLine: 118
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -484,7 +484,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OnBan
     path: ../Plugin.cs
-    startLine: 130
+    startLine: 131
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -537,7 +537,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Log
     path: ../Plugin.cs
-    startLine: 141
+    startLine: 142
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API

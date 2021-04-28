@@ -1,0 +1,211 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.StringExtensions
+  commentId: T:Alibi.Plugins.API.StringExtensions
+  id: StringExtensions
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  - Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  - Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  langs:
+  - csharp
+  - vb
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: Alibi.Plugins.API.StringExtensions
+  type: Class
+  source:
+    remote:
+      path: Alibi.Plugins.API/StringExtensions.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: StringExtensions
+    path: ../StringExtensions.cs
+    startLine: 2
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public static class StringExtensions
+    content.vb: Public Module StringExtensions
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  commentId: M:Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  id: ToIntOrZero(System.String)
+  isExtensionMethod: true
+  parent: Alibi.Plugins.API.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToIntOrZero(String)
+  nameWithType: StringExtensions.ToIntOrZero(String)
+  fullName: Alibi.Plugins.API.StringExtensions.ToIntOrZero(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/StringExtensions.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ToIntOrZero
+    path: ../StringExtensions.cs
+    startLine: 4
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public static int ToIntOrZero(this string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToIntOrZero(str As String) As Integer
+  overload: Alibi.Plugins.API.StringExtensions.ToIntOrZero*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  commentId: M:Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  id: EncodeToAOPacket(System.String)
+  isExtensionMethod: true
+  parent: Alibi.Plugins.API.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: EncodeToAOPacket(String)
+  nameWithType: StringExtensions.EncodeToAOPacket(String)
+  fullName: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/StringExtensions.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: EncodeToAOPacket
+    path: ../StringExtensions.cs
+    startLine: 9
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public static string EncodeToAOPacket(this string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function EncodeToAOPacket(str As String) As String
+  overload: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  commentId: M:Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  id: DecodeFromAOPacket(System.String)
+  isExtensionMethod: true
+  parent: Alibi.Plugins.API.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: DecodeFromAOPacket(String)
+  nameWithType: StringExtensions.DecodeFromAOPacket(String)
+  fullName: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/StringExtensions.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: DecodeFromAOPacket
+    path: ../StringExtensions.cs
+    startLine: 14
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: public static string DecodeFromAOPacket(this string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DecodeFromAOPacket(str As String) As String
+  overload: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.StringExtensions.ToIntOrZero*
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.ToIntOrZero
+  name: ToIntOrZero
+  nameWithType: StringExtensions.ToIntOrZero
+  fullName: Alibi.Plugins.API.StringExtensions.ToIntOrZero
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket*
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.EncodeToAOPacket
+  name: EncodeToAOPacket
+  nameWithType: StringExtensions.EncodeToAOPacket
+  fullName: Alibi.Plugins.API.StringExtensions.EncodeToAOPacket
+- uid: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket*
+  commentId: Overload:Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket
+  name: DecodeFromAOPacket
+  nameWithType: StringExtensions.DecodeFromAOPacket
+  fullName: Alibi.Plugins.API.StringExtensions.DecodeFromAOPacket

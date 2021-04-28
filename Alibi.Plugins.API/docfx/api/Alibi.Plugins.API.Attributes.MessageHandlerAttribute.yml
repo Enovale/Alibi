@@ -37,6 +37,7 @@ items:
       <AttributeUsage(AttributeTargets.Method)>
 
       Public Class MessageHandlerAttribute
+
           Inherits Attribute
   inheritance:
   - System.Object

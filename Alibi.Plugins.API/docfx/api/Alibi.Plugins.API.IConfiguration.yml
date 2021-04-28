@@ -12,6 +12,7 @@ items:
   - Alibi.Plugins.API.IConfiguration.LogBufferSize
   - Alibi.Plugins.API.IConfiguration.MasterServerAddress
   - Alibi.Plugins.API.IConfiguration.MasterServerPort
+  - Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
   - Alibi.Plugins.API.IConfiguration.MaxMessageSize
   - Alibi.Plugins.API.IConfiguration.MaxMultiClients
   - Alibi.Plugins.API.IConfiguration.MaxPlayers
@@ -543,6 +544,41 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  commentId: P:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  id: MaxClientsOnOneNetwork
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: MaxClientsOnOneNetwork
+  nameWithType: IConfiguration.MaxClientsOnOneNetwork
+  fullName: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: MaxClientsOnOneNetwork
+    path: ../IConfiguration.cs
+    startLine: 84
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nHow many clients on a single IP are allowed to connect.\n"
+  example: []
+  syntax:
+    content: int MaxClientsOnOneNetwork { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property MaxClientsOnOneNetwork As Integer
+  overload: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
   commentId: P:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
   id: TimeoutSeconds
@@ -561,7 +597,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: TimeoutSeconds
     path: ../IConfiguration.cs
-    startLine: 84
+    startLine: 89
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -596,7 +632,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: MaxMessageSize
     path: ../IConfiguration.cs
-    startLine: 93
+    startLine: 98
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -632,7 +668,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: MaxShownameSize
     path: ../IConfiguration.cs
-    startLine: 101
+    startLine: 106
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -668,7 +704,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: RateLimit
     path: ../IConfiguration.cs
-    startLine: 106
+    startLine: 111
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -703,7 +739,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: RateLimitResetTime
     path: ../IConfiguration.cs
-    startLine: 111
+    startLine: 116
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -738,7 +774,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: RateLimitBanLength
     path: ../IConfiguration.cs
-    startLine: 116
+    startLine: 121
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -773,7 +809,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: FeatureList
     path: ../IConfiguration.cs
-    startLine: 125
+    startLine: 130
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -907,6 +943,11 @@ references:
   name: MaxMultiClients
   nameWithType: IConfiguration.MaxMultiClients
   fullName: Alibi.Plugins.API.IConfiguration.MaxMultiClients
+- uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  name: MaxClientsOnOneNetwork
+  nameWithType: IConfiguration.MaxClientsOnOneNetwork
+  fullName: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
 - uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
   name: TimeoutSeconds

@@ -38,6 +38,7 @@ items:
       <AttributeUsage(AttributeTargets.Method)>
 
       Public Class CommandHandlerAttribute
+
           Inherits Attribute
   inheritance:
   - System.Object

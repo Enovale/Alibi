@@ -29,6 +29,7 @@ items:
   - Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
   - Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
   - Alibi.Plugins.API.IClient.ServerRef
+  - Alibi.Plugins.API.IClient.Session
   - Alibi.Plugins.API.IClient.StoredEmote
   - Alibi.Plugins.API.IClient.StoredFlip
   - Alibi.Plugins.API.IClient.StoredOffset
@@ -61,6 +62,42 @@ items:
   modifiers.vb:
   - Public
   - Interface
+- uid: Alibi.Plugins.API.IClient.Session
+  commentId: P:Alibi.Plugins.API.IClient.Session
+  id: Session
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: Session
+  nameWithType: IClient.Session
+  fullName: Alibi.Plugins.API.IClient.Session
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Session
+    path: ../IClient.cs
+    startLine: 17
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nThe underlying TCP/Websocket session of this client.\n"
+  remarks: "\nWarning: Here be dragons!\n"
+  example: []
+  syntax:
+    content: ISession Session { get; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.ISession
+    content.vb: ReadOnly Property Session As ISession
+  overload: Alibi.Plugins.API.IClient.Session*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.ServerRef
   commentId: P:Alibi.Plugins.API.IClient.ServerRef
   id: ServerRef
@@ -79,7 +116,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ServerRef
     path: ../IClient.cs
-    startLine: 18
+    startLine: 26
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -115,7 +152,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Connected
     path: ../IClient.cs
-    startLine: 24
+    startLine: 32
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -150,7 +187,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Auth
     path: ../IClient.cs
-    startLine: 31
+    startLine: 39
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -185,7 +222,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: LastAlive
     path: ../IClient.cs
-    startLine: 40
+    startLine: 48
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -221,7 +258,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IpAddress
     path: ../IClient.cs
-    startLine: 42
+    startLine: 50
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -254,7 +291,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: HardwareId
     path: ../IClient.cs
-    startLine: 49
+    startLine: 57
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -289,7 +326,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Area
     path: ../IClient.cs
-    startLine: 57
+    startLine: 65
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -325,7 +362,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Position
     path: ../IClient.cs
-    startLine: 65
+    startLine: 73
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -360,7 +397,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CurrentState
     path: ../IClient.cs
-    startLine: 71
+    startLine: 79
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -394,7 +431,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Password
     path: ../IClient.cs
-    startLine: 76
+    startLine: 84
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -429,7 +466,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Character
     path: ../IClient.cs
-    startLine: 82
+    startLine: 90
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -463,7 +500,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: CharacterName
     path: ../IClient.cs
-    startLine: 90
+    startLine: 98
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -499,7 +536,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: OocName
     path: ../IClient.cs
-    startLine: 99
+    startLine: 107
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -535,7 +572,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: LastSentMessage
     path: ../IClient.cs
-    startLine: 104
+    startLine: 112
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -569,7 +606,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Muted
     path: ../IClient.cs
-    startLine: 109
+    startLine: 117
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -603,7 +640,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: PairingWith
     path: ../IClient.cs
-    startLine: 116
+    startLine: 124
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -638,7 +675,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredEmote
     path: ../IClient.cs
-    startLine: 121
+    startLine: 129
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -673,7 +710,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredOffset
     path: ../IClient.cs
-    startLine: 126
+    startLine: 134
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -708,7 +745,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: StoredFlip
     path: ../IClient.cs
-    startLine: 131
+    startLine: 139
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -743,7 +780,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: ChangeArea
     path: ../IClient.cs
-    startLine: 137
+    startLine: 145
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -775,7 +812,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: KickIfBanned
     path: ../IClient.cs
-    startLine: 145
+    startLine: 153
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -804,7 +841,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Kick
     path: ../IClient.cs
-    startLine: 151
+    startLine: 159
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -836,7 +873,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: GetBanReason
     path: ../IClient.cs
-    startLine: 157
+    startLine: 165
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -867,7 +904,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanHwid
     path: ../IClient.cs
-    startLine: 169
+    startLine: 177
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -909,7 +946,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BanIp
     path: ../IClient.cs
-    startLine: 182
+    startLine: 190
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -951,7 +988,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Send
     path: ../IClient.cs
-    startLine: 188
+    startLine: 196
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -983,7 +1020,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: SendOocMessage
     path: ../IClient.cs
-    startLine: 195
+    startLine: 203
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -1006,6 +1043,17 @@ references:
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.IClient.Session*
+  commentId: Overload:Alibi.Plugins.API.IClient.Session
+  name: Session
+  nameWithType: IClient.Session
+  fullName: Alibi.Plugins.API.IClient.Session
+- uid: Alibi.Plugins.API.ISession
+  commentId: T:Alibi.Plugins.API.ISession
+  parent: Alibi.Plugins.API
+  name: ISession
+  nameWithType: ISession
+  fullName: Alibi.Plugins.API.ISession
 - uid: Alibi.Plugins.API.IClient.ServerRef*
   commentId: Overload:Alibi.Plugins.API.IClient.ServerRef
   name: ServerRef

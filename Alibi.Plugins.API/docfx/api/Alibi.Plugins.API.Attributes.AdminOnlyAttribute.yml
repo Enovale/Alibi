@@ -36,6 +36,7 @@ items:
       <AttributeUsage(AttributeTargets.Method)>
 
       Public Class AdminOnlyAttribute
+
           Inherits Attribute
   inheritance:
   - System.Object

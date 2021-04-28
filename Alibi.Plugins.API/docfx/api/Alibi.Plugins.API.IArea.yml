@@ -10,7 +10,7 @@ items:
   - Alibi.Plugins.API.IArea.Background
   - Alibi.Plugins.API.IArea.BackgroundLocked
   - Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
-  - Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  - Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String,System.String)
   - Alibi.Plugins.API.IArea.CanLock
   - Alibi.Plugins.API.IArea.CurrentCaseManagers
   - Alibi.Plugins.API.IArea.DefendantHp
@@ -599,16 +599,16 @@ items:
       description: The packet to send
     content.vb: Sub Broadcast(packet As AOPacket)
   overload: Alibi.Plugins.API.IArea.Broadcast*
-- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
-  commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
-  id: BroadcastOocMessage(System.String)
+- uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String,System.String)
+  commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String,System.String)
+  id: BroadcastOocMessage(System.String,System.String)
   parent: Alibi.Plugins.API.IArea
   langs:
   - csharp
   - vb
-  name: BroadcastOocMessage(String)
-  nameWithType: IArea.BroadcastOocMessage(String)
-  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
+  name: BroadcastOocMessage(String, String)
+  nameWithType: IArea.BroadcastOocMessage(String, String)
+  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String, System.String)
   type: Method
   source:
     remote:
@@ -617,19 +617,22 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: BroadcastOocMessage
     path: ../IArea.cs
-    startLine: 91
+    startLine: 92
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   summary: "\nSend a message to all players in this area.\nThe message will display in their Out of Context chat.\n"
   example: []
   syntax:
-    content: void BroadcastOocMessage(string message)
+    content: void BroadcastOocMessage(string message, string sender = null)
     parameters:
     - id: message
       type: System.String
       description: The message to send.
-    content.vb: Sub BroadcastOocMessage(message As String)
+    - id: sender
+      type: System.String
+      description: 'A custom name to display instead of Server:'
+    content.vb: Sub BroadcastOocMessage(message As String, sender As String = Nothing)
   overload: Alibi.Plugins.API.IArea.BroadcastOocMessage*
 - uid: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
   commentId: M:Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
@@ -649,7 +652,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AreaUpdate
     path: ../IArea.cs
-    startLine: 98
+    startLine: 99
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -681,7 +684,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AreaUpdate
     path: ../IArea.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -716,7 +719,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: FullUpdate
     path: ../IArea.cs
-    startLine: 114
+    startLine: 115
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -745,7 +748,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: FullUpdate
     path: ../IArea.cs
-    startLine: 120
+    startLine: 121
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -777,7 +780,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: IsClientCM
     path: ../IArea.cs
-    startLine: 127
+    startLine: 128
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -812,7 +815,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: UpdateTakenCharacters
     path: ../IArea.cs
-    startLine: 136
+    startLine: 137
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API

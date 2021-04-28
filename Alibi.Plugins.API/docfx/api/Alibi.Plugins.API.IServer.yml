@@ -73,11 +73,11 @@ items:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   syntax:
-    content: static IConfiguration ServerConfiguration { get; }
+    content: IConfiguration ServerConfiguration { get; }
     parameters: []
     return:
       type: Alibi.Plugins.API.IConfiguration
-    content.vb: Shared ReadOnly Property ServerConfiguration As IConfiguration
+    content.vb: ReadOnly Property ServerConfiguration As IConfiguration
   overload: Alibi.Plugins.API.IServer.ServerConfiguration*
   modifiers.csharp:
   - get
@@ -109,11 +109,11 @@ items:
   remarks: "\nThis IP is resolved from the domain specified in ServerConfiguration.MasterserverAddress\n"
   example: []
   syntax:
-    content: static IPAddress MasterServerIp { get; }
+    content: IPAddress MasterServerIp { get; }
     parameters: []
     return:
       type: System.Net.IPAddress
-    content.vb: Shared ReadOnly Property MasterServerIp As IPAddress
+    content.vb: ReadOnly Property MasterServerIp As IPAddress
   overload: Alibi.Plugins.API.IServer.MasterServerIp*
   modifiers.csharp:
   - get
@@ -144,11 +144,11 @@ items:
   summary: "\nAn interface that allows you to interact with the database containing bans, mods, etc\n"
   example: []
   syntax:
-    content: static IDatabaseManager Database { get; }
+    content: IDatabaseManager Database { get; }
     parameters: []
     return:
       type: Alibi.Plugins.API.IDatabaseManager
-    content.vb: Shared ReadOnly Property Database As IDatabaseManager
+    content.vb: ReadOnly Property Database As IDatabaseManager
   overload: Alibi.Plugins.API.IServer.Database*
   modifiers.csharp:
   - get
@@ -180,11 +180,11 @@ items:
   remarks: "\nNot every entry is a valid song that clients can play, so don&apos;t expect it to be.\n"
   example: []
   syntax:
-    content: static string[] MusicList { get; }
+    content: string[] MusicList { get; }
     parameters: []
     return:
       type: System.String[]
-    content.vb: Shared ReadOnly Property MusicList As String()
+    content.vb: ReadOnly Property MusicList As String()
   overload: Alibi.Plugins.API.IServer.MusicList*
   modifiers.csharp:
   - get
@@ -216,11 +216,11 @@ items:
   remarks: "\nDuplicates are allowed, and will allow for two players being the same character.\n"
   example: []
   syntax:
-    content: static string[] CharactersList { get; }
+    content: string[] CharactersList { get; }
     parameters: []
     return:
       type: System.String[]
-    content.vb: Shared ReadOnly Property CharactersList As String()
+    content.vb: ReadOnly Property CharactersList As String()
   overload: Alibi.Plugins.API.IServer.CharactersList*
   modifiers.csharp:
   - get
@@ -249,11 +249,11 @@ items:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   syntax:
-    content: static string Version { get; }
+    content: string Version { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Shared ReadOnly Property Version As String
+    content.vb: ReadOnly Property Version As String
   overload: Alibi.Plugins.API.IServer.Version*
   modifiers.csharp:
   - get

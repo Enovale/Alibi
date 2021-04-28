@@ -27,7 +27,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: AOPacket
     path: ../AOPacket.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -35,14 +35,10 @@ items:
   remarks: "\n(internal server uses it&apos;s own class)\n"
   example: []
   syntax:
-    content: 'public class AOPacket : AOPacket'
-    content.vb: >-
-      Public Class AOPacket
-          Implements AOPacket
+    content: public class AOPacket
+    content.vb: Public Class AOPacket
   inheritance:
   - System.Object
-  implements:
-  - Alibi.Plugins.API.AOPacket
   modifiers.csharp:
   - public
   - class
@@ -67,7 +63,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Type
     path: ../AOPacket.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -81,8 +77,6 @@ items:
       type: System.String
     content.vb: Public Property Type As String
   overload: Alibi.Plugins.API.AOPacket.Type*
-  implements:
-  - Alibi.Plugins.API.AOPacket.Type
   modifiers.csharp:
   - public
   - get
@@ -107,7 +101,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Objects
     path: ../AOPacket.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -120,8 +114,6 @@ items:
       type: System.String[]
     content.vb: Public Property Objects As String()
   overload: Alibi.Plugins.API.AOPacket.Objects*
-  implements:
-  - Alibi.Plugins.API.AOPacket.Objects
   modifiers.csharp:
   - public
   - get
@@ -146,7 +138,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -187,7 +179,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -222,7 +214,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: FromMessage
     path: ../AOPacket.cs
-    startLine: 52
+    startLine: 54
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -263,7 +255,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: EncodeToAOPacket
     path: ../AOPacket.cs
-    startLine: 80
+    startLine: 88
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -300,7 +292,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: DecodeFromAOPacket
     path: ../AOPacket.cs
-    startLine: 93
+    startLine: 101
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -337,7 +329,7 @@ items:
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: op_Implicit
     path: ../AOPacket.cs
-    startLine: 106
+    startLine: 114
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -376,12 +368,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Alibi.Plugins.API.AOPacket
-  commentId: T:Alibi.Plugins.API.AOPacket
-  parent: Alibi.Plugins.API
-  name: AOPacket
-  nameWithType: AOPacket
-  fullName: Alibi.Plugins.API.AOPacket
 - uid: System
   commentId: N:System
   isExternal: true
@@ -390,12 +376,6 @@ references:
   fullName: System
 - uid: Alibi.Plugins.API.AOPacket.Type*
   commentId: Overload:Alibi.Plugins.API.AOPacket.Type
-  name: Type
-  nameWithType: AOPacket.Type
-  fullName: Alibi.Plugins.API.AOPacket.Type
-- uid: Alibi.Plugins.API.AOPacket.Type
-  commentId: P:Alibi.Plugins.API.AOPacket.Type
-  parent: Alibi.Plugins.API.AOPacket
   name: Type
   nameWithType: AOPacket.Type
   fullName: Alibi.Plugins.API.AOPacket.Type
@@ -408,12 +388,6 @@ references:
   fullName: System.String
 - uid: Alibi.Plugins.API.AOPacket.Objects*
   commentId: Overload:Alibi.Plugins.API.AOPacket.Objects
-  name: Objects
-  nameWithType: AOPacket.Objects
-  fullName: Alibi.Plugins.API.AOPacket.Objects
-- uid: Alibi.Plugins.API.AOPacket.Objects
-  commentId: P:Alibi.Plugins.API.AOPacket.Objects
-  parent: Alibi.Plugins.API.AOPacket
   name: Objects
   nameWithType: AOPacket.Objects
   fullName: Alibi.Plugins.API.AOPacket.Objects
@@ -453,6 +427,12 @@ references:
   name: FromMessage
   nameWithType: AOPacket.FromMessage
   fullName: Alibi.Plugins.API.AOPacket.FromMessage
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
+  parent: Alibi.Plugins.API
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.AOPacket.EncodeToAOPacket*
   commentId: Overload:Alibi.Plugins.API.AOPacket.EncodeToAOPacket
   name: EncodeToAOPacket
@@ -471,9 +451,3 @@ references:
   nameWithType.vb: AOPacket.Widening
   fullName.vb: Alibi.Plugins.API.AOPacket.Widening
   name.vb: Widening
-- uid: Alibi.Plugins.API.AOPacket
-  commentId: T:Alibi.Plugins.API.AOPacket
-  parent: Alibi.Plugins.API
-  name: AOPacket
-  nameWithType: AOPacket
-  fullName: Alibi.Plugins.API.AOPacket

@@ -1,0 +1,305 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.ISession
+  commentId: T:Alibi.Plugins.API.ISession
+  id: ISession
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.ISession.Disconnect
+  - Alibi.Plugins.API.ISession.Send(System.Byte[],System.Int64,System.Int64)
+  - Alibi.Plugins.API.ISession.Send(System.String)
+  - Alibi.Plugins.API.ISession.SendAsync(System.Byte[],System.Int64,System.Int64)
+  - Alibi.Plugins.API.ISession.SendAsync(System.String)
+  langs:
+  - csharp
+  - vb
+  name: ISession
+  nameWithType: ISession
+  fullName: Alibi.Plugins.API.ISession
+  type: Interface
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: ISession
+    path: ../ISession.cs
+    startLine: 9
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nRepresents the underlying TCP/Websocket session for a client.\n"
+  remarks: "\nWarning! Here be dragons. This is interfacing with a dependency of the project so even I don&apos;t\nfully understand it or have control over how it works.\n"
+  example: []
+  syntax:
+    content: public interface ISession
+    content.vb: Public Interface ISession
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Alibi.Plugins.API.ISession.Disconnect
+  commentId: M:Alibi.Plugins.API.ISession.Disconnect
+  id: Disconnect
+  parent: Alibi.Plugins.API.ISession
+  langs:
+  - csharp
+  - vb
+  name: Disconnect()
+  nameWithType: ISession.Disconnect()
+  fullName: Alibi.Plugins.API.ISession.Disconnect()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Disconnect
+    path: ../ISession.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nForcefully disconnects a client session\n"
+  example: []
+  syntax:
+    content: bool Disconnect()
+    return:
+      type: System.Boolean
+      description: True if the session was disconnected, false if the session was already disconnected.
+    content.vb: Function Disconnect As Boolean
+  overload: Alibi.Plugins.API.ISession.Disconnect*
+- uid: Alibi.Plugins.API.ISession.Send(System.String)
+  commentId: M:Alibi.Plugins.API.ISession.Send(System.String)
+  id: Send(System.String)
+  parent: Alibi.Plugins.API.ISession
+  langs:
+  - csharp
+  - vb
+  name: Send(String)
+  nameWithType: ISession.Send(String)
+  fullName: Alibi.Plugins.API.ISession.Send(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Send
+    path: ../ISession.cs
+    startLine: 22
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nSend a raw text packet to this session\n"
+  example: []
+  syntax:
+    content: long Send(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text to send
+    return:
+      type: System.Int64
+      description: 'The sending byte buffer, I guess TODO: Better understand what this returns'
+    content.vb: Function Send(text As String) As Long
+  overload: Alibi.Plugins.API.ISession.Send*
+- uid: Alibi.Plugins.API.ISession.Send(System.Byte[],System.Int64,System.Int64)
+  commentId: M:Alibi.Plugins.API.ISession.Send(System.Byte[],System.Int64,System.Int64)
+  id: Send(System.Byte[],System.Int64,System.Int64)
+  parent: Alibi.Plugins.API.ISession
+  langs:
+  - csharp
+  - vb
+  name: Send(Byte[], Int64, Int64)
+  nameWithType: ISession.Send(Byte[], Int64, Int64)
+  fullName: Alibi.Plugins.API.ISession.Send(System.Byte[], System.Int64, System.Int64)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: Send
+    path: ../ISession.cs
+    startLine: 31
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nSend a raw array of bytes to this session\n"
+  example: []
+  syntax:
+    content: long Send(byte[] buffer, long length, long size)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+      description: ''
+    - id: length
+      type: System.Int64
+      description: ''
+    - id: size
+      type: System.Int64
+      description: ''
+    return:
+      type: System.Int64
+      description: ''
+    content.vb: Function Send(buffer As Byte(), length As Long, size As Long) As Long
+  overload: Alibi.Plugins.API.ISession.Send*
+  nameWithType.vb: ISession.Send(Byte(), Int64, Int64)
+  fullName.vb: Alibi.Plugins.API.ISession.Send(System.Byte(), System.Int64, System.Int64)
+  name.vb: Send(Byte(), Int64, Int64)
+- uid: Alibi.Plugins.API.ISession.SendAsync(System.String)
+  commentId: M:Alibi.Plugins.API.ISession.SendAsync(System.String)
+  id: SendAsync(System.String)
+  parent: Alibi.Plugins.API.ISession
+  langs:
+  - csharp
+  - vb
+  name: SendAsync(String)
+  nameWithType: ISession.SendAsync(String)
+  fullName: Alibi.Plugins.API.ISession.SendAsync(System.String)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: SendAsync
+    path: ../ISession.cs
+    startLine: 38
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nTODO\n"
+  example: []
+  syntax:
+    content: bool SendAsync(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: ''
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Function SendAsync(text As String) As Boolean
+  overload: Alibi.Plugins.API.ISession.SendAsync*
+- uid: Alibi.Plugins.API.ISession.SendAsync(System.Byte[],System.Int64,System.Int64)
+  commentId: M:Alibi.Plugins.API.ISession.SendAsync(System.Byte[],System.Int64,System.Int64)
+  id: SendAsync(System.Byte[],System.Int64,System.Int64)
+  parent: Alibi.Plugins.API.ISession
+  langs:
+  - csharp
+  - vb
+  name: SendAsync(Byte[], Int64, Int64)
+  nameWithType: ISession.SendAsync(Byte[], Int64, Int64)
+  fullName: Alibi.Plugins.API.ISession.SendAsync(System.Byte[], System.Int64, System.Int64)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/ISession.cs
+      branch: main
+      repo: https://github.com/ElijahZAwesome/Alibi.git
+    id: SendAsync
+    path: ../ISession.cs
+    startLine: 47
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: "\nTODO\n"
+  example: []
+  syntax:
+    content: bool SendAsync(byte[] buffer, long length, long size)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+      description: ''
+    - id: length
+      type: System.Int64
+      description: ''
+    - id: size
+      type: System.Int64
+      description: ''
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Function SendAsync(buffer As Byte(), length As Long, size As Long) As Boolean
+  overload: Alibi.Plugins.API.ISession.SendAsync*
+  nameWithType.vb: ISession.SendAsync(Byte(), Int64, Int64)
+  fullName.vb: Alibi.Plugins.API.ISession.SendAsync(System.Byte(), System.Int64, System.Int64)
+  name.vb: SendAsync(Byte(), Int64, Int64)
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+- uid: Alibi.Plugins.API.ISession.Disconnect*
+  commentId: Overload:Alibi.Plugins.API.ISession.Disconnect
+  name: Disconnect
+  nameWithType: ISession.Disconnect
+  fullName: Alibi.Plugins.API.ISession.Disconnect
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Alibi.Plugins.API.ISession.Send*
+  commentId: Overload:Alibi.Plugins.API.ISession.Send
+  name: Send
+  nameWithType: ISession.Send
+  fullName: Alibi.Plugins.API.ISession.Send
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: System.Byte[]
+  isExternal: true
+  name: Byte[]
+  nameWithType: Byte[]
+  fullName: System.Byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: System.Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Alibi.Plugins.API.ISession.SendAsync*
+  commentId: Overload:Alibi.Plugins.API.ISession.SendAsync
+  name: SendAsync
+  nameWithType: ISession.SendAsync
+  fullName: Alibi.Plugins.API.ISession.SendAsync
