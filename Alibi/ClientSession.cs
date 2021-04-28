@@ -22,17 +22,17 @@ namespace Alibi
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
             _client = new Client((Server) Server, this, ip)
                 {LastAlive = DateTime.Now};
-            _client.OnConnected();
+            _client.OnSessionConnected();
         }
 
         protected override void OnDisconnected()
         {
-            _client?.OnDisconnected();
+            _client?.OnSessionDisconnected();
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            _client?.OnReceived(buffer, offset, size);
+            _client?.OnSessionReceived(buffer, offset, size);
         }
     }
 }

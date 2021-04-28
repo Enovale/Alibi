@@ -53,7 +53,7 @@ namespace Alibi
             serverRef.ClientsConnected.Add(this);
         }
 
-        internal void OnConnected()
+        internal void OnSessionConnected()
         {
             if (((Server) ServerRef).ConnectedPlayers >= Server.ServerConfiguration.MaxPlayers)
             {
@@ -84,7 +84,7 @@ namespace Alibi
             Send(new AOPacket("decryptor", "NOENCRYPT"));
         }
 
-        internal void OnDisconnected()
+        internal void OnSessionDisconnected()
         {
             ((Server) ServerRef).ClientsConnected.Remove(this);
             if (Connected)
@@ -101,10 +101,8 @@ namespace Alibi
             }
         }
 
-        internal void OnReceived(byte[] buffer, long offset, long size)
+        internal void OnSessionReceived(byte[] buffer, long offset, long size)
         {
-            if (offset + size >= buffer.Length)
-                return;
             var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             var disallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
             if (disallowedRequests.Any(r => msg.StartsWith(r)))
