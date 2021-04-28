@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using Alibi.Commands;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
@@ -29,6 +31,18 @@ namespace Alibi.Protocol
             ((Client) client).HardwareId = packet.Objects[0];
             Server.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
             client.KickIfBanned();
+
+            if (!IPAddress.IsLoopback(client.IpAddress) &&
+                client.ServerRef.ClientsConnected.Count(c => client.HardwareId == c.HardwareId)
+                > Server.ServerConfiguration.MaxMultiClients)
+            {
+                client.Send(new AOPacket("BD", "Not a real ban: Can't have more than " +
+                                               $"{Server.ServerConfiguration.MaxMultiClients} clients at a time."));
+                Task.Delay(500);
+                client.Session.Disconnect();
+                return;
+            }
+
             client.CurrentState = ClientState.PostHandshake;
 
             client.Send(new AOPacket("ID", "111111", "Alibi", Server.Version));

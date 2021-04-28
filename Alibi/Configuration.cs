@@ -27,6 +27,7 @@ namespace Alibi
         public bool AllowDoublePostsIfDifferentAnim { get; internal set; } = false;
         public int MaxPlayers { get; internal set; } = 100;
         public int MaxMultiClients { get; internal set; } = 4;
+        public int MaxClientsOnOneNetwork { get; internal set; } = 8;
         public int TimeoutSeconds { get; internal set; } = 60;
         public int MaxMessageSize { get; internal set; } = 256;
         public int MaxShownameSize { get; internal set; } = 16;
