@@ -12,8 +12,6 @@
     name: ClientState
   - uid: Alibi.Plugins.API.Handler
     name: Handler
-  - uid: Alibi.Plugins.API.AOPacket
-    name: AOPacket
   - uid: Alibi.Plugins.API.IArea
     name: IArea
   - uid: Alibi.Plugins.API.IClient
@@ -28,10 +26,14 @@
     name: IPluginManager
   - uid: Alibi.Plugins.API.IServer
     name: IServer
+  - uid: Alibi.Plugins.API.ISession
+    name: ISession
   - uid: Alibi.Plugins.API.LogSeverity
     name: LogSeverity
   - uid: Alibi.Plugins.API.Plugin
     name: Plugin
+  - uid: Alibi.Plugins.API.StringExtensions
+    name: StringExtensions
 - uid: Alibi.Plugins.API.Attributes
   name: Alibi.Plugins.API.Attributes
   items:

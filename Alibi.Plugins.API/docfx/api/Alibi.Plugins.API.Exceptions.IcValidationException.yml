@@ -32,7 +32,9 @@ items:
     content: 'public class IcValidationException : Exception, ISerializable'
     content.vb: >-
       Public Class IcValidationException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object

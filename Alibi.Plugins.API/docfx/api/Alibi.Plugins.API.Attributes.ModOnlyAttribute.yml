@@ -36,6 +36,7 @@ items:
       <AttributeUsage(AttributeTargets.Method)>
 
       Public Class ModOnlyAttribute
+
           Inherits Attribute
   inheritance:
   - System.Object

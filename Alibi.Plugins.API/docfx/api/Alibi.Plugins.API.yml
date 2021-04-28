@@ -9,7 +9,6 @@ items:
   - Alibi.Plugins.API.AuthType
   - Alibi.Plugins.API.ClientState
   - Alibi.Plugins.API.Handler
-  - Alibi.Plugins.API.AOPacket
   - Alibi.Plugins.API.IArea
   - Alibi.Plugins.API.IClient
   - Alibi.Plugins.API.IConfiguration
@@ -17,8 +16,10 @@ items:
   - Alibi.Plugins.API.IEvidence
   - Alibi.Plugins.API.IPluginManager
   - Alibi.Plugins.API.IServer
+  - Alibi.Plugins.API.ISession
   - Alibi.Plugins.API.LogSeverity
   - Alibi.Plugins.API.Plugin
+  - Alibi.Plugins.API.StringExtensions
   langs:
   - csharp
   - vb
@@ -57,12 +58,6 @@ references:
   name: Handler
   nameWithType: Handler
   fullName: Alibi.Plugins.API.Handler
-- uid: Alibi.Plugins.API.AOPacket
-  commentId: T:Alibi.Plugins.API.AOPacket
-  parent: Alibi.Plugins.API
-  name: AOPacket
-  nameWithType: AOPacket
-  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IArea
   commentId: T:Alibi.Plugins.API.IArea
   parent: Alibi.Plugins.API
@@ -104,6 +99,12 @@ references:
   name: IServer
   nameWithType: IServer
   fullName: Alibi.Plugins.API.IServer
+- uid: Alibi.Plugins.API.ISession
+  commentId: T:Alibi.Plugins.API.ISession
+  parent: Alibi.Plugins.API
+  name: ISession
+  nameWithType: ISession
+  fullName: Alibi.Plugins.API.ISession
 - uid: Alibi.Plugins.API.LogSeverity
   commentId: T:Alibi.Plugins.API.LogSeverity
   parent: Alibi.Plugins.API
@@ -116,6 +117,11 @@ references:
   name: Plugin
   nameWithType: Plugin
   fullName: Alibi.Plugins.API.Plugin
+- uid: Alibi.Plugins.API.StringExtensions
+  commentId: T:Alibi.Plugins.API.StringExtensions
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: Alibi.Plugins.API.StringExtensions
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
   name: Alibi.Plugins.API

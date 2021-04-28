@@ -32,7 +32,9 @@ items:
     content: 'public class CommandException : Exception, ISerializable'
     content.vb: >-
       Public Class CommandException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object
