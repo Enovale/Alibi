@@ -25,17 +25,17 @@ namespace Alibi.WebSocket
                 $"[{ip}] Websocket connection.", true);
             _client = new Client((Server) _baseServer, this, ip)
                 {LastAlive = DateTime.Now};
-            _client.OnConnected();
+            _client?.OnSessionConnected();
         }
 
         public override void OnWsDisconnected()
         {
-            _client?.OnDisconnected();
+            _client?.OnSessionDisconnected();
         }
 
         protected override void OnDisconnected()
         {
-            _client?.OnDisconnected();
+            _client?.OnSessionDisconnected();
         }
 
         public override void OnWsError(string error)
@@ -45,7 +45,17 @@ namespace Alibi.WebSocket
 
         public override void OnWsReceived(byte[] buffer, long offset, long size)
         {
-            _client?.OnReceived(buffer, offset, size);
+            _client?.OnSessionReceived(buffer, offset, size);
+        }
+
+        public new long Send(string text)
+        {
+            return SendText(text);
+        }
+
+        public new bool SendAsync(string text)
+        {
+            return SendTextAsync(text);
         }
     }
 }
