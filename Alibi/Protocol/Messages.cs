@@ -36,8 +36,9 @@ namespace Alibi.Protocol
                 client.ServerRef.ClientsConnected.Count(c => client.HardwareId == c.HardwareId)
                 > Server.ServerConfiguration.MaxMultiClients)
             {
-                client.Send(new AOPacket("BD", "Not a real ban: Can't have more than " +
-                                               $"{Server.ServerConfiguration.MaxMultiClients} clients at a time."));
+                client.Send(new AOPacket("BD",
+                    "Not a real ban: Can't have more than " +
+                    $"{Server.ServerConfiguration.MaxMultiClients} clients on a single computer at a time."));
                 Task.Delay(500);
                 client.Session.Disconnect();
                 return;
