@@ -1,40 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Product>Alibi.Plugins.Webhook</Product>
-    <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
-    <Authors>ElijahZAwesome</Authors>
-    <Description>Discord webhook plugin for Alibi, my AO2 Server</Description>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <LangVersion>8</LangVersion>
-    <AssemblyVersion>1.0</AssemblyVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Product>Alibi.Plugins.Webhook</Product>
+        <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
+        <Authors>ElijahZAwesome</Authors>
+        <Description>Discord webhook plugin for Alibi, my AO2 Server</Description>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <LangVersion>8</LangVersion>
+        <AssemblyVersion>1.0</AssemblyVersion>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <Optimize>false</Optimize>
-	  <OutputPath>bin\Debug\</OutputPath>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <Optimize>true</Optimize>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\net5.0\win-x64\Plugins\&quot; /S /Y" />
-  </Target>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(OS)' == 'Windows_NT' ">
+        <Exec Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\net5.0\win-x64\Plugins\&quot; /S /Y"/>
+    </Target>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Alibi.Plugins.API\Alibi.Plugins.API.csproj" />
-  </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(OS)' == 'UNIX' ">
+        <Exec Command="mkdir -p &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot; &amp;&amp; cp -rf &quot;$(TargetPath)&quot; &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot;"/>
+    </Target>
 
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Alibi.Plugins.API\Alibi.Plugins.API.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
 
 </Project>
