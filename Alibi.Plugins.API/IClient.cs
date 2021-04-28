@@ -10,6 +10,14 @@ namespace Alibi.Plugins.API
     public interface IClient
     {
         /// <summary>
+        /// The underlying TCP/Websocket session of this client.
+        /// </summary>
+        /// <remarks>
+        /// Warning: Here be dragons!
+        /// </remarks>
+        public ISession Session { get; }
+
+        /// <summary>
         /// Quick reference to the main server.
         /// </summary>
         /// <remarks>
