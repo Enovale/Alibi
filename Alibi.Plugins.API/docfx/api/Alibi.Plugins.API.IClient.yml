@@ -26,7 +26,7 @@ items:
   - Alibi.Plugins.API.IClient.PairingWith
   - Alibi.Plugins.API.IClient.Password
   - Alibi.Plugins.API.IClient.Position
-  - Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  - Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
   - Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
   - Alibi.Plugins.API.IClient.ServerRef
   - Alibi.Plugins.API.IClient.StoredEmote
@@ -933,16 +933,16 @@ items:
   nameWithType.vb: IClient.BanIp(String, Nullable(Of TimeSpan), IClient)
   fullName.vb: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
   name.vb: BanIp(String, Nullable(Of TimeSpan), IClient)
-- uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
-  commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
-  id: Send(Alibi.Plugins.API.IAOPacket)
+- uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
+  commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
+  id: Send(Alibi.Plugins.API.AOPacket)
   parent: Alibi.Plugins.API.IClient
   langs:
   - csharp
   - vb
-  name: Send(IAOPacket)
-  nameWithType: IClient.Send(IAOPacket)
-  fullName: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.IAOPacket)
+  name: Send(AOPacket)
+  nameWithType: IClient.Send(AOPacket)
+  fullName: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
   type: Method
   source:
     remote:
@@ -958,12 +958,12 @@ items:
   summary: "\nSend this client a packet.\n"
   example: []
   syntax:
-    content: void Send(IAOPacket packet)
+    content: void Send(AOPacket packet)
     parameters:
     - id: packet
-      type: Alibi.Plugins.API.IAOPacket
+      type: Alibi.Plugins.API.AOPacket
       description: The packet to send.
-    content.vb: Sub Send(packet As IAOPacket)
+    content.vb: Sub Send(packet As AOPacket)
   overload: Alibi.Plugins.API.IClient.Send*
 - uid: Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
   commentId: M:Alibi.Plugins.API.IClient.SendOocMessage(System.String,System.String)
@@ -1334,12 +1334,12 @@ references:
   name: Send
   nameWithType: IClient.Send
   fullName: Alibi.Plugins.API.IClient.Send
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IClient.SendOocMessage*
   commentId: Overload:Alibi.Plugins.API.IClient.SendOocMessage
   name: SendOocMessage

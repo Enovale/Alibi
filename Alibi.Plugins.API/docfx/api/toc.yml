@@ -12,8 +12,8 @@
     name: ClientState
   - uid: Alibi.Plugins.API.Handler
     name: Handler
-  - uid: Alibi.Plugins.API.IAOPacket
-    name: IAOPacket
+  - uid: Alibi.Plugins.API.AOPacket
+    name: AOPacket
   - uid: Alibi.Plugins.API.IArea
     name: IArea
   - uid: Alibi.Plugins.API.IClient

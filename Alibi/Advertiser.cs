@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Alibi.Plugins.API;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
 {
@@ -27,19 +26,20 @@ namespace Alibi
 
         private void OnConnect(IAsyncResult ar)
         {
+            var server = Server.Instance;
             ((Socket) ar.AsyncState)?.EndConnect(ar);
 
             string ports;
-            if (string.IsNullOrWhiteSpace(Server.ServerConfiguration.WebsocketPort.ToString()))
-                ports = Server.ServerConfiguration.Port.ToString();
+            if (string.IsNullOrWhiteSpace(server.ServerConfiguration.WebsocketPort.ToString()))
+                ports = server.ServerConfiguration.Port.ToString();
             else
-                ports = Server.ServerConfiguration.Port + "&" + Server.ServerConfiguration.WebsocketPort;
+                ports = server.ServerConfiguration.Port + "&" + server.ServerConfiguration.WebsocketPort;
 
             _socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
                 ports,
-                Server.ServerConfiguration.ServerName,
-                Server.ServerConfiguration.ServerDescription,
-                $"Alibi v{Server.Version}"
+                server.ServerConfiguration.ServerName,
+                server.ServerConfiguration.ServerDescription,
+                $"Alibi v{server.Version}"
             )));
         }
 

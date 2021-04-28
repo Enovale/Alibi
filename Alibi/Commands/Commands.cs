@@ -10,7 +10,6 @@ using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
 using Alibi.Protocol;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 #pragma warning disable IDE0060 // Remove unused parameter
 // ReSharper disable UnusedParameter.Global
@@ -44,10 +43,10 @@ namespace Alibi.Commands
         [CommandHandler("randomchar", "Changes you to a random character.")]
         internal static void RandomChar(IClient client, string[] args)
         {
-            var charsLeft = Server.CharactersList.Length;
+            var charsLeft = client.ServerRef.CharactersList.Length;
             while (charsLeft > 0)
             {
-                var character = _random.Next(Server.CharactersList.Length - 1);
+                var character = _random.Next(client.ServerRef.CharactersList.Length - 1);
                 if (!client.Area!.TakenCharacters[character])
                 {
                     Messages.ChangeCharacter(client, new AOPacket("CC", "0", character.ToString(), ""));
@@ -63,7 +62,7 @@ namespace Alibi.Commands
         [CommandHandler("motd", "Displays the MOTD sent upon joining.")]
         internal static void Motd(IClient client, string[] args)
         {
-            client.SendOocMessage(Server.ServerConfiguration.Motd);
+            client.SendOocMessage(client.ServerRef.ServerConfiguration.Motd);
         }
 
         [CommandHandler("online", "Shows the player count.")]
@@ -129,7 +128,7 @@ namespace Alibi.Commands
             {
                 if (!client.Area.TakenCharacters[i])
                     continue;
-                var tchar = Server.CharactersList[i];
+                var tchar = client.ServerRef.CharactersList[i];
                 if (client.Auth < AuthType.MODERATOR)
                     output.Append($"\n{tchar}, ID: {i}");
                 else
@@ -204,8 +203,8 @@ namespace Alibi.Commands
             }
             else if (!int.TryParse(args[0], out characterToCm))
             {
-                if (Server.CharactersList.Contains(args[0]))
-                    characterToCm = Array.IndexOf(Server.CharactersList, args[0]);
+                if (client.ServerRef.CharactersList.Contains(args[0]))
+                    characterToCm = Array.IndexOf(client.ServerRef.CharactersList, args[0]);
                 else
                     throw new CommandException("Usage: /cm <character name/id>");
             }
@@ -294,7 +293,7 @@ namespace Alibi.Commands
             client.SendOocMessage("Document removed.");
         }
 
-        [CommandHandler("ping", "Get your ping to and from the server.")]
+        [CommandHandler("ping", "Get your ping to and from the client.ServerRef.")]
         internal static void Ping(IClient client, string[] args) =>
             client.SendOocMessage($"Ping: {_pinger.Send(client.IpAddress).RoundtripTime}ms");
 
@@ -307,10 +306,10 @@ namespace Alibi.Commands
             if (args.Length < 2)
                 throw new CommandException("Usage: /login <username> <password>");
 
-            if (!Server.Database.CheckCredentials(args[0], args[1]))
+            if (!client.ServerRef.Database.CheckCredentials(args[0], args[1]))
                 throw new CommandException("Incorrect credentials.");
 
-            ((Client) client).Auth = Server.Database.GetPermissionLevel(args[0]);
+            ((Client) client).Auth = client.ServerRef.Database.GetPermissionLevel(args[0]);
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
@@ -328,15 +327,15 @@ namespace Alibi.Commands
         internal static void ServerInfo(IClient client, string[] args)
         {
             client.SendOocMessage($@"====== SERVER INFO ======
-Name: {Server.ServerConfiguration.ServerName}
-Server Version: {Server.Version}
+Name: {client.ServerRef.ServerConfiguration.ServerName}
+Server Version: {client.ServerRef.Version}
 Areas: {client.ServerRef.Areas.Length}
 Verbose: {client.ServerRef.VerboseLogs}
-Music: {Server.MusicList.Length}
-Characters: {Server.CharactersList.Length}
+Music: {client.ServerRef.MusicList.Length}
+Characters: {client.ServerRef.CharactersList.Length}
 Connected Players: {client.ServerRef.ConnectedPlayers}
 Connected Dead/Alive Clients: {client.ServerRef.ClientsConnected.Count}
-Max Players: {Server.ServerConfiguration.MaxPlayers}
+Max Players: {client.ServerRef.ServerConfiguration.MaxPlayers}
 Moderators Online: {client.ServerRef.ClientsConnected.Count(c => c.Auth >= AuthType.MODERATOR)}
 Admins Online: {client.ServerRef.ClientsConnected.Count(c => c.Auth >= AuthType.ADMINISTRATOR)}
 Ping: {_pinger.Send(client.IpAddress).RoundtripTime}
@@ -345,7 +344,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
         }
 
         [ModOnly]
-        [CommandHandler("announce", "Send a message to the entire server.")]
+        [CommandHandler("announce", "Send a message to the entire client.ServerRef.")]
         internal static void Announce(IClient client, string[] args)
         {
             if (args.Length <= 0)
@@ -354,7 +353,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
         }
 
         [AdminOnly]
-        [CommandHandler("restart", "Restart's the server.")]
+        [CommandHandler("restart", "Restart's the client.ServerRef.")]
         internal static void Restart(IClient client, string[] args)
         {
             client.ServerRef.Stop();
@@ -366,7 +365,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
         }
 
         [AdminOnly]
-        [CommandHandler("stop", "Shutdown the server.")]
+        [CommandHandler("stop", "Shutdown the client.ServerRef.")]
         internal static void Stop(IClient client, string[] args)
         {
             client.ServerRef.Stop();
@@ -390,7 +389,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
                 throw new CommandException("Usage: /addmod <username> <password>");
 
             args[0] = args[0].ToLower();
-            if (Server.Database.AddLogin(args[0], args[1], AuthType.MODERATOR))
+            if (client.ServerRef.Database.AddLogin(args[0], args[1], AuthType.MODERATOR))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
                 throw new CommandException($"User {args[0]} already exists or another error occured.");
@@ -404,7 +403,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
                 throw new CommandException("Usage: /addadmin <username> <password>");
 
             args[0] = args[0].ToLower();
-            if (Server.Database.AddLogin(args[0], args[1], AuthType.ADMINISTRATOR))
+            if (client.ServerRef.Database.AddLogin(args[0], args[1], AuthType.ADMINISTRATOR))
                 client.SendOocMessage($"User {args[0]} has been created.");
             else
                 throw new CommandException($"User {args[0]} already exists or another error occured.");
@@ -417,7 +416,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
             if (args.Length <= 0)
                 throw new CommandException("Usage: /removelogin <username>");
 
-            if (Server.Database.RemoveLogin(args[0].ToLower()))
+            if (client.ServerRef.Database.RemoveLogin(args[0].ToLower()))
                 client.SendOocMessage($"Successfully removed user {args[0]}.");
             else
                 throw new CommandException($"Could not remove user {args[0]}. " +
@@ -432,7 +431,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
             if (args.Length <= 0)
                 throw new CommandException("Usage: /promote <username>");
 
-            if (Server.Database.ChangeLoginPermissions(args[0], AuthType.ADMINISTRATOR))
+            if (client.ServerRef.Database.ChangeLoginPermissions(args[0], AuthType.ADMINISTRATOR))
                 client.SendOocMessage($"Successfully promoted {args[0]} to Admin.");
             else
                 throw new CommandException("Couldn't find that username.");
@@ -445,7 +444,7 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
             if (args.Length <= 0)
                 throw new CommandException("Usage: /demote <username>");
 
-            if (Server.Database.ChangeLoginPermissions(args[0], AuthType.MODERATOR))
+            if (client.ServerRef.Database.ChangeLoginPermissions(args[0], AuthType.MODERATOR))
                 client.SendOocMessage($"Successfully demoted {args[0]} to Moderator.");
             else
                 throw new CommandException("Couldn't find that username.");
@@ -525,15 +524,15 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
                 throw new CommandException("Usage: /unban <hwid/ip>");
 
             if (IPAddress.TryParse(args[0], out _))
-                Server.Database.UnbanIp(args[0]);
+                client.ServerRef.Database.UnbanIp(args[0]);
             else
-                Server.Database.UnbanHwid(args[0]);
+                client.ServerRef.Database.UnbanHwid(args[0]);
 
             client.SendOocMessage($"{args[0]} has been unbanned.");
         }
 
         [ModOnly]
-        [CommandHandler("kick", "Kick a user from the server. You can specify a hardware ID or IP")]
+        [CommandHandler("kick", "Kick a user from the client.ServerRef. You can specify a hardware ID or IP")]
         internal static void Kick(IClient client, string[] args)
         {
             if (args.Length < 1)

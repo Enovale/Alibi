@@ -7,7 +7,7 @@ items:
   children:
   - Alibi.Plugins.API.IServer.AreaNames
   - Alibi.Plugins.API.IServer.Areas
-  - Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
+  - Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   - Alibi.Plugins.API.IServer.BroadcastOocMessage(System.String)
   - Alibi.Plugins.API.IServer.CharactersList
   - Alibi.Plugins.API.IServer.ClientsConnected
@@ -495,16 +495,16 @@ items:
     content: void ReloadConfig()
     content.vb: Sub ReloadConfig
   overload: Alibi.Plugins.API.IServer.ReloadConfig*
-- uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
-  commentId: M:Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
-  id: Broadcast(Alibi.Plugins.API.IAOPacket)
+- uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
+  commentId: M:Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
+  id: Broadcast(Alibi.Plugins.API.AOPacket)
   parent: Alibi.Plugins.API.IServer
   langs:
   - csharp
   - vb
-  name: Broadcast(IAOPacket)
-  nameWithType: IServer.Broadcast(IAOPacket)
-  fullName: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.IAOPacket)
+  name: Broadcast(AOPacket)
+  nameWithType: IServer.Broadcast(AOPacket)
+  fullName: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   type: Method
   source:
     remote:
@@ -520,12 +520,12 @@ items:
   summary: "\nSends a packet to every client on the server.\n"
   example: []
   syntax:
-    content: void Broadcast(IAOPacket message)
+    content: void Broadcast(AOPacket message)
     parameters:
     - id: message
-      type: Alibi.Plugins.API.IAOPacket
+      type: Alibi.Plugins.API.AOPacket
       description: The packet to send.
-    content.vb: Sub Broadcast(message As IAOPacket)
+    content.vb: Sub Broadcast(message As AOPacket)
   overload: Alibi.Plugins.API.IServer.Broadcast*
 - uid: Alibi.Plugins.API.IServer.BroadcastOocMessage(System.String)
   commentId: M:Alibi.Plugins.API.IServer.BroadcastOocMessage(System.String)
@@ -859,12 +859,12 @@ references:
   name: Broadcast
   nameWithType: IServer.Broadcast
   fullName: Alibi.Plugins.API.IServer.Broadcast
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IServer.BroadcastOocMessage*
   commentId: Overload:Alibi.Plugins.API.IServer.BroadcastOocMessage
   name: BroadcastOocMessage

@@ -1,26 +1,26 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
-  id: IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
+  id: AOPacket
   parent: Alibi.Plugins.API
   children:
-  - Alibi.Plugins.API.IAOPacket.Objects
-  - Alibi.Plugins.API.IAOPacket.Type
+  - Alibi.Plugins.API.AOPacket.Objects
+  - Alibi.Plugins.API.AOPacket.Type
   langs:
   - csharp
   - vb
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
   type: Interface
   source:
     remote:
-      path: Alibi.Plugins.API/IAOPacket.cs
+      path: Alibi.Plugins.API/AOPacket.cs
       branch: main
       repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: IAOPacket
-    path: ../IAOPacket.cs
+    id: AOPacket
+    path: ../AOPacket.cs
     startLine: 6
   assemblies:
   - Alibi.Plugins.API
@@ -28,32 +28,32 @@ items:
   summary: "\nRepresents an internal or API AO2 compatible\npacket to send to and receive from clients.\n"
   example: []
   syntax:
-    content: public interface IAOPacket
-    content.vb: Public Interface IAOPacket
+    content: public interface AOPacket
+    content.vb: Public Interface AOPacket
   modifiers.csharp:
   - public
   - interface
   modifiers.vb:
   - Public
   - Interface
-- uid: Alibi.Plugins.API.IAOPacket.Type
-  commentId: P:Alibi.Plugins.API.IAOPacket.Type
+- uid: Alibi.Plugins.API.AOPacket.Type
+  commentId: P:Alibi.Plugins.API.AOPacket.Type
   id: Type
-  parent: Alibi.Plugins.API.IAOPacket
+  parent: Alibi.Plugins.API.AOPacket
   langs:
   - csharp
   - vb
   name: Type
-  nameWithType: IAOPacket.Type
-  fullName: Alibi.Plugins.API.IAOPacket.Type
+  nameWithType: AOPacket.Type
+  fullName: Alibi.Plugins.API.AOPacket.Type
   type: Property
   source:
     remote:
-      path: Alibi.Plugins.API/IAOPacket.cs
+      path: Alibi.Plugins.API/AOPacket.cs
       branch: main
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Type
-    path: ../IAOPacket.cs
+    path: ../AOPacket.cs
     startLine: 11
   assemblies:
   - Alibi.Plugins.API
@@ -66,28 +66,28 @@ items:
     return:
       type: System.String
     content.vb: Property Type As String
-  overload: Alibi.Plugins.API.IAOPacket.Type*
+  overload: Alibi.Plugins.API.AOPacket.Type*
   modifiers.csharp:
   - get
   - set
-- uid: Alibi.Plugins.API.IAOPacket.Objects
-  commentId: P:Alibi.Plugins.API.IAOPacket.Objects
+- uid: Alibi.Plugins.API.AOPacket.Objects
+  commentId: P:Alibi.Plugins.API.AOPacket.Objects
   id: Objects
-  parent: Alibi.Plugins.API.IAOPacket
+  parent: Alibi.Plugins.API.AOPacket
   langs:
   - csharp
   - vb
   name: Objects
-  nameWithType: IAOPacket.Objects
-  fullName: Alibi.Plugins.API.IAOPacket.Objects
+  nameWithType: AOPacket.Objects
+  fullName: Alibi.Plugins.API.AOPacket.Objects
   type: Property
   source:
     remote:
-      path: Alibi.Plugins.API/IAOPacket.cs
+      path: Alibi.Plugins.API/AOPacket.cs
       branch: main
       repo: https://github.com/ElijahZAwesome/Alibi.git
     id: Objects
-    path: ../IAOPacket.cs
+    path: ../AOPacket.cs
     startLine: 16
   assemblies:
   - Alibi.Plugins.API
@@ -100,7 +100,7 @@ items:
     return:
       type: System.String[]
     content.vb: Property Objects As String()
-  overload: Alibi.Plugins.API.IAOPacket.Objects*
+  overload: Alibi.Plugins.API.AOPacket.Objects*
   modifiers.csharp:
   - get
   - set
@@ -110,11 +110,11 @@ references:
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
-- uid: Alibi.Plugins.API.IAOPacket.Type*
-  commentId: Overload:Alibi.Plugins.API.IAOPacket.Type
+- uid: Alibi.Plugins.API.AOPacket.Type*
+  commentId: Overload:Alibi.Plugins.API.AOPacket.Type
   name: Type
-  nameWithType: IAOPacket.Type
-  fullName: Alibi.Plugins.API.IAOPacket.Type
+  nameWithType: AOPacket.Type
+  fullName: Alibi.Plugins.API.AOPacket.Type
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -128,11 +128,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Alibi.Plugins.API.IAOPacket.Objects*
-  commentId: Overload:Alibi.Plugins.API.IAOPacket.Objects
+- uid: Alibi.Plugins.API.AOPacket.Objects*
+  commentId: Overload:Alibi.Plugins.API.AOPacket.Objects
   name: Objects
-  nameWithType: IAOPacket.Objects
-  fullName: Alibi.Plugins.API.IAOPacket.Objects
+  nameWithType: AOPacket.Objects
+  fullName: Alibi.Plugins.API.AOPacket.Objects
 - uid: System.String[]
   isExternal: true
   name: String[]

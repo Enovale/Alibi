@@ -16,7 +16,7 @@ namespace Alibi.Protocol
             AddHandlers();
         }
 
-        public static void HandleMessage(IClient client, IAOPacket packet)
+        public static void HandleMessage(IClient client, AOPacket packet)
         {
             if (Handlers.ContainsKey(packet.Type))
             {

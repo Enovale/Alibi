@@ -9,7 +9,7 @@ items:
   - Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType,Alibi.Plugins.API.IClient)
   - Alibi.Plugins.API.IArea.Background
   - Alibi.Plugins.API.IArea.BackgroundLocked
-  - Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  - Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
   - Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
   - Alibi.Plugins.API.IArea.CanLock
   - Alibi.Plugins.API.IArea.CurrentCaseManagers
@@ -567,16 +567,16 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
-  commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
-  id: Broadcast(Alibi.Plugins.API.IAOPacket)
+- uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
+  commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
+  id: Broadcast(Alibi.Plugins.API.AOPacket)
   parent: Alibi.Plugins.API.IArea
   langs:
   - csharp
   - vb
-  name: Broadcast(IAOPacket)
-  nameWithType: IArea.Broadcast(IAOPacket)
-  fullName: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.IAOPacket)
+  name: Broadcast(AOPacket)
+  nameWithType: IArea.Broadcast(AOPacket)
+  fullName: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
   type: Method
   source:
     remote:
@@ -592,12 +592,12 @@ items:
   summary: "\nSend a packet to all players currently in this area.\n"
   example: []
   syntax:
-    content: void Broadcast(IAOPacket packet)
+    content: void Broadcast(AOPacket packet)
     parameters:
     - id: packet
-      type: Alibi.Plugins.API.IAOPacket
+      type: Alibi.Plugins.API.AOPacket
       description: The packet to send
-    content.vb: Sub Broadcast(packet As IAOPacket)
+    content.vb: Sub Broadcast(packet As AOPacket)
   overload: Alibi.Plugins.API.IArea.Broadcast*
 - uid: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
   commentId: M:Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String)
@@ -1091,12 +1091,12 @@ references:
   name: Broadcast
   nameWithType: IArea.Broadcast
   fullName: Alibi.Plugins.API.IArea.Broadcast
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IArea.BroadcastOocMessage*
   commentId: Overload:Alibi.Plugins.API.IArea.BroadcastOocMessage
   name: BroadcastOocMessage

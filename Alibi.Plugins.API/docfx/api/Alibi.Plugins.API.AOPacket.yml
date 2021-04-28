@@ -35,14 +35,14 @@ items:
   remarks: "\n(internal server uses it&apos;s own class)\n"
   example: []
   syntax:
-    content: 'public class AOPacket : IAOPacket'
+    content: 'public class AOPacket : AOPacket'
     content.vb: >-
       Public Class AOPacket
-          Implements IAOPacket
+          Implements AOPacket
   inheritance:
   - System.Object
   implements:
-  - Alibi.Plugins.API.IAOPacket
+  - Alibi.Plugins.API.AOPacket
   modifiers.csharp:
   - public
   - class
@@ -82,7 +82,7 @@ items:
     content.vb: Public Property Type As String
   overload: Alibi.Plugins.API.AOPacket.Type*
   implements:
-  - Alibi.Plugins.API.IAOPacket.Type
+  - Alibi.Plugins.API.AOPacket.Type
   modifiers.csharp:
   - public
   - get
@@ -121,7 +121,7 @@ items:
     content.vb: Public Property Objects As String()
   overload: Alibi.Plugins.API.AOPacket.Objects*
   implements:
-  - Alibi.Plugins.API.IAOPacket.Objects
+  - Alibi.Plugins.API.AOPacket.Objects
   modifiers.csharp:
   - public
   - get
@@ -229,15 +229,15 @@ items:
   summary: "\nDeconstruct an AOPacket from a string\n"
   example: []
   syntax:
-    content: public static IAOPacket FromMessage(string message)
+    content: public static AOPacket FromMessage(string message)
     parameters:
     - id: message
       type: System.String
       description: The constructed packet string to deconstruct into an AOPacket
     return:
-      type: Alibi.Plugins.API.IAOPacket
+      type: Alibi.Plugins.API.AOPacket
       description: An AOPacket constructed from the given message.
-    content.vb: Public Shared Function FromMessage(message As String) As IAOPacket
+    content.vb: Public Shared Function FromMessage(message As String) As AOPacket
   overload: Alibi.Plugins.API.AOPacket.FromMessage*
   modifiers.csharp:
   - public
@@ -376,12 +376,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: System
   commentId: N:System
   isExternal: true
@@ -393,12 +393,12 @@ references:
   name: Type
   nameWithType: AOPacket.Type
   fullName: Alibi.Plugins.API.AOPacket.Type
-- uid: Alibi.Plugins.API.IAOPacket.Type
-  commentId: P:Alibi.Plugins.API.IAOPacket.Type
-  parent: Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket.Type
+  commentId: P:Alibi.Plugins.API.AOPacket.Type
+  parent: Alibi.Plugins.API.AOPacket
   name: Type
-  nameWithType: IAOPacket.Type
-  fullName: Alibi.Plugins.API.IAOPacket.Type
+  nameWithType: AOPacket.Type
+  fullName: Alibi.Plugins.API.AOPacket.Type
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -411,12 +411,12 @@ references:
   name: Objects
   nameWithType: AOPacket.Objects
   fullName: Alibi.Plugins.API.AOPacket.Objects
-- uid: Alibi.Plugins.API.IAOPacket.Objects
-  commentId: P:Alibi.Plugins.API.IAOPacket.Objects
-  parent: Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket.Objects
+  commentId: P:Alibi.Plugins.API.AOPacket.Objects
+  parent: Alibi.Plugins.API.AOPacket
   name: Objects
-  nameWithType: IAOPacket.Objects
-  fullName: Alibi.Plugins.API.IAOPacket.Objects
+  nameWithType: AOPacket.Objects
+  fullName: Alibi.Plugins.API.AOPacket.Objects
 - uid: System.String[]
   isExternal: true
   name: String[]

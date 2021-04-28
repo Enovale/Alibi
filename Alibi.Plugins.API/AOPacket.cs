@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace Alibi.Plugins.API
@@ -9,7 +10,7 @@ namespace Alibi.Plugins.API
     /// <remarks>
     /// (internal server uses it's own class)
     /// </remarks>
-    public class AOPacket : IAOPacket
+    public class AOPacket
     {
         /// <summary>
         /// The type (ID) of this packet.
@@ -35,6 +36,7 @@ namespace Alibi.Plugins.API
         public AOPacket(string header)
         {
             Type = header;
+            Objects = new string[0];
         }
 
         private AOPacket()
@@ -50,7 +52,7 @@ namespace Alibi.Plugins.API
         /// </code>
         /// <param name="message">The constructed packet string to deconstruct into an AOPacket</param>
         /// <returns>An AOPacket constructed from the given message.</returns>
-        public static IAOPacket FromMessage(string message)
+        public static AOPacket FromMessage(string message)
         {
             try
             {
@@ -58,15 +60,21 @@ namespace Alibi.Plugins.API
                 var split = message.Split("#");
                 packet.Type = split.First();
 
+                if (split.Length <= 1)
+                {
+                    packet.Objects = Array.Empty<string>();
+                    return packet;
+                }
+
                 packet.Objects = new string[split.Length - 2];
                 for (var i = 1; i < split.Length - 1; i++) // -2 because header and footer %
-                    packet.Objects[i - 1] = DecodeFromAOPacket(split[i]);
+                    packet.Objects[i - 1] = split[i].DecodeFromAOPacket();
 
                 return packet;
             }
-            catch
+            catch (Exception e)
             {
-                return new AOPacket("NULL");
+                return new AOPacket("NULL", e.Message);
             }
         }
 

@@ -61,10 +61,11 @@ namespace Alibi.Plugins.Fun
             if (args.Length <= 0)
                 throw new CommandException("Usage: /8ball <question>");
             var question = string.Join(' ', args);
-            question = question.Substring(0, Math.Min(question.Length, IServer.ServerConfiguration.MaxMessageSize));
-            client.Area!.BroadcastOocMessage(
-                $"{client.OocName} has asked the 8ball: \"{question}\"\n" +
-                $"The 8ball says: {Fun.EightBall.Responses[Rand.Next(Fun.EightBall.Responses.Length - 1)]}");
+            question = question.Substring(0,
+                Math.Min(question.Length, client.ServerRef.ServerConfiguration.MaxMessageSize));
+            client.Area!.Broadcast(new AOPacket("CT", client.OocName, question));
+            client.Area!.BroadcastOocMessage(Fun.EightBall.Responses[Rand.Next(Fun.EightBall.Responses.Length - 1)],
+                "8Ball");
         }
 
         [ModOnly]

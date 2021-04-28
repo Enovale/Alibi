@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Exceptions;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi.Protocol
 {
     public static class IcValidator
     {
-        internal static AOPacket ValidateIcPacket(IAOPacket packet, IClient client)
+        internal static AOPacket ValidateIcPacket(AOPacket packet, IClient client)
         {
+            var server = Server.Instance;
             if (client.Character == null || !client.Connected)
                 throw new IcValidationException("Client does not have a character or isn't connected.");
-            if (packet.Objects.Length < 16)
+            if (packet.Objects.Length < 15)
                 throw new IcValidationException("Didn't provide a full Ic Message.");
 
             var internalClient = (Client) client;
@@ -32,7 +31,7 @@ namespace Alibi.Protocol
 
             // Make sure character isn't ini-swapping if it isn't allowed
             if (!client.Area!.IniSwappingAllowed &&
-                packet.Objects[2].ToLower() != Server.CharactersList[(int) client.Character].ToLower())
+                packet.Objects[2].ToLower() != server.CharactersList[(int) client.Character].ToLower())
             {
                 client.SendOocMessage("Ini-swapping isn't allowed in this area.");
                 throw new IcValidationException("Ini-swapping now allowed.");
@@ -47,9 +46,9 @@ namespace Alibi.Protocol
             // TODO: Sanitization and zalgo cleaning
             var sentMessage = packet.Objects[4];
             sentMessage = Regex.Replace(sentMessage, @"\s+", " ");
-            if (!Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
+            if (!server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
                 throw new IcValidationException("Cannot double post.");
-            if (Server.ServerConfiguration.AllowDoublePostsIfDifferentAnim
+            if (server.ServerConfiguration.AllowDoublePostsIfDifferentAnim
                 && sentMessage == client.LastSentMessage
                 && client.StoredEmote == packet.Objects[3])
                 throw new IcValidationException("Cannot double-post without changing animation.");
@@ -123,9 +122,9 @@ namespace Alibi.Protocol
             if (packet.Objects.Length > 15)
             {
                 // Showname
-                if (packet.Objects[15].Length > Server.ServerConfiguration.MaxShownameSize)
+                if (packet.Objects[15].Length > server.ServerConfiguration.MaxShownameSize)
                     throw new IcValidationException(
-                        $"Showname is longer than {Server.ServerConfiguration.MaxShownameSize}");
+                        $"Showname is longer than {server.ServerConfiguration.MaxShownameSize}");
                 validatedObjects.Add(packet.Objects[15]);
 
                 // First object is the charID, second is whether or not they're in front
@@ -140,7 +139,7 @@ namespace Alibi.Protocol
                         otherClient.Character == pair[0].ToIntOrZero() &&
                         otherClient.Area == client.Area)
                     {
-                        otherData[0] = Server.CharactersList[pair[0].ToIntOrZero()];
+                        otherData[0] = server.CharactersList[pair[0].ToIntOrZero()];
                         otherData[1] = otherClient.StoredEmote;
                         otherData[2] = otherClient.StoredOffset.ToString();
                         otherData[3] = otherClient.StoredFlip ? "1" : "0";
