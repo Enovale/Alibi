@@ -1181,6 +1181,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.ServerRef
   nameWithType: IClient.ServerRef
+- uid: Alibi.Plugins.API.IClient.Session
+  name: Session
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Session
+  commentId: P:Alibi.Plugins.API.IClient.Session
+  fullName: Alibi.Plugins.API.IClient.Session
+  nameWithType: IClient.Session
+- uid: Alibi.Plugins.API.IClient.Session*
+  name: Session
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Session_
+  commentId: Overload:Alibi.Plugins.API.IClient.Session
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IClient.Session
+  nameWithType: IClient.Session
 - uid: Alibi.Plugins.API.IClient.StoredEmote
   name: StoredEmote
   href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_StoredEmote
@@ -2049,6 +2062,69 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.Version
   nameWithType: IServer.Version
+- uid: Alibi.Plugins.API.ISession
+  name: ISession
+  href: api/Alibi.Plugins.API.ISession.html
+  commentId: T:Alibi.Plugins.API.ISession
+  fullName: Alibi.Plugins.API.ISession
+  nameWithType: ISession
+- uid: Alibi.Plugins.API.ISession.Disconnect
+  name: Disconnect()
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_Disconnect
+  commentId: M:Alibi.Plugins.API.ISession.Disconnect
+  fullName: Alibi.Plugins.API.ISession.Disconnect()
+  nameWithType: ISession.Disconnect()
+- uid: Alibi.Plugins.API.ISession.Disconnect*
+  name: Disconnect
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_Disconnect_
+  commentId: Overload:Alibi.Plugins.API.ISession.Disconnect
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.ISession.Disconnect
+  nameWithType: ISession.Disconnect
+- uid: Alibi.Plugins.API.ISession.Send(System.Byte[],System.Int64,System.Int64)
+  name: Send(Byte[], Int64, Int64)
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_Send_System_Byte___System_Int64_System_Int64_
+  commentId: M:Alibi.Plugins.API.ISession.Send(System.Byte[],System.Int64,System.Int64)
+  name.vb: Send(Byte(), Int64, Int64)
+  fullName: Alibi.Plugins.API.ISession.Send(System.Byte[], System.Int64, System.Int64)
+  fullName.vb: Alibi.Plugins.API.ISession.Send(System.Byte(), System.Int64, System.Int64)
+  nameWithType: ISession.Send(Byte[], Int64, Int64)
+  nameWithType.vb: ISession.Send(Byte(), Int64, Int64)
+- uid: Alibi.Plugins.API.ISession.Send(System.String)
+  name: Send(String)
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_Send_System_String_
+  commentId: M:Alibi.Plugins.API.ISession.Send(System.String)
+  fullName: Alibi.Plugins.API.ISession.Send(System.String)
+  nameWithType: ISession.Send(String)
+- uid: Alibi.Plugins.API.ISession.Send*
+  name: Send
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_Send_
+  commentId: Overload:Alibi.Plugins.API.ISession.Send
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.ISession.Send
+  nameWithType: ISession.Send
+- uid: Alibi.Plugins.API.ISession.SendAsync(System.Byte[],System.Int64,System.Int64)
+  name: SendAsync(Byte[], Int64, Int64)
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_SendAsync_System_Byte___System_Int64_System_Int64_
+  commentId: M:Alibi.Plugins.API.ISession.SendAsync(System.Byte[],System.Int64,System.Int64)
+  name.vb: SendAsync(Byte(), Int64, Int64)
+  fullName: Alibi.Plugins.API.ISession.SendAsync(System.Byte[], System.Int64, System.Int64)
+  fullName.vb: Alibi.Plugins.API.ISession.SendAsync(System.Byte(), System.Int64, System.Int64)
+  nameWithType: ISession.SendAsync(Byte[], Int64, Int64)
+  nameWithType.vb: ISession.SendAsync(Byte(), Int64, Int64)
+- uid: Alibi.Plugins.API.ISession.SendAsync(System.String)
+  name: SendAsync(String)
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_SendAsync_System_String_
+  commentId: M:Alibi.Plugins.API.ISession.SendAsync(System.String)
+  fullName: Alibi.Plugins.API.ISession.SendAsync(System.String)
+  nameWithType: ISession.SendAsync(String)
+- uid: Alibi.Plugins.API.ISession.SendAsync*
+  name: SendAsync
+  href: api/Alibi.Plugins.API.ISession.html#Alibi_Plugins_API_ISession_SendAsync_
+  commentId: Overload:Alibi.Plugins.API.ISession.SendAsync
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.ISession.SendAsync
+  nameWithType: ISession.SendAsync
 - uid: Alibi.Plugins.API.LogSeverity
   name: LogSeverity
   href: api/Alibi.Plugins.API.LogSeverity.html
