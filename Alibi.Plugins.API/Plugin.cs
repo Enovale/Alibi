@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 
 namespace Alibi.Plugins.API
 {
@@ -128,7 +129,7 @@ namespace Alibi.Plugins.API
         /// <param name="reason">Why they were banned (reference variable, can be modified)</param>
         /// <param name="expires">When this ban expires (Can be null)</param>
         /// <returns>Whether or not this ban should continue being processed.</returns>
-        public virtual bool OnBan(IClient client, IClient banner, ref string reason, TimeSpan? expires = null)
+        public virtual bool OnBan(IClient client, IClient? banner, ref string reason, TimeSpan? expires = null)
         {
             return true;
         }

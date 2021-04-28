@@ -40,7 +40,9 @@ namespace Alibi
         private static string GetRealProcessDirectory()
         {
             var execPath = Process.GetCurrentProcess().MainModule!.FileName!;
-            return (execPath.EndsWith("dotnet.exe") ? Environment.CurrentDirectory : Path.GetDirectoryName(execPath))!;
+            return execPath.EndsWith("dotnet.exe") || execPath.EndsWith("dotnet")
+                ? Environment.CurrentDirectory
+                : Path.GetDirectoryName(execPath)!;
         }
 
         private static void ExitProgram(object? sender, EventArgs eventArgs)

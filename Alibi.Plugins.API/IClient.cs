@@ -167,7 +167,7 @@ namespace Alibi.Plugins.API
         /// If possible, this should always be used when banning, on top of IP banning.
         /// It ensures the player can't use a proxy, VPN, or a change of IP to bypass the ban.
         /// </remarks>
-        public void BanHwid(string reason, TimeSpan? expireDate, IClient banner);
+        public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner);
 
         /// <summary>
         /// Ban this player's IP address, which is easily changing.
@@ -180,7 +180,7 @@ namespace Alibi.Plugins.API
         /// a player can simply change IPs using a VPN, Proxy, or a reset of their router to join the
         /// server again. However, if using this as a method of rate limiting, banning only their IP is acceptable.
         /// </remarks>
-        public void BanIp(string reason, TimeSpan? expireDate, IClient banner);
+        public void BanIp(string reason, TimeSpan? expireDate, IClient? banner);
 
         /// <summary>
         /// Send this client a packet.
