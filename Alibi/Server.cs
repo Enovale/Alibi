@@ -97,7 +97,7 @@ namespace Alibi
 
             if (ServerConfiguration.WebsocketPort > -1)
             {
-                _wsProxy = new WebSocketProxy(IPAddress.Any, ServerConfiguration.WebsocketPort);
+                _wsProxy = new WebSocketProxy(this, IPAddress.Any, ServerConfiguration.WebsocketPort);
                 _wsProxy.Start();
             }
 
@@ -266,7 +266,7 @@ namespace Alibi
             return true;
         }
 
-        public bool OnBan(IClient client, IClient banner, ref string reason, TimeSpan? expires = null)
+        public bool OnBan(IClient client, IClient? banner, ref string reason, TimeSpan? expires = null)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
                 try

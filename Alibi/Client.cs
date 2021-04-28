@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Alibi.Helpers;
 using Alibi.Plugins.API;
@@ -12,7 +13,7 @@ namespace Alibi
 {
     public class Client : IClient
     {
-        public ClientSession Session { get; }
+        public ISession Session { get; }
         public IServer ServerRef { get; }
 
         public bool Connected { get; internal set; }
@@ -39,7 +40,10 @@ namespace Alibi
         public int StoredOffset { get; internal set; }
         public bool StoredFlip { get; internal set; }
 
-        public Client(Server serverRef, ClientSession session, IPAddress ip)
+        private DateTime _rateLimitCheckTime;
+        private int _packetCount;
+
+        public Client(Server serverRef, ISession session, IPAddress ip)
         {
             CurrentState = ClientState.NewClient;
             ServerRef = serverRef;
@@ -47,6 +51,87 @@ namespace Alibi
             IpAddress = ip;
 
             serverRef.ClientsConnected.Add(this);
+        }
+
+        internal void OnConnected()
+        {
+            if (((Server) ServerRef).ConnectedPlayers >= Server.ServerConfiguration.MaxPlayers)
+            {
+                Send(new AOPacket("BD", "Not a real ban: Max players has been reached."));
+                Task.Delay(500);
+                Session.Disconnect();
+                return;
+            }
+
+            _rateLimitCheckTime = DateTime.Now;
+            
+            if (!IPAddress.IsLoopback(IpAddress) &&
+                ((Server) ServerRef).ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
+                >= Server.ServerConfiguration.MaxMultiClients)
+            {
+                Send(new AOPacket("BD", "Not a real ban: Can't have more than " +
+                                        $"{Server.ServerConfiguration.MaxMultiClients} clients at a time."));
+                Task.Delay(500);
+                Session.Disconnect();
+                return;
+            }
+
+            KickIfBanned();
+
+            ((Server) ServerRef).OnPlayerJoined(this);
+
+            // fuck fantaencrypt
+            Send(new AOPacket("decryptor", "NOENCRYPT"));
+        }
+
+        internal void OnDisconnected()
+        {
+            ((Server) ServerRef).ClientsConnected.Remove(this);
+            if (Connected)
+            {
+                ((Server) ServerRef).ConnectedPlayers--;
+                ((Area) Area!).PlayerCount--;
+                Connected = false;
+                if (Character != null)
+                    Area.TakenCharacters[(int) Character] = false;
+                Area.UpdateTakenCharacters();
+                Area.CurrentCaseManagers.Remove(this);
+                Area.AreaUpdate(AreaUpdateType.PlayerCount);
+                Area.AreaUpdate(AreaUpdateType.CourtManager);
+            }
+        }
+
+        internal void OnReceived(byte[] buffer, long offset, long size)
+        {
+            if (offset + size >= buffer.Length)
+                return;
+            var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
+            var disallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
+            if (disallowedRequests.Any(r => msg.StartsWith(r)))
+                return;
+            var packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
+            foreach (var packet in packets)
+            {
+                if (HardwareId == null
+                    && !packet.StartsWith("HI#")
+                    && !packet.StartsWith("WSIP#"))
+                    return;
+                if (DateTime.Now.CompareTo(_rateLimitCheckTime.AddSeconds
+                    (Server.ServerConfiguration.RateLimitResetTime)) >= 0)
+                {
+                    _packetCount = 0;
+                    _rateLimitCheckTime = DateTime.Now;
+                }
+
+                // TODO: Make a better rate limiting system that doesn't use the banning system
+                if (_packetCount >= Server.ServerConfiguration.RateLimit)
+                    BanIp("You have been rate limited.", Server.ServerConfiguration.RateLimitBanLength,
+                        null);
+                _packetCount++;
+                MessageHandler.HandleMessage(this, AOPacket.FromMessage(packet));
+            }
+
+            LastAlive = DateTime.Now;
         }
 
         public void ChangeArea(int index)
@@ -138,7 +223,7 @@ namespace Alibi
             return Server.Database.GetBanReason(IpAddress.ToString());
         }
 
-        public void BanHwid(string reason, TimeSpan? expireDate, IClient banner)
+        public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
         {
             if (!((Server)ServerRef).OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
                 return;
@@ -148,7 +233,7 @@ namespace Alibi
             Session.Disconnect();
         }
 
-        public void BanIp(string reason, TimeSpan? expireDate, IClient banner)
+        public void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
         {
             foreach (var hwid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
                 ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate, banner);

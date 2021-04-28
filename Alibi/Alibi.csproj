@@ -10,8 +10,6 @@
     <Copyright>ElijahZAwesome 2020</Copyright>
     <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishSingleFile>true</PublishSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <PackageVersion>0.6.1</PackageVersion>
     <AssemblyVersion>0.6.1</AssemblyVersion>
