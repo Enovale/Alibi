@@ -64,13 +64,15 @@ namespace Alibi
             }
 
             _rateLimitCheckTime = DateTime.Now;
-            
+
             if (!IPAddress.IsLoopback(IpAddress) &&
-                ((Server) ServerRef).ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
-                > Server.ServerConfiguration.MaxMultiClients)
+                ServerRef.ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
+                > Server.ServerConfiguration.MaxClientsOnOneNetwork)
             {
-                Send(new AOPacket("BD", "Not a real ban: Can't have more than " +
-                                        $"{Server.ServerConfiguration.MaxMultiClients} clients at a time."));
+                Send(new AOPacket("BD",
+                    "Not a real ban: Can't have more than " +
+                    $"{Server.ServerConfiguration.MaxClientsOnOneNetwork} " +
+                    "clients on the same network connected to the server at once."));
                 Task.Delay(500);
                 Session.Disconnect();
                 return;
@@ -223,7 +225,7 @@ namespace Alibi
 
         public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
         {
-            if (!((Server)ServerRef).OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
+            if (!((Server) ServerRef).OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
                 return;
             Server.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
@@ -243,7 +245,7 @@ namespace Alibi
                 for (var i = 0; i < packet.Objects.Length; i++)
                     packet.Objects[i] = packet.Objects[i].EncodeToAOPacket();
 
-            Session.SendAsync((AOPacket)packet);
+            Session.SendAsync((AOPacket) packet);
         }
 
         public void SendOocMessage(string message, string? sender = null)
