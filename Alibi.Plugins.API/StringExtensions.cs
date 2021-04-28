@@ -1,4 +1,4 @@
-﻿namespace Alibi.Helpers
+﻿namespace Alibi.Plugins.API
 {
     public static class StringExtensions
     {

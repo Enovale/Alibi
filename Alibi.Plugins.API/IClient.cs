@@ -194,7 +194,7 @@ namespace Alibi.Plugins.API
         /// Send this client a packet.
         /// </summary>
         /// <param name="packet">The packet to send.</param>
-        public void Send(IAOPacket packet);
+        public void Send(AOPacket packet);
 
         /// <summary>
         /// Send this player a message to be displayed in the Out of Context chat.

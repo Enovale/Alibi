@@ -16,7 +16,6 @@ using Alibi.Protocol;
 using Alibi.WebSocket;
 using NetCoreServer;
 using Newtonsoft.Json;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 #pragma warning disable 8618
 
@@ -24,6 +23,8 @@ namespace Alibi
 {
     public class Server : TcpServer, IServer
     {
+        public static Server Instance;
+        
         public const string PluginFolder = "Plugins";
         public const string PluginDepsFolder = "Dependencies";
         public const string ConfigFolder = "Config";
@@ -32,15 +33,15 @@ namespace Alibi
         public static readonly string AreasPath = Path.Combine(ConfigFolder, "areas.json");
         public static readonly string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static readonly string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
-
-        public static IPAddress MasterServerIp { get; private set; }
-
+        
         public static Logger Logger { get; private set; }
-        public static Configuration ServerConfiguration { get; private set; }
-        public static IDatabaseManager Database { get; private set; }
-        public static string[] MusicList { get; private set; }
-        public static string[] CharactersList { get; private set; }
-        public static string Version { get; private set; }
+
+        public IPAddress MasterServerIp { get; private set; }
+        public IConfiguration ServerConfiguration { get; private set; }
+        public IDatabaseManager Database { get; private set; }
+        public string[] MusicList { get; private set; }
+        public string[] CharactersList { get; private set; }
+        public string Version { get; private set; }
 
         public List<IClient> ClientsConnected { get; }
         public int ConnectedPlayers { get; set; }
@@ -55,6 +56,7 @@ namespace Alibi
 
         public Server(Configuration config) : base(config.BoundIpAddress, config.Port)
         {
+            Instance = this;
             ServerConfiguration = config;
             Version asmVersion = Assembly.GetExecutingAssembly().GetName().Version!;
             Version = $"{asmVersion.Major}.{asmVersion.Minor}.{asmVersion.Build}";
@@ -92,7 +94,7 @@ namespace Alibi
             {
                 AreaNames[Array.IndexOf(Areas, area)] = area.Name;
                 ((Area) area).Server = this;
-                ((Area) area).TakenCharacters = new bool[CharactersList.Length];
+                ((Area) area).TakenCharacters = new bool[CharactersList!.Length];
             }
 
             if (ServerConfiguration.WebsocketPort > -1)
@@ -129,7 +131,7 @@ namespace Alibi
             CharactersList = File.ReadAllLines(CharactersPath);
         }
 
-        public void Broadcast(IAOPacket message)
+        public void Broadcast(AOPacket message)
         {
             var clientQueue = new Queue<IClient>(ClientsConnected);
             while (clientQueue.Any())
@@ -250,7 +252,7 @@ namespace Alibi
             return true;
         }
 
-        public bool OnModCall(IClient client, IAOPacket packet)
+        public bool OnModCall(IClient client, AOPacket packet)
         {
             foreach (var p in _pluginManager.LoadedPlugins)
                 try

@@ -8,7 +8,6 @@ using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
 using Alibi.Plugins.API.Exceptions;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedParameter.Global
@@ -20,7 +19,7 @@ namespace Alibi.Protocol
     {
         [MessageHandler("HI")]
         [RequireState(ClientState.NewClient)]
-        internal static void HardwareId(IClient client, IAOPacket packet)
+        internal static void HardwareId(IClient client, AOPacket packet)
         {
             if (packet.Objects.Length <= 0)
                 return;
@@ -29,16 +28,16 @@ namespace Alibi.Protocol
                 return;
 
             ((Client) client).HardwareId = packet.Objects[0];
-            Server.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
+            client.ServerRef.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
             client.KickIfBanned();
 
             if (!IPAddress.IsLoopback(client.IpAddress) &&
                 client.ServerRef.ClientsConnected.Count(c => client.HardwareId == c.HardwareId)
-                > Server.ServerConfiguration.MaxMultiClients)
+                > client.ServerRef.ServerConfiguration.MaxMultiClients)
             {
                 client.Send(new AOPacket("BD",
                     "Not a real ban: Can't have more than " +
-                    $"{Server.ServerConfiguration.MaxMultiClients} clients on a single computer at a time."));
+                    $"{client.ServerRef.ServerConfiguration.MaxMultiClients} clients on a single computer at a time."));
                 Task.Delay(500);
                 client.Session.Disconnect();
                 return;
@@ -46,42 +45,42 @@ namespace Alibi.Protocol
 
             client.CurrentState = ClientState.PostHandshake;
 
-            client.Send(new AOPacket("ID", "111111", "Alibi", Server.Version));
+            client.Send(new AOPacket("ID", "111111", "Alibi", client.ServerRef.Version));
         }
 
         [MessageHandler("ID")]
         [RequireState(ClientState.PostHandshake)]
-        internal static void SoftwareId(IClient client, IAOPacket packet)
+        internal static void SoftwareId(IClient client, AOPacket packet)
         {
             client.CurrentState = ClientState.Identified;
             client.Send(new AOPacket("PN", client.ServerRef.ConnectedPlayers.ToString(),
-                Server.ServerConfiguration.MaxPlayers.ToString()));
+                client.ServerRef.ServerConfiguration.MaxPlayers.ToString()));
             client.Send(new AOPacket("FL", new[]
             {
                 "noencryption", "fastloading"
-            }.Concat(Server.ServerConfiguration.FeatureList).ToArray()));
+            }.Concat(client.ServerRef.ServerConfiguration.FeatureList).ToArray()));
         }
 
         // Slow loading, ugh.
         [MessageHandler("askchaa")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestResourceCounts(IClient client, IAOPacket packet)
+        internal static void RequestResourceCounts(IClient client, AOPacket packet)
         {
-            client.Send(new AOPacket("SI", Server.CharactersList.Length.ToString(),
+            client.Send(new AOPacket("SI", client.ServerRef.CharactersList.Length.ToString(),
                 client.ServerRef.Areas.First().EvidenceList.Count.ToString(),
-                (client.ServerRef.Areas.Length + Server.MusicList.Length).ToString()));
+                (client.ServerRef.Areas.Length + client.ServerRef.MusicList.Length).ToString()));
         }
 
         [MessageHandler("askchar2")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestCharactersSlow(IClient client, IAOPacket packet)
+        internal static void RequestCharactersSlow(IClient client, AOPacket packet)
         {
             RequestCharacterPageSlow(client, new AOPacket("AN", "0"));
         }
 
         [MessageHandler("AN")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestCharacterPageSlow(IClient client, IAOPacket packet)
+        internal static void RequestCharacterPageSlow(IClient client, AOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out var page))
             {
@@ -89,13 +88,16 @@ namespace Alibi.Protocol
                 var pageSize = 10 * 9;
                 var pageOffset = pageSize * page;
 
-                if (pageOffset >= Server.CharactersList.Length)
+                if (pageOffset >= client.ServerRef.CharactersList.Length)
                 {
                     RequestEvidenceSlow(client, new AOPacket("EI", "1"));
                     return;
                 }
 
-                var chars = new[] {page.ToString()}.Concat(Server.CharactersList.Skip(pageOffset).Take(pageSize));
+                var chars = new[] {page.ToString()}
+                    .Concat(client.ServerRef.CharactersList
+                    .Skip(pageOffset)
+                    .Take(pageSize));
 
                 var finalPacket = new AOPacket("CI", chars.ToArray());
                 client.Send(finalPacket);
@@ -104,7 +106,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("AE")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestEvidenceSlow(IClient client, IAOPacket packet)
+        internal static void RequestEvidenceSlow(IClient client, AOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out var page))
             {
@@ -129,13 +131,13 @@ namespace Alibi.Protocol
 
         [MessageHandler("EM")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestMusicSlow(IClient client, IAOPacket packet)
+        internal static void RequestMusicSlow(IClient client, AOPacket packet)
         {
             if (int.TryParse(packet.Objects[0], out var index))
             {
                 index = Math.Max(0, index);
 
-                var musicList = Server.MusicList.ToList();
+                var musicList = client.ServerRef.MusicList.ToList();
                 var categories = musicList.Split(m => m.Contains(".")).ToArray();
 
                 if (index >= categories.Length)
@@ -152,14 +154,14 @@ namespace Alibi.Protocol
 
         [MessageHandler("RC")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestCharacters(IClient client, IAOPacket packet)
+        internal static void RequestCharacters(IClient client, AOPacket packet)
         {
-            client.Send(new AOPacket("SC", Server.CharactersList));
+            client.Send(new AOPacket("SC", client.ServerRef.CharactersList));
         }
 
         [MessageHandler("RE")]
         [RequireState(ClientState.InArea)]
-        internal static void RequestEvidence(IClient client, IAOPacket packet)
+        internal static void RequestEvidence(IClient client, AOPacket packet)
         {
             var evidenceList = new string[client.Area!.EvidenceList.Count];
             for (var i = 0; i < client.Area.EvidenceList.Count; i++)
@@ -170,14 +172,14 @@ namespace Alibi.Protocol
 
         [MessageHandler("RM")]
         [RequireState(ClientState.Identified)]
-        internal static void RequestMusic(IClient client, IAOPacket packet)
+        internal static void RequestMusic(IClient client, AOPacket packet)
         {
-            client.Send(new AOPacket("SM", client.ServerRef.AreaNames.Concat(Server.MusicList).ToArray()));
+            client.Send(new AOPacket("SM", client.ServerRef.AreaNames.Concat(client.ServerRef.MusicList).ToArray()));
         }
 
         [MessageHandler("RD")]
         [RequireState(ClientState.Identified)]
-        internal static void Ready(IClient client, IAOPacket packet)
+        internal static void Ready(IClient client, AOPacket packet)
         {
             // This client didn't send us a hwid, need to kick
             if (string.IsNullOrWhiteSpace(client.HardwareId))
@@ -194,20 +196,20 @@ namespace Alibi.Protocol
             client.ServerRef.ConnectedPlayers++;
             ((Server) client.ServerRef).OnPlayerConnected(client);
             client.ChangeArea(Array.FindIndex(client.ServerRef.Areas, a => a.Locked == "FREE"));
-            client.SendOocMessage(Server.ServerConfiguration.Motd);
+            client.SendOocMessage(client.ServerRef.ServerConfiguration.Motd);
 
-            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the server.");
+            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the ServerRef.");
         }
 
         [MessageHandler("CH")]
-        internal static void KeepAlive(IClient client, IAOPacket packet)
+        internal static void KeepAlive(IClient client, AOPacket packet)
         {
             client.Send(new AOPacket("CHECK"));
         }
 
         [MessageHandler("PE")]
         [RequireState(ClientState.InArea)]
-        internal static void AddEvidence(IClient client, IAOPacket packet)
+        internal static void AddEvidence(IClient client, AOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -217,7 +219,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("DE")]
         [RequireState(ClientState.InArea)]
-        internal static void RemoveEvidence(IClient client, IAOPacket packet)
+        internal static void RemoveEvidence(IClient client, AOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -228,7 +230,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("EE")]
         [RequireState(ClientState.InArea)]
-        internal static void EditEvidence(IClient client, IAOPacket packet)
+        internal static void EditEvidence(IClient client, AOPacket packet)
         {
             if (!CanModifyEvidence(client))
                 return;
@@ -244,26 +246,26 @@ namespace Alibi.Protocol
 
         [MessageHandler("PW")]
         [RequireState(ClientState.InArea)]
-        internal static void CharacterPassword(IClient client, IAOPacket packet)
+        internal static void CharacterPassword(IClient client, AOPacket packet)
         {
             ((Client) client).Password = packet.Objects.First();
         }
 
         [MessageHandler("CC")]
         [RequireState(ClientState.InArea)]
-        internal static void ChangeCharacter(IClient client, IAOPacket packet)
+        internal static void ChangeCharacter(IClient client, AOPacket packet)
         {
             if (int.TryParse(packet.Objects[1], out var charId))
             {
                 if (client.Character != null)
                     client.Area!.TakenCharacters[(int) client.Character] = false;
 
-                if (charId > Server.CharactersList.Length)
+                if (charId > client.ServerRef.CharactersList.Length)
                     return;
                 if (charId < 0)
                     return;
 
-                var charToTake = Server.CharactersList[charId];
+                var charToTake = client.ServerRef.CharactersList[charId];
                 if (client.Area!.TakenCharacters[charId] || string.IsNullOrWhiteSpace(charToTake))
                     return;
 
@@ -277,7 +279,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("MC")]
         [RequireState(ClientState.InArea)]
-        internal static void ChangeMusic(IClient client, IAOPacket packet)
+        internal static void ChangeMusic(IClient client, AOPacket packet)
         {
             if (packet.Objects.Length <= 0)
                 return;
@@ -295,14 +297,14 @@ namespace Alibi.Protocol
             if (!((Server) client.ServerRef).OnMusicChange(client, ref song))
                 return;
 
-            foreach (var m in Server.MusicList)
+            foreach (var m in client.ServerRef.MusicList)
                 if (song == m)
                     client.Area!.Broadcast(packet);
         }
 
         [MessageHandler("MS")]
         [RequireState(ClientState.InArea)]
-        internal static void IcMessage(IClient client, IAOPacket packet)
+        internal static void IcMessage(IClient client, AOPacket packet)
         {
             if (client.Muted)
                 return;
@@ -313,7 +315,7 @@ namespace Alibi.Protocol
                 if (!((Server) client.ServerRef).OnIcMessage(client, ref validPacket.Objects[4])) // 4 is the message
                     return;
 
-                if (validPacket.Objects[4].Length > Server.ServerConfiguration.MaxMessageSize)
+                if (validPacket.Objects[4].Length > client.ServerRef.ServerConfiguration.MaxMessageSize)
                     throw new IcValidationException("Message was too long.");
 
                 client.Area!.Broadcast(validPacket);
@@ -327,7 +329,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("CT")]
         [RequireState(ClientState.InArea)]
-        internal static void OocMessage(IClient client, IAOPacket packet)
+        internal static void OocMessage(IClient client, AOPacket packet)
         {
             if (client.Muted)
                 return;
@@ -350,7 +352,7 @@ namespace Alibi.Protocol
                 return;
             packet.Objects[1] = message;
 
-            if (message.Length > Server.ServerConfiguration.MaxMessageSize)
+            if (message.Length > client.ServerRef.ServerConfiguration.MaxMessageSize)
             {
                 client.SendOocMessage("Message was too long.");
                 return;
@@ -362,7 +364,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("HP")]
         [RequireState(ClientState.InArea)]
-        internal static void UpdateHealthBar(IClient client, IAOPacket packet)
+        internal static void UpdateHealthBar(IClient client, AOPacket packet)
         {
             if (!client.Position!.ToLower().StartsWith("jud"))
                 return;
@@ -379,7 +381,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("RT")]
         [RequireState(ClientState.InArea)]
-        internal static void JudgeAnimation(IClient client, IAOPacket packet)
+        internal static void JudgeAnimation(IClient client, AOPacket packet)
         {
             if ((client.Position ?? "").ToLower().StartsWith("jud"))
                 client.Area!.Broadcast(packet);
@@ -387,7 +389,7 @@ namespace Alibi.Protocol
 
         [MessageHandler("ZZ")]
         [RequireState(ClientState.InArea)]
-        internal static void ModCall(IClient client, IAOPacket packet)
+        internal static void ModCall(IClient client, AOPacket packet)
         {
             if (!((Server) client.ServerRef).OnModCall(client, packet))
                 return;

@@ -9,7 +9,7 @@ items:
   - Alibi.Plugins.API.AuthType
   - Alibi.Plugins.API.ClientState
   - Alibi.Plugins.API.Handler
-  - Alibi.Plugins.API.IAOPacket
+  - Alibi.Plugins.API.AOPacket
   - Alibi.Plugins.API.IArea
   - Alibi.Plugins.API.IClient
   - Alibi.Plugins.API.IConfiguration
@@ -57,12 +57,12 @@ references:
   name: Handler
   nameWithType: Handler
   fullName: Alibi.Plugins.API.Handler
-- uid: Alibi.Plugins.API.IAOPacket
-  commentId: T:Alibi.Plugins.API.IAOPacket
+- uid: Alibi.Plugins.API.AOPacket
+  commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
-  name: IAOPacket
-  nameWithType: IAOPacket
-  fullName: Alibi.Plugins.API.IAOPacket
+  name: AOPacket
+  nameWithType: AOPacket
+  fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IArea
   commentId: T:Alibi.Plugins.API.IArea
   parent: Alibi.Plugins.API

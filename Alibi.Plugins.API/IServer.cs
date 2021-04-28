@@ -12,7 +12,7 @@ namespace Alibi.Plugins.API
     /// </summary>
     public interface IServer
     {
-        public static IConfiguration ServerConfiguration { get; }
+        public IConfiguration ServerConfiguration { get; }
 
         /// <summary>
         /// Resolved IP Address of the AO2 masterserver.
@@ -20,12 +20,12 @@ namespace Alibi.Plugins.API
         /// <remarks>
         /// This IP is resolved from the domain specified in ServerConfiguration.MasterserverAddress
         /// </remarks>
-        public static IPAddress MasterServerIp { get; }
+        public IPAddress MasterServerIp { get; }
 
         /// <summary>
         /// An interface that allows you to interact with the database containing bans, mods, etc
         /// </summary>
-        public static IDatabaseManager Database { get; }
+        public IDatabaseManager Database { get; }
 
         /// <summary>
         /// List of music entries specified in the configuration.
@@ -33,7 +33,7 @@ namespace Alibi.Plugins.API
         /// <remarks>
         /// Not every entry is a valid song that clients can play, so don't expect it to be.
         /// </remarks>
-        public static string[] MusicList { get; }
+        public string[] MusicList { get; }
 
         /// <summary>
         /// List of characters specified in the configuration.
@@ -41,9 +41,9 @@ namespace Alibi.Plugins.API
         /// <remarks>
         /// Duplicates are allowed, and will allow for two players being the same character.
         /// </remarks>
-        public static string[] CharactersList { get; }
+        public string[] CharactersList { get; }
 
-        public static string Version { get; }
+        public string Version { get; }
 
         /// <summary>
         /// Collection of all clients connected to this server.
@@ -90,7 +90,7 @@ namespace Alibi.Plugins.API
         /// Sends a packet to every client on the server.
         /// </summary>
         /// <param name="message">The packet to send.</param>
-        public void Broadcast(IAOPacket message);
+        public void Broadcast(AOPacket message);
         /// <summary>
         /// Sends a string to every client on the server
         /// that is displayed in their Out of Context chat

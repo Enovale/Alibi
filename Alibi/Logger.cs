@@ -11,13 +11,14 @@ namespace Alibi
     {
         public const string LogsFolder = "Logs";
         private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new Queue<Tuple<LogSeverity, string>>();
-        private readonly Queue<string> _logBuffer = new Queue<string>(Server.ServerConfiguration.LogBufferSize);
+        private readonly Queue<string> _logBuffer;
 
         private readonly Server _server;
 
         public Logger(Server server)
         {
             _server = server;
+            _logBuffer = new Queue<string>(_server.ServerConfiguration.LogBufferSize);
             Task.Run(PrintLogs);
         }
 
@@ -52,7 +53,7 @@ namespace Alibi
         /// <param name="verbose">Should this only show when in verbose logs mode?</param>
         public void Log(LogSeverity severity, string message, bool verbose = false)
         {
-            if (verbose && !Server.ServerConfiguration.VerboseLogs)
+            if (verbose && !_server.ServerConfiguration.VerboseLogs)
                 return;
             var debug = verbose ? "[DEBUG]" : "";
             var log =
@@ -62,7 +63,7 @@ namespace Alibi
 
         private void AddLog(LogSeverity severity, string log)
         {
-            if (_logBuffer.Count >= Server.ServerConfiguration.LogBufferSize)
+            if (_logBuffer.Count >= _server.ServerConfiguration.LogBufferSize)
                 _logBuffer.Dequeue();
 
             _logBuffer.Enqueue(log);

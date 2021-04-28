@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Alibi.Plugins.API;
 using Newtonsoft.Json;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
 {
@@ -35,7 +34,7 @@ namespace Alibi
 
         [JsonIgnore] public List<IEvidence> EvidenceList { get; } = new List<IEvidence>();
 
-        public void Broadcast(IAOPacket packet)
+        public void Broadcast(AOPacket packet)
         {
             var clientQueue = new Queue<IClient>(Server.ClientsConnected);
             while (clientQueue.Any())
@@ -46,9 +45,9 @@ namespace Alibi
             }
         }
 
-        public void BroadcastOocMessage(string message)
+        public void BroadcastOocMessage(string message, string? sender = null)
         {
-            Broadcast(new AOPacket("CT", "Server", message, "1"));
+            Broadcast(new AOPacket("CT", sender ?? "Server", message, "1")); // TODO: Why the fuck is there a 1 here
         }
 
         public void AreaUpdate(AreaUpdateType type) => AreaUpdate(type, null);

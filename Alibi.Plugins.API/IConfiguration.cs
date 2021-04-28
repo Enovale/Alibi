@@ -80,6 +80,11 @@ namespace Alibi.Plugins.API
         int MaxMultiClients { get; }
 
         /// <summary>
+        /// How many clients on a single IP are allowed to connect.
+        /// </summary>
+        int MaxClientsOnOneNetwork { get; }
+
+        /// <summary>
         /// How long until an idle (not sending keepalives) client is kicked from the server.
         /// </summary>
         int TimeoutSeconds { get; }

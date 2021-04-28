@@ -4,10 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Alibi.Helpers;
 using Alibi.Plugins.API;
 using Alibi.Protocol;
-using AOPacket = Alibi.Helpers.AOPacket;
 
 namespace Alibi
 {
@@ -28,7 +26,7 @@ namespace Alibi
         public string? Password { get; internal set; }
         public int? Character { get; set; }
 
-        public string CharacterName => Character != null ? Server.CharactersList[(int) Character] : "Spectator";
+        public string CharacterName => Character != null ? ServerRef.CharactersList[(int) Character] : "Spectator";
 
         public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
@@ -55,7 +53,7 @@ namespace Alibi
 
         internal void OnSessionConnected()
         {
-            if (((Server) ServerRef).ConnectedPlayers >= Server.ServerConfiguration.MaxPlayers)
+            if (((Server) ServerRef).ConnectedPlayers >= ServerRef.ServerConfiguration.MaxPlayers)
             {
                 Send(new AOPacket("BD", "Not a real ban: Max players has been reached."));
                 Task.Delay(500);
@@ -67,11 +65,11 @@ namespace Alibi
 
             if (!IPAddress.IsLoopback(IpAddress) &&
                 ServerRef.ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
-                > Server.ServerConfiguration.MaxClientsOnOneNetwork)
+                > ServerRef.ServerConfiguration.MaxClientsOnOneNetwork)
             {
                 Send(new AOPacket("BD",
                     "Not a real ban: Can't have more than " +
-                    $"{Server.ServerConfiguration.MaxClientsOnOneNetwork} " +
+                    $"{ServerRef.ServerConfiguration.MaxClientsOnOneNetwork} " +
                     "clients on the same network connected to the server at once."));
                 Task.Delay(500);
                 Session.Disconnect();
@@ -117,15 +115,15 @@ namespace Alibi
                     && !packet.StartsWith("WSIP#"))
                     return;
                 if (DateTime.Now.CompareTo(_rateLimitCheckTime.AddSeconds
-                    (Server.ServerConfiguration.RateLimitResetTime)) >= 0)
+                    (ServerRef.ServerConfiguration.RateLimitResetTime)) >= 0)
                 {
                     _packetCount = 0;
                     _rateLimitCheckTime = DateTime.Now;
                 }
 
                 // TODO: Make a better rate limiting system that doesn't use the banning system
-                if (_packetCount >= Server.ServerConfiguration.RateLimit)
-                    BanIp("You have been rate limited.", Server.ServerConfiguration.RateLimitBanLength,
+                if (_packetCount >= ServerRef.ServerConfiguration.RateLimit)
+                    BanIp("You have been rate limited.", ServerRef.ServerConfiguration.RateLimitBanLength,
                         null);
                 _packetCount++;
                 MessageHandler.HandleMessage(this, AOPacket.FromMessage(packet));
@@ -203,7 +201,7 @@ namespace Alibi
 
         public void KickIfBanned()
         {
-            if (Server.Database.IsHwidBanned(HardwareId) || Server.Database.IsIpBanned(IpAddress.ToString()))
+            if (ServerRef.Database.IsHwidBanned(HardwareId) || ServerRef.Database.IsIpBanned(IpAddress.ToString()))
             {
                 Send(new AOPacket("BD", GetBanReason()));
                 Task.Delay(500).Wait();
@@ -220,14 +218,14 @@ namespace Alibi
 
         public string GetBanReason()
         {
-            return Server.Database.GetBanReason(IpAddress.ToString());
+            return ServerRef.Database.GetBanReason(IpAddress.ToString());
         }
 
         public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
         {
             if (!((Server) ServerRef).OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
                 return;
-            Server.Database.BanHwid(HardwareId, reason, expireDate);
+            ServerRef.Database.BanHwid(HardwareId, reason, expireDate);
             Send(new AOPacket("KB", reason));
             Task.Delay(500).Wait();
             Session.Disconnect();
@@ -235,17 +233,17 @@ namespace Alibi
 
         public void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
         {
-            foreach (var hwid in Server.Database.GetHwidsfromIp(IpAddress.ToString()))
+            foreach (var hwid in ServerRef.Database.GetHwidsfromIp(IpAddress.ToString()))
                 ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate, banner);
         }
 
-        public void Send(IAOPacket packet)
+        public void Send(AOPacket packet)
         {
             if (packet.Objects != null)
                 for (var i = 0; i < packet.Objects.Length; i++)
                     packet.Objects[i] = packet.Objects[i].EncodeToAOPacket();
 
-            Session.SendAsync((AOPacket) packet);
+            Session.SendAsync(packet);
         }
 
         public void SendOocMessage(string message, string? sender = null)

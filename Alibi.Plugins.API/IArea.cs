@@ -82,14 +82,15 @@ namespace Alibi.Plugins.API
         /// Send a packet to all players currently in this area.
         /// </summary>
         /// <param name="packet">The packet to send</param>
-        public void Broadcast(IAOPacket packet);
+        public void Broadcast(AOPacket packet);
 
         /// <summary>
         /// Send a message to all players in this area.
         /// The message will display in their Out of Context chat.
         /// </summary>
         /// <param name="message">The message to send.</param>
-        public void BroadcastOocMessage(string message);
+        /// <param name="sender">A custom name to display instead of Server:</param>
+        public void BroadcastOocMessage(string message, string? sender = null);
 
         /// <summary>
         /// Broadcast an area update to all clients in this area.
