@@ -11,8 +11,8 @@
     <PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-    <PackageVersion>0.6.1</PackageVersion>
-    <AssemblyVersion>0.6.1</AssemblyVersion>
+    <PackageVersion>0.7</PackageVersion>
+    <AssemblyVersion>0.7</AssemblyVersion>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
 
