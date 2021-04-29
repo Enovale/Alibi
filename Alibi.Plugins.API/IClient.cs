@@ -116,6 +116,11 @@ namespace Alibi.Plugins.API
         /// Whether or not this player is able to speak.
         /// </summary>
         public bool Muted { get; set; }
+        
+        /// <summary>
+        /// What positions this user would like to fill in a case.
+        /// </summary>
+        public CasingFlags CasingPreferences { get; set; }
 
         // Retarded pairing shit
         /// <summary>

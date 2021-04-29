@@ -111,10 +111,22 @@ namespace Alibi.Plugins.API
         /// </code>
         public static implicit operator string(AOPacket pkt)
         {
-            if (pkt.Objects == null) return pkt.Type + "#%";
+            return pkt.ToString();
+        }
 
-            var final = new StringBuilder(pkt.Type + "#");
-            foreach (var o in pkt.Objects) final.Append(o + "#");
+        /// <summary>
+        /// Converts this packet into a decoded, constructed string explicitly.
+        /// </summary>
+        /// <returns>A decoded, constructed string</returns>
+        /// <code>
+        /// Console.WriteLine(new AOPacket("HI", new[] { 1234 }).ToString()) // Prints "HI#1234#%"
+        /// </code>
+        public override string ToString()
+        {
+            if (Objects == null) return Type + "#%";
+
+            var final = new StringBuilder(Type + "#");
+            foreach (var o in Objects) final.Append(o + "#");
 
             final.Append('%');
             return final.ToString();

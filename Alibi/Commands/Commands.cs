@@ -307,10 +307,14 @@ namespace Alibi.Commands
                 throw new CommandException("Usage: /login <username> <password>");
 
             if (!client.ServerRef.Database.CheckCredentials(args[0], args[1]))
+            {
+                client.Send(new AOPacket("AUTH", "0"));
                 throw new CommandException("Incorrect credentials.");
+            }
 
             ((Client) client).Auth = client.ServerRef.Database.GetPermissionLevel(args[0]);
             client.SendOocMessage("You have been authenticated as " + args[0] + ".");
+            client.Send(new AOPacket("AUTH", "1"));
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Logged in as {args[0]}.");
         }
 
@@ -320,6 +324,7 @@ namespace Alibi.Commands
         {
             ((Client) client).Auth = AuthType.USER;
             client.SendOocMessage("Logged out.");
+            client.Send(new AOPacket("AUTH", "-1"));
         }
 
         [ModOnly]
