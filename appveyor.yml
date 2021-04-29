@@ -1,0 +1,10 @@
+version: 1.0.{build}
+branches:
+  only:
+  - main
+configuration: Release
+before_build:
+- cmd: nuget restore
+build:
+  publish_core_console: true
+  verbosity: minimal
