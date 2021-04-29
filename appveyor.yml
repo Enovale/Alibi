@@ -1,10 +1,39 @@
-version: 1.0.{build}
+version: 0.7.0.{build}
 branches:
   only:
   - main
 configuration: Release
-before_build:
-- cmd: nuget restore
-build:
-  publish_core_console: true
-  verbosity: minimal
+platform: Any CPU
+build_script:
+- ps: >-
+    nuget restore
+    msbuild "C:\projects\alibi\Alibi.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+    $targets = 'win-x86','win-x64','win-arm','win-arm64','osx-x64','linux-x64','linux-musl-x64','linux-arm'
+
+    foreach ( $target in $targets )
+    {
+        dotnet publish Alibi/Alibi.csproj -o bin/publish/$target --configuration Release -p:PublishSingleFile=true --self-contained false --verbosity minimal -r $target
+    }
+
+    $plugins = Get-ChildItem ./* -Filter "Alibi.Plugins.*" | ? {$_.FullName -notmatch 'Alibi.Plugins.API$'} | Select -Expand FullName
+
+    New-Item -Path 'Plugins' -ItemType Directory
+    foreach ($plugin in $plugins) {
+      Copy-Item -Path "$plugin/bin/Release/net5.0/$(Split-Path $plugin -leaf).dll" -Destination 'Plugins/'
+    }
+
+    7z a Plugins.zip Plugins
+artifacts:
+- path: Plugins.zip
+  name: Bundled Plugins
+- path: Alibi.Plugins.API/bin/$(Configuration)/*.nupkg
+  name: API Nuget Package
+- path: bin/publish/win-x64/Alibi.exe
+  name: Windows x64
+- path: bin/publish/linux-x64/Alibi
+  name: Linux x64
+- path: bin/publish/osx-x64/Alibi
+  name: MacOS x64
+- path: bin/publish
+  name: Alibi_Targets_Unsupported
