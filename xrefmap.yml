@@ -106,6 +106,19 @@ references:
   fullName.vb: Alibi.Plugins.API.AOPacket.Widening
   nameWithType: AOPacket.Implicit
   nameWithType.vb: AOPacket.Widening
+- uid: Alibi.Plugins.API.AOPacket.ToString
+  name: ToString()
+  href: api/Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_ToString
+  commentId: M:Alibi.Plugins.API.AOPacket.ToString
+  fullName: Alibi.Plugins.API.AOPacket.ToString()
+  nameWithType: AOPacket.ToString()
+- uid: Alibi.Plugins.API.AOPacket.ToString*
+  name: ToString
+  href: api/Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_ToString_
+  commentId: Overload:Alibi.Plugins.API.AOPacket.ToString
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.AOPacket.ToString
+  nameWithType: AOPacket.ToString
 - uid: Alibi.Plugins.API.AOPacket.Type
   name: Type
   href: api/Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_Type
@@ -391,6 +404,54 @@ references:
   commentId: F:Alibi.Plugins.API.AuthType.USER
   fullName: Alibi.Plugins.API.AuthType.USER
   nameWithType: AuthType.USER
+- uid: Alibi.Plugins.API.CasingFlags
+  name: CasingFlags
+  href: api/Alibi.Plugins.API.CasingFlags.html
+  commentId: T:Alibi.Plugins.API.CasingFlags
+  fullName: Alibi.Plugins.API.CasingFlags
+  nameWithType: CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.CaseManager
+  name: CaseManager
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_CaseManager
+  commentId: F:Alibi.Plugins.API.CasingFlags.CaseManager
+  fullName: Alibi.Plugins.API.CasingFlags.CaseManager
+  nameWithType: CasingFlags.CaseManager
+- uid: Alibi.Plugins.API.CasingFlags.Defense
+  name: Defense
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_Defense
+  commentId: F:Alibi.Plugins.API.CasingFlags.Defense
+  fullName: Alibi.Plugins.API.CasingFlags.Defense
+  nameWithType: CasingFlags.Defense
+- uid: Alibi.Plugins.API.CasingFlags.Judge
+  name: Judge
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_Judge
+  commentId: F:Alibi.Plugins.API.CasingFlags.Judge
+  fullName: Alibi.Plugins.API.CasingFlags.Judge
+  nameWithType: CasingFlags.Judge
+- uid: Alibi.Plugins.API.CasingFlags.Jury
+  name: Jury
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_Jury
+  commentId: F:Alibi.Plugins.API.CasingFlags.Jury
+  fullName: Alibi.Plugins.API.CasingFlags.Jury
+  nameWithType: CasingFlags.Jury
+- uid: Alibi.Plugins.API.CasingFlags.None
+  name: None
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_None
+  commentId: F:Alibi.Plugins.API.CasingFlags.None
+  fullName: Alibi.Plugins.API.CasingFlags.None
+  nameWithType: CasingFlags.None
+- uid: Alibi.Plugins.API.CasingFlags.Prosecutor
+  name: Prosecutor
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_Prosecutor
+  commentId: F:Alibi.Plugins.API.CasingFlags.Prosecutor
+  fullName: Alibi.Plugins.API.CasingFlags.Prosecutor
+  nameWithType: CasingFlags.Prosecutor
+- uid: Alibi.Plugins.API.CasingFlags.Stenographer
+  name: Stenographer
+  href: api/Alibi.Plugins.API.CasingFlags.html#Alibi_Plugins_API_CasingFlags_Stenographer
+  commentId: F:Alibi.Plugins.API.CasingFlags.Stenographer
+  fullName: Alibi.Plugins.API.CasingFlags.Stenographer
+  nameWithType: CasingFlags.Stenographer
 - uid: Alibi.Plugins.API.ClientState
   name: ClientState
   href: api/Alibi.Plugins.API.ClientState.html
@@ -889,6 +950,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IClient.BanIp
   nameWithType: IClient.BanIp
+- uid: Alibi.Plugins.API.IClient.CasingPreferences
+  name: CasingPreferences
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_CasingPreferences
+  commentId: P:Alibi.Plugins.API.IClient.CasingPreferences
+  fullName: Alibi.Plugins.API.IClient.CasingPreferences
+  nameWithType: IClient.CasingPreferences
+- uid: Alibi.Plugins.API.IClient.CasingPreferences*
+  name: CasingPreferences
+  href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_CasingPreferences_
+  commentId: Overload:Alibi.Plugins.API.IClient.CasingPreferences
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IClient.CasingPreferences
+  nameWithType: IClient.CasingPreferences
 - uid: Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
   name: ChangeArea(Int32)
   href: api/Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_ChangeArea_System_Int32_
