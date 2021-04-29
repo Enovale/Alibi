@@ -11,7 +11,7 @@ build_script:
     msbuild "C:\projects\alibi\Alibi.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 
-    $targets = 'win-x86','win-x64','win-arm','win-arm64','osx-x64','linux-x64','linux-musl-x64','linux-arm'
+    $targets = 'win-x86','win-x64','win-arm','win-arm64','osx-x64','linux-x86','linux-x64','linux-musl-x64','linux-arm','linux-arm64','linux-armel','alpine-x64'
 
 
     foreach ( $target in $targets )
