@@ -7,21 +7,29 @@ platform: Any CPU
 build_script:
 - ps: >-
     nuget restore
+
     msbuild "C:\projects\alibi\Alibi.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
 
     $targets = 'win-x86','win-x64','win-arm','win-arm64','osx-x64','linux-x64','linux-musl-x64','linux-arm'
 
+
     foreach ( $target in $targets )
+
     {
         dotnet publish Alibi/Alibi.csproj -o bin/publish/$target --configuration Release -p:PublishSingleFile=true --self-contained false --verbosity minimal -r $target
     }
 
+
     $plugins = Get-ChildItem ./* -Filter "Alibi.Plugins.*" | ? {$_.FullName -notmatch 'Alibi.Plugins.API$'} | Select -Expand FullName
 
+
     New-Item -Path 'Plugins' -ItemType Directory
+
     foreach ($plugin in $plugins) {
       Copy-Item -Path "$plugin/bin/Release/net5.0/$(Split-Path $plugin -leaf).dll" -Destination 'Plugins/'
     }
+
 
     7z a Plugins.zip Plugins
 artifacts:
