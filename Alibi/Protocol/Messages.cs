@@ -96,8 +96,8 @@ namespace Alibi.Protocol
 
                 var chars = new[] {page.ToString()}
                     .Concat(client.ServerRef.CharactersList
-                    .Skip(pageOffset)
-                    .Take(pageSize));
+                        .Skip(pageOffset)
+                        .Take(pageSize));
 
                 var finalPacket = new AOPacket("CI", chars.ToArray());
                 client.Send(finalPacket);
@@ -360,6 +360,56 @@ namespace Alibi.Protocol
 
             client.Area!.Broadcast(packet);
             Server.Logger.OocMessageLog(message, client.Area, packet.Objects[0]);
+        }
+
+        [MessageHandler("SETCASE")]
+        [RequireState(ClientState.InArea)]
+        internal static void SetCasePreferences(IClient client, AOPacket packet)
+        {
+            if (packet.Objects.Length < 7)
+                return;
+
+            client.CasingPreferences = CasingFlags.None;
+            if (packet.Objects[1] == "1") // Skip caselist because who cares
+                client.CasingPreferences |= CasingFlags.CaseManager;
+            if (packet.Objects[2] == "1")
+                client.CasingPreferences |= CasingFlags.Defense;
+            if (packet.Objects[3] == "1")
+                client.CasingPreferences |= CasingFlags.Prosecutor;
+            if (packet.Objects[4] == "1")
+                client.CasingPreferences |= CasingFlags.Judge;
+            if (packet.Objects[5] == "1")
+                client.CasingPreferences |= CasingFlags.Jury;
+            if (packet.Objects[6] == "1")
+                client.CasingPreferences |= CasingFlags.Stenographer;
+        }
+
+        [MessageHandler("CASEA")]
+        [RequireState(ClientState.InArea)]
+        internal static void CaseAlert(IClient client, AOPacket packet)
+        {
+            if (packet.Objects.Length < 6)
+                return;
+
+            packet.Objects[0] =
+                AOPacket.EncodeToAOPacket(
+                    $"A case called \"{packet.Objects[0]}\" needs a role you want to fill in {client.Area!.Name}.");
+
+            var flags = CasingFlags.None;
+            if (packet.Objects[1] == "1") // Skip caselist because who cares, also CM isn't included ig
+                flags |= CasingFlags.Defense;
+            if (packet.Objects[2] == "1")
+                flags |= CasingFlags.Prosecutor;
+            if (packet.Objects[3] == "1")
+                flags |= CasingFlags.Judge;
+            if (packet.Objects[4] == "1")
+                flags |= CasingFlags.Jury;
+            if (packet.Objects[5] == "1")
+                flags |= CasingFlags.Stenographer;
+
+            foreach (var neededPlayer in client.ServerRef.ClientsConnected.Where(
+                c => c.CasingPreferences.HasFlag(flags)))
+                neededPlayer.Send(packet);
         }
 
         [MessageHandler("HP")]

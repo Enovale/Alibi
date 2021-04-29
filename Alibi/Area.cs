@@ -41,7 +41,7 @@ namespace Alibi
             while (clientQueue.Any())
             {
                 var client = clientQueue.Dequeue();
-                if (client.Connected && client.Area == this)
+                if (client is {Connected: true} && client.Area == this)
                     client.Send(packet);
             }
         }

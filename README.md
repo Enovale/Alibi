@@ -57,9 +57,7 @@ I am **always** open to issues, pull requests, debugging specific issues in priv
 # Progress
 These features are not implemented:
 
-- [ ] SETCASE
-- [ ] CASEA
-- [ ] Fantacrypt
+- [ ] Fantacrypt (Probably will never do this as FantaCrypt is gone in 2.9 and noone seems to use pre-2.4.3 clients)
 - [X] Slow loading packets are implemented according to everything i know, i have no freaking clue if they work though
 
 # TODO
@@ -74,6 +72,7 @@ Some shit that needs to get done
 - [X]  Become more thread safe (Maybe?)
 - [X]  Plugins
 - [X]  Areas
+- [X]  Case Alerts (CASEA and SETCASE) (Properly implemented, too! +1 Alibi/-1 Tsu3)
 - [X]  Commands (Some commands are in but need more)
 - [X]  Logging architecture
 - [X]  Database

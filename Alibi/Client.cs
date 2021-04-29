@@ -31,6 +31,7 @@ namespace Alibi
         public string? OocName { get; internal set; }
         public string? LastSentMessage { get; set; }
         public bool Muted { get; set; } = false;
+        public CasingFlags CasingPreferences { get; set; } = CasingFlags.None;
 
         // Retarded pairing shit
         public int PairingWith { get; internal set; } = -1;

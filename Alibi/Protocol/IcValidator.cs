@@ -93,10 +93,8 @@ namespace Alibi.Protocol
                 Math.Min(client.Area.EvidenceList.Count, packet.Objects[11].ToIntOrZero() - 1));
             if (client.Area.EvidenceList.Count == 0)
                 validatedObjects.Add("0");
-            else if (client.Area.EvidenceList[moddedEvidenceId] != null)
-                validatedObjects.Add(moddedEvidenceId.ToString());
             else
-                throw new IcValidationException("Tried to use evidence that doesn't exist.");
+                validatedObjects.Add(moddedEvidenceId.ToString());
 
             // Make sure flip is 1 or 0
             var flip = packet.Objects[12].ToIntOrZero();
@@ -189,10 +187,9 @@ namespace Alibi.Protocol
                 validatedObjects.Add(packet.Objects[23]);
 
                 // Make sure additive is 1 or 0
-                var additive = packet.Objects[24].ToIntOrZero();
-                if (additive != 0 && additive != 1)
+                if (packet.Objects[24] != "0" && packet.Objects[24] != "1")
                     throw new IcValidationException("Additive invalid.");
-                validatedObjects.Add(additive.ToString());
+                validatedObjects.Add(packet.Objects[24]);
 
                 // Overlay effect; spec not available as well
                 validatedObjects.Add(packet.Objects[25]);
