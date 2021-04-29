@@ -10,6 +10,13 @@ After having ran an Attorney Online server, I despise the current experience of 
 for this game. So I thought it would be fun to try and make one myself, to see if I can do something better.
 
 # Prerequisites
+## Compatibility
+
+Public builds of Alibi are released for Windows and Linux currently, but the code is not dependent on a single platform and *should* work on ARM, MacOS, or anything .NET 5.0 supports.
+
+The server itself is compatible with all versions of AO2 that support disabling fantacrypt. (2.4.3+)
+
+## Server Setup
 Windows:
 
  - All you need is either the Desktop or Core version of the [.NET 5.0 Runtime](https://dotnet.microsoft.com/download/dotnet/5.0) installed.
@@ -44,20 +51,21 @@ Then, make a class that inherits from `Plugin`, and implement it's required memb
 You should now have a bare-bones working plugin! Build it and put the .dll in the `Plugins`
 folder of Alibi, and restart the server.
 
+# Contributing
+I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is ElijahZAwesome#6933.
+
 # Progress
-These packets are not implemented:
+These features are not implemented:
 
 - [ ] SETCASE
 - [ ] CASEA
-- [ ] Slow loading packets (needed because client is bugged lol)
-
-# Contributing
-I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is ElijahZAwesome#6933.
+- [ ] Fantacrypt
+- [X] Slow loading packets are implemented according to everything i know, i have no freaking clue if they work though
 
 # TODO
 Some shit that needs to get done
 
-- [ ]  Make websockets less terrible again.
+- [X]  ~~Make websockets less terrible again.~~ Refactored to actually function normally :)
 - [ ]  ~~Add a "primary admin" or something so only they can restart the server and create/remove logins, since mods shouldnt be able to remove mods.~~
 - [X]  Multiple levels of permissions, User, Moderator, Administrator
 - [X]  ~~***Switch to an ID system (incremented ID as primary key in the db instead of hwid)***~~ instead of this, clients just can't connect and interact with the server unless they have followed the protocol and sent their HWID
@@ -72,4 +80,4 @@ Some shit that needs to get done
 - [X] *I think the command paradigm currently implemented is good enough. Any Tsuserver3 commands that users want can be added by request or through usermade plugins  ~~Implement standard commands~~
 - [ ]  Test/Stress test this bitch
 - [ ]  Document server
-- [ ]  Document Plugin API
+- [X]  Document Plugin API

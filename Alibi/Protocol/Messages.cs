@@ -198,7 +198,7 @@ namespace Alibi.Protocol
             client.ChangeArea(Array.FindIndex(client.ServerRef.Areas, a => a.Locked == "FREE"));
             client.SendOocMessage(client.ServerRef.ServerConfiguration.Motd);
 
-            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the ServerRef.");
+            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the Server.");
         }
 
         [MessageHandler("CH")]

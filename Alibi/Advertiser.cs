@@ -37,8 +37,8 @@ namespace Alibi
 
             _socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
                 ports,
-                server.ServerConfiguration.ServerName,
-                server.ServerConfiguration.ServerDescription,
+                AOPacket.EncodeToAOPacket(server.ServerConfiguration.ServerName),
+                AOPacket.EncodeToAOPacket(server.ServerConfiguration.ServerDescription),
                 $"Alibi v{server.Version}"
             )));
         }
