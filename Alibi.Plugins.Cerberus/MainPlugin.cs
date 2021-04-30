@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -37,7 +38,7 @@ namespace Alibi.Plugins.Cerberus
             foreach (var client in server.ClientsConnected)
                 _clientDict.Add(client, new MuteInfo());
             _lastOocMsgDict = new Dictionary<IClient, string?>();
-            
+
             _silencedAreas = new Dictionary<IArea, bool>(server.Areas.Length);
             foreach (var area in server.Areas)
                 _silencedAreas.Add(area, false);
@@ -45,41 +46,41 @@ namespace Alibi.Plugins.Cerberus
             MutedClientsCheck();
         }
 
-        // ReSharper disable once FunctionRecursiveOnAllPaths
         private async void MutedClientsCheck()
         {
-            var queue = new Queue<IClient>(_clientDict.Keys);
-            while (queue.Count > 0)
+            while (true)
             {
-                var client = queue.Dequeue();
-                if (_clientDict[client].IcMuted
-                    && _clientDict[client].IcTimer.AddSeconds(Config.IcMuteLengthInSeconds).CompareTo(DateTime.Now) <
-                    0)
+                var queue = new Queue<IClient>(_clientDict.Keys);
+                while (queue.Count > 0)
                 {
-                    client.SendOocMessage("You have been un-muted in IC.");
-                    _clientDict[client].IcMuted = false;
+                    var client = queue.Dequeue();
+                    if (_clientDict[client].IcMuted
+                        && _clientDict[client].IcTimer.AddSeconds(Config.IcMuteLengthInSeconds)
+                            .CompareTo(DateTime.Now) < 0)
+                    {
+                        client.SendOocMessage("You have been un-muted in IC.");
+                        _clientDict[client].IcMuted = false;
+                    }
+
+                    if (_clientDict[client].OocMuted
+                        && _clientDict[client].OocTimer.AddSeconds(Config.OocMuteLengthInSeconds)
+                            .CompareTo(DateTime.Now) < 0)
+                    {
+                        client.SendOocMessage("You have been un-muted in OOC.");
+                        _clientDict[client].OocMuted = false;
+                    }
+
+                    if (_clientDict[client].MusicMuted
+                        && _clientDict[client].MusicTimer.AddSeconds(Config.MusicMuteLengthInSeconds)
+                            .CompareTo(DateTime.Now) < 0)
+                    {
+                        client.SendOocMessage("You have been un-muted from changing Music.");
+                        _clientDict[client].MusicMuted = false;
+                    }
                 }
 
-                if (_clientDict[client].OocMuted
-                    && _clientDict[client].OocTimer.AddSeconds(Config.OocMuteLengthInSeconds).CompareTo(DateTime.Now) <
-                    0)
-                {
-                    client.SendOocMessage("You have been un-muted in OOC.");
-                    _clientDict[client].OocMuted = false;
-                }
-
-                if (_clientDict[client].MusicMuted
-                    && _clientDict[client].MusicTimer.AddSeconds(Config.MusicMuteLengthInSeconds)
-                        .CompareTo(DateTime.Now) <
-                    0)
-                {
-                    client.SendOocMessage("You have been un-muted from changing Music.");
-                    _clientDict[client].MusicMuted = false;
-                }
+                await Task.Delay(1000);
             }
-
-            await Task.Delay(1000);
-            MutedClientsCheck();
         }
 
         public override void OnPlayerJoined(IClient client)
@@ -107,7 +108,7 @@ namespace Alibi.Plugins.Cerberus
                 client.SendOocMessage("Thy room has been silenced. Hush, mortal, whilst the gods speaketh.");
                 return false;
             }
-            
+
             message = StripZalgo(message);
             if (Config.IcMuteLengthInSeconds < 0 || Config.MaxIcMessagesPerSecond < 0)
                 return true;
