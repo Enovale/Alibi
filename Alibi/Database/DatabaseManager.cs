@@ -19,6 +19,7 @@ namespace Alibi.Database
                 Directory.CreateDirectory(DatabaseFolder);
             if (!File.Exists(DatabasePath))
                 File.Create(DatabasePath).Close();
+
             _sql = new SQLiteConnectionWithLock(new SQLiteConnectionString(DatabasePath));
             _sql.Lock();
             _sql.CreateTable<User>();
@@ -159,7 +160,7 @@ namespace Alibi.Database
             // Can't remove the last admin user.
             if (_sql.Table<Login>().Count(l => l.PermissionsLevel == AuthType.ADMINISTRATOR) == 1)
                 return false;
-            
+
             if (_sql.Delete<Login>(username) == 0)
                 return false;
 
@@ -183,7 +184,7 @@ namespace Alibi.Database
         public int GetPermissionLevel(string username)
         {
             return _sql.Table<Login>()
-                .FirstOrDefault(l => 
+                .FirstOrDefault(l =>
                     l.UserName.ToLower() == username.ToLower()).PermissionsLevel;
         }
     }

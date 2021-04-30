@@ -9,10 +9,13 @@ namespace Alibi
     // TODO: Maybe rewrite this using a TcpClient so we can better handle errors
     internal class Advertiser
     {
-        private readonly Socket _socket;
+        private Socket _socket;
 
-        public Advertiser(IPAddress ip, int port)
+        public void Start(IPAddress ip, int port)
         {
+            if (_socket != null)
+                return;
+            
             try
             {
                 _socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -45,7 +48,12 @@ namespace Alibi
 
         public void Stop()
         {
-            _socket.Disconnect(true);
+            if (_socket == null)
+                return;
+            
+            _socket.Disconnect(false);
+            _socket.Dispose();
+            _socket = null;
         }
     }
 }

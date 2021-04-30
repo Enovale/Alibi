@@ -83,7 +83,10 @@ namespace Alibi.Plugins.API
         /// Hot-reloads the server configuration from disk.
         /// </summary>
         /// <remarks>
-        /// TODO: Document what things are hot-reloaded, if not all
+        /// This will reload your available characters, music, and the server configuration.
+        /// It will also restart the server advertiser (what puts your server on the server list).
+        /// Warning: This can break things depending on what you change, the server is not completely
+        /// tailored to be compatible with this just yet.
         /// </remarks>
         public void ReloadConfig();
         /// <summary>
