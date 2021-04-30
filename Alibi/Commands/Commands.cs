@@ -358,6 +358,22 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
         }
 
         [AdminOnly]
+        [CommandHandler("reload", "Reloads the server configuration (DANGEROUS)")]
+        internal static void Reload(IClient client, string[] args)
+        {
+            client.ServerRef.ReloadConfig();
+            client.SendOocMessage("Server configuration has been reloaded.");
+        }
+
+        [AdminOnly]
+        [CommandHandler("softreload", "Reloads the server character and music list")]
+        internal static void SoftReload(IClient client, string[] args)
+        {
+            client.ServerRef.InitializeLists();
+            client.SendOocMessage("Server configuration has been soft reloaded.");
+        }
+
+        [AdminOnly]
         [CommandHandler("restart", "Restart's the client.ServerRef.")]
         internal static void Restart(IClient client, string[] args)
         {
