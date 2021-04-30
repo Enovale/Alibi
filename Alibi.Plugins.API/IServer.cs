@@ -58,10 +58,12 @@ namespace Alibi.Plugins.API
         /// How many fully identified players are currently playing on the server?
         /// </summary>
         public int ConnectedPlayers { get; set; }
+
         /// <summary>
         /// Collection of areas on this server. Refer to IArea.
         /// </summary>
         public IArea[] Areas { get; }
+
         /// <summary>
         /// List of area names in the same order as Areas[]
         /// </summary>
@@ -69,6 +71,7 @@ namespace Alibi.Plugins.API
         /// TODO: Honestly I have no clue with this is here
         /// </remarks>
         public string[] AreaNames { get; }
+
         /// <summary>
         /// Should this server log and print logs that are marked as Verbose?
         /// </summary>
@@ -79,6 +82,7 @@ namespace Alibi.Plugins.API
         /// </summary>
         /// <returns>TODO: idk</returns>
         public bool Stop();
+
         /// <summary>
         /// Hot-reloads the server configuration from disk.
         /// </summary>
@@ -89,11 +93,21 @@ namespace Alibi.Plugins.API
         /// tailored to be compatible with this just yet.
         /// </remarks>
         public void ReloadConfig();
+
+        /// <summary>
+        /// Hot reloads less server configuration to prevent unexpected errors.
+        /// </summary>
+        /// <remarks>
+        /// This reloads the music list and the characters list, and nothing else.
+        /// </remarks>
+        public void InitializeLists();
+
         /// <summary>
         /// Sends a packet to every client on the server.
         /// </summary>
         /// <param name="message">The packet to send.</param>
         public void Broadcast(AOPacket message);
+
         /// <summary>
         /// Sends a string to every client on the server
         /// that is displayed in their Out of Context chat

@@ -75,7 +75,7 @@ namespace Alibi
             if (ServerConfiguration.Advertise)
                 _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
 
-            ReloadConfig();
+            InitializeLists();
 
             var readAreas = JsonConvert.DeserializeObject<Area[]>(File.ReadAllText(AreasPath));
             if (readAreas == null || readAreas.Length == 0)
@@ -116,7 +116,7 @@ namespace Alibi
             UnbanExpires(_cancelTasksToken.Token);
         }
 
-        public void ReloadConfig()
+        public void InitializeLists()
         {
             EnsureConfigFiles();
             MusicList = File.ReadAllLines(MusicPath);
@@ -128,6 +128,12 @@ namespace Alibi
             }
 
             CharactersList = File.ReadAllLines(CharactersPath);
+        }
+
+        public void ReloadConfig()
+        {
+            InitializeLists();
+            
             ServerConfiguration = Configuration.LoadFromFile(ConfigPath);
             MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
             
