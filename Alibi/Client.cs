@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 using Alibi.Protocol;
+using Alibi.WebSocket;
 
 namespace Alibi
 {
@@ -80,6 +81,8 @@ namespace Alibi
             KickIfBanned();
 
             ((Server) ServerRef).OnPlayerJoined(this);
+            if (Session is WebSocketSession)
+                Server.Logger.Log(LogSeverity.Info, $"[{IpAddress}] Websocket Connected.", true);
 
             // fuck fantaencrypt
             Send(new AOPacket("decryptor", "NOENCRYPT"));
@@ -100,6 +103,8 @@ namespace Alibi
                 Area.AreaUpdate(AreaUpdateType.PlayerCount);
                 Area.AreaUpdate(AreaUpdateType.CourtManager);
             }
+            
+            Server.Logger.Log(LogSeverity.Info, $"[{IpAddress}] Disconnected.", true);
         }
 
         internal void OnSessionReceived(byte[] buffer, long offset, long size)

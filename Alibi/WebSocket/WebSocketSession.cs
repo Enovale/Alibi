@@ -21,8 +21,6 @@ namespace Alibi.WebSocket
         public override void OnWsConnected(HttpRequest request)
         {
             var ip = ((IPEndPoint)Socket.RemoteEndPoint!).Address;
-            Alibi.Server.Logger.Log(LogSeverity.Info,
-                $"[{ip}] Websocket connection.", true);
             _client = new Client((Server) _baseServer, this, ip)
                 {LastAlive = DateTime.Now};
             _client?.OnSessionConnected();
