@@ -2026,6 +2026,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.FindUser
   nameWithType: IServer.FindUser
+- uid: Alibi.Plugins.API.IServer.InitializeLists
+  name: InitializeLists()
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_InitializeLists
+  commentId: M:Alibi.Plugins.API.IServer.InitializeLists
+  fullName: Alibi.Plugins.API.IServer.InitializeLists()
+  nameWithType: IServer.InitializeLists()
+- uid: Alibi.Plugins.API.IServer.InitializeLists*
+  name: InitializeLists
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_InitializeLists_
+  commentId: Overload:Alibi.Plugins.API.IServer.InitializeLists
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IServer.InitializeLists
+  nameWithType: IServer.InitializeLists
 - uid: Alibi.Plugins.API.IServer.MasterServerIp
   name: MasterServerIp
   href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_MasterServerIp
