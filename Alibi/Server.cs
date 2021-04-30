@@ -24,7 +24,7 @@ namespace Alibi
     public class Server : TcpServer, IServer
     {
         public static Server Instance;
-        
+
         public const string PluginFolder = "Plugins";
         public const string PluginDepsFolder = "Dependencies";
         public const string ConfigFolder = "Config";
@@ -33,7 +33,7 @@ namespace Alibi
         public static readonly string AreasPath = Path.Combine(ConfigFolder, "areas.json");
         public static readonly string MusicPath = Path.Combine(ConfigFolder, "music.txt");
         public static readonly string CharactersPath = Path.Combine(ConfigFolder, "characters.txt");
-        
+
         public static Logger Logger { get; private set; }
 
         public IPAddress MasterServerIp { get; private set; }
@@ -113,7 +113,7 @@ namespace Alibi
             Logger.Log(LogSeverity.Special, " Server started!");
             _cancelTasksToken = new CancellationTokenSource();
             CheckCorpses(_cancelTasksToken.Token);
-            UnbanExpires(_cancelTasksToken.Token);
+            CheckExpiredBans(_cancelTasksToken.Token);
         }
 
         public void InitializeLists()
@@ -133,10 +133,10 @@ namespace Alibi
         public void ReloadConfig()
         {
             InitializeLists();
-            
+
             ServerConfiguration = Configuration.LoadFromFile(ConfigPath);
             MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
-            
+
             if (ServerConfiguration.Advertise)
                 _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
             else
@@ -308,49 +308,36 @@ namespace Alibi
 
         private async void CheckCorpses(CancellationToken token)
         {
-            Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
-            var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
-            while (clientQueue.Any())
+            while (true)
             {
-                var client = clientQueue.Dequeue();
-                if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
+                Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
+                var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
+                while (clientQueue.Any())
                 {
-                    Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
-                    // Forcibly kick.
-                    client.Session.Disconnect();
+                    var client = clientQueue.Dequeue();
+                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
+                    {
+                        Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
+                        // Forcibly kick.
+                        client.Session.Disconnect();
+                    }
                 }
-            }
 
-            try
-            {
-                await Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token).ConfigureAwait(false);
+                await Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
             }
-            catch (TaskCanceledException)
-            {
-                return;
-            }
-
-            CheckCorpses(token);
         }
 
-        private async void UnbanExpires(CancellationToken token)
+        private async void CheckExpiredBans(CancellationToken token)
         {
-            Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
-            foreach (var bannedHwid in Database.GetBannedHwids())
-                if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
-                    Database.UnbanHwid(bannedHwid);
-
-            try
+            while (true)
             {
-                // Wait a minute each time because that's the minimum unit of measurement
-                await Task.Delay(60000, token).ConfigureAwait(false);
+                Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
+                foreach (var bannedHwid in Database.GetBannedHwids())
+                    if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
+                        Database.UnbanHwid(bannedHwid);
+                
+                await Task.Delay(60000, token);
             }
-            catch (TaskCanceledException)
-            {
-                return;
-            }
-
-            UnbanExpires(token);
         }
 
         protected override TcpSession CreateSession()
