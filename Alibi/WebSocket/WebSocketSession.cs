@@ -10,7 +10,7 @@ namespace Alibi.WebSocket
     {
         private Client? _client;
         private readonly IServer _baseServer;
-        
+
         public WebSocketSession(IServer baseServer, WsServer server) : base(server)
         {
             OptionReceiveBufferSize = 65536;
@@ -20,8 +20,7 @@ namespace Alibi.WebSocket
 
         public override void OnWsConnected(HttpRequest request)
         {
-            var ip = ((IPEndPoint)Socket.RemoteEndPoint!).Address;
-            _client = new Client((Server) _baseServer, this, ip)
+            _client = new Client((Server) _baseServer, this, ((IPEndPoint) Socket.RemoteEndPoint!).Address)
                 {LastAlive = DateTime.Now};
             _client?.OnSessionConnected();
         }

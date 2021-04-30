@@ -70,11 +70,10 @@ namespace Alibi
                     "then removing the dummy user with /removelogin.");
 
             ClientsConnected = new List<IClient>(ServerConfiguration.MaxPlayers);
+            MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
+            _advertiser = new Advertiser();
             if (ServerConfiguration.Advertise)
-            {
-                MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
-                _advertiser = new Advertiser(MasterServerIp, ServerConfiguration.MasterServerPort);
-            }
+                _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
 
             ReloadConfig();
 
@@ -123,12 +122,19 @@ namespace Alibi
             MusicList = File.ReadAllLines(MusicPath);
             if (MusicList[0].Contains("."))
             {
-                var tmp = new List<string>(MusicList);
+                var tmp = MusicList.ToList();
                 tmp.Insert(0, "==Music==");
                 MusicList = tmp.ToArray();
             }
 
             CharactersList = File.ReadAllLines(CharactersPath);
+            ServerConfiguration = Configuration.LoadFromFile(ConfigPath);
+            MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
+            
+            if (ServerConfiguration.Advertise)
+                _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
+            else
+                _advertiser.Stop();
         }
 
         public void Broadcast(AOPacket message)
