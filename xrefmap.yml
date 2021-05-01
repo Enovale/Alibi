@@ -1586,12 +1586,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.AddLogin
   nameWithType: IDatabaseManager.AddLogin
-- uid: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)
-  name: AddUser(String, String)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_String_
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String, System.String)
-  nameWithType: IDatabaseManager.AddUser(String, String)
+- uid: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)
+  name: AddUser(String, IPAddress)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_Net_IPAddress_
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String, System.Net.IPAddress)
+  nameWithType: IDatabaseManager.AddUser(String, IPAddress)
 - uid: Alibi.Plugins.API.IDatabaseManager.AddUser*
   name: AddUser
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_AddUser_
@@ -1615,15 +1615,15 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid
   nameWithType: IDatabaseManager.BanHwid
-- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
-  name: BanIp(String, String, Nullable<TimeSpan>)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_System_String_System_String_System_Nullable_System_TimeSpan__
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
-  name.vb: BanIp(String, String, Nullable(Of TimeSpan))
-  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable<System.TimeSpan>)
-  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable(Of System.TimeSpan))
-  nameWithType: IDatabaseManager.BanIp(String, String, Nullable<TimeSpan>)
-  nameWithType.vb: IDatabaseManager.BanIp(String, String, Nullable(Of TimeSpan))
+- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
+  name: BanIp(IPAddress, String, Nullable<TimeSpan>)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
+  name.vb: BanIp(IPAddress, String, Nullable(Of TimeSpan))
+  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress, System.String, System.Nullable<System.TimeSpan>)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress, System.String, System.Nullable(Of System.TimeSpan))
+  nameWithType: IDatabaseManager.BanIp(IPAddress, String, Nullable<TimeSpan>)
+  nameWithType.vb: IDatabaseManager.BanIp(IPAddress, String, Nullable(Of TimeSpan))
 - uid: Alibi.Plugins.API.IDatabaseManager.BanIp*
   name: BanIp
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_
@@ -1683,12 +1683,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
   nameWithType: IDatabaseManager.GetBannedHwids
-- uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  name: GetBanReason(String)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_String_
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  nameWithType: IDatabaseManager.GetBanReason(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
+  name: GetBanReason(IPAddress)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_Net_IPAddress_
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
+  nameWithType: IDatabaseManager.GetBanReason(IPAddress)
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason*
   name: GetBanReason
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBanReason_
@@ -1696,12 +1696,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason
   nameWithType: IDatabaseManager.GetBanReason
-- uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
-  name: GetHwidsfromIp(String)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_String_
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
-  nameWithType: IDatabaseManager.GetHwidsfromIp(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
+  name: GetHwidsfromIp(IPAddress)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_Net_IPAddress_
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
+  nameWithType: IDatabaseManager.GetHwidsfromIp(IPAddress)
 - uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*
   name: GetHwidsfromIp
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_
@@ -1735,12 +1735,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned
   nameWithType: IDatabaseManager.IsHwidBanned
-- uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
-  name: IsIpBanned(String)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_String_
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
-  nameWithType: IDatabaseManager.IsIpBanned(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
+  name: IsIpBanned(IPAddress)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_Net_IPAddress_
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
+  nameWithType: IDatabaseManager.IsIpBanned(IPAddress)
 - uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned*
   name: IsIpBanned
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_IsIpBanned_
@@ -1774,12 +1774,12 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IDatabaseManager.UnbanHwid
   nameWithType: IDatabaseManager.UnbanHwid
-- uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
-  name: UnbanIp(String)
-  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_String_
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
-  nameWithType: IDatabaseManager.UnbanIp(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
+  name: UnbanIp(IPAddress)
+  href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_Net_IPAddress_
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
+  nameWithType: IDatabaseManager.UnbanIp(IPAddress)
 - uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp*
   name: UnbanIp
   href: api/Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_UnbanIp_
@@ -1935,6 +1935,38 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IServer.Areas
   nameWithType: IServer.Areas
+- uid: Alibi.Plugins.API.IServer.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  name: BanHwid(String, String, Nullable<TimeSpan>, IClient)
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  commentId: M:Alibi.Plugins.API.IServer.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  name.vb: BanHwid(String, String, Nullable(Of TimeSpan), IClient)
+  fullName: Alibi.Plugins.API.IServer.BanHwid(System.String, System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  fullName.vb: Alibi.Plugins.API.IServer.BanHwid(System.String, System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
+  nameWithType: IServer.BanHwid(String, String, Nullable<TimeSpan>, IClient)
+  nameWithType.vb: IServer.BanHwid(String, String, Nullable(Of TimeSpan), IClient)
+- uid: Alibi.Plugins.API.IServer.BanHwid*
+  name: BanHwid
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanHwid_
+  commentId: Overload:Alibi.Plugins.API.IServer.BanHwid
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IServer.BanHwid
+  nameWithType: IServer.BanHwid
+- uid: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  name: BanIp(IPAddress, String, Nullable<TimeSpan>, IClient)
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  commentId: M:Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  name.vb: BanIp(IPAddress, String, Nullable(Of TimeSpan), IClient)
+  fullName: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress, System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  fullName.vb: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress, System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
+  nameWithType: IServer.BanIp(IPAddress, String, Nullable<TimeSpan>, IClient)
+  nameWithType.vb: IServer.BanIp(IPAddress, String, Nullable(Of TimeSpan), IClient)
+- uid: Alibi.Plugins.API.IServer.BanIp*
+  name: BanIp
+  href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanIp_
+  commentId: Overload:Alibi.Plugins.API.IServer.BanIp
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IServer.BanIp
+  nameWithType: IServer.BanIp
 - uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   name: Broadcast(AOPacket)
   href: api/Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Broadcast_Alibi_Plugins_API_AOPacket_
