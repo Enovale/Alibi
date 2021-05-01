@@ -12,7 +12,7 @@ namespace Alibi
     internal static class Program
     {
         internal static readonly ManualResetEvent ResetEvent;
-        
+
         private static readonly Server _server;
 
         static Program()
@@ -49,24 +49,25 @@ namespace Alibi
         {
             Console.Title = "Alibi - Stopping";
             _server.Stop();
-            if (eventArgs is UnhandledExceptionEventArgs exceptionArgs)
+            switch (eventArgs)
             {
-                Console.Title = "Alibi - Crashed";
-                var error = (Exception) exceptionArgs.ExceptionObject;
-                Server.Logger.Log(LogSeverity.Error, $" {error.Message}\n{error.StackTrace}");
-            }
-
-            if (eventArgs is UnobservedTaskExceptionEventArgs taskExceptionArgs)
-            {
-                Console.Title = "Alibi - Crashed";
-                var error = taskExceptionArgs.Exception;
-                Server.Logger.Log(LogSeverity.Error, $" {error!.Message}\n{error.StackTrace}");
-            }
-
-            if (eventArgs is ConsoleCancelEventArgs args)
-            {
-                args.Cancel = true;
-                Environment.Exit(0);
+                case UnhandledExceptionEventArgs exceptionArgs:
+                {
+                    Console.Title = "Alibi - Crashed";
+                    var genericError = (Exception) exceptionArgs.ExceptionObject;
+                    Server.Logger.Log(LogSeverity.Error, $" {genericError.Message}\n{genericError.StackTrace}");
+                    break;
+                }
+                case UnobservedTaskExceptionEventArgs taskExceptionArgs:
+                    Console.Title = "Alibi - Crashed";
+                    var unobservedTaskError = taskExceptionArgs.Exception;
+                    Server.Logger.Log(LogSeverity.Error,
+                        $" {unobservedTaskError!.Message}\n{unobservedTaskError.StackTrace}");
+                    break;
+                case ConsoleCancelEventArgs args:
+                    args.Cancel = true;
+                    Environment.Exit(0);
+                    break;
             }
         }
     }
