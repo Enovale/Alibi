@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using Alibi.Plugins.API;
 using SQLite;
 
@@ -35,7 +36,7 @@ namespace Alibi.Database
                 });
         }
 
-        public bool AddUser(string hwid, string ip)
+        public bool AddUser(string hwid, IPAddress ip)
         {
             var query = _sql.Table<User>().Where(u => u.Hwid == hwid);
             var list = query.ToArray();
@@ -49,7 +50,7 @@ namespace Alibi.Database
             if (list.Length == 1)
             {
                 var existingUser = list.First();
-                if (!existingUser.Ips.Contains(ip))
+                if (!existingUser.Ips.Contains(ip.ToString()))
                 {
                     existingUser.Ips += ";" + ip;
                     _sql.Update(existingUser);
@@ -64,7 +65,7 @@ namespace Alibi.Database
                 Banned = false,
                 BanReason = "",
                 Hwid = hwid,
-                Ips = ip
+                Ips = ip.ToString()
             };
 
             _sql.InsertOrReplace(newUser);
@@ -72,9 +73,12 @@ namespace Alibi.Database
             return true;
         }
 
-        public string[] GetHwidsfromIp(string ip)
+        public string[] GetHwidsfromIp(IPAddress ip)
         {
-            return _sql.Table<User>().Where(u => u.Ips.Contains(ip)).Select(u => u.Hwid).ToArray();
+            // Yes, this tostring is REQUIRED.
+            // I dont get it either. FUCK SQLite-Net-PCL and it's jank shittyness.
+            var ipString = ip.ToString();
+            return _sql.Table<User>().Where(u => u.Ips.Contains(ipString)).Select(u => u.Hwid).ToArray();
         }
 
         public bool IsHwidBanned(string hwid)
@@ -82,7 +86,7 @@ namespace Alibi.Database
             return _sql.Table<User>().Any(u => u.Banned && u.Hwid == hwid);
         }
 
-        public bool IsIpBanned(string ip)
+        public bool IsIpBanned(IPAddress ip)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
                 if (IsHwidBanned(hwid))
@@ -91,7 +95,12 @@ namespace Alibi.Database
             return false;
         }
 
-        public string GetBanReason(string ip) => _sql.Table<User>().First(u => u.Ips.Contains(ip)).BanReason;
+        public string GetBanReason(IPAddress ip)
+        {
+            // Same here as with earlier.
+            var ipString = ip.ToString();
+            return _sql.Table<User>().First(u => u.Ips.Contains(ipString)).BanReason;
+        }
 
         public void BanHwid(string hwid, string reason, TimeSpan? expireTime = null)
         {
@@ -99,12 +108,12 @@ namespace Alibi.Database
             user.Banned = true;
             user.BanReason = reason;
             if (expireTime != null && expireTime.Value == TimeSpan.Zero && user.BanExpiration == null)
-                user.BanExpiration = DateTime.Now.Add((TimeSpan) expireTime);
+                user.BanExpiration = DateTime.UtcNow.Add((TimeSpan) expireTime);
 
             _sql.Update(user);
         }
 
-        public void BanIp(string ip, string reason, TimeSpan? expireTime = null)
+        public void BanIp(IPAddress ip, string reason, TimeSpan? expireTime = null)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
                 BanHwid(hwid, reason, expireTime);
@@ -118,7 +127,7 @@ namespace Alibi.Database
             _sql.Update(user);
         }
 
-        public void UnbanIp(string ip)
+        public void UnbanIp(IPAddress ip)
         {
             foreach (var hwid in GetHwidsfromIp(ip))
                 UnbanHwid(hwid);

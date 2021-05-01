@@ -21,7 +21,7 @@ namespace Alibi
                 ip.Equals(((Server)Server).MasterServerIp))
                 Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
             _client = new Client((Server) Server, this, ip)
-                {LastAlive = DateTime.Now};
+                {LastAlive = DateTime.UtcNow};
             _client.OnSessionConnected();
         }
 

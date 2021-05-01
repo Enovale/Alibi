@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace Alibi.Plugins.API
 {
@@ -13,14 +14,14 @@ namespace Alibi.Plugins.API
         /// <param name="hwid">The hardware ID of this user</param>
         /// <param name="ip">The IP Address of this user</param>
         /// <returns>Whether or not the user was successfully added to the database.</returns>
-        public bool AddUser(string hwid, string ip);
+        public bool AddUser(string hwid, IPAddress ip);
 
         /// <summary>
         /// Get all hardware IDs associated with a given IP Address
         /// </summary>
         /// <param name="ip">The IP Address to search the database for</param>
         /// <returns>An array of hardware IDs associated with this IP</returns>
-        public string[] GetHwidsfromIp(string ip);
+        public string[] GetHwidsfromIp(IPAddress ip);
 
         /// <summary>
         /// Check if a given hardware ID is banned in the database.
@@ -34,7 +35,7 @@ namespace Alibi.Plugins.API
         /// </summary>
         /// <param name="ip">The IP Address to check</param>
         /// <returns>Whether or not this IP Address is banned</returns>
-        public bool IsIpBanned(string ip);
+        public bool IsIpBanned(IPAddress ip);
 
         /// <summary>
         /// Gets the ban reasoning stored in the database for an IP Address.
@@ -44,7 +45,7 @@ namespace Alibi.Plugins.API
         /// <remarks>
         /// This isn't available for HWIDs for technical reasons.
         /// </remarks>
-        public string GetBanReason(string ip);
+        public string GetBanReason(IPAddress ip);
 
         /// <summary>
         /// Registers a ban for an HWID in the database. This won't take effect
@@ -65,7 +66,7 @@ namespace Alibi.Plugins.API
         /// <remarks>
         /// Try to never use this ban method as it is insecure. Use HWID banning whenever possible.
         /// </remarks>
-        public void BanIp(string ip, string reason, TimeSpan? expireTime = null);
+        public void BanIp(IPAddress ip, string reason, TimeSpan? expireTime = null);
 
         /// <summary>
         /// Lifts a ban for an HWID in the database.
@@ -77,7 +78,7 @@ namespace Alibi.Plugins.API
         /// Lifts a ban for an IP Address in the database.
         /// </summary>
         /// <param name="ip">The IP Address to unban</param>
-        public void UnbanIp(string ip);
+        public void UnbanIp(IPAddress ip);
 
         /// <summary>
         /// Gets a list of every banned Hardware ID in the database.

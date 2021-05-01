@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
@@ -56,7 +55,7 @@ namespace Alibi.Plugins.Cerberus
                     var client = queue.Dequeue();
                     if (_clientDict[client].IcMuted
                         && _clientDict[client].IcTimer.AddSeconds(Config.IcMuteLengthInSeconds)
-                            .CompareTo(DateTime.Now) < 0)
+                            .CompareTo(DateTime.UtcNow) < 0)
                     {
                         client.SendOocMessage("You have been un-muted in IC.");
                         _clientDict[client].IcMuted = false;
@@ -64,7 +63,7 @@ namespace Alibi.Plugins.Cerberus
 
                     if (_clientDict[client].OocMuted
                         && _clientDict[client].OocTimer.AddSeconds(Config.OocMuteLengthInSeconds)
-                            .CompareTo(DateTime.Now) < 0)
+                            .CompareTo(DateTime.UtcNow) < 0)
                     {
                         client.SendOocMessage("You have been un-muted in OOC.");
                         _clientDict[client].OocMuted = false;
@@ -72,7 +71,7 @@ namespace Alibi.Plugins.Cerberus
 
                     if (_clientDict[client].MusicMuted
                         && _clientDict[client].MusicTimer.AddSeconds(Config.MusicMuteLengthInSeconds)
-                            .CompareTo(DateTime.Now) < 0)
+                            .CompareTo(DateTime.UtcNow) < 0)
                     {
                         client.SendOocMessage("You have been un-muted from changing Music.");
                         _clientDict[client].MusicMuted = false;
@@ -114,9 +113,9 @@ namespace Alibi.Plugins.Cerberus
                 return true;
             if (_clientDict[client].IcMuted)
                 return false;
-            if (DateTime.Now.CompareTo(_clientDict[client].IcTimer) >= 0)
+            if (DateTime.UtcNow.CompareTo(_clientDict[client].IcTimer) >= 0)
             {
-                _clientDict[client].IcTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].IcTimer = DateTime.UtcNow.AddSeconds(1);
                 _clientDict[client].IcMessages = 0;
             }
             else
@@ -127,7 +126,7 @@ namespace Alibi.Plugins.Cerberus
             if (_clientDict[client].IcMessages > Config.MaxIcMessagesPerSecond)
             {
                 client.SendOocMessage($"You have been IC muted for {Config.IcMuteLengthInSeconds} seconds.");
-                _clientDict[client].IcTimer = DateTime.Now;
+                _clientDict[client].IcTimer = DateTime.UtcNow;
                 _clientDict[client].IcMessages = 0;
                 _clientDict[client].IcMuted = true;
                 return false;
@@ -150,9 +149,9 @@ namespace Alibi.Plugins.Cerberus
                 return true;
             if (_clientDict[client].OocMuted)
                 return false;
-            if (DateTime.Now.CompareTo(_clientDict[client].OocTimer) >= 0)
+            if (DateTime.UtcNow.CompareTo(_clientDict[client].OocTimer) >= 0)
             {
-                _clientDict[client].OocTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].OocTimer = DateTime.UtcNow.AddSeconds(1);
                 _clientDict[client].OocMessages = 0;
             }
             else
@@ -163,7 +162,7 @@ namespace Alibi.Plugins.Cerberus
             if (_clientDict[client].OocMessages > Config.MaxOocMessagesPerSecond)
             {
                 client.SendOocMessage($"You have been OOC muted for {Config.OocMuteLengthInSeconds} seconds.");
-                _clientDict[client].OocTimer = DateTime.Now;
+                _clientDict[client].OocTimer = DateTime.UtcNow;
                 _clientDict[client].OocMessages = 0;
                 _clientDict[client].OocMuted = true;
                 return false;
@@ -178,9 +177,9 @@ namespace Alibi.Plugins.Cerberus
                 return true;
             if (_clientDict[client].MusicMuted)
                 return false;
-            if (DateTime.Now.CompareTo(_clientDict[client].MusicTimer) >= 0)
+            if (DateTime.UtcNow.CompareTo(_clientDict[client].MusicTimer) >= 0)
             {
-                _clientDict[client].MusicTimer = DateTime.Now.AddSeconds(1);
+                _clientDict[client].MusicTimer = DateTime.UtcNow.AddSeconds(1);
                 _clientDict[client].MusicMessages = 0;
             }
             else
@@ -191,7 +190,7 @@ namespace Alibi.Plugins.Cerberus
             if (_clientDict[client].MusicMessages > Config.MaxMusicMessagesPerSecond)
             {
                 client.SendOocMessage($"You have been Music muted for {Config.MusicMuteLengthInSeconds} seconds.");
-                _clientDict[client].MusicTimer = DateTime.Now;
+                _clientDict[client].MusicTimer = DateTime.UtcNow;
                 _clientDict[client].MusicMessages = 0;
                 _clientDict[client].MusicMuted = true;
                 return false;

@@ -21,7 +21,7 @@ namespace Alibi.WebSocket
         public override void OnWsConnected(HttpRequest request)
         {
             _client = new Client((Server) _baseServer, this, ((IPEndPoint) Socket.RemoteEndPoint!).Address)
-                {LastAlive = DateTime.Now};
+                {LastAlive = DateTime.UtcNow};
             _client?.OnSessionConnected();
         }
 

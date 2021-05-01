@@ -129,11 +129,12 @@ namespace Alibi.Commands
                 if (!client.Area.TakenCharacters[i])
                     continue;
                 var tchar = client.ServerRef.CharactersList[i];
+                var user = client.ServerRef.FindUser(tchar)!;
                 if (client.Auth < AuthType.MODERATOR)
                     output.Append($"\n{tchar}, ID: {i}");
                 else
                     output.Append(
-                        $"\n{client.ServerRef.FindUser(tchar)!.IpAddress}: " +
+                        $"\n[{user.IpAddress}][{user.HardwareId}]: " +
                         $"{tchar}, ID: {i}"
                     );
             }
@@ -524,15 +525,13 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
                     }
             }
 
-            if (IPAddress.TryParse(args[0], out _))
-                // Gross
-                foreach (var c in new Queue<IClient>(
-                    client.ServerRef.ClientsConnected.Where(c => c.IpAddress.ToString() == args[0])))
-                    c.BanIp(reason, expireDate, client);
+            if (IPAddress.TryParse(args[0], out var ip))
+                client.ServerRef.BanIp(ip, reason, expireDate, client);
             else
-                foreach (var c in new Queue<IClient>(
-                    client.ServerRef.ClientsConnected.Where(c => c.HardwareId == args[0])))
-                    c.BanHwid(reason, expireDate, client);
+                client.ServerRef.BanHwid(args[0], reason, expireDate, client);
+
+            foreach (var c in new Queue<IClient>(client.ServerRef.ClientsConnected))
+                c.KickIfBanned();
 
             client.SendOocMessage($"{args[0]} has been banned.");
         }
@@ -544,8 +543,8 @@ Packet Handlers Registered: {MessageHandler.Handlers.Count}");
             if (args.Length < 1)
                 throw new CommandException("Usage: /unban <hwid/ip>");
 
-            if (IPAddress.TryParse(args[0], out _))
-                client.ServerRef.Database.UnbanIp(args[0]);
+            if (IPAddress.TryParse(args[0], out var ip))
+                client.ServerRef.Database.UnbanIp(ip);
             else
                 client.ServerRef.Database.UnbanHwid(args[0]);
 

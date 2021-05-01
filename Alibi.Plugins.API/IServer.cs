@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -121,5 +122,23 @@ namespace Alibi.Plugins.API
         /// <param name="str">An id, ooc name, char name, or HWID to search for.</param>
         /// <returns>The client that was found</returns>
         public IClient? FindUser(string str);
+
+        /// <summary>
+        /// Bans an IP address, whether it's online or not, and kicks any clients using it.
+        /// </summary>
+        /// <param name="ip">The IP to ban</param>
+        /// <param name="reason">Why they were banned</param>
+        /// <param name="expireDate">When their ban should be lifted, if ever</param>
+        /// <param name="banner">The person that banned them (null if the server did it)</param>
+        public void BanIp(IPAddress ip, string reason, TimeSpan? expireDate = null, IClient? banner = null);
+
+        /// <summary>
+        /// Bans an Hardware ID, whether it's online or not, and kicks any clients using it.
+        /// </summary>
+        /// <param name="hwid">The hardware ID to ban</param>
+        /// <param name="reason">Why they were banned</param>
+        /// <param name="expireDate">When their ban should be lifted, if ever</param>
+        /// <param name="banner">The person that banned them (null if the server did it)</param>
+        public void BanHwid(string hwid, string reason, TimeSpan? expireDate = null, IClient? banner = null);
     }
 }
