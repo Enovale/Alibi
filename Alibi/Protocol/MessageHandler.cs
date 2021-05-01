@@ -28,6 +28,8 @@ namespace Alibi.Protocol
                     {
                         if (client.CurrentState != stateAttr.State && stateAttr.Kick)
                         {
+                            Server.Logger.Log(LogSeverity.Special,
+                                $"[{client.IpAddress}] Kicked for violated protocol: {packet}", true);
                             client.Kick("Protocol violation.");
                             return;
                         }
@@ -41,7 +43,7 @@ namespace Alibi.Protocol
                 }
                 catch (TargetInvocationException e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, 
+                    Server.Logger.Log(LogSeverity.Error,
                         $" Error executing message handler for '{packet.Type}': {e}");
                 }
                 catch (Exception e)

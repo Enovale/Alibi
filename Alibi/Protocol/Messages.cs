@@ -202,6 +202,15 @@ namespace Alibi.Protocol
             Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Just joined the Server.");
         }
 
+        [MessageHandler("FC")]
+        [RequireState(ClientState.InArea)]
+        internal static void FreeCharacter(IClient client, AOPacket packet)
+        {
+            client.Area!.TakenCharacters[(int) client.Character!] = false;
+            client.Character = null;
+            client.Area.UpdateTakenCharacters();
+        }
+
         [MessageHandler("CH")]
         internal static void KeepAlive(IClient client, AOPacket packet)
         {

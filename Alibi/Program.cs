@@ -48,6 +48,7 @@ namespace Alibi
         private static void ExitProgram(object? sender, EventArgs eventArgs)
         {
             Console.Title = "Alibi - Stopping";
+            _server.Stop();
             if (eventArgs is UnhandledExceptionEventArgs exceptionArgs)
             {
                 Console.Title = "Alibi - Crashed";
@@ -62,7 +63,6 @@ namespace Alibi
                 Server.Logger.Log(LogSeverity.Error, $" {error!.Message}\n{error.StackTrace}");
             }
 
-            _server.Stop();
             if (eventArgs is ConsoleCancelEventArgs args)
             {
                 args.Cancel = true;
