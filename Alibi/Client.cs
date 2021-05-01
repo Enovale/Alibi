@@ -63,7 +63,7 @@ namespace Alibi
                 return;
             }
 
-            _rateLimitCheckTime = DateTime.Now;
+            _rateLimitCheckTime = DateTime.UtcNow;
 
             if (!IPAddress.IsLoopback(IpAddress) &&
                 ServerRef.ClientsConnected.Count(c => IpAddress.ToString() == c.IpAddress.ToString())
@@ -120,11 +120,11 @@ namespace Alibi
                     && !packet.StartsWith("HI#")
                     && !packet.StartsWith("WSIP#"))
                     return;
-                if (DateTime.Now.CompareTo(_rateLimitCheckTime.AddSeconds
+                if (DateTime.UtcNow.CompareTo(_rateLimitCheckTime.AddSeconds
                     (ServerRef.ServerConfiguration.RateLimitResetTime)) >= 0)
                 {
                     _packetCount = 0;
-                    _rateLimitCheckTime = DateTime.Now;
+                    _rateLimitCheckTime = DateTime.UtcNow;
                 }
 
                 // TODO: Make a better rate limiting system that doesn't use the banning system
@@ -135,7 +135,7 @@ namespace Alibi
                 MessageHandler.HandleMessage(this, AOPacket.FromMessage(packet));
             }
 
-            LastAlive = DateTime.Now;
+            LastAlive = DateTime.UtcNow;
         }
 
         public void ChangeArea(int index)
@@ -207,7 +207,7 @@ namespace Alibi
 
         public void KickIfBanned()
         {
-            if (ServerRef.Database.IsHwidBanned(HardwareId) || ServerRef.Database.IsIpBanned(IpAddress.ToString()))
+            if (ServerRef.Database.IsHwidBanned(HardwareId) || ServerRef.Database.IsIpBanned(IpAddress))
             {
                 Send(new AOPacket("BD", GetBanReason()));
                 Task.Delay(500).Wait();
@@ -224,23 +224,18 @@ namespace Alibi
 
         public string GetBanReason()
         {
-            return ServerRef.Database.GetBanReason(IpAddress.ToString());
+            return ServerRef.Database.GetBanReason(IpAddress);
         }
 
         public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
         {
-            if (!((Server) ServerRef).OnBan(ServerRef.FindUser(HardwareId!)!, banner, ref reason, expireDate))
-                return;
-            ServerRef.Database.BanHwid(HardwareId, reason, expireDate);
-            Send(new AOPacket("KB", reason));
-            Task.Delay(500).Wait();
-            Session.Disconnect();
+            if(HardwareId != null)
+                ServerRef.BanHwid(HardwareId, reason, expireDate, banner);
         }
 
         public void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
         {
-            foreach (var hwid in ServerRef.Database.GetHwidsfromIp(IpAddress.ToString()))
-                ServerRef.FindUser(hwid)?.BanHwid(reason, expireDate, banner);
+            ServerRef.BanIp(IpAddress, reason, expireDate, banner);
         }
 
         public void Send(AOPacket packet)

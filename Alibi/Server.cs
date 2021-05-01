@@ -177,6 +177,24 @@ namespace Alibi
             return null;
         }
 
+        public void BanIp(IPAddress ip, string reason, TimeSpan? expireDate = null, IClient? banner = null)
+        {
+            if (!OnBan(FindUser(ip.ToString())!, banner, ref reason, expireDate))
+                return;
+            Database.BanIp(ip, reason, expireDate);
+            foreach (var c in new Queue<IClient?>(ClientsConnected))
+                c?.KickIfBanned();
+        }
+
+        public void BanHwid(string hwid, string reason, TimeSpan? expireDate = null, IClient? banner = null)
+        {
+            if (!OnBan(FindUser(hwid)!, banner, ref reason, expireDate))
+                return;
+            Database.BanHwid(hwid, reason, expireDate);
+            foreach (var c in new Queue<IClient?>(ClientsConnected))
+                c?.KickIfBanned();
+        }
+
         public void OnAllPluginsLoaded()
         {
             foreach (var p in _pluginManager.LoadedPlugins)
@@ -315,7 +333,7 @@ namespace Alibi
                 while (clientQueue.Any())
                 {
                     var client = clientQueue.Dequeue();
-                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.Now)
+                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.UtcNow)
                     {
                         Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
                         // Forcibly kick.
@@ -333,7 +351,7 @@ namespace Alibi
             {
                 Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
                 foreach (var bannedHwid in Database.GetBannedHwids())
-                    if (DateTime.Now.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
+                    if (DateTime.UtcNow.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
                         Database.UnbanHwid(bannedHwid);
                 
                 await Task.Delay(60000, token);

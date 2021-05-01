@@ -28,7 +28,7 @@ namespace Alibi.Protocol
                 return;
 
             ((Client) client).HardwareId = packet.Objects[0];
-            client.ServerRef.Database.AddUser(client.HardwareId, client.IpAddress.ToString());
+            client.ServerRef.Database.AddUser(client.HardwareId, client.IpAddress);
             client.KickIfBanned();
 
             if (!IPAddress.IsLoopback(client.IpAddress) &&
