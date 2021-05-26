@@ -1307,6 +1307,19 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
   nameWithType: IConfiguration.AllowDoublePostsIfDifferentAnim
+- uid: Alibi.Plugins.API.IConfiguration.AssetUrl
+  name: AssetUrl
+  href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_AssetUrl
+  commentId: P:Alibi.Plugins.API.IConfiguration.AssetUrl
+  fullName: Alibi.Plugins.API.IConfiguration.AssetUrl
+  nameWithType: IConfiguration.AssetUrl
+- uid: Alibi.Plugins.API.IConfiguration.AssetUrl*
+  name: AssetUrl
+  href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_AssetUrl_
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.AssetUrl
+  isSpec: "True"
+  fullName: Alibi.Plugins.API.IConfiguration.AssetUrl
+  nameWithType: IConfiguration.AssetUrl
 - uid: Alibi.Plugins.API.IConfiguration.BoundIpAddress
   name: BoundIpAddress
   href: api/Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_BoundIpAddress
