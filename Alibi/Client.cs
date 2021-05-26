@@ -43,7 +43,7 @@ namespace Alibi
         private DateTime _rateLimitCheckTime;
         private int _packetCount;
 
-        public Client(Server serverRef, ISession session, IPAddress ip)
+        public Client(IServer serverRef, ISession session, IPAddress ip)
         {
             CurrentState = ClientState.NewClient;
             ServerRef = serverRef;
@@ -90,18 +90,21 @@ namespace Alibi
 
         internal void OnSessionDisconnected()
         {
-            ((Server) ServerRef).ClientsConnected.Remove(this);
+            ServerRef.ClientsConnected.Remove(this);
             if (Connected)
             {
-                ((Server) ServerRef).ConnectedPlayers--;
-                ((Area) Area!).PlayerCount--;
+                ServerRef.ConnectedPlayers--;
+                if (Area != null)
+                {
+                    Area.PlayerCount--;
+                    if (Character != null)
+                        Area.TakenCharacters[(int) Character] = false;
+                    Area.UpdateTakenCharacters();
+                    Area.CurrentCaseManagers.Remove(this);
+                    Area.AreaUpdate(AreaUpdateType.PlayerCount);
+                    Area.AreaUpdate(AreaUpdateType.CourtManager);
+                }
                 Connected = false;
-                if (Character != null)
-                    Area.TakenCharacters[(int) Character] = false;
-                Area.UpdateTakenCharacters();
-                Area.CurrentCaseManagers.Remove(this);
-                Area.AreaUpdate(AreaUpdateType.PlayerCount);
-                Area.AreaUpdate(AreaUpdateType.CourtManager);
             }
             
             Server.Logger.Log(LogSeverity.Info, $"[{IpAddress}] Disconnected.", true);
@@ -116,9 +119,7 @@ namespace Alibi
             var packets = msg.Split("%", StringSplitOptions.RemoveEmptyEntries);
             foreach (var packet in packets)
             {
-                if (HardwareId == null
-                    && !packet.StartsWith("HI#")
-                    && !packet.StartsWith("WSIP#"))
+                if (HardwareId == null && !packet.StartsWith("HI#"))
                     return;
                 if (DateTime.UtcNow.CompareTo(_rateLimitCheckTime.AddSeconds
                     (ServerRef.ServerConfiguration.RateLimitResetTime)) >= 0)

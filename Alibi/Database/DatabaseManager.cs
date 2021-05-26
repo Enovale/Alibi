@@ -38,6 +38,9 @@ namespace Alibi.Database
 
         public bool AddUser(string hwid, IPAddress ip)
         {
+            if (Equals(ip, IPAddress.None))
+                return false;
+            
             var query = _sql.Table<User>().Where(u => u.Hwid == hwid);
             var list = query.ToArray();
 
@@ -75,6 +78,9 @@ namespace Alibi.Database
 
         public string[] GetHwidsfromIp(IPAddress ip)
         {
+            if (Equals(ip, IPAddress.None))
+                return Array.Empty<string>();
+            
             // Yes, this tostring is REQUIRED.
             // I dont get it either. FUCK SQLite-Net-PCL and it's jank shittyness.
             var ipString = ip.ToString();
@@ -88,6 +94,9 @@ namespace Alibi.Database
 
         public bool IsIpBanned(IPAddress ip)
         {
+            if (Equals(ip, IPAddress.None))
+                return false;
+            
             foreach (var hwid in GetHwidsfromIp(ip))
                 if (IsHwidBanned(hwid))
                     return true;
@@ -97,6 +106,9 @@ namespace Alibi.Database
 
         public string GetBanReason(IPAddress ip)
         {
+            if (Equals(ip, IPAddress.None))
+                return string.Empty;
+            
             // Same here as with earlier.
             var ipString = ip.ToString();
             return _sql.Table<User>().First(u => u.Ips.Contains(ipString)).BanReason;
@@ -115,6 +127,9 @@ namespace Alibi.Database
 
         public void BanIp(IPAddress ip, string reason, TimeSpan? expireTime = null)
         {
+            if (Equals(ip, IPAddress.None))
+                return;
+            
             foreach (var hwid in GetHwidsfromIp(ip))
                 BanHwid(hwid, reason, expireTime);
         }
@@ -129,6 +144,9 @@ namespace Alibi.Database
 
         public void UnbanIp(IPAddress ip)
         {
+            if (Equals(ip, IPAddress.None))
+                return;
+            
             foreach (var hwid in GetHwidsfromIp(ip))
                 UnbanHwid(hwid);
         }

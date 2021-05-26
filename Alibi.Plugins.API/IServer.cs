@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Alibi.Plugins.API.BotAPI;
 
 // ReSharper disable UnassignedGetOnlyAutoProperty
 #pragma warning disable 8618
@@ -105,6 +104,17 @@ namespace Alibi.Plugins.API
         public void InitializeLists();
 
         /// <summary>
+        /// Handles an arbitrary packet internally. Intended for plugins.
+        /// </summary>
+        /// <param name="client">The client which sent the packet</param>
+        /// <param name="packet">The packet that was sent.</param>
+        /// <remarks>
+        /// This is handled identically to if a client were to send a packet over
+        /// the socket to the server, so treat it as such.
+        /// </remarks>
+        public void HandlePacket(IClient client, AOPacket packet);
+
+        /// <summary>
         /// Sends a packet to every client on the server.
         /// </summary>
         /// <param name="message">The packet to send.</param>
@@ -141,11 +151,5 @@ namespace Alibi.Plugins.API
         /// <param name="expireDate">When their ban should be lifted, if ever</param>
         /// <param name="banner">The person that banned them (null if the server did it)</param>
         public void BanHwid(string hwid, string reason, TimeSpan? expireDate = null, IClient? banner = null);
-
-        /// <summary>
-        /// Creates an IBotPlayer and returns it.
-        /// </summary>
-        /// <returns>A new registered Bot Player, ready to be used.</returns>
-        public IBotPlayer CreateBotPlayer();
     }
 }

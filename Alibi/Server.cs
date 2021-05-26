@@ -12,7 +12,6 @@ using Alibi.Commands;
 using Alibi.Database;
 using Alibi.Plugins;
 using Alibi.Plugins.API;
-using Alibi.Plugins.API.BotAPI;
 using Alibi.Protocol;
 using Alibi.WebSocket;
 using NetCoreServer;
@@ -131,6 +130,8 @@ namespace Alibi
             CharactersList = File.ReadAllLines(CharactersPath);
         }
 
+        public void HandlePacket(IClient client, AOPacket packet) => MessageHandler.HandleMessage(client, packet);
+
         public void ReloadConfig()
         {
             InitializeLists();
@@ -194,11 +195,6 @@ namespace Alibi
             Database.BanHwid(hwid, reason, expireDate);
             foreach (var c in new Queue<IClient?>(ClientsConnected))
                 c?.KickIfBanned();
-        }
-
-        public IBotPlayer CreateBotPlayer()
-        {
-            throw new NotImplementedException();
         }
 
         public void OnAllPluginsLoaded()
@@ -359,7 +355,7 @@ namespace Alibi
                 foreach (var bannedHwid in Database.GetBannedHwids())
                     if (DateTime.UtcNow.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
                         Database.UnbanHwid(bannedHwid);
-                
+
                 await Task.Delay(60000, token);
             }
         }

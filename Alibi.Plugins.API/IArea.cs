@@ -42,7 +42,8 @@ namespace Alibi.Plugins.API
         public string Status { get; set; }
 
         public string Locked { get; set; }
-        public int PlayerCount { get; }
+        
+        public int PlayerCount { get; set; }
 
         /// <summary>
         /// List of Case Managers for this area. Case Managers are allowed to change
