@@ -15,6 +15,13 @@ namespace Alibi.Plugins.API
         /// Message of the Day that is sent to clients in the Out of Context chat when they join.
         /// </summary>
         string Motd { get; }
+        
+        /// <summary>
+        /// The URL for assets that you want clients on this server to fetch from.
+        /// As of this documentation this only works for music on native clients,
+        /// and all assets for webAO.
+        /// </summary>
+        string AssetUrl { get; }
 
         /// <summary>
         /// Which IP Address to bind this server to internally.

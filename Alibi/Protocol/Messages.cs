@@ -60,6 +60,9 @@ namespace Alibi.Protocol
             {
                 "noencryption", "fastloading"
             }.Concat(client.ServerRef.ServerConfiguration.FeatureList).ToArray()));
+            
+            if(!string.IsNullOrEmpty(client.ServerRef.ServerConfiguration.AssetUrl))
+                client.Send(new AOPacket("ASS", client.ServerRef.ServerConfiguration.AssetUrl));
         }
 
         // Slow loading, ugh.

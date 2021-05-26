@@ -15,6 +15,7 @@ namespace Alibi
         public string ServerDescription { get; internal set; } = "Example server description.";
         public string Motd { get; internal set; } =
             "Welcome to my test server! Type /help for a list of commands you can run.";
+        public string AssetUrl { get; internal set; } = "";
         public IPAddress BoundIpAddress { get; internal set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; internal set; } = 27016;
         public int WebsocketPort { get; internal set; } = 27017;
