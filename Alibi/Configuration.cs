@@ -39,7 +39,7 @@ namespace Alibi
         public string[] FeatureList { get; internal set; } =
         {
             "yellowtext", "prezoom", "flipping", "customobjections",
-            "deskmod", "evidence", "cccc_ic_support",
+            "deskmod", "evidence", "cccc_ic_support", "auth_packet",
             "arup", "casing_alerts", "modcall_reason",
             "looping_sfx", "additive", "effects", "expanded_desk_mods"
         };
