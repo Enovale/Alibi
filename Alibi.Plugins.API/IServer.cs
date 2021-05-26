@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Alibi.Plugins.API.BotAPI;
 
 // ReSharper disable UnassignedGetOnlyAutoProperty
 #pragma warning disable 8618
@@ -140,5 +141,11 @@ namespace Alibi.Plugins.API
         /// <param name="expireDate">When their ban should be lifted, if ever</param>
         /// <param name="banner">The person that banned them (null if the server did it)</param>
         public void BanHwid(string hwid, string reason, TimeSpan? expireDate = null, IClient? banner = null);
+
+        /// <summary>
+        /// Creates an IBotPlayer and returns it.
+        /// </summary>
+        /// <returns>A new registered Bot Player, ready to be used.</returns>
+        public IBotPlayer CreateBotPlayer();
     }
 }

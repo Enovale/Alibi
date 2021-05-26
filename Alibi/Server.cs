@@ -12,6 +12,7 @@ using Alibi.Commands;
 using Alibi.Database;
 using Alibi.Plugins;
 using Alibi.Plugins.API;
+using Alibi.Plugins.API.BotAPI;
 using Alibi.Protocol;
 using Alibi.WebSocket;
 using NetCoreServer;
@@ -193,6 +194,11 @@ namespace Alibi
             Database.BanHwid(hwid, reason, expireDate);
             foreach (var c in new Queue<IClient?>(ClientsConnected))
                 c?.KickIfBanned();
+        }
+
+        public IBotPlayer CreateBotPlayer()
+        {
+            throw new NotImplementedException();
         }
 
         public void OnAllPluginsLoaded()
