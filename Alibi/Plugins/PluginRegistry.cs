@@ -10,7 +10,7 @@ namespace Alibi.Plugins
         public List<Plugin> RegisteredPlugins { get; }
 
         private readonly PluginManager _owner;
-        
+
         public PluginRegistry(PluginManager owner)
         {
             _owner = owner;
@@ -18,6 +18,16 @@ namespace Alibi.Plugins
         }
 
         public bool IsPluginRegistered(string id) => RegisteredPlugins.Exists(x => x.ID == id);
+
+        public bool IsPluginRegistered<T>() where T : Plugin => RegisteredPlugins.Exists(x => x is T);
+
+        public T GetPluginInstance<T>() where T : Plugin
+        {
+            if (!IsPluginRegistered<T>())
+                throw new InvalidOperationException($"[PluginLoader] Plugin '{nameof(T)}' was never registered.");
+
+            return RegisteredPlugins.Single(x => x is T) as T;
+        }
 
         public Plugin GetPluginInstance(string id)
         {
