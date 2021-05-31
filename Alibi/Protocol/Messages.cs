@@ -350,6 +350,9 @@ namespace Alibi.Protocol
             if (packet.Objects.Length < 2)
                 return;
 
+            if (packet.Objects.Length >= 2)
+                packet.Objects[2] = "0";
+            
             var message = packet.Objects[1];
 
             ((Client) client).OocName = packet.Objects[0];

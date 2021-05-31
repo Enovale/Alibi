@@ -48,7 +48,7 @@ namespace Alibi
 
         public void BroadcastOocMessage(string message, string? sender = null)
         {
-            Broadcast(new AOPacket("CT", sender ?? "Server", message, "1")); // TODO: Why the fuck is there a 1 here
+            Broadcast(new AOPacket("CT", sender ?? "Server", message, sender != null ? "0" : "1"));
         }
 
         public void AreaUpdate(AreaUpdateType type) => AreaUpdate(type, null);

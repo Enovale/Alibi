@@ -157,7 +157,7 @@ namespace Alibi
 
         public void BroadcastOocMessage(string message)
         {
-            AOPacket msgPacket = new AOPacket("CT", "ServerRef", message, "1");
+            AOPacket msgPacket = new AOPacket("CT", "Server", message, "1");
             Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }

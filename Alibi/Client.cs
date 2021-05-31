@@ -242,6 +242,6 @@ namespace Alibi
         }
 
         public virtual void SendOocMessage(string message, string? sender = null) 
-            => Send(new AOPacket("CT", sender ?? "Server", message, "1"));
+            => Send(new AOPacket("CT", sender ?? "Server", message, sender != null ? "0" : "1"));
     }
 }

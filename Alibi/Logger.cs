@@ -79,7 +79,7 @@ namespace Alibi
         public void OocMessageLog(string message, IArea area = null, string name = null)
         {
             var areaName = area == null ? "Global" : area.Name;
-            var person = name ?? "ServerRef";
+            var person = name ?? "Server";
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 
