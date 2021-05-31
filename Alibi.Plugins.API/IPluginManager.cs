@@ -14,6 +14,12 @@
         /// <returns>Whether or not this plugin has been loaded yet or hasn't crashed.</returns>
         public bool IsPluginLoaded(string id);
         /// <summary>
+        /// Generic version of IsPluginLoaded(string id);
+        /// </summary>
+        /// <typeparam name="T">The plugin type to test if loaded.</typeparam>
+        /// <returns>Whether or not this plugin is currently loaded in the server,</returns>
+        public bool IsPluginLoaded<T>() where T : Plugin;
+        /// <summary>
         /// Fetches an instance of the plugin.
         /// </summary>
         /// <param name="id">The ID of the plugin to fetch</param>
@@ -22,7 +28,13 @@
         /// This is dynamic so it can be literally any class.
         /// Be careful what you cast, or you may burn.
         /// </remarks>
-        public dynamic RequestPluginInstance(string id);
+        public Plugin RequestPluginInstance(string id);
+        /// <summary>
+        /// Generic version of RequestPluginInstance(string id);
+        /// </summary>
+        /// <typeparam name="T">The type that is being requested.</typeparam>
+        /// <returns>The current loaded instance of this plugin on the server.</returns>
+        public T RequestPluginInstance<T>() where T : Plugin;
         /// <summary>
         /// Gets the absolute path to the configuration folder assigned to this plugin.
         /// ONLY use this folder as otherwise users will be confused and it creates non-standard code.

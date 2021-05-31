@@ -24,8 +24,12 @@ namespace Alibi.Plugins
         }
 
         public bool IsPluginLoaded(string id) => _registry.IsPluginRegistered(id);
+        
+        public bool IsPluginLoaded<T>() where T : Plugin => _registry.IsPluginRegistered<T>();
+        
+        public Plugin RequestPluginInstance(string id) => _registry.GetPluginInstance(id);
 
-        public dynamic RequestPluginInstance(string id) => _registry.GetPluginInstance(id);
+        public T RequestPluginInstance<T>() where T : Plugin => _registry.GetPluginInstance<T>();
 
         public string GetConfigFolder(string id) =>
             Directory.CreateDirectory(Path.Combine(Server.ConfigFolder, id)).FullName;
