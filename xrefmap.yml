@@ -1890,6 +1890,15 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IPluginManager.IsPluginLoaded
   nameWithType: IPluginManager.IsPluginLoaded
+- uid: Alibi.Plugins.API.IPluginManager.IsPluginLoaded``1
+  name: IsPluginLoaded<T>()
+  href: api/Alibi.Plugins.API.IPluginManager.html#Alibi_Plugins_API_IPluginManager_IsPluginLoaded__1
+  commentId: M:Alibi.Plugins.API.IPluginManager.IsPluginLoaded``1
+  name.vb: IsPluginLoaded(Of T)()
+  fullName: Alibi.Plugins.API.IPluginManager.IsPluginLoaded<T>()
+  fullName.vb: Alibi.Plugins.API.IPluginManager.IsPluginLoaded(Of T)()
+  nameWithType: IPluginManager.IsPluginLoaded<T>()
+  nameWithType.vb: IPluginManager.IsPluginLoaded(Of T)()
 - uid: Alibi.Plugins.API.IPluginManager.Log(Alibi.Plugins.API.LogSeverity,System.String,System.Boolean)
   name: Log(LogSeverity, String, Boolean)
   href: api/Alibi.Plugins.API.IPluginManager.html#Alibi_Plugins_API_IPluginManager_Log_Alibi_Plugins_API_LogSeverity_System_String_System_Boolean_
@@ -1916,6 +1925,15 @@ references:
   isSpec: "True"
   fullName: Alibi.Plugins.API.IPluginManager.RequestPluginInstance
   nameWithType: IPluginManager.RequestPluginInstance
+- uid: Alibi.Plugins.API.IPluginManager.RequestPluginInstance``1
+  name: RequestPluginInstance<T>()
+  href: api/Alibi.Plugins.API.IPluginManager.html#Alibi_Plugins_API_IPluginManager_RequestPluginInstance__1
+  commentId: M:Alibi.Plugins.API.IPluginManager.RequestPluginInstance``1
+  name.vb: RequestPluginInstance(Of T)()
+  fullName: Alibi.Plugins.API.IPluginManager.RequestPluginInstance<T>()
+  fullName.vb: Alibi.Plugins.API.IPluginManager.RequestPluginInstance(Of T)()
+  nameWithType: IPluginManager.RequestPluginInstance<T>()
+  nameWithType.vb: IPluginManager.RequestPluginInstance(Of T)()
 - uid: Alibi.Plugins.API.IServer
   name: IServer
   href: api/Alibi.Plugins.API.IServer.html
