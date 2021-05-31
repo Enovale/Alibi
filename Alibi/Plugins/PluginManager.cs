@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Alibi.Plugins.API;
+using Alibi.Plugins.API.Exceptions;
 
 namespace Alibi.Plugins
 {
@@ -80,6 +81,11 @@ namespace Alibi.Plugins
                 try
                 {
                     instance = (Plugin) Activator.CreateInstance(pluginType, server, this);
+                }
+                catch (PluginException e)
+                {
+                    Server.Logger.Log(LogSeverity.Error, $"[{nameof(pluginType)}] Failed to initialize: {e}");
+                    continue;
                 }
                 catch (Exception e)
                 {

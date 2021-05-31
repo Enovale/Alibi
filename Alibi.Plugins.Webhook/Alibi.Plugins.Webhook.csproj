@@ -23,12 +23,12 @@
     </PropertyGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Condition="'$(OS)' == 'Windows_NT'" Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\net5.0\Plugins\&quot; /S /Y"/>
-        <Exec Condition="'$(OS)' == 'UNIX'" Command="mkdir -p &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot; &amp;&amp; cp -rf &quot;$(TargetPath)&quot; &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot;"/>
+        <Exec Condition="'$(OS)' == 'Windows_NT'" Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\net5.0\Plugins\&quot; /S /Y" />
+        <Exec Condition="'$(OS)' == 'UNIX'" Command="mkdir -p &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot; &amp;&amp; cp -rf &quot;$(TargetPath)&quot; &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot;" />
     </Target>
 
     <ItemGroup>
-        <ProjectReference Include="..\Alibi.Plugins.API\Alibi.Plugins.API.csproj"/>
+        <ProjectReference Include="..\Alibi.Plugins.API\Alibi.Plugins.API.csproj" />
     </ItemGroup>
 
     <ItemGroup>

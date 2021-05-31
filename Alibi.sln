@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alibi.Plugins.Cerberus", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alibi.Plugins.Fun", "Alibi.Plugins.Fun\Alibi.Plugins.Fun.csproj", "{F2B605B7-024A-490C-9DAC-99DEACF3F713}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alibi.Plugins.Bot", "Alibi.Plugins.Bot\Alibi.Plugins.Bot.csproj", "{1E269D34-7870-4C42-AC9A-D732AFE03A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F2B605B7-024A-490C-9DAC-99DEACF3F713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B605B7-024A-490C-9DAC-99DEACF3F713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B605B7-024A-490C-9DAC-99DEACF3F713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E269D34-7870-4C42-AC9A-D732AFE03A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E269D34-7870-4C42-AC9A-D732AFE03A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E269D34-7870-4C42-AC9A-D732AFE03A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E269D34-7870-4C42-AC9A-D732AFE03A03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

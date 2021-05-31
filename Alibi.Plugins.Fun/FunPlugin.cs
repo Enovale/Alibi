@@ -8,10 +8,10 @@ using Alibi.Plugins.API;
 
 namespace Alibi.Plugins.Fun
 {
-    public class FunPlugin : Plugin
+    public sealed class FunPlugin : Plugin
     {
-        public sealed override string ID => "com.elijahzawesome.Fun";
-        public sealed override string Name => "Fun";
+        public override string ID => "com.elijahzawesome.Fun";
+        public override string Name => "Fun";
 
         public static readonly Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();
         public static readonly Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
