@@ -7,7 +7,7 @@ using Alibi.Plugins.API.Attributes;
 
 namespace Alibi.Protocol
 {
-    internal static class MessageHandler
+    public static class MessageHandler
     {
         internal static readonly Dictionary<string, Handler> Handlers = new Dictionary<string, Handler>();
 
@@ -83,7 +83,7 @@ namespace Alibi.Protocol
             }
         }
 
-        public static void AddCustomHandler(Plugin plugin)
+        public static void AddCustomHandlers(Plugin plugin)
         {
             var types = plugin.GetType().Assembly.GetTypes();
             foreach (var type in types)

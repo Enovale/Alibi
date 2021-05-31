@@ -106,10 +106,11 @@ namespace Alibi
             _pluginManager.LoadPlugins(this);
             foreach (var plugin in _pluginManager.LoadedPlugins)
             {
-                CommandHandler.AddCustomHandler(plugin);
-                MessageHandler.AddCustomHandler(plugin);
+                CommandHandler.AddCustomHandlers(plugin);
+                MessageHandler.AddCustomHandlers(plugin);
             }
 
+            OnServerInitialized();
             Logger.Log(LogSeverity.Special, " Server started!");
             _cancelTasksToken = new CancellationTokenSource();
             CheckCorpses(_cancelTasksToken.Token);
@@ -205,6 +206,19 @@ namespace Alibi
                 catch (Exception e)
                 {
                     p.Log(LogSeverity.Error, $"Error occured during OnAllPluginsLoaded(), {e}");
+                }
+        }
+        
+        public void OnServerInitialized()
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    p.OnServerInitialized();
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnServerInitialized(), {e}");
                 }
         }
 

@@ -25,10 +25,13 @@ namespace Alibi.Plugins
         }
 
         public bool IsPluginLoaded(string id) => _registry.IsPluginRegistered(id);
-        
+        public bool IsPluginLoaded(Type type) => _registry.IsPluginRegistered(type);
+
         public bool IsPluginLoaded<T>() where T : Plugin => _registry.IsPluginRegistered<T>();
-        
+
         public Plugin RequestPluginInstance(string id) => _registry.GetPluginInstance(id);
+
+        public Plugin RequestPluginInstance(Type type) => _registry.GetPluginInstance(type);
 
         public T RequestPluginInstance<T>() where T : Plugin => _registry.GetPluginInstance<T>();
 
@@ -49,18 +52,27 @@ namespace Alibi.Plugins
                 // ReSharper disable once RedundantNameQualifier
                 if (path.EndsWith(nameof(Alibi.Plugins.API) + ".dll"))
                     continue;
-                
+
                 Server.Logger.Log(LogSeverity.Special,
                     $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
+                
                 Assembly asm;
                 try
                 {
                     asm = Assembly.LoadFrom(path);
                 }
-                catch
+                catch (FileLoadException e)
+                {
+                    Log(LogSeverity.Error,
+                        $"[PluginLoader] {Path.GetFileName(path)} has already been loaded! Delete duplicate dlls.", false);
+                    Server.Logger.Log(LogSeverity.Warning, $"[PluginLoader] Plugin loading error dump: {e}", true);
+                    continue;
+                }
+                catch (Exception e)
                 {
                     Server.Logger.Log(LogSeverity.Error,
                         $"[PluginLoader] Couldn't load {path}. Make sure it is a .NET assembly.");
+                    Server.Logger.Log(LogSeverity.Warning, $"[PluginLoader] Plugin loading error dump: {e}", true);
                     continue;
                 }
 
@@ -73,7 +85,13 @@ namespace Alibi.Plugins
                 {
                     Server.Logger.Log(LogSeverity.Error,
                         $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, " +
-                        $"did you implement the Plugin base?");
+                        "did you implement the Plugin base?");
+                    continue;
+                }
+
+                if (IsPluginLoaded(pluginType))
+                {
+                    Log(LogSeverity.Error, $"[PluginLoader] {pluginType.Name} has already been loaded! Delete duplicate dlls.", false);
                     continue;
                 }
 
@@ -84,7 +102,7 @@ namespace Alibi.Plugins
                 }
                 catch (PluginException e)
                 {
-                    Server.Logger.Log(LogSeverity.Error, $"[{nameof(pluginType)}] Failed to initialize: {e}");
+                    Server.Logger.Log(LogSeverity.Error, $"[{pluginType.Name}] Failed to initialize: {e}");
                     continue;
                 }
                 catch (Exception e)

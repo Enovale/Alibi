@@ -4,10 +4,7 @@ namespace Alibi.Plugins.Bot
 {
     public class DummySession : ISession
     {
-        public bool Disconnect()
-        {
-            throw new System.NotImplementedException();
-        }
+        public bool Disconnect() => true;
 
         public long Send(string text) => 0;
 

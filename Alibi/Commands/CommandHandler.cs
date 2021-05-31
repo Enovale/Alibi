@@ -100,7 +100,7 @@ namespace Alibi.Commands
             }
         }
 
-        public static void AddCustomHandler(Plugin plugin)
+        public static void AddCustomHandlers(Plugin plugin)
         {
             // Add custom plugin handlers
             var types = plugin.GetType().Assembly.GetTypes();

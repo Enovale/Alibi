@@ -53,15 +53,16 @@ namespace Alibi.Protocol
         internal static void SoftwareId(IClient client, AOPacket packet)
         {
             client.CurrentState = ClientState.Identified;
-            Server.Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Using Client Version {packet.Objects[0]}", true);
+            Server.Logger.Log(LogSeverity.Info,
+                $"[{client.IpAddress}] Using Client Version {packet.Objects[0]} {packet.Objects[1]}", true);
             client.Send(new AOPacket("PN", client.ServerRef.ConnectedPlayers.ToString(),
                 client.ServerRef.ServerConfiguration.MaxPlayers.ToString()));
             client.Send(new AOPacket("FL", new[]
             {
                 "noencryption", "fastloading"
             }.Concat(client.ServerRef.ServerConfiguration.FeatureList).ToArray()));
-            
-            if(!string.IsNullOrEmpty(client.ServerRef.ServerConfiguration.AssetUrl))
+
+            if (!string.IsNullOrEmpty(client.ServerRef.ServerConfiguration.AssetUrl))
                 client.Send(new AOPacket("ASS", client.ServerRef.ServerConfiguration.AssetUrl));
         }
 

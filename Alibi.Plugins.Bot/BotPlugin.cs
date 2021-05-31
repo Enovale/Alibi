@@ -11,13 +11,30 @@ namespace Alibi.Plugins.Bot
         public override string Name => "BotPlugin";
 
         public readonly List<BotClient> RegisteredBots;
+
+        private readonly Server _server;
         
         public BotPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {
-            if (pluginManager.IsPluginLoaded(ID))
-                throw new PluginException($"{nameof(BotPlugin)} has already been loaded! Delete duplicate dlls.");
-            
+            _server = server as Server;
             RegisteredBots = new List<BotClient>(server.ServerConfiguration.MaxPlayers);
+        }
+
+        public override void OnServerInitialized()
+        {
+            var testBot = CreateBot();
+            var testBot2 = CreateBot();
+            var testBot3 = CreateBot();
+        }
+
+        public BotClient CreateBot()
+        {
+            var newBot = new BotClient(_server);
+            newBot.Receive(new AOPacket("HI", Guid.NewGuid().ToString().Replace("-", "")));
+            newBot.Receive(new AOPacket("ID", "Alibi", "Bot"));
+            newBot.Receive(new AOPacket("RD"));
+            RegisteredBots.Add(newBot);
+            return newBot;
         }
     }
 }

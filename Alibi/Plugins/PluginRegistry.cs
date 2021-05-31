@@ -18,16 +18,9 @@ namespace Alibi.Plugins
         }
 
         public bool IsPluginRegistered(string id) => RegisteredPlugins.Exists(x => x.ID == id);
+        public bool IsPluginRegistered(Type type) => RegisteredPlugins.Exists(x => x.GetType() == type);
 
         public bool IsPluginRegistered<T>() where T : Plugin => RegisteredPlugins.Exists(x => x is T);
-
-        public T GetPluginInstance<T>() where T : Plugin
-        {
-            if (!IsPluginRegistered<T>())
-                throw new InvalidOperationException($"[PluginLoader] Plugin '{nameof(T)}' was never registered.");
-
-            return RegisteredPlugins.Single(x => x is T) as T;
-        }
 
         public Plugin GetPluginInstance(string id)
         {
@@ -35,6 +28,22 @@ namespace Alibi.Plugins
                 throw new InvalidOperationException($"[PluginLoader] Plugin '{id}' was never registered.");
 
             return RegisteredPlugins.Single(x => x.ID == id);
+        }
+
+        public Plugin GetPluginInstance(Type type)
+        {
+            if (!IsPluginRegistered(type))
+                throw new InvalidOperationException($"[PluginLoader] Plugin '{nameof(type)}' was never registered.");
+
+            return RegisteredPlugins.Single(x => x.GetType() == type);
+        }
+
+        public T GetPluginInstance<T>() where T : Plugin
+        {
+            if (!IsPluginRegistered<T>())
+                throw new InvalidOperationException($"[PluginLoader] Plugin '{nameof(T)}' was never registered.");
+
+            return RegisteredPlugins.Single(x => x is T) as T;
         }
 
         public void RegisterPlugin(Plugin plugin)

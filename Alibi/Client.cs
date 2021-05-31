@@ -15,30 +15,30 @@ namespace Alibi
         public ISession Session { get; }
         public IServer ServerRef { get; }
 
-        public bool Connected { get; internal set; }
-        public int Auth { get; internal set; }
-        public DateTime LastAlive { get; internal set; }
-        public IPAddress IpAddress { get; internal set; }
-        public string? HardwareId { get; internal set; }
-        public IArea? Area { get; internal set; }
+        public bool Connected { get; set; }
+        public int Auth { get; set; }
+        public DateTime LastAlive { get; set; }
+        public IPAddress IpAddress { get; set; }
+        public string? HardwareId { get; set; }
+        public IArea? Area { get; set; }
         public string? Position { get; set; }
         public ClientState CurrentState { get; set; }
 
-        public string? Password { get; internal set; }
+        public string? Password { get; set; }
         public int? Character { get; set; }
 
         public string CharacterName => Character != null ? ServerRef.CharactersList[(int) Character] : "Spectator";
 
-        public string? OocName { get; internal set; }
+        public string? OocName { get; set; }
         public string? LastSentMessage { get; set; }
         public bool Muted { get; set; } = false;
         public CasingFlags CasingPreferences { get; set; } = CasingFlags.None;
 
         // Retarded pairing shit
-        public int PairingWith { get; internal set; } = -1;
-        public string? StoredEmote { get; internal set; }
-        public int StoredOffset { get; internal set; }
-        public bool StoredFlip { get; internal set; }
+        public int PairingWith { get; set; } = -1;
+        public string? StoredEmote { get; set; }
+        public int StoredOffset { get; set; }
+        public bool StoredFlip { get; set; }
 
         private DateTime _rateLimitCheckTime;
         private int _packetCount;
@@ -53,13 +53,13 @@ namespace Alibi
             serverRef.ClientsConnected.Add(this);
         }
 
-        internal void OnSessionConnected()
+        public virtual void OnSessionConnected()
         {
             if (((Server) ServerRef).ConnectedPlayers >= ServerRef.ServerConfiguration.MaxPlayers)
             {
                 Send(new AOPacket("BD", "Not a real ban: Max players has been reached."));
                 Task.Delay(500);
-                Session.Disconnect();
+                OnSessionDisconnected();
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace Alibi
                     $"{ServerRef.ServerConfiguration.MaxClientsOnOneNetwork} " +
                     "clients on the same network connected to the server at once."));
                 Task.Delay(500);
-                Session.Disconnect();
+                OnSessionDisconnected();
                 return;
             }
 
@@ -88,26 +88,25 @@ namespace Alibi
             Send(new AOPacket("decryptor", "NOENCRYPT"));
         }
 
-        internal void OnSessionDisconnected()
+        public virtual void OnSessionDisconnected()
         {
+            if (!Connected) return;
+
             ((Server) ServerRef).ClientsConnected.Remove(this);
-            if (Connected)
-            {
-                ((Server) ServerRef).ConnectedPlayers--;
-                ((Area) Area!).PlayerCount--;
-                Connected = false;
-                if (Character != null)
-                    Area.TakenCharacters[(int) Character] = false;
-                Area.UpdateTakenCharacters();
-                Area.CurrentCaseManagers.Remove(this);
-                Area.AreaUpdate(AreaUpdateType.PlayerCount);
-                Area.AreaUpdate(AreaUpdateType.CourtManager);
-            }
-            
+            ((Server) ServerRef).ConnectedPlayers--;
+            ((Area) Area!).PlayerCount--;
+            Connected = false;
+            if (Character != null)
+                Area.TakenCharacters[(int) Character] = false;
+            Area.UpdateTakenCharacters();
+            Area.CurrentCaseManagers.Remove(this);
+            Area.AreaUpdate(AreaUpdateType.PlayerCount);
+            Area.AreaUpdate(AreaUpdateType.CourtManager);
+
             Server.Logger.Log(LogSeverity.Info, $"[{IpAddress}] Disconnected.", true);
         }
 
-        internal void OnSessionReceived(byte[] buffer, long offset, long size)
+        public virtual void OnSessionReceived(byte[] buffer, long offset, long size)
         {
             var msg = Encoding.UTF8.GetString(buffer, (int) offset, (int) size);
             var disallowedRequests = "GET;HEAD;POST;PUT;DELETE;TRACE;OPTIONS;CONNECT;PATCH".Split(';');
@@ -138,7 +137,7 @@ namespace Alibi
             LastAlive = DateTime.UtcNow;
         }
 
-        public void ChangeArea(int index)
+        public virtual void ChangeArea(int index)
         {
             if (!Connected)
                 return;
@@ -205,40 +204,35 @@ namespace Alibi
             SendOocMessage($"Successfully changed to area \"{Area.Name}\"");
         }
 
-        public void KickIfBanned()
+        public virtual void KickIfBanned()
         {
             if (ServerRef.Database.IsHwidBanned(HardwareId) || ServerRef.Database.IsIpBanned(IpAddress))
             {
                 Send(new AOPacket("BD", GetBanReason()));
                 Task.Delay(500).Wait();
-                Session.Disconnect();
+                OnSessionDisconnected();
             }
         }
 
-        public void Kick(string reason)
+        public virtual void Kick(string reason)
         {
             Send(new AOPacket("KK", reason));
             Task.Delay(500).Wait();
-            Session.Disconnect();
+            OnSessionDisconnected();
         }
 
-        public string GetBanReason()
-        {
-            return ServerRef.Database.GetBanReason(IpAddress);
-        }
+        public virtual string GetBanReason() => ServerRef.Database.GetBanReason(IpAddress);
 
-        public void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
+        public virtual void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
         {
-            if(HardwareId != null)
+            if (HardwareId != null)
                 ServerRef.BanHwid(HardwareId, reason, expireDate, banner);
         }
 
-        public void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
-        {
-            ServerRef.BanIp(IpAddress, reason, expireDate, banner);
-        }
+        public virtual void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
+            => ServerRef.BanIp(IpAddress, reason, expireDate, banner);
 
-        public void Send(AOPacket packet)
+        public virtual void Send(AOPacket packet)
         {
             if (packet.Objects != null)
                 for (var i = 0; i < packet.Objects.Length; i++)
@@ -247,9 +241,7 @@ namespace Alibi
             Session.SendAsync(packet);
         }
 
-        public void SendOocMessage(string message, string? sender = null)
-        {
-            Send(new AOPacket("CT", sender ?? "Server", message, "1"));
-        }
+        public virtual void SendOocMessage(string message, string? sender = null) 
+            => Send(new AOPacket("CT", sender ?? "Server", message, "1"));
     }
 }
