@@ -343,7 +343,7 @@ namespace Alibi
             while (true)
             {
                 Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
-                var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
+                var clientQueue = new Queue<IClient>(ClientsConnected);
                 while (clientQueue.Any())
                 {
                     var client = clientQueue.Dequeue();

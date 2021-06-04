@@ -102,6 +102,7 @@ namespace Alibi
             Area.CurrentCaseManagers.Remove(this);
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
             Area.AreaUpdate(AreaUpdateType.CourtManager);
+            Session.Disconnect();
 
             Server.Logger.Log(LogSeverity.Info, $"[{IpAddress}] Disconnected.", true);
         }
