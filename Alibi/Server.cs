@@ -114,6 +114,8 @@ namespace Alibi
             _cancelTasksToken = new CancellationTokenSource();
             CheckCorpses(_cancelTasksToken.Token);
             CheckExpiredBans(_cancelTasksToken.Token);
+            
+            OnServerStarted();
         }
 
         public void InitializeLists()
@@ -207,6 +209,19 @@ namespace Alibi
                 catch (Exception e)
                 {
                     p.Log(LogSeverity.Error, $"Error occured during OnAllPluginsLoaded(), {e}");
+                }
+        }
+
+        public void OnServerStarted()
+        {
+            foreach (var p in _pluginManager.LoadedPlugins)
+                try
+                {
+                    p.OnServerStarted();
+                }
+                catch (Exception e)
+                {
+                    p.Log(LogSeverity.Error, $"Error occured during OnServerStarted(), {e}");
                 }
         }
 

@@ -53,6 +53,13 @@ namespace Alibi.Plugins.API
         }
 
         /// <summary>
+        /// Called once the server is entirely initialized. (After plugins loaded.)
+        /// </summary>
+        public virtual void OnServerStarted()
+        {
+        }
+
+        /// <summary>
         /// Called when a player joins the server, NOT when they are identified
         /// </summary>
         /// <param name="client">The client who just joined</param>

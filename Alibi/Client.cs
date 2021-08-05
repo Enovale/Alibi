@@ -170,12 +170,12 @@ namespace Alibi
                     Area.UpdateTakenCharacters();
                 }
 
-                ((Area) Area!).PlayerCount--;
+                Area.PlayerCount--;
                 Area.AreaUpdate(AreaUpdateType.PlayerCount);
             }
 
             Area = ServerRef.Areas[index];
-            ((Area) Area).PlayerCount++;
+            Area.PlayerCount++;
             Area.AreaUpdate(AreaUpdateType.PlayerCount);
             Messages.RequestEvidence(this, new AOPacket("RE"));
 
