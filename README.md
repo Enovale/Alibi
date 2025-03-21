@@ -52,7 +52,7 @@ You should now have a bare-bones working plugin! Build it and put the .dll in th
 folder of Alibi, and restart the server.
 
 # Contributing
-I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is ElijahZAwesome#6933.
+I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is `enovale`.
 
 # Progress
 These features are not implemented:
