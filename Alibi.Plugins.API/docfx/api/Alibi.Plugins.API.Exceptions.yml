@@ -18,11 +18,13 @@ items:
 references:
 - uid: Alibi.Plugins.API.Exceptions.CommandException
   commentId: T:Alibi.Plugins.API.Exceptions.CommandException
+  href: Alibi.Plugins.API.Exceptions.CommandException.html
   name: CommandException
   nameWithType: CommandException
   fullName: Alibi.Plugins.API.Exceptions.CommandException
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException
   commentId: T:Alibi.Plugins.API.Exceptions.IcValidationException
+  href: Alibi.Plugins.API.Exceptions.IcValidationException.html
   name: IcValidationException
   nameWithType: IcValidationException
   fullName: Alibi.Plugins.API.Exceptions.IcValidationException

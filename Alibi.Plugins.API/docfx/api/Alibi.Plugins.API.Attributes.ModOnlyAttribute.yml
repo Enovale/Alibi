@@ -18,14 +18,14 @@ items:
     remote:
       path: Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ModOnlyAttribute
     path: ../Attributes/ModOnlyAttribute.cs
     startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
-  summary: "\nSpecifies a command that can only be run by moderators.\n"
+  summary: Specifies a command that can only be run by moderators.
   example: []
   syntax:
     content: >-
@@ -35,9 +35,7 @@ items:
     content.vb: >-
       <AttributeUsage(AttributeTargets.Method)>
 
-      Public Class ModOnlyAttribute
-
-          Inherits Attribute
+      Public Class ModOnlyAttribute Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -47,12 +45,6 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 64
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg
   commentId: P:Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg
   id: ErrorMsg
@@ -68,7 +60,7 @@ items:
     remote:
       path: Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ErrorMsg
     path: ../Attributes/ModOnlyAttribute.cs
     startLine: 10
@@ -82,12 +74,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property ErrorMsg As String
   overload: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute.#ctor(System.String)
   commentId: M:Alibi.Plugins.API.Attributes.ModOnlyAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -95,15 +81,15 @@ items:
   langs:
   - csharp
   - vb
-  name: ModOnlyAttribute(String)
-  nameWithType: ModOnlyAttribute.ModOnlyAttribute(String)
-  fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ModOnlyAttribute(System.String)
+  name: ModOnlyAttribute(string)
+  nameWithType: ModOnlyAttribute.ModOnlyAttribute(string)
+  fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ModOnlyAttribute(string)
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/Attributes/ModOnlyAttribute.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Attributes/ModOnlyAttribute.cs
     startLine: 13
@@ -119,23 +105,58 @@ items:
       description: The error message to send in the OOC if the user is not a moderator.
     content.vb: Public Sub New(errorMsg As String = "You are not moderator, and can't run this command.")
   overload: Alibi.Plugins.API.Attributes.ModOnlyAttribute.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: ModOnlyAttribute.New(String)
+  fullName.vb: Alibi.Plugins.API.Attributes.ModOnlyAttribute.New(String)
+  name.vb: New(String)
 references:
 - uid: Alibi.Plugins.API.Attributes
   commentId: N:Alibi.Plugins.API.Attributes
+  href: Alibi.html
   name: Alibi.Plugins.API.Attributes
   nameWithType: Alibi.Plugins.API.Attributes
   fullName: Alibi.Plugins.API.Attributes
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Attributes
+    name: Attributes
+    href: Alibi.Plugins.API.Attributes.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Attributes
+    name: Attributes
+    href: Alibi.Plugins.API.Attributes.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Attribute
   commentId: T:System.Attribute
   parent: System
@@ -146,11 +167,13 @@ references:
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg*
   commentId: Overload:Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg
+  href: Alibi.Plugins.API.Attributes.ModOnlyAttribute.html#Alibi_Plugins_API_Attributes_ModOnlyAttribute_ErrorMsg
   name: ErrorMsg
   nameWithType: ModOnlyAttribute.ErrorMsg
   fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ErrorMsg
@@ -158,11 +181,18 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute.#ctor*
   commentId: Overload:Alibi.Plugins.API.Attributes.ModOnlyAttribute.#ctor
+  href: Alibi.Plugins.API.Attributes.ModOnlyAttribute.html#Alibi_Plugins_API_Attributes_ModOnlyAttribute__ctor_System_String_
   name: ModOnlyAttribute
   nameWithType: ModOnlyAttribute.ModOnlyAttribute
   fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute.ModOnlyAttribute
+  nameWithType.vb: ModOnlyAttribute.New
+  fullName.vb: Alibi.Plugins.API.Attributes.ModOnlyAttribute.New
+  name.vb: New

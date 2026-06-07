@@ -20,24 +20,18 @@ items:
     remote:
       path: Alibi.Plugins.API/AreaUpdateType.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AreaUpdateType
     path: ../AreaUpdateType.cs
     startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSpecifies which information to update about an area.\n"
+  summary: Specifies which information to update about an area.
   example: []
   syntax:
     content: public enum AreaUpdateType
     content.vb: Public Enum AreaUpdateType
-  modifiers.csharp:
-  - public
-  - enum
-  modifiers.vb:
-  - Public
-  - Enum
 - uid: Alibi.Plugins.API.AreaUpdateType.PlayerCount
   commentId: F:Alibi.Plugins.API.AreaUpdateType.PlayerCount
   id: PlayerCount
@@ -53,7 +47,7 @@ items:
     remote:
       path: Alibi.Plugins.API/AreaUpdateType.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: PlayerCount
     path: ../AreaUpdateType.cs
     startLine: 7
@@ -64,12 +58,6 @@ items:
     content: PlayerCount = 0
     return:
       type: Alibi.Plugins.API.AreaUpdateType
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.AreaUpdateType.Status
   commentId: F:Alibi.Plugins.API.AreaUpdateType.Status
   id: Status
@@ -85,25 +73,19 @@ items:
     remote:
       path: Alibi.Plugins.API/AreaUpdateType.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Status
     path: ../AreaUpdateType.cs
     startLine: 11
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nUpdate the status string for this area (determines area color, and joining rules)\n"
+  summary: Update the status string for this area (determines area color, and joining rules)
   example: []
   syntax:
     content: Status = 1
     return:
       type: Alibi.Plugins.API.AreaUpdateType
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.AreaUpdateType.CourtManager
   commentId: F:Alibi.Plugins.API.AreaUpdateType.CourtManager
   id: CourtManager
@@ -119,7 +101,7 @@ items:
     remote:
       path: Alibi.Plugins.API/AreaUpdateType.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CourtManager
     path: ../AreaUpdateType.cs
     startLine: 12
@@ -130,12 +112,6 @@ items:
     content: CourtManager = 2
     return:
       type: Alibi.Plugins.API.AreaUpdateType
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.AreaUpdateType.Locked
   commentId: F:Alibi.Plugins.API.AreaUpdateType.Locked
   id: Locked
@@ -151,7 +127,7 @@ items:
     remote:
       path: Alibi.Plugins.API/AreaUpdateType.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Locked
     path: ../AreaUpdateType.cs
     startLine: 13
@@ -162,21 +138,41 @@ items:
     content: Locked = 3
     return:
       type: Alibi.Plugins.API.AreaUpdateType
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.AreaUpdateType
   commentId: T:Alibi.Plugins.API.AreaUpdateType
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AreaUpdateType.html
   name: AreaUpdateType
   nameWithType: AreaUpdateType
   fullName: Alibi.Plugins.API.AreaUpdateType

@@ -7,11 +7,11 @@ items:
   children:
   - Alibi.Plugins.API.IConfiguration.Advertise
   - Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  - Alibi.Plugins.API.IConfiguration.AssetUrl
   - Alibi.Plugins.API.IConfiguration.BoundIpAddress
   - Alibi.Plugins.API.IConfiguration.FeatureList
   - Alibi.Plugins.API.IConfiguration.LogBufferSize
   - Alibi.Plugins.API.IConfiguration.MasterServerAddress
-  - Alibi.Plugins.API.IConfiguration.MasterServerPort
   - Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
   - Alibi.Plugins.API.IConfiguration.MaxMessageSize
   - Alibi.Plugins.API.IConfiguration.MaxMultiClients
@@ -25,6 +25,7 @@ items:
   - Alibi.Plugins.API.IConfiguration.ServerDescription
   - Alibi.Plugins.API.IConfiguration.ServerName
   - Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  - Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
   - Alibi.Plugins.API.IConfiguration.VerboseLogs
   - Alibi.Plugins.API.IConfiguration.WebsocketPort
   langs:
@@ -38,24 +39,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IConfiguration
     path: ../IConfiguration.cs
     startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRepresents the server configuration on disk.\n"
+  summary: Represents the server configuration on disk.
   example: []
   syntax:
     content: public interface IConfiguration
     content.vb: Public Interface IConfiguration
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: Alibi.Plugins.API.IConfiguration.ServerName
   commentId: P:Alibi.Plugins.API.IConfiguration.ServerName
   id: ServerName
@@ -71,7 +66,7 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ServerName
     path: ../IConfiguration.cs
     startLine: 10
@@ -85,10 +80,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property ServerName As String
   overload: Alibi.Plugins.API.IConfiguration.ServerName*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.ServerDescription
   commentId: P:Alibi.Plugins.API.IConfiguration.ServerDescription
   id: ServerDescription
@@ -104,7 +95,7 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ServerDescription
     path: ../IConfiguration.cs
     startLine: 11
@@ -118,10 +109,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property ServerDescription As String
   overload: Alibi.Plugins.API.IConfiguration.ServerDescription*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.Motd
   commentId: P:Alibi.Plugins.API.IConfiguration.Motd
   id: Motd
@@ -137,14 +124,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Motd
     path: ../IConfiguration.cs
     startLine: 16
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nMessage of the Day that is sent to clients in the Out of Context chat when they join.\n"
+  summary: Message of the Day that is sent to clients in the Out of Context chat when they join.
   example: []
   syntax:
     content: string Motd { get; }
@@ -153,10 +140,42 @@ items:
       type: System.String
     content.vb: ReadOnly Property Motd As String
   overload: Alibi.Plugins.API.IConfiguration.Motd*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.AssetUrl
+  commentId: P:Alibi.Plugins.API.IConfiguration.AssetUrl
+  id: AssetUrl
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: AssetUrl
+  nameWithType: IConfiguration.AssetUrl
+  fullName: Alibi.Plugins.API.IConfiguration.AssetUrl
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: AssetUrl
+    path: ../IConfiguration.cs
+    startLine: 23
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: >-
+    The URL for assets that you want clients on this server to fetch from.
+
+    As of this documentation this only works for music on native clients,
+
+    and all assets for webAO.
+  example: []
+  syntax:
+    content: string AssetUrl { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property AssetUrl As String
+  overload: Alibi.Plugins.API.IConfiguration.AssetUrl*
 - uid: Alibi.Plugins.API.IConfiguration.BoundIpAddress
   commentId: P:Alibi.Plugins.API.IConfiguration.BoundIpAddress
   id: BoundIpAddress
@@ -172,14 +191,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BoundIpAddress
     path: ../IConfiguration.cs
-    startLine: 21
+    startLine: 28
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhich IP Address to bind this server to internally.\n"
+  summary: Which IP Address to bind this server to internally.
   example: []
   syntax:
     content: IPAddress BoundIpAddress { get; }
@@ -188,10 +207,6 @@ items:
       type: System.Net.IPAddress
     content.vb: ReadOnly Property BoundIpAddress As IPAddress
   overload: Alibi.Plugins.API.IConfiguration.BoundIpAddress*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.Port
   commentId: P:Alibi.Plugins.API.IConfiguration.Port
   id: Port
@@ -207,14 +222,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Port
     path: ../IConfiguration.cs
-    startLine: 26
+    startLine: 33
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe port that all native clients will connect to. (Cannot be the same as the Websocket Port)\n"
+  summary: The port that all native clients will connect to. (Cannot be the same as the Websocket Port)
   example: []
   syntax:
     content: int Port { get; }
@@ -223,10 +238,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property Port As Integer
   overload: Alibi.Plugins.API.IConfiguration.Port*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.WebsocketPort
   commentId: P:Alibi.Plugins.API.IConfiguration.WebsocketPort
   id: WebsocketPort
@@ -242,14 +253,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: WebsocketPort
     path: ../IConfiguration.cs
-    startLine: 32
+    startLine: 39
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe port that all websocket clients (WebAO) clients will connect to\n(Cannot be the same as the Native Port)\n"
+  summary: >-
+    The port that all websocket clients (WebAO) clients will connect to
+
+    (Cannot be the same as the Native Port)
   example: []
   syntax:
     content: int WebsocketPort { get; }
@@ -258,10 +272,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property WebsocketPort As Integer
   overload: Alibi.Plugins.API.IConfiguration.WebsocketPort*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MasterServerAddress
   commentId: P:Alibi.Plugins.API.IConfiguration.MasterServerAddress
   id: MasterServerAddress
@@ -277,14 +287,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MasterServerAddress
     path: ../IConfiguration.cs
-    startLine: 37
+    startLine: 44
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe address of the AO2 masterserver that this server advertises to.\n"
+  summary: The address of the AO2 masterserver that this server advertises to.
   example: []
   syntax:
     content: string MasterServerAddress { get; }
@@ -293,45 +303,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property MasterServerAddress As String
   overload: Alibi.Plugins.API.IConfiguration.MasterServerAddress*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Alibi.Plugins.API.IConfiguration.MasterServerPort
-  commentId: P:Alibi.Plugins.API.IConfiguration.MasterServerPort
-  id: MasterServerPort
-  parent: Alibi.Plugins.API.IConfiguration
-  langs:
-  - csharp
-  - vb
-  name: MasterServerPort
-  nameWithType: IConfiguration.MasterServerPort
-  fullName: Alibi.Plugins.API.IConfiguration.MasterServerPort
-  type: Property
-  source:
-    remote:
-      path: Alibi.Plugins.API/IConfiguration.cs
-      branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
-    id: MasterServerPort
-    path: ../IConfiguration.cs
-    startLine: 42
-  assemblies:
-  - Alibi.Plugins.API
-  namespace: Alibi.Plugins.API
-  summary: "\nThe AO2 masterserver port to advertise on\n"
-  example: []
-  syntax:
-    content: int MasterServerPort { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: ReadOnly Property MasterServerPort As Integer
-  overload: Alibi.Plugins.API.IConfiguration.MasterServerPort*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.LogBufferSize
   commentId: P:Alibi.Plugins.API.IConfiguration.LogBufferSize
   id: LogBufferSize
@@ -347,14 +318,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: LogBufferSize
     path: ../IConfiguration.cs
-    startLine: 48
+    startLine: 50
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow many logs to store for when the server crashes and dumps them.\n"
+  summary: How many logs to store for when the server crashes and dumps them.
   remarks: This is 500 by default.
   example: []
   syntax:
@@ -364,10 +335,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property LogBufferSize As Integer
   overload: Alibi.Plugins.API.IConfiguration.LogBufferSize*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.VerboseLogs
   commentId: P:Alibi.Plugins.API.IConfiguration.VerboseLogs
   id: VerboseLogs
@@ -383,14 +350,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: VerboseLogs
     path: ../IConfiguration.cs
-    startLine: 53
+    startLine: 55
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nShould the server process logs that are marked verbose?\n"
+  summary: Should the server process logs that are marked verbose?
   example: []
   syntax:
     content: bool VerboseLogs { get; }
@@ -399,10 +366,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property VerboseLogs As Boolean
   overload: Alibi.Plugins.API.IConfiguration.VerboseLogs*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.Advertise
   commentId: P:Alibi.Plugins.API.IConfiguration.Advertise
   id: Advertise
@@ -418,15 +381,20 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Advertise
     path: ../IConfiguration.cs
-    startLine: 63
+    startLine: 65
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nShould this server tell the AO2 masterserver of its existence?\n"
-  remarks: "\nNot doing this will mean you have to add a manual favorite\nfor the local server, and name/description information will\nnot be visible. Unless debugging, this should always be true.\n"
+  summary: Should this server tell the AO2 masterserver of its existence?
+  remarks: >-
+    Not doing this will mean you have to add a manual favorite
+
+    for the local server, and name/description information will
+
+    not be visible. Unless debugging, this should always be true.
   example: []
   syntax:
     content: bool Advertise { get; }
@@ -435,10 +403,38 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property Advertise As Boolean
   overload: Alibi.Plugins.API.IConfiguration.Advertise*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
+- uid: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
+  commentId: P:Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
+  id: UseOldAdvertiser
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: UseOldAdvertiser
+  nameWithType: IConfiguration.UseOldAdvertiser
+  fullName: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: UseOldAdvertiser
+    path: ../IConfiguration.cs
+    startLine: 73
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Use the old advertiser protocol?
+  remarks: This is only to be used if you are running a custom, older masterserver.
+  example: []
+  syntax:
+    content: bool UseOldAdvertiser { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property UseOldAdvertiser As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser*
 - uid: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
   commentId: P:Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
   id: AllowDoublePostsIfDifferentAnim
@@ -454,14 +450,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AllowDoublePostsIfDifferentAnim
     path: ../IConfiguration.cs
-    startLine: 69
+    startLine: 79
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhether or not players should be able to post the same message twice in\nIn-Character chat even if they change the emote used\n"
+  summary: >-
+    Whether or not players should be able to post the same message twice in
+
+    In-Character chat even if they change the emote used
   example: []
   syntax:
     content: bool AllowDoublePostsIfDifferentAnim { get; }
@@ -470,10 +469,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property AllowDoublePostsIfDifferentAnim As Boolean
   overload: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MaxPlayers
   commentId: P:Alibi.Plugins.API.IConfiguration.MaxPlayers
   id: MaxPlayers
@@ -489,14 +484,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MaxPlayers
     path: ../IConfiguration.cs
-    startLine: 74
+    startLine: 84
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe maximum amount of clients allowed to join the server.\n"
+  summary: The maximum amount of clients allowed to join the server.
   example: []
   syntax:
     content: int MaxPlayers { get; }
@@ -505,10 +500,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property MaxPlayers As Integer
   overload: Alibi.Plugins.API.IConfiguration.MaxPlayers*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MaxMultiClients
   commentId: P:Alibi.Plugins.API.IConfiguration.MaxMultiClients
   id: MaxMultiClients
@@ -524,14 +515,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MaxMultiClients
     path: ../IConfiguration.cs
-    startLine: 79
+    startLine: 89
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow many clients one machine is allowed to connect to this server.\n"
+  summary: How many clients one machine is allowed to connect to this server.
   example: []
   syntax:
     content: int MaxMultiClients { get; }
@@ -540,10 +531,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property MaxMultiClients As Integer
   overload: Alibi.Plugins.API.IConfiguration.MaxMultiClients*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
   commentId: P:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
   id: MaxClientsOnOneNetwork
@@ -559,14 +546,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MaxClientsOnOneNetwork
     path: ../IConfiguration.cs
-    startLine: 84
+    startLine: 94
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow many clients on a single IP are allowed to connect.\n"
+  summary: How many clients on a single IP are allowed to connect.
   example: []
   syntax:
     content: int MaxClientsOnOneNetwork { get; }
@@ -575,10 +562,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property MaxClientsOnOneNetwork As Integer
   overload: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
   commentId: P:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
   id: TimeoutSeconds
@@ -594,14 +577,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: TimeoutSeconds
     path: ../IConfiguration.cs
-    startLine: 89
+    startLine: 99
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow long until an idle (not sending keepalives) client is kicked from the server.\n"
+  summary: How long until an idle (not sending keepalives) client is kicked from the server.
   example: []
   syntax:
     content: int TimeoutSeconds { get; }
@@ -610,10 +593,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property TimeoutSeconds As Integer
   overload: Alibi.Plugins.API.IConfiguration.TimeoutSeconds*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MaxMessageSize
   commentId: P:Alibi.Plugins.API.IConfiguration.MaxMessageSize
   id: MaxMessageSize
@@ -629,15 +608,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MaxMessageSize
     path: ../IConfiguration.cs
-    startLine: 98
+    startLine: 108
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow long an Ic or OoC message can be. Longer messages will return an error to the player.\n"
-  remarks: "\nDiacritics, emojis, and other weird unicode shit may count as multiple\ncharacters, so don&apos;t expect that 1 character always equals 1 size.\n"
+  summary: How long an Ic or OoC message can be. Longer messages will return an error to the player.
+  remarks: >-
+    Diacritics, emojis, and other weird unicode shit may count as multiple
+
+    characters, so don't expect that 1 character always equals 1 size.
   example: []
   syntax:
     content: int MaxMessageSize { get; }
@@ -646,10 +628,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property MaxMessageSize As Integer
   overload: Alibi.Plugins.API.IConfiguration.MaxMessageSize*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.MaxShownameSize
   commentId: P:Alibi.Plugins.API.IConfiguration.MaxShownameSize
   id: MaxShownameSize
@@ -665,15 +643,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MaxShownameSize
     path: ../IConfiguration.cs
-    startLine: 106
+    startLine: 116
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow long a showname can be.\n"
-  remarks: "\nThis should be pretty short because there is not much space allocated for this on the client.\n"
+  summary: How long a showname can be.
+  remarks: This should be pretty short because there is not much space allocated for this on the client.
   example: []
   syntax:
     content: int MaxShownameSize { get; }
@@ -682,10 +660,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property MaxShownameSize As Integer
   overload: Alibi.Plugins.API.IConfiguration.MaxShownameSize*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.RateLimit
   commentId: P:Alibi.Plugins.API.IConfiguration.RateLimit
   id: RateLimit
@@ -701,14 +675,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: RateLimit
     path: ../IConfiguration.cs
-    startLine: 111
+    startLine: 121
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow many packets the client can send within the RateLimitResetTime before they are rate limited.\n"
+  summary: How many packets the client can send within the RateLimitResetTime before they are rate limited.
   example: []
   syntax:
     content: int RateLimit { get; }
@@ -717,10 +691,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property RateLimit As Integer
   overload: Alibi.Plugins.API.IConfiguration.RateLimit*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.RateLimitResetTime
   commentId: P:Alibi.Plugins.API.IConfiguration.RateLimitResetTime
   id: RateLimitResetTime
@@ -736,14 +706,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: RateLimitResetTime
     path: ../IConfiguration.cs
-    startLine: 116
+    startLine: 126
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow long (in seconds) until the rate limit timer is reset.\n"
+  summary: How long (in seconds) until the rate limit timer is reset.
   example: []
   syntax:
     content: int RateLimitResetTime { get; }
@@ -752,10 +722,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property RateLimitResetTime As Integer
   overload: Alibi.Plugins.API.IConfiguration.RateLimitResetTime*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.RateLimitBanLength
   commentId: P:Alibi.Plugins.API.IConfiguration.RateLimitBanLength
   id: RateLimitBanLength
@@ -771,14 +737,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: RateLimitBanLength
     path: ../IConfiguration.cs
-    startLine: 121
+    startLine: 131
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow long until a rate limit is lifted.\n"
+  summary: How long until a rate limit is lifted.
   example: []
   syntax:
     content: TimeSpan RateLimitBanLength { get; }
@@ -787,10 +753,6 @@ items:
       type: System.TimeSpan
     content.vb: ReadOnly Property RateLimitBanLength As TimeSpan
   overload: Alibi.Plugins.API.IConfiguration.RateLimitBanLength*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IConfiguration.FeatureList
   commentId: P:Alibi.Plugins.API.IConfiguration.FeatureList
   id: FeatureList
@@ -806,15 +768,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IConfiguration.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: FeatureList
     path: ../IConfiguration.cs
-    startLine: 130
+    startLine: 140
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhat AO2 protocol features this server supports\n"
-  remarks: "\nNon-default features should not be added to this list. The option is only here\nto allow users to disable certain features they don&apos;t want/need.\n"
+  summary: What AO2 protocol features this server supports
+  remarks: >-
+    Non-default features should not be added to this list. The option is only here
+
+    to allow users to disable certain features they don't want/need.
   example: []
   syntax:
     content: string[] FeatureList { get; }
@@ -823,18 +788,40 @@ items:
       type: System.String[]
     content.vb: ReadOnly Property FeatureList As String()
   overload: Alibi.Plugins.API.IConfiguration.FeatureList*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IConfiguration.ServerName*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.ServerName
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_ServerName
   name: ServerName
   nameWithType: IConfiguration.ServerName
   fullName: Alibi.Plugins.API.IConfiguration.ServerName
@@ -842,27 +829,40 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.IConfiguration.ServerDescription*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.ServerDescription
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_ServerDescription
   name: ServerDescription
   nameWithType: IConfiguration.ServerDescription
   fullName: Alibi.Plugins.API.IConfiguration.ServerDescription
 - uid: Alibi.Plugins.API.IConfiguration.Motd*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.Motd
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_Motd
   name: Motd
   nameWithType: IConfiguration.Motd
   fullName: Alibi.Plugins.API.IConfiguration.Motd
+- uid: Alibi.Plugins.API.IConfiguration.AssetUrl*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.AssetUrl
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_AssetUrl
+  name: AssetUrl
+  nameWithType: IConfiguration.AssetUrl
+  fullName: Alibi.Plugins.API.IConfiguration.AssetUrl
 - uid: Alibi.Plugins.API.IConfiguration.BoundIpAddress*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_BoundIpAddress
   name: BoundIpAddress
   nameWithType: IConfiguration.BoundIpAddress
   fullName: Alibi.Plugins.API.IConfiguration.BoundIpAddress
@@ -876,11 +876,33 @@ references:
 - uid: System.Net
   commentId: N:System.Net
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Net
   nameWithType: System.Net
   fullName: System.Net
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
 - uid: Alibi.Plugins.API.IConfiguration.Port*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.Port
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_Port
   name: Port
   nameWithType: IConfiguration.Port
   fullName: Alibi.Plugins.API.IConfiguration.Port
@@ -888,31 +910,33 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Alibi.Plugins.API.IConfiguration.WebsocketPort*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.WebsocketPort
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_WebsocketPort
   name: WebsocketPort
   nameWithType: IConfiguration.WebsocketPort
   fullName: Alibi.Plugins.API.IConfiguration.WebsocketPort
 - uid: Alibi.Plugins.API.IConfiguration.MasterServerAddress*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MasterServerAddress
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MasterServerAddress
   name: MasterServerAddress
   nameWithType: IConfiguration.MasterServerAddress
   fullName: Alibi.Plugins.API.IConfiguration.MasterServerAddress
-- uid: Alibi.Plugins.API.IConfiguration.MasterServerPort*
-  commentId: Overload:Alibi.Plugins.API.IConfiguration.MasterServerPort
-  name: MasterServerPort
-  nameWithType: IConfiguration.MasterServerPort
-  fullName: Alibi.Plugins.API.IConfiguration.MasterServerPort
 - uid: Alibi.Plugins.API.IConfiguration.LogBufferSize*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.LogBufferSize
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_LogBufferSize
   name: LogBufferSize
   nameWithType: IConfiguration.LogBufferSize
   fullName: Alibi.Plugins.API.IConfiguration.LogBufferSize
 - uid: Alibi.Plugins.API.IConfiguration.VerboseLogs*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.VerboseLogs
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_VerboseLogs
   name: VerboseLogs
   nameWithType: IConfiguration.VerboseLogs
   fullName: Alibi.Plugins.API.IConfiguration.VerboseLogs
@@ -920,61 +944,81 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Alibi.Plugins.API.IConfiguration.Advertise*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.Advertise
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_Advertise
   name: Advertise
   nameWithType: IConfiguration.Advertise
   fullName: Alibi.Plugins.API.IConfiguration.Advertise
+- uid: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_UseOldAdvertiser
+  name: UseOldAdvertiser
+  nameWithType: IConfiguration.UseOldAdvertiser
+  fullName: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
 - uid: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_AllowDoublePostsIfDifferentAnim
   name: AllowDoublePostsIfDifferentAnim
   nameWithType: IConfiguration.AllowDoublePostsIfDifferentAnim
   fullName: Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
 - uid: Alibi.Plugins.API.IConfiguration.MaxPlayers*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxPlayers
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxPlayers
   name: MaxPlayers
   nameWithType: IConfiguration.MaxPlayers
   fullName: Alibi.Plugins.API.IConfiguration.MaxPlayers
 - uid: Alibi.Plugins.API.IConfiguration.MaxMultiClients*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxMultiClients
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxMultiClients
   name: MaxMultiClients
   nameWithType: IConfiguration.MaxMultiClients
   fullName: Alibi.Plugins.API.IConfiguration.MaxMultiClients
 - uid: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxClientsOnOneNetwork
   name: MaxClientsOnOneNetwork
   nameWithType: IConfiguration.MaxClientsOnOneNetwork
   fullName: Alibi.Plugins.API.IConfiguration.MaxClientsOnOneNetwork
 - uid: Alibi.Plugins.API.IConfiguration.TimeoutSeconds*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.TimeoutSeconds
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_TimeoutSeconds
   name: TimeoutSeconds
   nameWithType: IConfiguration.TimeoutSeconds
   fullName: Alibi.Plugins.API.IConfiguration.TimeoutSeconds
 - uid: Alibi.Plugins.API.IConfiguration.MaxMessageSize*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxMessageSize
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxMessageSize
   name: MaxMessageSize
   nameWithType: IConfiguration.MaxMessageSize
   fullName: Alibi.Plugins.API.IConfiguration.MaxMessageSize
 - uid: Alibi.Plugins.API.IConfiguration.MaxShownameSize*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.MaxShownameSize
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_MaxShownameSize
   name: MaxShownameSize
   nameWithType: IConfiguration.MaxShownameSize
   fullName: Alibi.Plugins.API.IConfiguration.MaxShownameSize
 - uid: Alibi.Plugins.API.IConfiguration.RateLimit*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimit
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_RateLimit
   name: RateLimit
   nameWithType: IConfiguration.RateLimit
   fullName: Alibi.Plugins.API.IConfiguration.RateLimit
 - uid: Alibi.Plugins.API.IConfiguration.RateLimitResetTime*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_RateLimitResetTime
   name: RateLimitResetTime
   nameWithType: IConfiguration.RateLimitResetTime
   fullName: Alibi.Plugins.API.IConfiguration.RateLimitResetTime
 - uid: Alibi.Plugins.API.IConfiguration.RateLimitBanLength*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.RateLimitBanLength
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_RateLimitBanLength
   name: RateLimitBanLength
   nameWithType: IConfiguration.RateLimitBanLength
   fullName: Alibi.Plugins.API.IConfiguration.RateLimitBanLength
@@ -987,32 +1031,27 @@ references:
   fullName: System.TimeSpan
 - uid: Alibi.Plugins.API.IConfiguration.FeatureList*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.FeatureList
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_FeatureList
   name: FeatureList
   nameWithType: IConfiguration.FeatureList
   fullName: Alibi.Plugins.API.IConfiguration.FeatureList
 - uid: System.String[]
   isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
   nameWithType.vb: String()
-  fullName.vb: System.String()
+  fullName.vb: String()
   name.vb: String()
   spec.csharp:
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )

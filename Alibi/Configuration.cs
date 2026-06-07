@@ -19,12 +19,11 @@ namespace Alibi
         public IPAddress BoundIpAddress { get; internal set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; internal set; } = 27016;
         public int WebsocketPort { get; internal set; } = 27017;
-        public string MasterServerAddress { get; internal set; } = "master.aceattorneyonline.com";
-        public int MasterServerPort { get; internal set; } = 27016;
+        public string MasterServerAddress { get; internal set; } = "https://servers.aceattorneyonline.com/servers";
         public int LogBufferSize { get; internal set; } = 500;
         public bool VerboseLogs { get; internal set; } = false;
-
         public bool Advertise { get; internal set; } = true;
+        public bool UseOldAdvertiser { get; internal set; } = false;
         public bool AllowDoublePostsIfDifferentAnim { get; internal set; } = false;
         public int MaxPlayers { get; internal set; } = 100;
         public int MaxMultiClients { get; internal set; } = 4;

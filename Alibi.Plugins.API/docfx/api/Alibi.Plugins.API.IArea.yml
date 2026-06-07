@@ -39,24 +39,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IArea
     path: ../IArea.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nAn area in the server\n"
+  summary: An area in the server
   example: []
   syntax:
     content: public interface IArea
     content.vb: Public Interface IArea
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: Alibi.Plugins.API.IArea.Name
   commentId: P:Alibi.Plugins.API.IArea.Name
   id: Name
@@ -72,10 +66,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Name
     path: ../IArea.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -86,10 +80,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property Name As String
   overload: Alibi.Plugins.API.IArea.Name*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.EvidenceModifications
   commentId: P:Alibi.Plugins.API.IArea.EvidenceModifications
   id: EvidenceModifications
@@ -105,14 +95,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: EvidenceModifications
     path: ../IArea.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nPermission level needed to modify evidence\n0 = Free for All\n1 = Case Manager\n2 = No-one\n"
+  summary: >-
+    Permission level needed to modify evidence
+        0 = Free for All
+        1 = Case Manager
+        2 = No-one
   example: []
   syntax:
     content: int EvidenceModifications { get; set; }
@@ -121,9 +115,6 @@ items:
       type: System.Int32
     content.vb: Property EvidenceModifications As Integer
   overload: Alibi.Plugins.API.IArea.EvidenceModifications*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.Background
   commentId: P:Alibi.Plugins.API.IArea.Background
   id: Background
@@ -139,15 +130,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Background
     path: ../IArea.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe background image this area tells clients to use\n"
-  remarks: "\nCan be arbitrary depending on server configuration; Try not to hard-code anything.\n"
+  summary: The background image this area tells clients to use
+  remarks: Can be arbitrary depending on server configuration; Try not to hard-code anything.
   example: []
   syntax:
     content: string Background { get; }
@@ -156,10 +147,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property Background As String
   overload: Alibi.Plugins.API.IArea.Background*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.CanLock
   commentId: P:Alibi.Plugins.API.IArea.CanLock
   id: CanLock
@@ -175,10 +162,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CanLock
     path: ../IArea.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -189,10 +176,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property CanLock As Boolean
   overload: Alibi.Plugins.API.IArea.CanLock*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.BackgroundLocked
   commentId: P:Alibi.Plugins.API.IArea.BackgroundLocked
   id: BackgroundLocked
@@ -208,10 +191,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BackgroundLocked
     path: ../IArea.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -222,10 +205,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property BackgroundLocked As Boolean
   overload: Alibi.Plugins.API.IArea.BackgroundLocked*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.IniSwappingAllowed
   commentId: P:Alibi.Plugins.API.IArea.IniSwappingAllowed
   id: IniSwappingAllowed
@@ -241,14 +220,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IniSwappingAllowed
     path: ../IArea.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhether or not a client can change the character data on their local client. \nThis is usually done to test custom characters, or to confuse people.\n"
+  summary: >-
+    Whether or not a client can change the character data on their local client. 
+
+    This is usually done to test custom characters, or to confuse people.
   example: []
   syntax:
     content: bool IniSwappingAllowed { get; }
@@ -257,10 +239,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property IniSwappingAllowed As Boolean
   overload: Alibi.Plugins.API.IArea.IniSwappingAllowed*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.Status
   commentId: P:Alibi.Plugins.API.IArea.Status
   id: Status
@@ -276,14 +254,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Status
     path: ../IArea.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe state of the area, such as LOCKED, CASING, etc.\nThis is arbitrary, but certain strings will cause clients to give the area different colors.\n"
+  summary: >-
+    The state of the area, such as LOCKED, CASING, etc.
+
+    This is arbitrary, but certain strings will cause clients to give the area different colors.
   example: []
   syntax:
     content: string Status { get; set; }
@@ -292,9 +273,6 @@ items:
       type: System.String
     content.vb: Property Status As String
   overload: Alibi.Plugins.API.IArea.Status*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.Locked
   commentId: P:Alibi.Plugins.API.IArea.Locked
   id: Locked
@@ -310,10 +288,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Locked
     path: ../IArea.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -324,9 +302,6 @@ items:
       type: System.String
     content.vb: Property Locked As String
   overload: Alibi.Plugins.API.IArea.Locked*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.PlayerCount
   commentId: P:Alibi.Plugins.API.IArea.PlayerCount
   id: PlayerCount
@@ -342,10 +317,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: PlayerCount
     path: ../IArea.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -356,10 +331,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property PlayerCount As Integer
   overload: Alibi.Plugins.API.IArea.PlayerCount*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.CurrentCaseManagers
   commentId: P:Alibi.Plugins.API.IArea.CurrentCaseManagers
   id: CurrentCaseManagers
@@ -375,14 +346,19 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CurrentCaseManagers
     path: ../IArea.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of Case Managers for this area. Case Managers are allowed to change\nmore of the area state than most players, in order to prevent spam and \nabuse. Treat these players carefully.\n"
+  summary: >-
+    List of Case Managers for this area. Case Managers are allowed to change
+
+    more of the area state than most players, in order to prevent spam and 
+
+    abuse. Treat these players carefully.
   example: []
   syntax:
     content: List<IClient> CurrentCaseManagers { get; }
@@ -391,10 +367,6 @@ items:
       type: System.Collections.Generic.List{Alibi.Plugins.API.IClient}
     content.vb: ReadOnly Property CurrentCaseManagers As List(Of IClient)
   overload: Alibi.Plugins.API.IArea.CurrentCaseManagers*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.Document
   commentId: P:Alibi.Plugins.API.IArea.Document
   id: Document
@@ -410,25 +382,25 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Document
     path: ../IArea.cs
-    startLine: 56
+    startLine: 57
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nAn arbitrary string that should reference some kind of case documentation\nfor players to refer to. Typically a hyperlink to a website containing a document.\n"
+  summary: >-
+    An arbitrary string that should reference some kind of case documentation
+
+    for players to refer to. Typically a hyperlink to a website containing a document.
   example: []
   syntax:
-    content: string Document { get; set; }
+    content: string? Document { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: Property Document As String
   overload: Alibi.Plugins.API.IArea.Document*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.DefendantHp
   commentId: P:Alibi.Plugins.API.IArea.DefendantHp
   id: DefendantHp
@@ -444,14 +416,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: DefendantHp
     path: ../IArea.cs
-    startLine: 61
+    startLine: 62
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nTells clients how much to fill the Defendant HP bar. Doesn&apos;t actually do anything.\n"
+  summary: Tells clients how much to fill the Defendant HP bar. Doesn't actually do anything.
   example: []
   syntax:
     content: int DefendantHp { get; set; }
@@ -460,9 +432,6 @@ items:
       type: System.Int32
     content.vb: Property DefendantHp As Integer
   overload: Alibi.Plugins.API.IArea.DefendantHp*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.ProsecutorHp
   commentId: P:Alibi.Plugins.API.IArea.ProsecutorHp
   id: ProsecutorHp
@@ -478,14 +447,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ProsecutorHp
     path: ../IArea.cs
-    startLine: 66
+    startLine: 67
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nTells clients how much to fill the Prosecutor HP bar. Doesn&apos;t actually do anything.\n"
+  summary: Tells clients how much to fill the Prosecutor HP bar. Doesn't actually do anything.
   example: []
   syntax:
     content: int ProsecutorHp { get; set; }
@@ -494,9 +463,6 @@ items:
       type: System.Int32
     content.vb: Property ProsecutorHp As Integer
   overload: Alibi.Plugins.API.IArea.ProsecutorHp*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IArea.TakenCharacters
   commentId: P:Alibi.Plugins.API.IArea.TakenCharacters
   id: TakenCharacters
@@ -512,14 +478,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: TakenCharacters
     path: ../IArea.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of characters that players in this area are playing as. \nRefer to Server.CharacterList for the order of this list\n"
+  summary: >-
+    List of characters that players in this area are playing as. 
+
+    Refer to Server.CharacterList for the order of this list
   example: []
   syntax:
     content: bool[] TakenCharacters { get; }
@@ -528,10 +497,6 @@ items:
       type: System.Boolean[]
     content.vb: ReadOnly Property TakenCharacters As Boolean()
   overload: Alibi.Plugins.API.IArea.TakenCharacters*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.EvidenceList
   commentId: P:Alibi.Plugins.API.IArea.EvidenceList
   id: EvidenceList
@@ -547,14 +512,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: EvidenceList
     path: ../IArea.cs
-    startLine: 78
+    startLine: 79
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of evidence currently created in this area.\nEvidence contains a name, an image, and a description.\n"
+  summary: >-
+    List of evidence currently created in this area.
+
+    Evidence contains a name, an image, and a description.
   example: []
   syntax:
     content: List<IEvidence> EvidenceList { get; }
@@ -563,10 +531,6 @@ items:
       type: System.Collections.Generic.List{Alibi.Plugins.API.IEvidence}
     content.vb: ReadOnly Property EvidenceList As List(Of IEvidence)
   overload: Alibi.Plugins.API.IArea.EvidenceList*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
   commentId: M:Alibi.Plugins.API.IArea.Broadcast(Alibi.Plugins.API.AOPacket)
   id: Broadcast(Alibi.Plugins.API.AOPacket)
@@ -582,14 +546,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Broadcast
     path: ../IArea.cs
-    startLine: 84
+    startLine: 85
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSend a packet to all players currently in this area.\n"
+  summary: Send a packet to all players currently in this area.
   example: []
   syntax:
     content: void Broadcast(AOPacket packet)
@@ -606,25 +570,28 @@ items:
   langs:
   - csharp
   - vb
-  name: BroadcastOocMessage(String, String)
-  nameWithType: IArea.BroadcastOocMessage(String, String)
-  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(System.String, System.String)
+  name: BroadcastOocMessage(string, string?)
+  nameWithType: IArea.BroadcastOocMessage(string, string?)
+  fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage(string, string?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BroadcastOocMessage
     path: ../IArea.cs
-    startLine: 92
+    startLine: 93
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSend a message to all players in this area.\nThe message will display in their Out of Context chat.\n"
+  summary: >-
+    Send a message to all players in this area.
+
+    The message will display in their Out of Context chat.
   example: []
   syntax:
-    content: void BroadcastOocMessage(string message, string sender = null)
+    content: void BroadcastOocMessage(string message, string? sender = null)
     parameters:
     - id: message
       type: System.String
@@ -634,6 +601,9 @@ items:
       description: 'A custom name to display instead of Server:'
     content.vb: Sub BroadcastOocMessage(message As String, sender As String = Nothing)
   overload: Alibi.Plugins.API.IArea.BroadcastOocMessage*
+  nameWithType.vb: IArea.BroadcastOocMessage(String, String)
+  fullName.vb: Alibi.Plugins.API.IArea.BroadcastOocMessage(String, String)
+  name.vb: BroadcastOocMessage(String, String)
 - uid: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
   commentId: M:Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
   id: AreaUpdate(Alibi.Plugins.API.AreaUpdateType)
@@ -649,14 +619,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AreaUpdate
     path: ../IArea.cs
-    startLine: 99
+    startLine: 100
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nBroadcast an area update to all clients in this area.\nThis will only tell them certain information specified by type\n"
+  summary: >-
+    Broadcast an area update to all clients in this area.
+
+    This will only tell them certain information specified by type
   example: []
   syntax:
     content: void AreaUpdate(AreaUpdateType type)
@@ -673,25 +646,28 @@ items:
   langs:
   - csharp
   - vb
-  name: AreaUpdate(AreaUpdateType, IClient)
-  nameWithType: IArea.AreaUpdate(AreaUpdateType, IClient)
-  fullName: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType, Alibi.Plugins.API.IClient)
+  name: AreaUpdate(AreaUpdateType, IClient?)
+  nameWithType: IArea.AreaUpdate(AreaUpdateType, IClient?)
+  fullName: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType, Alibi.Plugins.API.IClient?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AreaUpdate
     path: ../IArea.cs
-    startLine: 107
+    startLine: 108
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSend an area update to the specified client.\nThis will only tell them certain information specified by type\n"
+  summary: >-
+    Send an area update to the specified client.
+
+    This will only tell them certain information specified by type
   example: []
   syntax:
-    content: void AreaUpdate(AreaUpdateType type, IClient client)
+    content: void AreaUpdate(AreaUpdateType type, IClient? client)
     parameters:
     - id: type
       type: Alibi.Plugins.API.AreaUpdateType
@@ -701,6 +677,9 @@ items:
       description: The client to which the update will be sent
     content.vb: Sub AreaUpdate(type As AreaUpdateType, client As IClient)
   overload: Alibi.Plugins.API.IArea.AreaUpdate*
+  nameWithType.vb: IArea.AreaUpdate(AreaUpdateType, IClient)
+  fullName.vb: Alibi.Plugins.API.IArea.AreaUpdate(Alibi.Plugins.API.AreaUpdateType, Alibi.Plugins.API.IClient)
+  name.vb: AreaUpdate(AreaUpdateType, IClient)
 - uid: Alibi.Plugins.API.IArea.FullUpdate
   commentId: M:Alibi.Plugins.API.IArea.FullUpdate
   id: FullUpdate
@@ -716,19 +695,19 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: FullUpdate
     path: ../IArea.cs
-    startLine: 115
+    startLine: 116
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nBroadcast an update of all types to all players.\n"
-  remarks: "\nShould be used sparingly as it is needless and expensive.\n"
+  summary: Broadcast an update of all types to all players.
+  remarks: Should be used sparingly as it is needless and expensive.
   example: []
   syntax:
     content: void FullUpdate()
-    content.vb: Sub FullUpdate
+    content.vb: Sub FullUpdate()
   overload: Alibi.Plugins.API.IArea.FullUpdate*
 - uid: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
   commentId: M:Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
@@ -737,31 +716,34 @@ items:
   langs:
   - csharp
   - vb
-  name: FullUpdate(IClient)
-  nameWithType: IArea.FullUpdate(IClient)
-  fullName: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  name: FullUpdate(IClient?)
+  nameWithType: IArea.FullUpdate(IClient?)
+  fullName: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: FullUpdate
     path: ../IArea.cs
-    startLine: 121
+    startLine: 122
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSends an update of all types to this client.\n"
+  summary: Sends an update of all types to this client.
   example: []
   syntax:
-    content: void FullUpdate(IClient client)
+    content: void FullUpdate(IClient? client)
     parameters:
     - id: client
       type: Alibi.Plugins.API.IClient
       description: Which client to send the updates to
     content.vb: Sub FullUpdate(client As IClient)
   overload: Alibi.Plugins.API.IArea.FullUpdate*
+  nameWithType.vb: IArea.FullUpdate(IClient)
+  fullName.vb: Alibi.Plugins.API.IArea.FullUpdate(Alibi.Plugins.API.IClient)
+  name.vb: FullUpdate(IClient)
 - uid: Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
   commentId: M:Alibi.Plugins.API.IArea.IsClientCM(Alibi.Plugins.API.IClient)
   id: IsClientCM(Alibi.Plugins.API.IClient)
@@ -777,14 +759,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IsClientCM
     path: ../IArea.cs
-    startLine: 128
+    startLine: 129
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nReturns whether or not this client is a Case Manager.\n"
+  summary: Returns whether or not this client is a Case Manager.
   example: []
   syntax:
     content: bool IsClientCM(IClient client)
@@ -812,28 +794,57 @@ items:
     remote:
       path: Alibi.Plugins.API/IArea.cs
       branch: main
-      repo: https://github.com/ElijahZAwesome/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: UpdateTakenCharacters
     path: ../IArea.cs
-    startLine: 137
+    startLine: 138
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nMake sure taken characters are updated.\n"
-  remarks: "\nThis is usually done automatically, but if you manually change\na player&apos;s character this will need to be called.\n"
+  summary: Make sure taken characters are updated.
+  remarks: >-
+    This is usually done automatically, but if you manually change
+
+    a player's character this will need to be called.
   example: []
   syntax:
     content: void UpdateTakenCharacters()
-    content.vb: Sub UpdateTakenCharacters
+    content.vb: Sub UpdateTakenCharacters()
   overload: Alibi.Plugins.API.IArea.UpdateTakenCharacters*
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IArea.Name*
   commentId: Overload:Alibi.Plugins.API.IArea.Name
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Name
   name: Name
   nameWithType: IArea.Name
   fullName: Alibi.Plugins.API.IArea.Name
@@ -841,17 +852,22 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.IArea.EvidenceModifications*
   commentId: Overload:Alibi.Plugins.API.IArea.EvidenceModifications
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_EvidenceModifications
   name: EvidenceModifications
   nameWithType: IArea.EvidenceModifications
   fullName: Alibi.Plugins.API.IArea.EvidenceModifications
@@ -859,16 +875,21 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Alibi.Plugins.API.IArea.Background*
   commentId: Overload:Alibi.Plugins.API.IArea.Background
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Background
   name: Background
   nameWithType: IArea.Background
   fullName: Alibi.Plugins.API.IArea.Background
 - uid: Alibi.Plugins.API.IArea.CanLock*
   commentId: Overload:Alibi.Plugins.API.IArea.CanLock
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_CanLock
   name: CanLock
   nameWithType: IArea.CanLock
   fullName: Alibi.Plugins.API.IArea.CanLock
@@ -876,36 +897,45 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Alibi.Plugins.API.IArea.BackgroundLocked*
   commentId: Overload:Alibi.Plugins.API.IArea.BackgroundLocked
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_BackgroundLocked
   name: BackgroundLocked
   nameWithType: IArea.BackgroundLocked
   fullName: Alibi.Plugins.API.IArea.BackgroundLocked
 - uid: Alibi.Plugins.API.IArea.IniSwappingAllowed*
   commentId: Overload:Alibi.Plugins.API.IArea.IniSwappingAllowed
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_IniSwappingAllowed
   name: IniSwappingAllowed
   nameWithType: IArea.IniSwappingAllowed
   fullName: Alibi.Plugins.API.IArea.IniSwappingAllowed
 - uid: Alibi.Plugins.API.IArea.Status*
   commentId: Overload:Alibi.Plugins.API.IArea.Status
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Status
   name: Status
   nameWithType: IArea.Status
   fullName: Alibi.Plugins.API.IArea.Status
 - uid: Alibi.Plugins.API.IArea.Locked*
   commentId: Overload:Alibi.Plugins.API.IArea.Locked
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Locked
   name: Locked
   nameWithType: IArea.Locked
   fullName: Alibi.Plugins.API.IArea.Locked
 - uid: Alibi.Plugins.API.IArea.PlayerCount*
   commentId: Overload:Alibi.Plugins.API.IArea.PlayerCount
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_PlayerCount
   name: PlayerCount
   nameWithType: IArea.PlayerCount
   fullName: Alibi.Plugins.API.IArea.PlayerCount
 - uid: Alibi.Plugins.API.IArea.CurrentCaseManagers*
   commentId: Overload:Alibi.Plugins.API.IArea.CurrentCaseManagers
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_CurrentCaseManagers
   name: CurrentCaseManagers
   nameWithType: IArea.CurrentCaseManagers
   fullName: Alibi.Plugins.API.IArea.CurrentCaseManagers
@@ -913,6 +943,7 @@ references:
   commentId: T:System.Collections.Generic.List{Alibi.Plugins.API.IClient}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
+  href: Alibi.Plugins.API.IClient.html
   name: List<IClient>
   nameWithType: List<IClient>
   fullName: System.Collections.Generic.List<Alibi.Plugins.API.IClient>
@@ -922,35 +953,23 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Alibi.Plugins.API.IClient
     name: IClient
-    nameWithType: IClient
-    fullName: Alibi.Plugins.API.IClient
+    href: Alibi.Plugins.API.IClient.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Alibi.Plugins.API.IClient
     name: IClient
-    nameWithType: IClient
-    fullName: Alibi.Plugins.API.IClient
+    href: Alibi.Plugins.API.IClient.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -963,87 +982,103 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Alibi.Plugins.API.IArea.Document*
   commentId: Overload:Alibi.Plugins.API.IArea.Document
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Document
   name: Document
   nameWithType: IArea.Document
   fullName: Alibi.Plugins.API.IArea.Document
 - uid: Alibi.Plugins.API.IArea.DefendantHp*
   commentId: Overload:Alibi.Plugins.API.IArea.DefendantHp
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_DefendantHp
   name: DefendantHp
   nameWithType: IArea.DefendantHp
   fullName: Alibi.Plugins.API.IArea.DefendantHp
 - uid: Alibi.Plugins.API.IArea.ProsecutorHp*
   commentId: Overload:Alibi.Plugins.API.IArea.ProsecutorHp
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_ProsecutorHp
   name: ProsecutorHp
   nameWithType: IArea.ProsecutorHp
   fullName: Alibi.Plugins.API.IArea.ProsecutorHp
 - uid: Alibi.Plugins.API.IArea.TakenCharacters*
   commentId: Overload:Alibi.Plugins.API.IArea.TakenCharacters
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_TakenCharacters
   name: TakenCharacters
   nameWithType: IArea.TakenCharacters
   fullName: Alibi.Plugins.API.IArea.TakenCharacters
 - uid: System.Boolean[]
   isExternal: true
-  name: Boolean[]
-  nameWithType: Boolean[]
-  fullName: System.Boolean[]
+  name: bool[]
+  nameWithType: bool[]
+  fullName: bool[]
   nameWithType.vb: Boolean()
-  fullName.vb: System.Boolean()
+  fullName.vb: Boolean()
   name.vb: Boolean()
   spec.csharp:
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: Alibi.Plugins.API.IArea.EvidenceList*
   commentId: Overload:Alibi.Plugins.API.IArea.EvidenceList
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_EvidenceList
   name: EvidenceList
   nameWithType: IArea.EvidenceList
   fullName: Alibi.Plugins.API.IArea.EvidenceList
@@ -1051,6 +1086,7 @@ references:
   commentId: T:System.Collections.Generic.List{Alibi.Plugins.API.IEvidence}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
+  href: Alibi.Plugins.API.IEvidence.html
   name: List<IEvidence>
   nameWithType: List<IEvidence>
   fullName: System.Collections.Generic.List<Alibi.Plugins.API.IEvidence>
@@ -1060,80 +1096,77 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Alibi.Plugins.API.IEvidence
     name: IEvidence
-    nameWithType: IEvidence
-    fullName: Alibi.Plugins.API.IEvidence
+    href: Alibi.Plugins.API.IEvidence.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Alibi.Plugins.API.IEvidence
     name: IEvidence
-    nameWithType: IEvidence
-    fullName: Alibi.Plugins.API.IEvidence
+    href: Alibi.Plugins.API.IEvidence.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Alibi.Plugins.API.IArea.Broadcast*
   commentId: Overload:Alibi.Plugins.API.IArea.Broadcast
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_Broadcast_Alibi_Plugins_API_AOPacket_
   name: Broadcast
   nameWithType: IArea.Broadcast
   fullName: Alibi.Plugins.API.IArea.Broadcast
 - uid: Alibi.Plugins.API.AOPacket
   commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AOPacket.html
   name: AOPacket
   nameWithType: AOPacket
   fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IArea.BroadcastOocMessage*
   commentId: Overload:Alibi.Plugins.API.IArea.BroadcastOocMessage
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_BroadcastOocMessage_System_String_System_String_
   name: BroadcastOocMessage
   nameWithType: IArea.BroadcastOocMessage
   fullName: Alibi.Plugins.API.IArea.BroadcastOocMessage
 - uid: Alibi.Plugins.API.IArea.AreaUpdate*
   commentId: Overload:Alibi.Plugins.API.IArea.AreaUpdate
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_AreaUpdate_Alibi_Plugins_API_AreaUpdateType_
   name: AreaUpdate
   nameWithType: IArea.AreaUpdate
   fullName: Alibi.Plugins.API.IArea.AreaUpdate
 - uid: Alibi.Plugins.API.AreaUpdateType
   commentId: T:Alibi.Plugins.API.AreaUpdateType
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AreaUpdateType.html
   name: AreaUpdateType
   nameWithType: AreaUpdateType
   fullName: Alibi.Plugins.API.AreaUpdateType
 - uid: Alibi.Plugins.API.IClient
   commentId: T:Alibi.Plugins.API.IClient
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IClient.html
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
 - uid: Alibi.Plugins.API.IArea.FullUpdate*
   commentId: Overload:Alibi.Plugins.API.IArea.FullUpdate
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_FullUpdate
   name: FullUpdate
   nameWithType: IArea.FullUpdate
   fullName: Alibi.Plugins.API.IArea.FullUpdate
 - uid: Alibi.Plugins.API.IArea.IsClientCM*
   commentId: Overload:Alibi.Plugins.API.IArea.IsClientCM
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_IsClientCM_Alibi_Plugins_API_IClient_
   name: IsClientCM
   nameWithType: IArea.IsClientCM
   fullName: Alibi.Plugins.API.IArea.IsClientCM
 - uid: Alibi.Plugins.API.IArea.UpdateTakenCharacters*
   commentId: Overload:Alibi.Plugins.API.IArea.UpdateTakenCharacters
+  href: Alibi.Plugins.API.IArea.html#Alibi_Plugins_API_IArea_UpdateTakenCharacters
   name: UpdateTakenCharacters
   nameWithType: IArea.UpdateTakenCharacters
   fullName: Alibi.Plugins.API.IArea.UpdateTakenCharacters

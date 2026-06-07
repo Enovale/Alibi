@@ -45,11 +45,6 @@ namespace Alibi.Plugins.API
         string MasterServerAddress { get; }
 
         /// <summary>
-        /// The AO2 masterserver port to advertise on
-        /// </summary>
-        int MasterServerPort { get; }
-
-        /// <summary>
         /// How many logs to store for when the server crashes and dumps them.
         /// </summary>
         /// <remarks>This is 500 by default.</remarks>
@@ -69,6 +64,14 @@ namespace Alibi.Plugins.API
         /// not be visible. Unless debugging, this should always be true.
         /// </remarks>
         bool Advertise { get; }
+
+        /// <summary>
+        /// Use the old advertiser protocol?
+        /// </summary>
+        /// <remarks>
+        /// This is only to be used if you are running a custom, older masterserver.
+        /// </remarks>
+        bool UseOldAdvertiser { get; }
 
         /// <summary>
         /// Whether or not players should be able to post the same message twice in

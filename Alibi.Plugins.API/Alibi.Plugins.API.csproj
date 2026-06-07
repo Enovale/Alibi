@@ -1,21 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<Title>Alibi.Plugins.API</Title>
 		<Description>The plugin framework for Alibi, an Attorney Online server.</Description>
 		<Summary>The plugin framework for Alibi, an Attorney Online server.</Summary>
-		<Copyright>Copyright 2020 Elijah Bansley</Copyright>
-		<TargetFramework>net5.0</TargetFramework>
-		<Authors>ElijahZAwesome</Authors>
-		<Company>ElijahZAwesome</Company>
+		<Copyright>Copyright 2026 Enova</Copyright>
+		<TargetFramework>net10.0</TargetFramework>
+		<Authors>Enova</Authors>
+		<Company>Enova</Company>
 		<Description>API For Alibi plugins.</Description>
-		<PackageProjectUrl>https://github.com/ElijahZAwesome/Alibi</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Enova/Alibi</PackageProjectUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.3</Version>
+		<Version>0.8.0</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageVersion>0.7</PackageVersion>
+		<PackageVersion>0.8.0</PackageVersion>
 		<LangVersion>8</LangVersion>
-		<AssemblyVersion>0.7</AssemblyVersion>
+		<AssemblyVersion>0.8.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,6 +22,11 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Build" Version="18.6.3" />
+	  <PackageReference Include="Microsoft.Build.Framework" Version="18.6.3" />
 	</ItemGroup>
 
 </Project>

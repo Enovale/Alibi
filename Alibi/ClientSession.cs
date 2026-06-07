@@ -17,9 +17,10 @@ namespace Alibi
         protected override void OnConnected()
         {
             var ip = ((IPEndPoint) Socket.RemoteEndPoint!).Address;
-            if (((Server)Server).ServerConfiguration.Advertise &&
-                ip.Equals(((Server)Server).MasterServerIp))
-                Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
+            // Only happens if old advertiser is needed
+            //if (((Server)Server).ServerConfiguration.Advertise &&
+            //    ip.Equals(((Server)Server).MasterServerIp))
+            //    Alibi.Server.Logger.Log(LogSeverity.Info, " Probed by master server.", true);
             _client = new Client((Server) Server, this, ip)
                 {LastAlive = DateTime.UtcNow};
             _client.OnSessionConnected();
