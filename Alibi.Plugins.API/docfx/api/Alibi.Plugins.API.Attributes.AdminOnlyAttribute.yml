@@ -18,14 +18,14 @@ items:
     remote:
       path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AdminOnlyAttribute
     path: ../Attributes/AdminOnlyAttribute.cs
     startLine: 7
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
-  summary: "\nMakes sure a command can oly be run as an admin user.\n"
+  summary: Makes sure a command can oly be run as an admin user.
   example: []
   syntax:
     content: >-
@@ -35,9 +35,7 @@ items:
     content.vb: >-
       <AttributeUsage(AttributeTargets.Method)>
 
-      Public Class AdminOnlyAttribute
-
-          Inherits Attribute
+      Public Class AdminOnlyAttribute Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -47,12 +45,6 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 64
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
   commentId: P:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
   id: ErrorMsg
@@ -68,7 +60,7 @@ items:
     remote:
       path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ErrorMsg
     path: ../Attributes/AdminOnlyAttribute.cs
     startLine: 10
@@ -82,12 +74,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property ErrorMsg As String
   overload: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor(System.String)
   commentId: M:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -95,15 +81,15 @@ items:
   langs:
   - csharp
   - vb
-  name: AdminOnlyAttribute(String)
-  nameWithType: AdminOnlyAttribute.AdminOnlyAttribute(String)
-  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.AdminOnlyAttribute(System.String)
+  name: AdminOnlyAttribute(string)
+  nameWithType: AdminOnlyAttribute.AdminOnlyAttribute(string)
+  fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.AdminOnlyAttribute(string)
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/Attributes/AdminOnlyAttribute.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Attributes/AdminOnlyAttribute.cs
     startLine: 13
@@ -119,23 +105,58 @@ items:
       description: The error message to send in the OOC if the user is not admin.
     content.vb: Public Sub New(errorMsg As String = "You are not an admin, and can't run this command.")
   overload: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: AdminOnlyAttribute.New(String)
+  fullName.vb: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.New(String)
+  name.vb: New(String)
 references:
 - uid: Alibi.Plugins.API.Attributes
   commentId: N:Alibi.Plugins.API.Attributes
+  href: Alibi.html
   name: Alibi.Plugins.API.Attributes
   nameWithType: Alibi.Plugins.API.Attributes
   fullName: Alibi.Plugins.API.Attributes
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Attributes
+    name: Attributes
+    href: Alibi.Plugins.API.Attributes.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Attributes
+    name: Attributes
+    href: Alibi.Plugins.API.Attributes.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Attribute
   commentId: T:System.Attribute
   parent: System
@@ -146,11 +167,13 @@ references:
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg*
   commentId: Overload:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
+  href: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.html#Alibi_Plugins_API_Attributes_AdminOnlyAttribute_ErrorMsg
   name: ErrorMsg
   nameWithType: AdminOnlyAttribute.ErrorMsg
   fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.ErrorMsg
@@ -158,11 +181,18 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor*
   commentId: Overload:Alibi.Plugins.API.Attributes.AdminOnlyAttribute.#ctor
+  href: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.html#Alibi_Plugins_API_Attributes_AdminOnlyAttribute__ctor_System_String_
   name: AdminOnlyAttribute
   nameWithType: AdminOnlyAttribute.AdminOnlyAttribute
   fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.AdminOnlyAttribute
+  nameWithType.vb: AdminOnlyAttribute.New
+  fullName.vb: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.New
+  name.vb: New

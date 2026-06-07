@@ -1,56 +1,87 @@
 ### YamlMime:TableOfContent
+items:
 - uid: Alibi.Plugins.API
   name: Alibi.Plugins.API
+  type: Namespace
   items:
   - uid: Alibi.Plugins.API.AOPacket
     name: AOPacket
+    type: Class
   - uid: Alibi.Plugins.API.AreaUpdateType
     name: AreaUpdateType
+    type: Enum
   - uid: Alibi.Plugins.API.AuthType
     name: AuthType
+    type: Class
+  - uid: Alibi.Plugins.API.CasingFlags
+    name: CasingFlags
+    type: Enum
   - uid: Alibi.Plugins.API.ClientState
     name: ClientState
+    type: Enum
   - uid: Alibi.Plugins.API.Handler
     name: Handler
+    type: Class
   - uid: Alibi.Plugins.API.IArea
     name: IArea
+    type: Interface
   - uid: Alibi.Plugins.API.IClient
     name: IClient
+    type: Interface
   - uid: Alibi.Plugins.API.IConfiguration
     name: IConfiguration
+    type: Interface
   - uid: Alibi.Plugins.API.IDatabaseManager
     name: IDatabaseManager
+    type: Interface
   - uid: Alibi.Plugins.API.IEvidence
     name: IEvidence
+    type: Interface
   - uid: Alibi.Plugins.API.IPluginManager
     name: IPluginManager
+    type: Interface
   - uid: Alibi.Plugins.API.IServer
     name: IServer
+    type: Interface
   - uid: Alibi.Plugins.API.ISession
     name: ISession
+    type: Interface
   - uid: Alibi.Plugins.API.LogSeverity
     name: LogSeverity
+    type: Enum
   - uid: Alibi.Plugins.API.Plugin
     name: Plugin
+    type: Class
   - uid: Alibi.Plugins.API.StringExtensions
     name: StringExtensions
+    type: Class
 - uid: Alibi.Plugins.API.Attributes
   name: Alibi.Plugins.API.Attributes
+  type: Namespace
   items:
   - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
     name: AdminOnlyAttribute
+    type: Class
   - uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
     name: CommandHandlerAttribute
+    type: Class
   - uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
     name: MessageHandlerAttribute
+    type: Class
   - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute
     name: ModOnlyAttribute
+    type: Class
   - uid: Alibi.Plugins.API.Attributes.RequireStateAttribute
     name: RequireStateAttribute
+    type: Class
 - uid: Alibi.Plugins.API.Exceptions
   name: Alibi.Plugins.API.Exceptions
+  type: Namespace
   items:
   - uid: Alibi.Plugins.API.Exceptions.CommandException
     name: CommandException
+    type: Class
   - uid: Alibi.Plugins.API.Exceptions.IcValidationException
     name: IcValidationException
+    type: Class
+memberLayout: SamePage

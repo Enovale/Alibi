@@ -19,32 +19,24 @@ items:
     remote:
       path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IcValidationException
     path: ../Exceptions/IcValidationException.cs
     startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Exceptions
-  summary: "\nException meaning an Ic message failed to be verified. This usually means\nimproper data was sent, or the message contains something disallowed.\n"
+  summary: >-
+    Exception meaning an Ic message failed to be verified. This usually means
+
+    improper data was sent, or the message contains something disallowed.
   example: []
   syntax:
-    content: 'public class IcValidationException : Exception, ISerializable'
-    content.vb: >-
-      Public Class IcValidationException
-
-          Inherits Exception
-
-          Implements ISerializable
+    content: 'public class IcValidationException : Exception'
+    content.vb: Public Class IcValidationException Inherits Exception
   inheritance:
   - System.Object
   - System.Exception
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
   commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
   id: '#ctor'
@@ -60,7 +52,7 @@ items:
     remote:
       path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Exceptions/IcValidationException.cs
     startLine: 10
@@ -69,12 +61,11 @@ items:
   namespace: Alibi.Plugins.API.Exceptions
   syntax:
     content: public IcValidationException()
-    content.vb: Public Sub New
+    content.vb: Public Sub New()
   overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: IcValidationException.New()
+  fullName.vb: Alibi.Plugins.API.Exceptions.IcValidationException.New()
+  name.vb: New()
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
   commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -82,15 +73,15 @@ items:
   langs:
   - csharp
   - vb
-  name: IcValidationException(String)
-  nameWithType: IcValidationException.IcValidationException(String)
-  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String)
+  name: IcValidationException(string)
+  nameWithType: IcValidationException.IcValidationException(string)
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(string)
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Exceptions/IcValidationException.cs
     startLine: 14
@@ -104,10 +95,9 @@ items:
       type: System.String
     content.vb: Public Sub New(message As String)
   overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: IcValidationException.New(String)
+  fullName.vb: Alibi.Plugins.API.Exceptions.IcValidationException.New(String)
+  name.vb: New(String)
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
   commentId: M:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
@@ -115,15 +105,15 @@ items:
   langs:
   - csharp
   - vb
-  name: IcValidationException(String, Exception)
-  nameWithType: IcValidationException.IcValidationException(String, Exception)
-  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(System.String, System.Exception)
+  name: IcValidationException(string, Exception)
+  nameWithType: IcValidationException.IcValidationException(string, Exception)
+  fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException(string, System.Exception)
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/Exceptions/IcValidationException.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Exceptions/IcValidationException.cs
     startLine: 19
@@ -139,23 +129,58 @@ items:
       type: System.Exception
     content.vb: Public Sub New(message As String, inner As Exception)
   overload: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: IcValidationException.New(String, Exception)
+  fullName.vb: Alibi.Plugins.API.Exceptions.IcValidationException.New(String, System.Exception)
+  name.vb: New(String, Exception)
 references:
 - uid: Alibi.Plugins.API.Exceptions
   commentId: N:Alibi.Plugins.API.Exceptions
+  href: Alibi.html
   name: Alibi.Plugins.API.Exceptions
   nameWithType: Alibi.Plugins.API.Exceptions
   fullName: Alibi.Plugins.API.Exceptions
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Exceptions
+    name: Exceptions
+    href: Alibi.Plugins.API.Exceptions.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  - name: .
+  - uid: Alibi.Plugins.API.Exceptions
+    name: Exceptions
+    href: Alibi.Plugins.API.Exceptions.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Exception
   commentId: T:System.Exception
   parent: System
@@ -166,18 +191,26 @@ references:
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.Exceptions.IcValidationException.#ctor*
   commentId: Overload:Alibi.Plugins.API.Exceptions.IcValidationException.#ctor
+  href: Alibi.Plugins.API.Exceptions.IcValidationException.html#Alibi_Plugins_API_Exceptions_IcValidationException__ctor
   name: IcValidationException
   nameWithType: IcValidationException.IcValidationException
   fullName: Alibi.Plugins.API.Exceptions.IcValidationException.IcValidationException
+  nameWithType.vb: IcValidationException.New
+  fullName.vb: Alibi.Plugins.API.Exceptions.IcValidationException.New
+  name.vb: New
 - uid: System.String
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

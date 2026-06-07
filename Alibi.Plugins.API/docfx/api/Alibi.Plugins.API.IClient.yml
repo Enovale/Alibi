@@ -9,6 +9,7 @@ items:
   - Alibi.Plugins.API.IClient.Auth
   - Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   - Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IClient.CasingPreferences
   - Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
   - Alibi.Plugins.API.IClient.Character
   - Alibi.Plugins.API.IClient.CharacterName
@@ -44,24 +45,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IClient
     path: ../IClient.cs
     startLine: 9
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRepresents a client connected to the server (not necessarily an identified player).\n"
+  summary: Represents a client connected to the server (not necessarily an identified player).
   example: []
   syntax:
     content: public interface IClient
     content.vb: Public Interface IClient
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: Alibi.Plugins.API.IClient.Session
   commentId: P:Alibi.Plugins.API.IClient.Session
   id: Session
@@ -77,15 +72,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Session
     path: ../IClient.cs
     startLine: 17
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe underlying TCP/Websocket session of this client.\n"
-  remarks: "\nWarning: Here be dragons!\n"
+  summary: The underlying TCP/Websocket session of this client.
+  remarks: 'Warning: Here be dragons!'
   example: []
   syntax:
     content: ISession Session { get; }
@@ -94,10 +89,6 @@ items:
       type: Alibi.Plugins.API.ISession
     content.vb: ReadOnly Property Session As ISession
   overload: Alibi.Plugins.API.IClient.Session*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.ServerRef
   commentId: P:Alibi.Plugins.API.IClient.ServerRef
   id: ServerRef
@@ -113,15 +104,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ServerRef
     path: ../IClient.cs
     startLine: 26
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nQuick reference to the main server.\n"
-  remarks: "\nUse this in your message/command handlers so you don&apos;t have to\npass around references to the server.\n"
+  summary: Quick reference to the main server.
+  remarks: >-
+    Use this in your message/command handlers so you don't have to
+
+    pass around references to the server.
   example: []
   syntax:
     content: IServer ServerRef { get; }
@@ -130,10 +124,6 @@ items:
       type: Alibi.Plugins.API.IServer
     content.vb: ReadOnly Property ServerRef As IServer
   overload: Alibi.Plugins.API.IClient.ServerRef*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.Connected
   commentId: P:Alibi.Plugins.API.IClient.Connected
   id: Connected
@@ -149,14 +139,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Connected
     path: ../IClient.cs
     startLine: 32
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhether or not this client has given us a handshake and identified.\nA connected client is in an area and is playing.\n"
+  summary: >-
+    Whether or not this client has given us a handshake and identified.
+
+    A connected client is in an area and is playing.
   example: []
   syntax:
     content: bool Connected { get; }
@@ -165,10 +158,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property Connected As Boolean
   overload: Alibi.Plugins.API.IClient.Connected*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.Auth
   commentId: P:Alibi.Plugins.API.IClient.Auth
   id: Auth
@@ -184,14 +173,19 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Auth
     path: ../IClient.cs
     startLine: 39
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe authentication level of this client.\nThis is increased when calling /login\nand decreased when calling /logout\n"
+  summary: >-
+    The authentication level of this client.
+
+    This is increased when calling /login
+
+    and decreased when calling /logout
   example: []
   syntax:
     content: int Auth { get; }
@@ -200,10 +194,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property Auth As Integer
   overload: Alibi.Plugins.API.IClient.Auth*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.LastAlive
   commentId: P:Alibi.Plugins.API.IClient.LastAlive
   id: LastAlive
@@ -219,15 +209,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: LastAlive
     path: ../IClient.cs
     startLine: 48
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe last time the client gave us a keepalive packet.\n"
-  remarks: "\nUse this to determine if a client is idle and/or\ntheir network has been disconnected.\n"
+  summary: The last time the client gave us a keepalive packet.
+  remarks: >-
+    Use this to determine if a client is idle and/or
+
+    their network has been disconnected.
   example: []
   syntax:
     content: DateTime LastAlive { get; }
@@ -236,10 +229,6 @@ items:
       type: System.DateTime
     content.vb: ReadOnly Property LastAlive As Date
   overload: Alibi.Plugins.API.IClient.LastAlive*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.IpAddress
   commentId: P:Alibi.Plugins.API.IClient.IpAddress
   id: IpAddress
@@ -255,7 +244,7 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IpAddress
     path: ../IClient.cs
     startLine: 50
@@ -269,10 +258,6 @@ items:
       type: System.Net.IPAddress
     content.vb: ReadOnly Property IpAddress As IPAddress
   overload: Alibi.Plugins.API.IClient.IpAddress*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.HardwareId
   commentId: P:Alibi.Plugins.API.IClient.HardwareId
   id: HardwareId
@@ -288,26 +273,27 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: HardwareId
     path: ../IClient.cs
     startLine: 57
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe hardware ID of this player. Should be\ncompletely unique for every player, and is\nnot reused across sessions or reconnects.\n"
+  summary: >-
+    The hardware ID of this player. Should be
+
+    completely unique for every player, and is
+
+    not reused across sessions or reconnects.
   example: []
   syntax:
-    content: string HardwareId { get; }
+    content: string? HardwareId { get; }
     parameters: []
     return:
       type: System.String
     content.vb: ReadOnly Property HardwareId As String
   overload: Alibi.Plugins.API.IClient.HardwareId*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.Area
   commentId: P:Alibi.Plugins.API.IClient.Area
   id: Area
@@ -323,27 +309,23 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Area
     path: ../IClient.cs
     startLine: 65
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhich area is this client currently in?\n"
-  remarks: "\nCan be null when the player hasn&apos;t done the handshake yet.\n"
+  summary: Which area is this client currently in?
+  remarks: Can be null when the player hasn't done the handshake yet.
   example: []
   syntax:
-    content: IArea Area { get; }
+    content: IArea? Area { get; }
     parameters: []
     return:
       type: Alibi.Plugins.API.IArea
     content.vb: ReadOnly Property Area As IArea
   overload: Alibi.Plugins.API.IClient.Area*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.Position
   commentId: P:Alibi.Plugins.API.IClient.Position
   id: Position
@@ -359,26 +341,23 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Position
     path: ../IClient.cs
     startLine: 73
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe court position of this client, such as pro, def, or jud\n"
-  remarks: "\nCan be null if the client hasn&apos;t joined an area yet.\n"
+  summary: The court position of this client, such as pro, def, or jud
+  remarks: Can be null if the client hasn't joined an area yet.
   example: []
   syntax:
-    content: string Position { get; set; }
+    content: string? Position { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: Property Position As String
   overload: Alibi.Plugins.API.IClient.Position*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IClient.CurrentState
   commentId: P:Alibi.Plugins.API.IClient.CurrentState
   id: CurrentState
@@ -394,14 +373,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CurrentState
     path: ../IClient.cs
     startLine: 79
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe protocol-dependent state of this client. Use this to determine\nif a client is breaking protocol, or to tell if they&apos;re identified.\n"
+  summary: >-
+    The protocol-dependent state of this client. Use this to determine
+
+    if a client is breaking protocol, or to tell if they're identified.
   example: []
   syntax:
     content: ClientState CurrentState { get; set; }
@@ -410,9 +392,6 @@ items:
       type: Alibi.Plugins.API.ClientState
     content.vb: Property CurrentState As ClientState
   overload: Alibi.Plugins.API.IClient.CurrentState*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IClient.Password
   commentId: P:Alibi.Plugins.API.IClient.Password
   id: Password
@@ -428,26 +407,22 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Password
     path: ../IClient.cs
     startLine: 84
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe password this client input in order to unlock the character they&apos;re playing.\n"
+  summary: The password this client input in order to unlock the character they're playing.
   example: []
   syntax:
-    content: string Password { get; }
+    content: string? Password { get; }
     parameters: []
     return:
       type: System.String
     content.vb: ReadOnly Property Password As String
   overload: Alibi.Plugins.API.IClient.Password*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.Character
   commentId: P:Alibi.Plugins.API.IClient.Character
   id: Character
@@ -463,14 +438,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Character
     path: ../IClient.cs
     startLine: 90
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe character this player is currently playing as,\nas an index based on IServer.CharacterList.\n"
+  summary: >-
+    The character this player is currently playing as,
+
+    as an index based on IServer.CharacterList.
   example: []
   syntax:
     content: int? Character { get; set; }
@@ -479,9 +457,6 @@ items:
       type: System.Nullable{System.Int32}
     content.vb: Property Character As Integer?
   overload: Alibi.Plugins.API.IClient.Character*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IClient.CharacterName
   commentId: P:Alibi.Plugins.API.IClient.CharacterName
   id: CharacterName
@@ -497,27 +472,23 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CharacterName
     path: ../IClient.cs
     startLine: 98
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe actual string name of the character this player is using.\n"
-  remarks: "\nThis is arbitrary based on server configuration. Try not to hardcode anything.\n"
+  summary: The actual string name of the character this player is using.
+  remarks: This is arbitrary based on server configuration. Try not to hardcode anything.
   example: []
   syntax:
-    content: string CharacterName { get; }
+    content: string? CharacterName { get; }
     parameters: []
     return:
       type: System.String
     content.vb: ReadOnly Property CharacterName As String
   overload: Alibi.Plugins.API.IClient.CharacterName*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.OocName
   commentId: P:Alibi.Plugins.API.IClient.OocName
   id: OocName
@@ -533,27 +504,26 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: OocName
     path: ../IClient.cs
     startLine: 107
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe last name this player used when sending a message in Out of Context chat\n"
-  remarks: "\nPlayers are not forced to keep names and multiple players can have the same name.\nDo not use this for authentication or to identify a single player.\n"
+  summary: The last name this player used when sending a message in Out of Context chat
+  remarks: >-
+    Players are not forced to keep names and multiple players can have the same name.
+
+    Do not use this for authentication or to identify a single player.
   example: []
   syntax:
-    content: string OocName { get; }
+    content: string? OocName { get; }
     parameters: []
     return:
       type: System.String
     content.vb: ReadOnly Property OocName As String
   overload: Alibi.Plugins.API.IClient.OocName*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.LastSentMessage
   commentId: P:Alibi.Plugins.API.IClient.LastSentMessage
   id: LastSentMessage
@@ -569,25 +539,22 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: LastSentMessage
     path: ../IClient.cs
     startLine: 112
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe last message this player has sent in the In-Character chat.\n"
+  summary: The last message this player has sent in the In-Character chat.
   example: []
   syntax:
-    content: string LastSentMessage { get; set; }
+    content: string? LastSentMessage { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: Property LastSentMessage As String
   overload: Alibi.Plugins.API.IClient.LastSentMessage*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IClient.Muted
   commentId: P:Alibi.Plugins.API.IClient.Muted
   id: Muted
@@ -603,14 +570,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Muted
     path: ../IClient.cs
     startLine: 117
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhether or not this player is able to speak.\n"
+  summary: Whether or not this player is able to speak.
   example: []
   syntax:
     content: bool Muted { get; set; }
@@ -619,9 +586,37 @@ items:
       type: System.Boolean
     content.vb: Property Muted As Boolean
   overload: Alibi.Plugins.API.IClient.Muted*
-  modifiers.csharp:
-  - get
-  - set
+- uid: Alibi.Plugins.API.IClient.CasingPreferences
+  commentId: P:Alibi.Plugins.API.IClient.CasingPreferences
+  id: CasingPreferences
+  parent: Alibi.Plugins.API.IClient
+  langs:
+  - csharp
+  - vb
+  name: CasingPreferences
+  nameWithType: IClient.CasingPreferences
+  fullName: Alibi.Plugins.API.IClient.CasingPreferences
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IClient.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: CasingPreferences
+    path: ../IClient.cs
+    startLine: 122
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: What positions this user would like to fill in a case.
+  example: []
+  syntax:
+    content: CasingFlags CasingPreferences { get; set; }
+    parameters: []
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+    content.vb: Property CasingPreferences As CasingFlags
+  overload: Alibi.Plugins.API.IClient.CasingPreferences*
 - uid: Alibi.Plugins.API.IClient.PairingWith
   commentId: P:Alibi.Plugins.API.IClient.PairingWith
   id: PairingWith
@@ -637,14 +632,17 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: PairingWith
     path: ../IClient.cs
-    startLine: 124
+    startLine: 129
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhich character (not player) this player is trying to pair with,\nas an index of IServer.CharacterList\n"
+  summary: >-
+    Which character (not player) this player is trying to pair with,
+
+    as an index of IServer.CharacterList
   example: []
   syntax:
     content: int PairingWith { get; }
@@ -653,10 +651,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property PairingWith As Integer
   overload: Alibi.Plugins.API.IClient.PairingWith*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.StoredEmote
   commentId: P:Alibi.Plugins.API.IClient.StoredEmote
   id: StoredEmote
@@ -672,26 +666,22 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: StoredEmote
     path: ../IClient.cs
-    startLine: 129
+    startLine: 134
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe emote this player is trying to send in a pair.\n"
+  summary: The emote this player is trying to send in a pair.
   example: []
   syntax:
-    content: string StoredEmote { get; }
+    content: string? StoredEmote { get; }
     parameters: []
     return:
       type: System.String
     content.vb: ReadOnly Property StoredEmote As String
   overload: Alibi.Plugins.API.IClient.StoredEmote*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.StoredOffset
   commentId: P:Alibi.Plugins.API.IClient.StoredOffset
   id: StoredOffset
@@ -707,14 +697,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: StoredOffset
     path: ../IClient.cs
-    startLine: 134
+    startLine: 139
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe X offset this player is trying to use in a pair.\n"
+  summary: The X offset this player is trying to use in a pair.
   example: []
   syntax:
     content: int StoredOffset { get; }
@@ -723,10 +713,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property StoredOffset As Integer
   overload: Alibi.Plugins.API.IClient.StoredOffset*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.StoredFlip
   commentId: P:Alibi.Plugins.API.IClient.StoredFlip
   id: StoredFlip
@@ -742,14 +728,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: StoredFlip
     path: ../IClient.cs
-    startLine: 139
+    startLine: 144
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nWhether or not this player wants to flip in their pair message.\n"
+  summary: Whether or not this player wants to flip in their pair message.
   example: []
   syntax:
     content: bool StoredFlip { get; }
@@ -758,10 +744,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property StoredFlip As Boolean
   overload: Alibi.Plugins.API.IClient.StoredFlip*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
   commentId: M:Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
   id: ChangeArea(System.Int32)
@@ -769,22 +751,22 @@ items:
   langs:
   - csharp
   - vb
-  name: ChangeArea(Int32)
-  nameWithType: IClient.ChangeArea(Int32)
-  fullName: Alibi.Plugins.API.IClient.ChangeArea(System.Int32)
+  name: ChangeArea(int)
+  nameWithType: IClient.ChangeArea(int)
+  fullName: Alibi.Plugins.API.IClient.ChangeArea(int)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ChangeArea
     path: ../IClient.cs
-    startLine: 145
+    startLine: 150
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nChanges the area of this client gracefully.\n"
+  summary: Changes the area of this client gracefully.
   example: []
   syntax:
     content: void ChangeArea(int index)
@@ -794,6 +776,9 @@ items:
       description: Index of the area to switch to using IServer.Areas
     content.vb: Sub ChangeArea(index As Integer)
   overload: Alibi.Plugins.API.IClient.ChangeArea*
+  nameWithType.vb: IClient.ChangeArea(Integer)
+  fullName.vb: Alibi.Plugins.API.IClient.ChangeArea(Integer)
+  name.vb: ChangeArea(Integer)
 - uid: Alibi.Plugins.API.IClient.KickIfBanned
   commentId: M:Alibi.Plugins.API.IClient.KickIfBanned
   id: KickIfBanned
@@ -809,19 +794,19 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: KickIfBanned
     path: ../IClient.cs
-    startLine: 153
+    startLine: 158
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nKick this player from the server, only if they area banned.\n"
-  remarks: "\nShouldn&apos;t really run this often as it&apos;s already used internally\n"
+  summary: Kick this player from the server, only if they area banned.
+  remarks: Shouldn't really run this often as it's already used internally
   example: []
   syntax:
     content: void KickIfBanned()
-    content.vb: Sub KickIfBanned
+    content.vb: Sub KickIfBanned()
   overload: Alibi.Plugins.API.IClient.KickIfBanned*
 - uid: Alibi.Plugins.API.IClient.Kick(System.String)
   commentId: M:Alibi.Plugins.API.IClient.Kick(System.String)
@@ -830,22 +815,22 @@ items:
   langs:
   - csharp
   - vb
-  name: Kick(String)
-  nameWithType: IClient.Kick(String)
-  fullName: Alibi.Plugins.API.IClient.Kick(System.String)
+  name: Kick(string)
+  nameWithType: IClient.Kick(string)
+  fullName: Alibi.Plugins.API.IClient.Kick(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Kick
     path: ../IClient.cs
-    startLine: 159
+    startLine: 164
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nKick a player from the server, using the reason specified.\n"
+  summary: Kick a player from the server, using the reason specified.
   example: []
   syntax:
     content: void Kick(string reason)
@@ -855,6 +840,9 @@ items:
       description: The reason to give to the client as to why they were kicked.
     content.vb: Sub Kick(reason As String)
   overload: Alibi.Plugins.API.IClient.Kick*
+  nameWithType.vb: IClient.Kick(String)
+  fullName.vb: Alibi.Plugins.API.IClient.Kick(String)
+  name.vb: Kick(String)
 - uid: Alibi.Plugins.API.IClient.GetBanReason
   commentId: M:Alibi.Plugins.API.IClient.GetBanReason
   id: GetBanReason
@@ -870,21 +858,21 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetBanReason
     path: ../IClient.cs
-    startLine: 165
+    startLine: 170
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nFetch the reason for why a client was banned from the database.\n"
+  summary: Fetch the reason for why a client was banned from the database.
   example: []
   syntax:
     content: string GetBanReason()
     return:
       type: System.String
       description: Why the client was banned.
-    content.vb: Function GetBanReason As String
+    content.vb: Function GetBanReason() As String
   overload: Alibi.Plugins.API.IClient.GetBanReason*
 - uid: Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   commentId: M:Alibi.Plugins.API.IClient.BanHwid(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
@@ -893,26 +881,29 @@ items:
   langs:
   - csharp
   - vb
-  name: BanHwid(String, Nullable<TimeSpan>, IClient)
-  nameWithType: IClient.BanHwid(String, Nullable<TimeSpan>, IClient)
-  fullName: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  name: BanHwid(string, TimeSpan?, IClient?)
+  nameWithType: IClient.BanHwid(string, TimeSpan?, IClient?)
+  fullName: Alibi.Plugins.API.IClient.BanHwid(string, System.TimeSpan?, Alibi.Plugins.API.IClient?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BanHwid
     path: ../IClient.cs
-    startLine: 177
+    startLine: 182
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nBan this player&apos;s hardware ID, ensuring they don&apos;t rejoin under a proxy.\n"
-  remarks: "\nIf possible, this should always be used when banning, on top of IP banning.\nIt ensures the player can&apos;t use a proxy, VPN, or a change of IP to bypass the ban.\n"
+  summary: Ban this player's hardware ID, ensuring they don't rejoin under a proxy.
+  remarks: >-
+    If possible, this should always be used when banning, on top of IP banning.
+
+    It ensures the player can't use a proxy, VPN, or a change of IP to bypass the ban.
   example: []
   syntax:
-    content: void BanHwid(string reason, TimeSpan? expireDate, IClient banner)
+    content: void BanHwid(string reason, TimeSpan? expireDate, IClient? banner)
     parameters:
     - id: reason
       type: System.String
@@ -925,9 +916,9 @@ items:
       description: Who banned this client (null if the server banned them)
     content.vb: Sub BanHwid(reason As String, expireDate As TimeSpan?, banner As IClient)
   overload: Alibi.Plugins.API.IClient.BanHwid*
-  nameWithType.vb: IClient.BanHwid(String, Nullable(Of TimeSpan), IClient)
-  fullName.vb: Alibi.Plugins.API.IClient.BanHwid(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
-  name.vb: BanHwid(String, Nullable(Of TimeSpan), IClient)
+  nameWithType.vb: IClient.BanHwid(String, TimeSpan?, IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanHwid(String, System.TimeSpan?, Alibi.Plugins.API.IClient)
+  name.vb: BanHwid(String, TimeSpan?, IClient)
 - uid: Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   commentId: M:Alibi.Plugins.API.IClient.BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   id: BanIp(System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
@@ -935,26 +926,31 @@ items:
   langs:
   - csharp
   - vb
-  name: BanIp(String, Nullable<TimeSpan>, IClient)
-  nameWithType: IClient.BanIp(String, Nullable<TimeSpan>, IClient)
-  fullName: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable<System.TimeSpan>, Alibi.Plugins.API.IClient)
+  name: BanIp(string, TimeSpan?, IClient?)
+  nameWithType: IClient.BanIp(string, TimeSpan?, IClient?)
+  fullName: Alibi.Plugins.API.IClient.BanIp(string, System.TimeSpan?, Alibi.Plugins.API.IClient?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BanIp
     path: ../IClient.cs
-    startLine: 190
+    startLine: 195
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nBan this player&apos;s IP address, which is easily changing.\n"
-  remarks: "\nWhen trying to ban a player, this should almost always be accompanied by BanHwid, otherwise\na player can simply change IPs using a VPN, Proxy, or a reset of their router to join the\nserver again. However, if using this as a method of rate limiting, banning only their IP is acceptable.\n"
+  summary: Ban this player's IP address, which is easily changing.
+  remarks: >-
+    When trying to ban a player, this should almost always be accompanied by BanHwid, otherwise
+
+    a player can simply change IPs using a VPN, Proxy, or a reset of their router to join the
+
+    server again. However, if using this as a method of rate limiting, banning only their IP is acceptable.
   example: []
   syntax:
-    content: void BanIp(string reason, TimeSpan? expireDate, IClient banner)
+    content: void BanIp(string reason, TimeSpan? expireDate, IClient? banner)
     parameters:
     - id: reason
       type: System.String
@@ -967,9 +963,9 @@ items:
       description: Who banned this client (null if the server banned them)
     content.vb: Sub BanIp(reason As String, expireDate As TimeSpan?, banner As IClient)
   overload: Alibi.Plugins.API.IClient.BanIp*
-  nameWithType.vb: IClient.BanIp(String, Nullable(Of TimeSpan), IClient)
-  fullName.vb: Alibi.Plugins.API.IClient.BanIp(System.String, System.Nullable(Of System.TimeSpan), Alibi.Plugins.API.IClient)
-  name.vb: BanIp(String, Nullable(Of TimeSpan), IClient)
+  nameWithType.vb: IClient.BanIp(String, TimeSpan?, IClient)
+  fullName.vb: Alibi.Plugins.API.IClient.BanIp(String, System.TimeSpan?, Alibi.Plugins.API.IClient)
+  name.vb: BanIp(String, TimeSpan?, IClient)
 - uid: Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
   commentId: M:Alibi.Plugins.API.IClient.Send(Alibi.Plugins.API.AOPacket)
   id: Send(Alibi.Plugins.API.AOPacket)
@@ -985,14 +981,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Send
     path: ../IClient.cs
-    startLine: 196
+    startLine: 201
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSend this client a packet.\n"
+  summary: Send this client a packet.
   example: []
   syntax:
     content: void Send(AOPacket packet)
@@ -1009,25 +1005,25 @@ items:
   langs:
   - csharp
   - vb
-  name: SendOocMessage(String, String)
-  nameWithType: IClient.SendOocMessage(String, String)
-  fullName: Alibi.Plugins.API.IClient.SendOocMessage(System.String, System.String)
+  name: SendOocMessage(string, string?)
+  nameWithType: IClient.SendOocMessage(string, string?)
+  fullName: Alibi.Plugins.API.IClient.SendOocMessage(string, string?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IClient.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: SendOocMessage
     path: ../IClient.cs
-    startLine: 203
+    startLine: 208
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSend this player a message to be displayed in the Out of Context chat.\n"
+  summary: Send this player a message to be displayed in the Out of Context chat.
   example: []
   syntax:
-    content: void SendOocMessage(string message, string sender = null)
+    content: void SendOocMessage(string message, string? sender = null)
     parameters:
     - id: message
       type: System.String
@@ -1037,36 +1033,69 @@ items:
       description: Who sent it? (null if the server sent it)
     content.vb: Sub SendOocMessage(message As String, sender As String = Nothing)
   overload: Alibi.Plugins.API.IClient.SendOocMessage*
+  nameWithType.vb: IClient.SendOocMessage(String, String)
+  fullName.vb: Alibi.Plugins.API.IClient.SendOocMessage(String, String)
+  name.vb: SendOocMessage(String, String)
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IClient.Session*
   commentId: Overload:Alibi.Plugins.API.IClient.Session
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Session
   name: Session
   nameWithType: IClient.Session
   fullName: Alibi.Plugins.API.IClient.Session
 - uid: Alibi.Plugins.API.ISession
   commentId: T:Alibi.Plugins.API.ISession
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.ISession.html
   name: ISession
   nameWithType: ISession
   fullName: Alibi.Plugins.API.ISession
 - uid: Alibi.Plugins.API.IClient.ServerRef*
   commentId: Overload:Alibi.Plugins.API.IClient.ServerRef
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_ServerRef
   name: ServerRef
   nameWithType: IClient.ServerRef
   fullName: Alibi.Plugins.API.IClient.ServerRef
 - uid: Alibi.Plugins.API.IServer
   commentId: T:Alibi.Plugins.API.IServer
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IServer.html
   name: IServer
   nameWithType: IServer
   fullName: Alibi.Plugins.API.IServer
 - uid: Alibi.Plugins.API.IClient.Connected*
   commentId: Overload:Alibi.Plugins.API.IClient.Connected
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Connected
   name: Connected
   nameWithType: IClient.Connected
   fullName: Alibi.Plugins.API.IClient.Connected
@@ -1074,17 +1103,22 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.IClient.Auth*
   commentId: Overload:Alibi.Plugins.API.IClient.Auth
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Auth
   name: Auth
   nameWithType: IClient.Auth
   fullName: Alibi.Plugins.API.IClient.Auth
@@ -1092,11 +1126,15 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Alibi.Plugins.API.IClient.LastAlive*
   commentId: Overload:Alibi.Plugins.API.IClient.LastAlive
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_LastAlive
   name: LastAlive
   nameWithType: IClient.LastAlive
   fullName: Alibi.Plugins.API.IClient.LastAlive
@@ -1107,8 +1145,12 @@ references:
   name: DateTime
   nameWithType: DateTime
   fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: Alibi.Plugins.API.IClient.IpAddress*
   commentId: Overload:Alibi.Plugins.API.IClient.IpAddress
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_IpAddress
   name: IpAddress
   nameWithType: IClient.IpAddress
   fullName: Alibi.Plugins.API.IClient.IpAddress
@@ -1122,11 +1164,33 @@ references:
 - uid: System.Net
   commentId: N:System.Net
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Net
   nameWithType: System.Net
   fullName: System.Net
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
 - uid: Alibi.Plugins.API.IClient.HardwareId*
   commentId: Overload:Alibi.Plugins.API.IClient.HardwareId
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_HardwareId
   name: HardwareId
   nameWithType: IClient.HardwareId
   fullName: Alibi.Plugins.API.IClient.HardwareId
@@ -1134,43 +1198,53 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Alibi.Plugins.API.IClient.Area*
   commentId: Overload:Alibi.Plugins.API.IClient.Area
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Area
   name: Area
   nameWithType: IClient.Area
   fullName: Alibi.Plugins.API.IClient.Area
 - uid: Alibi.Plugins.API.IArea
   commentId: T:Alibi.Plugins.API.IArea
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IArea.html
   name: IArea
   nameWithType: IArea
   fullName: Alibi.Plugins.API.IArea
 - uid: Alibi.Plugins.API.IClient.Position*
   commentId: Overload:Alibi.Plugins.API.IClient.Position
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Position
   name: Position
   nameWithType: IClient.Position
   fullName: Alibi.Plugins.API.IClient.Position
 - uid: Alibi.Plugins.API.IClient.CurrentState*
   commentId: Overload:Alibi.Plugins.API.IClient.CurrentState
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_CurrentState
   name: CurrentState
   nameWithType: IClient.CurrentState
   fullName: Alibi.Plugins.API.IClient.CurrentState
 - uid: Alibi.Plugins.API.ClientState
   commentId: T:Alibi.Plugins.API.ClientState
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.ClientState.html
   name: ClientState
   nameWithType: ClientState
   fullName: Alibi.Plugins.API.ClientState
 - uid: Alibi.Plugins.API.IClient.Password*
   commentId: Overload:Alibi.Plugins.API.IClient.Password
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Password
   name: Password
   nameWithType: IClient.Password
   fullName: Alibi.Plugins.API.IClient.Password
 - uid: Alibi.Plugins.API.IClient.Character*
   commentId: Overload:Alibi.Plugins.API.IClient.Character
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Character
   name: Character
   nameWithType: IClient.Character
   fullName: Alibi.Plugins.API.IClient.Character
@@ -1178,46 +1252,22 @@ references:
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: '?'
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
@@ -1230,95 +1280,107 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Alibi.Plugins.API.IClient.CharacterName*
   commentId: Overload:Alibi.Plugins.API.IClient.CharacterName
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_CharacterName
   name: CharacterName
   nameWithType: IClient.CharacterName
   fullName: Alibi.Plugins.API.IClient.CharacterName
 - uid: Alibi.Plugins.API.IClient.OocName*
   commentId: Overload:Alibi.Plugins.API.IClient.OocName
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_OocName
   name: OocName
   nameWithType: IClient.OocName
   fullName: Alibi.Plugins.API.IClient.OocName
 - uid: Alibi.Plugins.API.IClient.LastSentMessage*
   commentId: Overload:Alibi.Plugins.API.IClient.LastSentMessage
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_LastSentMessage
   name: LastSentMessage
   nameWithType: IClient.LastSentMessage
   fullName: Alibi.Plugins.API.IClient.LastSentMessage
 - uid: Alibi.Plugins.API.IClient.Muted*
   commentId: Overload:Alibi.Plugins.API.IClient.Muted
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Muted
   name: Muted
   nameWithType: IClient.Muted
   fullName: Alibi.Plugins.API.IClient.Muted
+- uid: Alibi.Plugins.API.IClient.CasingPreferences*
+  commentId: Overload:Alibi.Plugins.API.IClient.CasingPreferences
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_CasingPreferences
+  name: CasingPreferences
+  nameWithType: IClient.CasingPreferences
+  fullName: Alibi.Plugins.API.IClient.CasingPreferences
+- uid: Alibi.Plugins.API.CasingFlags
+  commentId: T:Alibi.Plugins.API.CasingFlags
+  parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.CasingFlags.html
+  name: CasingFlags
+  nameWithType: CasingFlags
+  fullName: Alibi.Plugins.API.CasingFlags
 - uid: Alibi.Plugins.API.IClient.PairingWith*
   commentId: Overload:Alibi.Plugins.API.IClient.PairingWith
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_PairingWith
   name: PairingWith
   nameWithType: IClient.PairingWith
   fullName: Alibi.Plugins.API.IClient.PairingWith
 - uid: Alibi.Plugins.API.IClient.StoredEmote*
   commentId: Overload:Alibi.Plugins.API.IClient.StoredEmote
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_StoredEmote
   name: StoredEmote
   nameWithType: IClient.StoredEmote
   fullName: Alibi.Plugins.API.IClient.StoredEmote
 - uid: Alibi.Plugins.API.IClient.StoredOffset*
   commentId: Overload:Alibi.Plugins.API.IClient.StoredOffset
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_StoredOffset
   name: StoredOffset
   nameWithType: IClient.StoredOffset
   fullName: Alibi.Plugins.API.IClient.StoredOffset
 - uid: Alibi.Plugins.API.IClient.StoredFlip*
   commentId: Overload:Alibi.Plugins.API.IClient.StoredFlip
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_StoredFlip
   name: StoredFlip
   nameWithType: IClient.StoredFlip
   fullName: Alibi.Plugins.API.IClient.StoredFlip
 - uid: Alibi.Plugins.API.IClient.ChangeArea*
   commentId: Overload:Alibi.Plugins.API.IClient.ChangeArea
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_ChangeArea_System_Int32_
   name: ChangeArea
   nameWithType: IClient.ChangeArea
   fullName: Alibi.Plugins.API.IClient.ChangeArea
 - uid: Alibi.Plugins.API.IClient.KickIfBanned*
   commentId: Overload:Alibi.Plugins.API.IClient.KickIfBanned
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_KickIfBanned
   name: KickIfBanned
   nameWithType: IClient.KickIfBanned
   fullName: Alibi.Plugins.API.IClient.KickIfBanned
 - uid: Alibi.Plugins.API.IClient.Kick*
   commentId: Overload:Alibi.Plugins.API.IClient.Kick
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Kick_System_String_
   name: Kick
   nameWithType: IClient.Kick
   fullName: Alibi.Plugins.API.IClient.Kick
 - uid: Alibi.Plugins.API.IClient.GetBanReason*
   commentId: Overload:Alibi.Plugins.API.IClient.GetBanReason
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_GetBanReason
   name: GetBanReason
   nameWithType: IClient.GetBanReason
   fullName: Alibi.Plugins.API.IClient.GetBanReason
 - uid: Alibi.Plugins.API.IClient.BanHwid*
   commentId: Overload:Alibi.Plugins.API.IClient.BanHwid
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanHwid_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
   name: BanHwid
   nameWithType: IClient.BanHwid
   fullName: Alibi.Plugins.API.IClient.BanHwid
@@ -1326,70 +1388,48 @@ references:
   commentId: T:System.Nullable{System.TimeSpan}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<TimeSpan>
-  nameWithType: Nullable<TimeSpan>
-  fullName: System.Nullable<System.TimeSpan>
-  nameWithType.vb: Nullable(Of TimeSpan)
-  fullName.vb: System.Nullable(Of System.TimeSpan)
-  name.vb: Nullable(Of TimeSpan)
+  name: TimeSpan?
+  nameWithType: TimeSpan?
+  fullName: System.TimeSpan?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.TimeSpan
     name: TimeSpan
-    nameWithType: TimeSpan
-    fullName: System.TimeSpan
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.TimeSpan
     name: TimeSpan
-    nameWithType: TimeSpan
-    fullName: System.TimeSpan
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: '?'
 - uid: Alibi.Plugins.API.IClient
   commentId: T:Alibi.Plugins.API.IClient
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IClient.html
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
 - uid: Alibi.Plugins.API.IClient.BanIp*
   commentId: Overload:Alibi.Plugins.API.IClient.BanIp
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_BanIp_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
   name: BanIp
   nameWithType: IClient.BanIp
   fullName: Alibi.Plugins.API.IClient.BanIp
 - uid: Alibi.Plugins.API.IClient.Send*
   commentId: Overload:Alibi.Plugins.API.IClient.Send
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_Send_Alibi_Plugins_API_AOPacket_
   name: Send
   nameWithType: IClient.Send
   fullName: Alibi.Plugins.API.IClient.Send
 - uid: Alibi.Plugins.API.AOPacket
   commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AOPacket.html
   name: AOPacket
   nameWithType: AOPacket
   fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IClient.SendOocMessage*
   commentId: Overload:Alibi.Plugins.API.IClient.SendOocMessage
+  href: Alibi.Plugins.API.IClient.html#Alibi_Plugins_API_IClient_SendOocMessage_System_String_System_String_
   name: SendOocMessage
   nameWithType: IClient.SendOocMessage
   fullName: Alibi.Plugins.API.IClient.SendOocMessage

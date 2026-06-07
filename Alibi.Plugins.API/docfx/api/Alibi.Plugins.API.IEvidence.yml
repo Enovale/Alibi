@@ -20,24 +20,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IEvidence.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IEvidence
     path: ../IEvidence.cs
     startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRepresents a piece of evidence in the server.\n"
+  summary: Represents a piece of evidence in the server.
   example: []
   syntax:
     content: public interface IEvidence
     content.vb: Public Interface IEvidence
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: Alibi.Plugins.API.IEvidence.Name
   commentId: P:Alibi.Plugins.API.IEvidence.Name
   id: Name
@@ -53,15 +47,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IEvidence.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Name
     path: ../IEvidence.cs
     startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe name of this piece of evidence.\n"
-  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  summary: The name of this piece of evidence.
+  remarks: This is completely arbitrary, and determined by user input. Be careful out there.
   example: []
   syntax:
     content: string Name { get; set; }
@@ -70,9 +64,6 @@ items:
       type: System.String
     content.vb: Property Name As String
   overload: Alibi.Plugins.API.IEvidence.Name*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IEvidence.Description
   commentId: P:Alibi.Plugins.API.IEvidence.Description
   id: Description
@@ -88,15 +79,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IEvidence.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Description
     path: ../IEvidence.cs
     startLine: 20
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe description for this piece of evidence.\n"
-  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  summary: The description for this piece of evidence.
+  remarks: This is completely arbitrary, and determined by user input. Be careful out there.
   example: []
   syntax:
     content: string Description { get; set; }
@@ -105,9 +96,6 @@ items:
       type: System.String
     content.vb: Property Description As String
   overload: Alibi.Plugins.API.IEvidence.Description*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IEvidence.Photo
   commentId: P:Alibi.Plugins.API.IEvidence.Photo
   id: Photo
@@ -123,15 +111,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IEvidence.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Photo
     path: ../IEvidence.cs
     startLine: 27
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe photo name of this piece of evidence.\n"
-  remarks: "\nThis is completely arbitrary, and determined by user input. Be careful out there.\n"
+  summary: The photo name of this piece of evidence.
+  remarks: This is completely arbitrary, and determined by user input. Be careful out there.
   example: []
   syntax:
     content: string Photo { get; set; }
@@ -140,9 +128,6 @@ items:
       type: System.String
     content.vb: Property Photo As String
   overload: Alibi.Plugins.API.IEvidence.Photo*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IEvidence.ToPacket
   commentId: M:Alibi.Plugins.API.IEvidence.ToPacket
   id: ToPacket
@@ -158,30 +143,56 @@ items:
     remote:
       path: Alibi.Plugins.API/IEvidence.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ToPacket
     path: ../IEvidence.cs
     startLine: 36
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nConverts this piece of evidence into a packet that can be sent to players\n"
+  summary: Converts this piece of evidence into a packet that can be sent to players
   example: []
   syntax:
     content: string ToPacket()
     return:
       type: System.String
       description: A packet version of this piece of evidence, to be used as data in a packet.
-    content.vb: Function ToPacket As String
+    content.vb: Function ToPacket() As String
   overload: Alibi.Plugins.API.IEvidence.ToPacket*
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IEvidence.Name*
   commentId: Overload:Alibi.Plugins.API.IEvidence.Name
+  href: Alibi.Plugins.API.IEvidence.html#Alibi_Plugins_API_IEvidence_Name
   name: Name
   nameWithType: IEvidence.Name
   fullName: Alibi.Plugins.API.IEvidence.Name
@@ -189,27 +200,34 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.IEvidence.Description*
   commentId: Overload:Alibi.Plugins.API.IEvidence.Description
+  href: Alibi.Plugins.API.IEvidence.html#Alibi_Plugins_API_IEvidence_Description
   name: Description
   nameWithType: IEvidence.Description
   fullName: Alibi.Plugins.API.IEvidence.Description
 - uid: Alibi.Plugins.API.IEvidence.Photo*
   commentId: Overload:Alibi.Plugins.API.IEvidence.Photo
+  href: Alibi.Plugins.API.IEvidence.html#Alibi_Plugins_API_IEvidence_Photo
   name: Photo
   nameWithType: IEvidence.Photo
   fullName: Alibi.Plugins.API.IEvidence.Photo
 - uid: Alibi.Plugins.API.IEvidence.ToPacket*
   commentId: Overload:Alibi.Plugins.API.IEvidence.ToPacket
+  href: Alibi.Plugins.API.IEvidence.html#Alibi_Plugins_API_IEvidence_ToPacket
   name: ToPacket
   nameWithType: IEvidence.ToPacket
   fullName: Alibi.Plugins.API.IEvidence.ToPacket

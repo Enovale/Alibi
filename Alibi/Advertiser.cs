@@ -1,59 +1,66 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using Alibi.Plugins.API;
+using Newtonsoft.Json;
 
 namespace Alibi
 {
-    // TODO: Maybe rewrite this using a TcpClient so we can better handle errors
-    internal class Advertiser
+    internal class Advertiser : IAdvertiser
     {
-        private Socket _socket;
-
-        public void Start(IPAddress ip, int port)
+        private static readonly HttpClient _client = new();
+        private readonly CancellationTokenSource _cts = new();
+        
+        public void Start(string url)
         {
-            if (_socket != null)
-                return;
-            
-            try
-            {
-                _socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                _socket.BeginConnect(new IPEndPoint(ip, port), OnConnect, _socket);
-            }
-            catch (SocketException e)
-            {
-                Server.Logger.Log(LogSeverity.Error, " Advertiser disconnected: " + e);
-            }
+            _ = PeriodicAsync(() => SendHeartbeat(url), TimeSpan.FromMinutes(3), _cts.Token);
         }
 
-        private void OnConnect(IAsyncResult ar)
+        private async Task SendHeartbeat(string url)
         {
+            Server.Logger.Log(LogSeverity.Info, $"[Advertiser] Attempting to send heartbeat...", true);
             var server = Server.Instance;
-            ((Socket) ar.AsyncState)?.EndConnect(ar);
+            var json = new Heartbeat(
+                server.ServerConfiguration.Port,
+                server.ServerConfiguration.WebsocketPort,
+                server.ConnectedPlayers,
+                server.ServerConfiguration.ServerName,
+                server.ServerConfiguration.ServerDescription);
+            var response = await _client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(json)));
+            response.EnsureSuccessStatusCode();
+        } 
 
-            string ports;
-            if (string.IsNullOrWhiteSpace(server.ServerConfiguration.WebsocketPort.ToString()))
-                ports = server.ServerConfiguration.Port.ToString();
-            else
-                ports = server.ServerConfiguration.Port + "&" + server.ServerConfiguration.WebsocketPort;
-
-            _socket.Send(Encoding.UTF8.GetBytes(new AOPacket("SCC",
-                ports,
-                AOPacket.EncodeToAOPacket(server.ServerConfiguration.ServerName),
-                AOPacket.EncodeToAOPacket(server.ServerConfiguration.ServerDescription),
-                $"Alibi v{server.Version}"
-            )));
+        private async Task PeriodicAsync(Func<Task> action, TimeSpan interval,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    await action();
+                    await Task.Delay(interval, cancellationToken);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                Server.Logger.Log(LogSeverity.Info, $"[Advertiser] Stopping advertiser...", true);
+            }
+            catch (Exception exception)
+            {
+                Server.Logger.Log(LogSeverity.Error, $"[Advertiser] Exception: {exception}");
+            }
+            finally
+            {
+                _client.Dispose();
+            }
         }
 
         public void Stop()
         {
-            if (_socket == null)
-                return;
-            
-            _socket.Disconnect(false);
-            _socket.Dispose();
-            _socket = null;
+            _cts.Cancel();
         }
+
+        private record Heartbeat(int port, int ws_port, int players, string name, string description);
     }
 }

@@ -36,7 +36,6 @@ namespace Alibi
 
         public static Logger Logger { get; private set; }
 
-        public IPAddress MasterServerIp { get; private set; }
         public IConfiguration ServerConfiguration { get; private set; }
         public IDatabaseManager Database { get; private set; }
         public string[] MusicList { get; private set; }
@@ -49,7 +48,7 @@ namespace Alibi
         public string[] AreaNames { get; }
         public bool VerboseLogs => ServerConfiguration.VerboseLogs;
 
-        private readonly Advertiser _advertiser;
+        private readonly IAdvertiser _advertiser;
         private readonly CancellationTokenSource _cancelTasksToken;
         private readonly PluginManager _pluginManager;
         private readonly WebSocketProxy _wsProxy;
@@ -70,10 +69,9 @@ namespace Alibi
                     "then removing the dummy user with /removelogin.");
 
             ClientsConnected = new List<IClient>(ServerConfiguration.MaxPlayers);
-            MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
-            _advertiser = new Advertiser();
+            _advertiser = ServerConfiguration.UseOldAdvertiser ? new OldAdvertiser() : new Advertiser();
             if (ServerConfiguration.Advertise)
-                _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
+                _advertiser.Start(ServerConfiguration.MasterServerAddress);
 
             InitializeLists();
 
@@ -112,8 +110,8 @@ namespace Alibi
 
             Logger.Log(LogSeverity.Special, " Server started!");
             _cancelTasksToken = new CancellationTokenSource();
-            CheckCorpses(_cancelTasksToken.Token);
-            CheckExpiredBans(_cancelTasksToken.Token);
+            _ = CheckCorpses(_cancelTasksToken.Token);
+            _ = CheckExpiredBans(_cancelTasksToken.Token);
         }
 
         public void InitializeLists()
@@ -135,10 +133,9 @@ namespace Alibi
             InitializeLists();
 
             ServerConfiguration = Configuration.LoadFromFile(ConfigPath);
-            MasterServerIp = Dns.GetHostAddresses(ServerConfiguration.MasterServerAddress).First();
 
             if (ServerConfiguration.Advertise)
-                _advertiser.Start(MasterServerIp, ServerConfiguration.MasterServerPort);
+                _advertiser.Start(ServerConfiguration.MasterServerAddress);
             else
                 _advertiser.Stop();
         }
@@ -324,37 +321,51 @@ namespace Alibi
                 File.Create(AreasPath).Close();
         }
 
-        private async void CheckCorpses(CancellationToken token)
+        private async Task CheckCorpses(CancellationToken token)
         {
-            while (true)
+            try
             {
-                Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
-                var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
-                while (clientQueue.Any())
+                while (true)
                 {
-                    var client = clientQueue.Dequeue();
-                    if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.UtcNow)
+                    Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
+                    var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
+                    while (clientQueue.Any())
                     {
-                        Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
-                        // Forcibly kick.
-                        client.Session.Disconnect();
+                        var client = clientQueue.Dequeue();
+                        if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.UtcNow)
+                        {
+                            Logger.Log(LogSeverity.Info, $"[{client.IpAddress}] Disconnected due to inactivity.", true);
+                            // Forcibly kick.
+                            client.Session.Disconnect();
+                        }
                     }
-                }
 
-                await Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
+                    await Task.Delay(ServerConfiguration.TimeoutSeconds * 1000, token);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                Logger.Log(LogSeverity.Warning, " Stopping corpse checker...", true);
             }
         }
 
-        private async void CheckExpiredBans(CancellationToken token)
+        private async Task CheckExpiredBans(CancellationToken token)
         {
-            while (true)
+            try
             {
-                Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
-                foreach (var bannedHwid in Database.GetBannedHwids())
-                    if (DateTime.UtcNow.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
-                        Database.UnbanHwid(bannedHwid);
-                
-                await Task.Delay(60000, token);
+                while (true)
+                {
+                    Logger.Log(LogSeverity.Warning, " Unbanning expired bans...", true);
+                    foreach (var bannedHwid in Database.GetBannedHwids())
+                        if (DateTime.UtcNow.CompareTo(Database.GetBanExpiration(bannedHwid)) >= 0)
+                            Database.UnbanHwid(bannedHwid);
+
+                    await Task.Delay(60000, token);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                Logger.Log(LogSeverity.Warning, " Stopping expired ban checker...", true);
             }
         }
 
@@ -365,7 +376,7 @@ namespace Alibi
 
         protected override void OnStopped()
         {
-            Logger.Log(LogSeverity.Warning, "Stopping server...");
+            Logger.Log(LogSeverity.Warning, " Stopping server...");
             _cancelTasksToken.Cancel();
             _cancelTasksToken.Dispose();
             _advertiser.Stop();

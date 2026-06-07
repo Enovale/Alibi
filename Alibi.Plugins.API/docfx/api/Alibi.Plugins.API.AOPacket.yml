@@ -11,8 +11,9 @@ items:
   - Alibi.Plugins.API.AOPacket.EncodeToAOPacket(System.String)
   - Alibi.Plugins.API.AOPacket.FromMessage(System.String)
   - Alibi.Plugins.API.AOPacket.Objects
-  - Alibi.Plugins.API.AOPacket.op_Implicit(Alibi.Plugins.API.AOPacket)~System.String
+  - Alibi.Plugins.API.AOPacket.ToString
   - Alibi.Plugins.API.AOPacket.Type
+  - Alibi.Plugins.API.AOPacket.op_Implicit(Alibi.Plugins.API.AOPacket)~System.String
   langs:
   - csharp
   - vb
@@ -24,27 +25,20 @@ items:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AOPacket
     path: ../AOPacket.cs
-    startLine: 12
+    startLine: 9
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHelper class to create packets from the API\n"
-  remarks: "\n(internal server uses it&apos;s own class)\n"
+  summary: Class to create packets to send and receive from clients
   example: []
   syntax:
     content: public class AOPacket
     content.vb: Public Class AOPacket
   inheritance:
   - System.Object
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: Alibi.Plugins.API.AOPacket.Type
   commentId: P:Alibi.Plugins.API.AOPacket.Type
   id: Type
@@ -60,16 +54,16 @@ items:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Type
     path: ../AOPacket.cs
-    startLine: 20
+    startLine: 17
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe type (ID) of this packet.\n"
+  summary: The type (ID) of this packet.
   example:
-  - "\nHI, RT, CT\n"
+  - HI, RT, CT
   syntax:
     content: public string Type { get; set; }
     parameters: []
@@ -77,12 +71,6 @@ items:
       type: System.String
     content.vb: Public Property Type As String
   overload: Alibi.Plugins.API.AOPacket.Type*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: Alibi.Plugins.API.AOPacket.Objects
   commentId: P:Alibi.Plugins.API.AOPacket.Objects
   id: Objects
@@ -98,14 +86,14 @@ items:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Objects
     path: ../AOPacket.cs
-    startLine: 24
+    startLine: 21
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nData contained in this packet, that will be joined together when sent.\n"
+  summary: Data contained in this packet, that will be joined together when sent.
   example: []
   syntax:
     content: public string[] Objects { get; set; }
@@ -114,12 +102,6 @@ items:
       type: System.String[]
     content.vb: Public Property Objects As String()
   overload: Alibi.Plugins.API.AOPacket.Objects*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: Alibi.Plugins.API.AOPacket.#ctor(System.String,System.String[])
   commentId: M:Alibi.Plugins.API.AOPacket.#ctor(System.String,System.String[])
   id: '#ctor(System.String,System.String[])'
@@ -127,18 +109,18 @@ items:
   langs:
   - csharp
   - vb
-  name: AOPacket(String, String[])
-  nameWithType: AOPacket.AOPacket(String, String[])
-  fullName: Alibi.Plugins.API.AOPacket.AOPacket(System.String, System.String[])
+  name: AOPacket(string, params string[])
+  nameWithType: AOPacket.AOPacket(string, params string[])
+  fullName: Alibi.Plugins.API.AOPacket.AOPacket(string, params string[])
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 28
+    startLine: 25
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -154,13 +136,9 @@ items:
       description: Data contained in the packet
     content.vb: Public Sub New(type As String, ParamArray objects As String())
   overload: Alibi.Plugins.API.AOPacket.#ctor*
-  nameWithType.vb: AOPacket.AOPacket(String, String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: Alibi.Plugins.API.AOPacket.AOPacket(System.String, System.String())
-  name.vb: AOPacket(String, String())
+  nameWithType.vb: AOPacket.New(String, ParamArray String())
+  fullName.vb: Alibi.Plugins.API.AOPacket.New(String, ParamArray String())
+  name.vb: New(String, ParamArray String())
 - uid: Alibi.Plugins.API.AOPacket.#ctor(System.String)
   commentId: M:Alibi.Plugins.API.AOPacket.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -168,18 +146,18 @@ items:
   langs:
   - csharp
   - vb
-  name: AOPacket(String)
-  nameWithType: AOPacket.AOPacket(String)
-  fullName: Alibi.Plugins.API.AOPacket.AOPacket(System.String)
+  name: AOPacket(string)
+  nameWithType: AOPacket.AOPacket(string)
+  fullName: Alibi.Plugins.API.AOPacket.AOPacket(string)
   type: Constructor
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../AOPacket.cs
-    startLine: 35
+    startLine: 32
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -192,10 +170,9 @@ items:
       description: Blank ID of the packet to send.
     content.vb: Public Sub New(header As String)
   overload: Alibi.Plugins.API.AOPacket.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: AOPacket.New(String)
+  fullName.vb: Alibi.Plugins.API.AOPacket.New(String)
+  name.vb: New(String)
 - uid: Alibi.Plugins.API.AOPacket.FromMessage(System.String)
   commentId: M:Alibi.Plugins.API.AOPacket.FromMessage(System.String)
   id: FromMessage(System.String)
@@ -203,22 +180,22 @@ items:
   langs:
   - csharp
   - vb
-  name: FromMessage(String)
-  nameWithType: AOPacket.FromMessage(String)
-  fullName: Alibi.Plugins.API.AOPacket.FromMessage(System.String)
+  name: FromMessage(string)
+  nameWithType: AOPacket.FromMessage(string)
+  fullName: Alibi.Plugins.API.AOPacket.FromMessage(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: FromMessage
     path: ../AOPacket.cs
-    startLine: 54
+    startLine: 51
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nDeconstruct an AOPacket from a string\n"
+  summary: Deconstruct an AOPacket from a string
   example: []
   syntax:
     content: public static AOPacket FromMessage(string message)
@@ -231,12 +208,9 @@ items:
       description: An AOPacket constructed from the given message.
     content.vb: Public Shared Function FromMessage(message As String) As AOPacket
   overload: Alibi.Plugins.API.AOPacket.FromMessage*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: AOPacket.FromMessage(String)
+  fullName.vb: Alibi.Plugins.API.AOPacket.FromMessage(String)
+  name.vb: FromMessage(String)
 - uid: Alibi.Plugins.API.AOPacket.EncodeToAOPacket(System.String)
   commentId: M:Alibi.Plugins.API.AOPacket.EncodeToAOPacket(System.String)
   id: EncodeToAOPacket(System.String)
@@ -244,18 +218,18 @@ items:
   langs:
   - csharp
   - vb
-  name: EncodeToAOPacket(String)
-  nameWithType: AOPacket.EncodeToAOPacket(String)
-  fullName: Alibi.Plugins.API.AOPacket.EncodeToAOPacket(System.String)
+  name: EncodeToAOPacket(string)
+  nameWithType: AOPacket.EncodeToAOPacket(string)
+  fullName: Alibi.Plugins.API.AOPacket.EncodeToAOPacket(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: EncodeToAOPacket
     path: ../AOPacket.cs
-    startLine: 88
+    startLine: 85
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -268,12 +242,9 @@ items:
       type: System.String
     content.vb: Public Shared Function EncodeToAOPacket(str As String) As String
   overload: Alibi.Plugins.API.AOPacket.EncodeToAOPacket*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: AOPacket.EncodeToAOPacket(String)
+  fullName.vb: Alibi.Plugins.API.AOPacket.EncodeToAOPacket(String)
+  name.vb: EncodeToAOPacket(String)
 - uid: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket(System.String)
   commentId: M:Alibi.Plugins.API.AOPacket.DecodeFromAOPacket(System.String)
   id: DecodeFromAOPacket(System.String)
@@ -281,18 +252,18 @@ items:
   langs:
   - csharp
   - vb
-  name: DecodeFromAOPacket(String)
-  nameWithType: AOPacket.DecodeFromAOPacket(String)
-  fullName: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket(System.String)
+  name: DecodeFromAOPacket(string)
+  nameWithType: AOPacket.DecodeFromAOPacket(string)
+  fullName: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: DecodeFromAOPacket
     path: ../AOPacket.cs
-    startLine: 101
+    startLine: 98
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -305,12 +276,9 @@ items:
       type: System.String
     content.vb: Public Shared Function DecodeFromAOPacket(str As String) As String
   overload: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: AOPacket.DecodeFromAOPacket(String)
+  fullName.vb: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket(String)
+  name.vb: DecodeFromAOPacket(String)
 - uid: Alibi.Plugins.API.AOPacket.op_Implicit(Alibi.Plugins.API.AOPacket)~System.String
   commentId: M:Alibi.Plugins.API.AOPacket.op_Implicit(Alibi.Plugins.API.AOPacket)~System.String
   id: op_Implicit(Alibi.Plugins.API.AOPacket)~System.String
@@ -318,25 +286,25 @@ items:
   langs:
   - csharp
   - vb
-  name: Implicit(AOPacket to String)
-  nameWithType: AOPacket.Implicit(AOPacket to String)
-  fullName: Alibi.Plugins.API.AOPacket.Implicit(Alibi.Plugins.API.AOPacket to System.String)
+  name: implicit operator string(AOPacket)
+  nameWithType: AOPacket.implicit operator string(AOPacket)
+  fullName: Alibi.Plugins.API.AOPacket.implicit operator string(Alibi.Plugins.API.AOPacket)
   type: Operator
   source:
     remote:
       path: Alibi.Plugins.API/AOPacket.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: op_Implicit
     path: ../AOPacket.cs
-    startLine: 114
+    startLine: 111
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nConverts this packet into a decoded, constructed string implicitly.\n"
+  summary: Converts this packet into a decoded, constructed string implicitly.
   example: []
   syntax:
-    content: public static implicit operator string (AOPacket pkt)
+    content: public static implicit operator string(AOPacket pkt)
     parameters:
     - id: pkt
       type: Alibi.Plugins.API.AOPacket
@@ -346,36 +314,92 @@ items:
       description: A decoded, constructed string
     content.vb: Public Shared Widening Operator CType(pkt As AOPacket) As String
   overload: Alibi.Plugins.API.AOPacket.op_Implicit*
-  nameWithType.vb: AOPacket.Widening(AOPacket to String)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: Alibi.Plugins.API.AOPacket.Widening(Alibi.Plugins.API.AOPacket to System.String)
-  name.vb: Widening(AOPacket to String)
+  nameWithType.vb: AOPacket.CType(AOPacket)
+  fullName.vb: Alibi.Plugins.API.AOPacket.CType(Alibi.Plugins.API.AOPacket)
+  name.vb: CType(AOPacket)
+- uid: Alibi.Plugins.API.AOPacket.ToString
+  commentId: M:Alibi.Plugins.API.AOPacket.ToString
+  id: ToString
+  parent: Alibi.Plugins.API.AOPacket
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: AOPacket.ToString()
+  fullName: Alibi.Plugins.API.AOPacket.ToString()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/AOPacket.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: ToString
+    path: ../AOPacket.cs
+    startLine: 123
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Converts this packet into a decoded, constructed string explicitly.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A decoded, constructed string
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Alibi.Plugins.API.AOPacket.ToString*
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.AOPacket.Type*
   commentId: Overload:Alibi.Plugins.API.AOPacket.Type
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_Type
   name: Type
   nameWithType: AOPacket.Type
   fullName: Alibi.Plugins.API.AOPacket.Type
@@ -383,71 +407,108 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Alibi.Plugins.API.AOPacket.Objects*
   commentId: Overload:Alibi.Plugins.API.AOPacket.Objects
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_Objects
   name: Objects
   nameWithType: AOPacket.Objects
   fullName: Alibi.Plugins.API.AOPacket.Objects
 - uid: System.String[]
   isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
   nameWithType.vb: String()
-  fullName.vb: System.String()
+  fullName.vb: String()
   name.vb: String()
   spec.csharp:
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: Alibi.Plugins.API.AOPacket.#ctor*
   commentId: Overload:Alibi.Plugins.API.AOPacket.#ctor
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket__ctor_System_String_System_String___
   name: AOPacket
   nameWithType: AOPacket.AOPacket
   fullName: Alibi.Plugins.API.AOPacket.AOPacket
+  nameWithType.vb: AOPacket.New
+  fullName.vb: Alibi.Plugins.API.AOPacket.New
+  name.vb: New
 - uid: Alibi.Plugins.API.AOPacket.FromMessage*
   commentId: Overload:Alibi.Plugins.API.AOPacket.FromMessage
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_FromMessage_System_String_
   name: FromMessage
   nameWithType: AOPacket.FromMessage
   fullName: Alibi.Plugins.API.AOPacket.FromMessage
 - uid: Alibi.Plugins.API.AOPacket
   commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AOPacket.html
   name: AOPacket
   nameWithType: AOPacket
   fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.AOPacket.EncodeToAOPacket*
   commentId: Overload:Alibi.Plugins.API.AOPacket.EncodeToAOPacket
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_EncodeToAOPacket_System_String_
   name: EncodeToAOPacket
   nameWithType: AOPacket.EncodeToAOPacket
   fullName: Alibi.Plugins.API.AOPacket.EncodeToAOPacket
 - uid: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket*
   commentId: Overload:Alibi.Plugins.API.AOPacket.DecodeFromAOPacket
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_DecodeFromAOPacket_System_String_
   name: DecodeFromAOPacket
   nameWithType: AOPacket.DecodeFromAOPacket
   fullName: Alibi.Plugins.API.AOPacket.DecodeFromAOPacket
 - uid: Alibi.Plugins.API.AOPacket.op_Implicit*
   commentId: Overload:Alibi.Plugins.API.AOPacket.op_Implicit
-  name: Implicit
-  nameWithType: AOPacket.Implicit
-  fullName: Alibi.Plugins.API.AOPacket.Implicit
-  nameWithType.vb: AOPacket.Widening
-  fullName.vb: Alibi.Plugins.API.AOPacket.Widening
-  name.vb: Widening
+  name: implicit operator
+  nameWithType: AOPacket.implicit operator
+  fullName: Alibi.Plugins.API.AOPacket.implicit operator
+  nameWithType.vb: AOPacket.CType
+  fullName.vb: Alibi.Plugins.API.AOPacket.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Alibi.Plugins.API.AOPacket.ToString*
+  commentId: Overload:Alibi.Plugins.API.AOPacket.ToString
+  href: Alibi.Plugins.API.AOPacket.html#Alibi_Plugins_API_AOPacket_ToString
+  name: ToString
+  nameWithType: AOPacket.ToString
+  fullName: Alibi.Plugins.API.AOPacket.ToString

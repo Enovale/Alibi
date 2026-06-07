@@ -19,27 +19,20 @@ items:
     remote:
       path: Alibi.Plugins.API/AuthType.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AuthType
     path: ../AuthType.cs
     startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nContains constants for player authentication levels\n"
+  summary: Contains constants for player authentication levels
   example: []
   syntax:
     content: public static class AuthType
     content.vb: Public Module AuthType
   inheritance:
   - System.Object
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: Alibi.Plugins.API.AuthType.USER
   commentId: F:Alibi.Plugins.API.AuthType.USER
   id: USER
@@ -55,26 +48,20 @@ items:
     remote:
       path: Alibi.Plugins.API/AuthType.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: USER
     path: ../AuthType.cs
     startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe basic level of player rights. Every new player will have this.\n"
+  summary: The basic level of player rights. Every new player will have this.
   example: []
   syntax:
     content: public const int USER = 0
     return:
       type: System.Int32
     content.vb: Public Const USER As Integer = 0
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.AuthType.MODERATOR
   commentId: F:Alibi.Plugins.API.AuthType.MODERATOR
   id: MODERATOR
@@ -90,26 +77,23 @@ items:
     remote:
       path: Alibi.Plugins.API/AuthType.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MODERATOR
     path: ../AuthType.cs
     startLine: 15
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSuperior level of player rights. Can do almost anything\nexcept deliberately shut down the server with /stop or /restart\n"
+  summary: >-
+    Superior level of player rights. Can do almost anything
+
+    except deliberately shut down the server with /stop or /restart
   example: []
   syntax:
     content: public const int MODERATOR = 1
     return:
       type: System.Int32
     content.vb: Public Const MODERATOR As Integer = 1
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.AuthType.ADMINISTRATOR
   commentId: F:Alibi.Plugins.API.AuthType.ADMINISTRATOR
   id: ADMINISTRATOR
@@ -125,42 +109,65 @@ items:
     remote:
       path: Alibi.Plugins.API/AuthType.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ADMINISTRATOR
     path: ../AuthType.cs
     startLine: 19
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe highest level of player rights. Can do anything.\n"
+  summary: The highest level of player rights. Can do anything.
   example: []
   syntax:
     content: public const int ADMINISTRATOR = 2
     return:
       type: System.Int32
     content.vb: Public Const ADMINISTRATOR As Integer = 2
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
@@ -168,6 +175,9 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

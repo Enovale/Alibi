@@ -16,14 +16,6 @@ namespace Alibi.Plugins.API
         public IConfiguration ServerConfiguration { get; }
 
         /// <summary>
-        /// Resolved IP Address of the AO2 masterserver.
-        /// </summary>
-        /// <remarks>
-        /// This IP is resolved from the domain specified in ServerConfiguration.MasterserverAddress
-        /// </remarks>
-        public IPAddress MasterServerIp { get; }
-
-        /// <summary>
         /// An interface that allows you to interact with the database containing bans, mods, etc
         /// </summary>
         public IDatabaseManager Database { get; }

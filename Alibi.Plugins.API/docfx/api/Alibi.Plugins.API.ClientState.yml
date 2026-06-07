@@ -20,24 +20,18 @@ items:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ClientState
     path: ../ClientState.cs
     startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRepresents the protocol state of a client.\n"
+  summary: Represents the protocol state of a client.
   example: []
   syntax:
     content: public enum ClientState
     content.vb: Public Enum ClientState
-  modifiers.csharp:
-  - public
-  - enum
-  modifiers.vb:
-  - Public
-  - Enum
 - uid: Alibi.Plugins.API.ClientState.NewClient
   commentId: F:Alibi.Plugins.API.ClientState.NewClient
   id: NewClient
@@ -53,25 +47,19 @@ items:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: NewClient
     path: ../ClientState.cs
     startLine: 10
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nBrand new client: Has not sent any packets yet\n"
+  summary: 'Brand new client: Has not sent any packets yet'
   example: []
   syntax:
     content: NewClient = 0
     return:
       type: Alibi.Plugins.API.ClientState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.ClientState.PostHandshake
   commentId: F:Alibi.Plugins.API.ClientState.PostHandshake
   id: PostHandshake
@@ -87,25 +75,19 @@ items:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: PostHandshake
     path: ../ClientState.cs
     startLine: 14
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHas sent the server a protocol-correct handshake, but has not identified yet.\n"
+  summary: Has sent the server a protocol-correct handshake, but has not identified yet.
   example: []
   syntax:
     content: PostHandshake = 1
     return:
       type: Alibi.Plugins.API.ClientState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.ClientState.Identified
   commentId: F:Alibi.Plugins.API.ClientState.Identified
   id: Identified
@@ -121,25 +103,19 @@ items:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Identified
     path: ../ClientState.cs
     startLine: 18
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHas told the server their client, we are about to send them server features\n"
+  summary: Has told the server their client, we are about to send them server features
   example: []
   syntax:
     content: Identified = 2
     return:
       type: Alibi.Plugins.API.ClientState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.ClientState.InArea
   commentId: F:Alibi.Plugins.API.ClientState.InArea
   id: InArea
@@ -155,34 +131,54 @@ items:
     remote:
       path: Alibi.Plugins.API/ClientState.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: InArea
     path: ../ClientState.cs
     startLine: 22
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nThe client is fully connected, and has joined an area. Ready to play.\n"
+  summary: The client is fully connected, and has joined an area. Ready to play.
   example: []
   syntax:
     content: InArea = 3
     return:
       type: Alibi.Plugins.API.ClientState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.ClientState
   commentId: T:Alibi.Plugins.API.ClientState
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.ClientState.html
   name: ClientState
   nameWithType: ClientState
   fullName: Alibi.Plugins.API.ClientState

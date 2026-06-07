@@ -7,6 +7,8 @@ items:
   children:
   - Alibi.Plugins.API.IServer.AreaNames
   - Alibi.Plugins.API.IServer.Areas
+  - Alibi.Plugins.API.IServer.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  - Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
   - Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   - Alibi.Plugins.API.IServer.BroadcastOocMessage(System.String)
   - Alibi.Plugins.API.IServer.CharactersList
@@ -14,7 +16,7 @@ items:
   - Alibi.Plugins.API.IServer.ConnectedPlayers
   - Alibi.Plugins.API.IServer.Database
   - Alibi.Plugins.API.IServer.FindUser(System.String)
-  - Alibi.Plugins.API.IServer.MasterServerIp
+  - Alibi.Plugins.API.IServer.InitializeLists
   - Alibi.Plugins.API.IServer.MusicList
   - Alibi.Plugins.API.IServer.ReloadConfig
   - Alibi.Plugins.API.IServer.ServerConfiguration
@@ -32,24 +34,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IServer
     path: ../IServer.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRepresents the main server object.\n"
+  summary: Represents the main server object.
   example: []
   syntax:
     content: public interface IServer
     content.vb: Public Interface IServer
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: Alibi.Plugins.API.IServer.ServerConfiguration
   commentId: P:Alibi.Plugins.API.IServer.ServerConfiguration
   id: ServerConfiguration
@@ -65,10 +61,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ServerConfiguration
     path: ../IServer.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -79,46 +75,6 @@ items:
       type: Alibi.Plugins.API.IConfiguration
     content.vb: ReadOnly Property ServerConfiguration As IConfiguration
   overload: Alibi.Plugins.API.IServer.ServerConfiguration*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Alibi.Plugins.API.IServer.MasterServerIp
-  commentId: P:Alibi.Plugins.API.IServer.MasterServerIp
-  id: MasterServerIp
-  parent: Alibi.Plugins.API.IServer
-  langs:
-  - csharp
-  - vb
-  name: MasterServerIp
-  nameWithType: IServer.MasterServerIp
-  fullName: Alibi.Plugins.API.IServer.MasterServerIp
-  type: Property
-  source:
-    remote:
-      path: Alibi.Plugins.API/IServer.cs
-      branch: main
-      repo: https://github.com/Enova/Alibi.git
-    id: MasterServerIp
-    path: ../IServer.cs
-    startLine: 22
-  assemblies:
-  - Alibi.Plugins.API
-  namespace: Alibi.Plugins.API
-  summary: "\nResolved IP Address of the AO2 masterserver.\n"
-  remarks: "\nThis IP is resolved from the domain specified in ServerConfiguration.MasterserverAddress\n"
-  example: []
-  syntax:
-    content: IPAddress MasterServerIp { get; }
-    parameters: []
-    return:
-      type: System.Net.IPAddress
-    content.vb: ReadOnly Property MasterServerIp As IPAddress
-  overload: Alibi.Plugins.API.IServer.MasterServerIp*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.Database
   commentId: P:Alibi.Plugins.API.IServer.Database
   id: Database
@@ -134,14 +90,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Database
     path: ../IServer.cs
-    startLine: 27
+    startLine: 20
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nAn interface that allows you to interact with the database containing bans, mods, etc\n"
+  summary: An interface that allows you to interact with the database containing bans, mods, etc
   example: []
   syntax:
     content: IDatabaseManager Database { get; }
@@ -150,10 +106,6 @@ items:
       type: Alibi.Plugins.API.IDatabaseManager
     content.vb: ReadOnly Property Database As IDatabaseManager
   overload: Alibi.Plugins.API.IServer.Database*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.MusicList
   commentId: P:Alibi.Plugins.API.IServer.MusicList
   id: MusicList
@@ -169,15 +121,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: MusicList
     path: ../IServer.cs
-    startLine: 35
+    startLine: 28
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of music entries specified in the configuration.\n"
-  remarks: "\nNot every entry is a valid song that clients can play, so don&apos;t expect it to be.\n"
+  summary: List of music entries specified in the configuration.
+  remarks: Not every entry is a valid song that clients can play, so don't expect it to be.
   example: []
   syntax:
     content: string[] MusicList { get; }
@@ -186,10 +138,6 @@ items:
       type: System.String[]
     content.vb: ReadOnly Property MusicList As String()
   overload: Alibi.Plugins.API.IServer.MusicList*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.CharactersList
   commentId: P:Alibi.Plugins.API.IServer.CharactersList
   id: CharactersList
@@ -205,15 +153,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CharactersList
     path: ../IServer.cs
-    startLine: 43
+    startLine: 36
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of characters specified in the configuration.\n"
-  remarks: "\nDuplicates are allowed, and will allow for two players being the same character.\n"
+  summary: List of characters specified in the configuration.
+  remarks: Duplicates are allowed, and will allow for two players being the same character.
   example: []
   syntax:
     content: string[] CharactersList { get; }
@@ -222,10 +170,6 @@ items:
       type: System.String[]
     content.vb: ReadOnly Property CharactersList As String()
   overload: Alibi.Plugins.API.IServer.CharactersList*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.Version
   commentId: P:Alibi.Plugins.API.IServer.Version
   id: Version
@@ -241,10 +185,10 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Version
     path: ../IServer.cs
-    startLine: 45
+    startLine: 38
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -255,10 +199,6 @@ items:
       type: System.String
     content.vb: ReadOnly Property Version As String
   overload: Alibi.Plugins.API.IServer.Version*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.ClientsConnected
   commentId: P:Alibi.Plugins.API.IServer.ClientsConnected
   id: ClientsConnected
@@ -274,15 +214,18 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ClientsConnected
     path: ../IServer.cs
-    startLine: 54
+    startLine: 47
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCollection of all clients connected to this server.\n"
-  remarks: "\nThis isn&apos;t necessarily fully identified clients, so do sanity checking.\nUse either the client state of IClient.Connected\n"
+  summary: Collection of all clients connected to this server.
+  remarks: >-
+    This isn't necessarily fully identified clients, so do sanity checking.
+
+    Use either the client state of IClient.Connected
   example: []
   syntax:
     content: List<IClient> ClientsConnected { get; }
@@ -291,10 +234,6 @@ items:
       type: System.Collections.Generic.List{Alibi.Plugins.API.IClient}
     content.vb: ReadOnly Property ClientsConnected As List(Of IClient)
   overload: Alibi.Plugins.API.IServer.ClientsConnected*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.ConnectedPlayers
   commentId: P:Alibi.Plugins.API.IServer.ConnectedPlayers
   id: ConnectedPlayers
@@ -310,14 +249,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ConnectedPlayers
     path: ../IServer.cs
-    startLine: 59
+    startLine: 52
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow many fully identified players are currently playing on the server?\n"
+  summary: How many fully identified players are currently playing on the server?
   example: []
   syntax:
     content: int ConnectedPlayers { get; set; }
@@ -326,9 +265,6 @@ items:
       type: System.Int32
     content.vb: Property ConnectedPlayers As Integer
   overload: Alibi.Plugins.API.IServer.ConnectedPlayers*
-  modifiers.csharp:
-  - get
-  - set
 - uid: Alibi.Plugins.API.IServer.Areas
   commentId: P:Alibi.Plugins.API.IServer.Areas
   id: Areas
@@ -344,14 +280,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Areas
     path: ../IServer.cs
-    startLine: 63
+    startLine: 57
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCollection of areas on this server. Refer to IArea.\n"
+  summary: Collection of areas on this server. Refer to IArea.
   example: []
   syntax:
     content: IArea[] Areas { get; }
@@ -360,10 +296,6 @@ items:
       type: Alibi.Plugins.API.IArea[]
     content.vb: ReadOnly Property Areas As IArea()
   overload: Alibi.Plugins.API.IServer.Areas*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.AreaNames
   commentId: P:Alibi.Plugins.API.IServer.AreaNames
   id: AreaNames
@@ -379,15 +311,15 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AreaNames
     path: ../IServer.cs
-    startLine: 70
+    startLine: 65
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nList of area names in the same order as Areas[]\n"
-  remarks: "\nTODO: Honestly I have no clue with this is here\n"
+  summary: List of area names in the same order as Areas[]
+  remarks: 'TODO: Honestly I have no clue with this is here'
   example: []
   syntax:
     content: string[] AreaNames { get; }
@@ -396,10 +328,6 @@ items:
       type: System.String[]
     content.vb: ReadOnly Property AreaNames As String()
   overload: Alibi.Plugins.API.IServer.AreaNames*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.VerboseLogs
   commentId: P:Alibi.Plugins.API.IServer.VerboseLogs
   id: VerboseLogs
@@ -415,14 +343,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: VerboseLogs
     path: ../IServer.cs
-    startLine: 74
+    startLine: 70
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nShould this server log and print logs that are marked as Verbose?\n"
+  summary: Should this server log and print logs that are marked as Verbose?
   example: []
   syntax:
     content: bool VerboseLogs { get; }
@@ -431,10 +359,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property VerboseLogs As Boolean
   overload: Alibi.Plugins.API.IServer.VerboseLogs*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: Alibi.Plugins.API.IServer.Stop
   commentId: M:Alibi.Plugins.API.IServer.Stop
   id: Stop
@@ -450,21 +374,21 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Stop
     path: ../IServer.cs
-    startLine: 80
+    startLine: 76
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCompletely stop and destroy the server. Will end the server process, so be careful.\n"
+  summary: Completely stop and destroy the server. Will end the server process, so be careful.
   example: []
   syntax:
     content: bool Stop()
     return:
       type: System.Boolean
       description: 'TODO: idk'
-    content.vb: Function Stop As Boolean
+    content.vb: Function [Stop]() As Boolean
   overload: Alibi.Plugins.API.IServer.Stop*
 - uid: Alibi.Plugins.API.IServer.ReloadConfig
   commentId: M:Alibi.Plugins.API.IServer.ReloadConfig
@@ -481,20 +405,56 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ReloadConfig
     path: ../IServer.cs
     startLine: 87
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHot-reloads the server configuration from disk.\n"
-  remarks: "\nTODO: Document what things are hot-reloaded, if not all\n"
+  summary: Hot-reloads the server configuration from disk.
+  remarks: >-
+    This will reload your available characters, music, and the server configuration.
+
+    It will also restart the server advertiser (what puts your server on the server list).
+
+    Warning: This can break things depending on what you change, the server is not completely
+
+    tailored to be compatible with this just yet.
   example: []
   syntax:
     content: void ReloadConfig()
-    content.vb: Sub ReloadConfig
+    content.vb: Sub ReloadConfig()
   overload: Alibi.Plugins.API.IServer.ReloadConfig*
+- uid: Alibi.Plugins.API.IServer.InitializeLists
+  commentId: M:Alibi.Plugins.API.IServer.InitializeLists
+  id: InitializeLists
+  parent: Alibi.Plugins.API.IServer
+  langs:
+  - csharp
+  - vb
+  name: InitializeLists()
+  nameWithType: IServer.InitializeLists()
+  fullName: Alibi.Plugins.API.IServer.InitializeLists()
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IServer.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: InitializeLists
+    path: ../IServer.cs
+    startLine: 95
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Hot reloads less server configuration to prevent unexpected errors.
+  remarks: This reloads the music list and the characters list, and nothing else.
+  example: []
+  syntax:
+    content: void InitializeLists()
+    content.vb: Sub InitializeLists()
+  overload: Alibi.Plugins.API.IServer.InitializeLists*
 - uid: Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   commentId: M:Alibi.Plugins.API.IServer.Broadcast(Alibi.Plugins.API.AOPacket)
   id: Broadcast(Alibi.Plugins.API.AOPacket)
@@ -510,14 +470,14 @@ items:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Broadcast
     path: ../IServer.cs
-    startLine: 92
+    startLine: 101
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSends a packet to every client on the server.\n"
+  summary: Sends a packet to every client on the server.
   example: []
   syntax:
     content: void Broadcast(AOPacket message)
@@ -534,22 +494,25 @@ items:
   langs:
   - csharp
   - vb
-  name: BroadcastOocMessage(String)
-  nameWithType: IServer.BroadcastOocMessage(String)
-  fullName: Alibi.Plugins.API.IServer.BroadcastOocMessage(System.String)
+  name: BroadcastOocMessage(string)
+  nameWithType: IServer.BroadcastOocMessage(string)
+  fullName: Alibi.Plugins.API.IServer.BroadcastOocMessage(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BroadcastOocMessage
     path: ../IServer.cs
-    startLine: 98
+    startLine: 108
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nSends a string to every client on the server\nthat is displayed in their Out of Context chat\n"
+  summary: >-
+    Sends a string to every client on the server
+
+    that is displayed in their Out of Context chat
   example: []
   syntax:
     content: void BroadcastOocMessage(string message)
@@ -559,6 +522,9 @@ items:
       description: The message to be sent
     content.vb: Sub BroadcastOocMessage(message As String)
   overload: Alibi.Plugins.API.IServer.BroadcastOocMessage*
+  nameWithType.vb: IServer.BroadcastOocMessage(String)
+  fullName.vb: Alibi.Plugins.API.IServer.BroadcastOocMessage(String)
+  name.vb: BroadcastOocMessage(String)
 - uid: Alibi.Plugins.API.IServer.FindUser(System.String)
   commentId: M:Alibi.Plugins.API.IServer.FindUser(System.String)
   id: FindUser(System.String)
@@ -566,25 +532,25 @@ items:
   langs:
   - csharp
   - vb
-  name: FindUser(String)
-  nameWithType: IServer.FindUser(String)
-  fullName: Alibi.Plugins.API.IServer.FindUser(System.String)
+  name: FindUser(string)
+  nameWithType: IServer.FindUser(string)
+  fullName: Alibi.Plugins.API.IServer.FindUser(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IServer.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: FindUser
     path: ../IServer.cs
-    startLine: 105
+    startLine: 115
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nFind a client using an id, OoC name, character name, or HWID. (IPs dont work)\n"
+  summary: Find a client using an id, OoC name, character name, or HWID. (IPs dont work)
   example: []
   syntax:
-    content: IClient FindUser(string str)
+    content: IClient? FindUser(string str)
     parameters:
     - id: str
       type: System.String
@@ -594,90 +560,189 @@ items:
       description: The client that was found
     content.vb: Function FindUser(str As String) As IClient
   overload: Alibi.Plugins.API.IServer.FindUser*
+  nameWithType.vb: IServer.FindUser(String)
+  fullName.vb: Alibi.Plugins.API.IServer.FindUser(String)
+  name.vb: FindUser(String)
+- uid: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  id: BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IServer
+  langs:
+  - csharp
+  - vb
+  name: BanIp(IPAddress, string, TimeSpan?, IClient?)
+  nameWithType: IServer.BanIp(IPAddress, string, TimeSpan?, IClient?)
+  fullName: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress, string, System.TimeSpan?, Alibi.Plugins.API.IClient?)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IServer.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: BanIp
+    path: ../IServer.cs
+    startLine: 124
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Bans an IP address, whether it's online or not, and kicks any clients using it.
+  example: []
+  syntax:
+    content: void BanIp(IPAddress ip, string reason, TimeSpan? expireDate = null, IClient? banner = null)
+    parameters:
+    - id: ip
+      type: System.Net.IPAddress
+      description: The IP to ban
+    - id: reason
+      type: System.String
+      description: Why they were banned
+    - id: expireDate
+      type: System.Nullable{System.TimeSpan}
+      description: When their ban should be lifted, if ever
+    - id: banner
+      type: Alibi.Plugins.API.IClient
+      description: The person that banned them (null if the server did it)
+    content.vb: Sub BanIp(ip As IPAddress, reason As String, expireDate As TimeSpan? = Nothing, banner As IClient = Nothing)
+  overload: Alibi.Plugins.API.IServer.BanIp*
+  nameWithType.vb: IServer.BanIp(IPAddress, String, TimeSpan?, IClient)
+  fullName.vb: Alibi.Plugins.API.IServer.BanIp(System.Net.IPAddress, String, System.TimeSpan?, Alibi.Plugins.API.IClient)
+  name.vb: BanIp(IPAddress, String, TimeSpan?, IClient)
+- uid: Alibi.Plugins.API.IServer.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  commentId: M:Alibi.Plugins.API.IServer.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  id: BanHwid(System.String,System.String,System.Nullable{System.TimeSpan},Alibi.Plugins.API.IClient)
+  parent: Alibi.Plugins.API.IServer
+  langs:
+  - csharp
+  - vb
+  name: BanHwid(string, string, TimeSpan?, IClient?)
+  nameWithType: IServer.BanHwid(string, string, TimeSpan?, IClient?)
+  fullName: Alibi.Plugins.API.IServer.BanHwid(string, string, System.TimeSpan?, Alibi.Plugins.API.IClient?)
+  type: Method
+  source:
+    remote:
+      path: Alibi.Plugins.API/IServer.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: BanHwid
+    path: ../IServer.cs
+    startLine: 133
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Bans an Hardware ID, whether it's online or not, and kicks any clients using it.
+  example: []
+  syntax:
+    content: void BanHwid(string hwid, string reason, TimeSpan? expireDate = null, IClient? banner = null)
+    parameters:
+    - id: hwid
+      type: System.String
+      description: The hardware ID to ban
+    - id: reason
+      type: System.String
+      description: Why they were banned
+    - id: expireDate
+      type: System.Nullable{System.TimeSpan}
+      description: When their ban should be lifted, if ever
+    - id: banner
+      type: Alibi.Plugins.API.IClient
+      description: The person that banned them (null if the server did it)
+    content.vb: Sub BanHwid(hwid As String, reason As String, expireDate As TimeSpan? = Nothing, banner As IClient = Nothing)
+  overload: Alibi.Plugins.API.IServer.BanHwid*
+  nameWithType.vb: IServer.BanHwid(String, String, TimeSpan?, IClient)
+  fullName.vb: Alibi.Plugins.API.IServer.BanHwid(String, String, System.TimeSpan?, Alibi.Plugins.API.IClient)
+  name.vb: BanHwid(String, String, TimeSpan?, IClient)
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IServer.ServerConfiguration*
   commentId: Overload:Alibi.Plugins.API.IServer.ServerConfiguration
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_ServerConfiguration
   name: ServerConfiguration
   nameWithType: IServer.ServerConfiguration
   fullName: Alibi.Plugins.API.IServer.ServerConfiguration
 - uid: Alibi.Plugins.API.IConfiguration
   commentId: T:Alibi.Plugins.API.IConfiguration
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IConfiguration.html
   name: IConfiguration
   nameWithType: IConfiguration
   fullName: Alibi.Plugins.API.IConfiguration
-- uid: Alibi.Plugins.API.IServer.MasterServerIp*
-  commentId: Overload:Alibi.Plugins.API.IServer.MasterServerIp
-  name: MasterServerIp
-  nameWithType: IServer.MasterServerIp
-  fullName: Alibi.Plugins.API.IServer.MasterServerIp
-- uid: System.Net.IPAddress
-  commentId: T:System.Net.IPAddress
-  parent: System.Net
-  isExternal: true
-  name: IPAddress
-  nameWithType: IPAddress
-  fullName: System.Net.IPAddress
-- uid: System.Net
-  commentId: N:System.Net
-  isExternal: true
-  name: System.Net
-  nameWithType: System.Net
-  fullName: System.Net
 - uid: Alibi.Plugins.API.IServer.Database*
   commentId: Overload:Alibi.Plugins.API.IServer.Database
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Database
   name: Database
   nameWithType: IServer.Database
   fullName: Alibi.Plugins.API.IServer.Database
 - uid: Alibi.Plugins.API.IDatabaseManager
   commentId: T:Alibi.Plugins.API.IDatabaseManager
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IDatabaseManager.html
   name: IDatabaseManager
   nameWithType: IDatabaseManager
   fullName: Alibi.Plugins.API.IDatabaseManager
 - uid: Alibi.Plugins.API.IServer.MusicList*
   commentId: Overload:Alibi.Plugins.API.IServer.MusicList
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_MusicList
   name: MusicList
   nameWithType: IServer.MusicList
   fullName: Alibi.Plugins.API.IServer.MusicList
 - uid: System.String[]
   isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
   nameWithType.vb: String()
-  fullName.vb: System.String()
+  fullName.vb: String()
   name.vb: String()
   spec.csharp:
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: Alibi.Plugins.API.IServer.CharactersList*
   commentId: Overload:Alibi.Plugins.API.IServer.CharactersList
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_CharactersList
   name: CharactersList
   nameWithType: IServer.CharactersList
   fullName: Alibi.Plugins.API.IServer.CharactersList
 - uid: Alibi.Plugins.API.IServer.Version*
   commentId: Overload:Alibi.Plugins.API.IServer.Version
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Version
   name: Version
   nameWithType: IServer.Version
   fullName: Alibi.Plugins.API.IServer.Version
@@ -685,17 +750,22 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Alibi.Plugins.API.IServer.ClientsConnected*
   commentId: Overload:Alibi.Plugins.API.IServer.ClientsConnected
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_ClientsConnected
   name: ClientsConnected
   nameWithType: IServer.ClientsConnected
   fullName: Alibi.Plugins.API.IServer.ClientsConnected
@@ -703,6 +773,7 @@ references:
   commentId: T:System.Collections.Generic.List{Alibi.Plugins.API.IClient}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
+  href: Alibi.Plugins.API.IClient.html
   name: List<IClient>
   nameWithType: List<IClient>
   fullName: System.Collections.Generic.List<Alibi.Plugins.API.IClient>
@@ -712,35 +783,23 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Alibi.Plugins.API.IClient
     name: IClient
-    nameWithType: IClient
-    fullName: Alibi.Plugins.API.IClient
+    href: Alibi.Plugins.API.IClient.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Alibi.Plugins.API.IClient
     name: IClient
-    nameWithType: IClient
-    fullName: Alibi.Plugins.API.IClient
+    href: Alibi.Plugins.API.IClient.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -753,41 +812,59 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Alibi.Plugins.API.IServer.ConnectedPlayers*
   commentId: Overload:Alibi.Plugins.API.IServer.ConnectedPlayers
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_ConnectedPlayers
   name: ConnectedPlayers
   nameWithType: IServer.ConnectedPlayers
   fullName: Alibi.Plugins.API.IServer.ConnectedPlayers
@@ -795,16 +872,21 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Alibi.Plugins.API.IServer.Areas*
   commentId: Overload:Alibi.Plugins.API.IServer.Areas
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Areas
   name: Areas
   nameWithType: IServer.Areas
   fullName: Alibi.Plugins.API.IServer.Areas
 - uid: Alibi.Plugins.API.IArea[]
   isExternal: true
+  href: Alibi.Plugins.API.IArea.html
   name: IArea[]
   nameWithType: IArea[]
   fullName: Alibi.Plugins.API.IArea[]
@@ -814,26 +896,24 @@ references:
   spec.csharp:
   - uid: Alibi.Plugins.API.IArea
     name: IArea
-    nameWithType: IArea
-    fullName: Alibi.Plugins.API.IArea
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: Alibi.Plugins.API.IArea.html
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: Alibi.Plugins.API.IArea
     name: IArea
-    nameWithType: IArea
-    fullName: Alibi.Plugins.API.IArea
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+    href: Alibi.Plugins.API.IArea.html
+  - name: (
+  - name: )
 - uid: Alibi.Plugins.API.IServer.AreaNames*
   commentId: Overload:Alibi.Plugins.API.IServer.AreaNames
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_AreaNames
   name: AreaNames
   nameWithType: IServer.AreaNames
   fullName: Alibi.Plugins.API.IServer.AreaNames
 - uid: Alibi.Plugins.API.IServer.VerboseLogs*
   commentId: Overload:Alibi.Plugins.API.IServer.VerboseLogs
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_VerboseLogs
   name: VerboseLogs
   nameWithType: IServer.VerboseLogs
   fullName: Alibi.Plugins.API.IServer.VerboseLogs
@@ -841,43 +921,147 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Alibi.Plugins.API.IServer.Stop*
   commentId: Overload:Alibi.Plugins.API.IServer.Stop
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Stop
   name: Stop
   nameWithType: IServer.Stop
   fullName: Alibi.Plugins.API.IServer.Stop
 - uid: Alibi.Plugins.API.IServer.ReloadConfig*
   commentId: Overload:Alibi.Plugins.API.IServer.ReloadConfig
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_ReloadConfig
   name: ReloadConfig
   nameWithType: IServer.ReloadConfig
   fullName: Alibi.Plugins.API.IServer.ReloadConfig
+- uid: Alibi.Plugins.API.IServer.InitializeLists*
+  commentId: Overload:Alibi.Plugins.API.IServer.InitializeLists
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_InitializeLists
+  name: InitializeLists
+  nameWithType: IServer.InitializeLists
+  fullName: Alibi.Plugins.API.IServer.InitializeLists
 - uid: Alibi.Plugins.API.IServer.Broadcast*
   commentId: Overload:Alibi.Plugins.API.IServer.Broadcast
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_Broadcast_Alibi_Plugins_API_AOPacket_
   name: Broadcast
   nameWithType: IServer.Broadcast
   fullName: Alibi.Plugins.API.IServer.Broadcast
 - uid: Alibi.Plugins.API.AOPacket
   commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AOPacket.html
   name: AOPacket
   nameWithType: AOPacket
   fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.IServer.BroadcastOocMessage*
   commentId: Overload:Alibi.Plugins.API.IServer.BroadcastOocMessage
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BroadcastOocMessage_System_String_
   name: BroadcastOocMessage
   nameWithType: IServer.BroadcastOocMessage
   fullName: Alibi.Plugins.API.IServer.BroadcastOocMessage
 - uid: Alibi.Plugins.API.IServer.FindUser*
   commentId: Overload:Alibi.Plugins.API.IServer.FindUser
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_FindUser_System_String_
   name: FindUser
   nameWithType: IServer.FindUser
   fullName: Alibi.Plugins.API.IServer.FindUser
 - uid: Alibi.Plugins.API.IClient
   commentId: T:Alibi.Plugins.API.IClient
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IClient.html
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
+- uid: Alibi.Plugins.API.IServer.BanIp*
+  commentId: Overload:Alibi.Plugins.API.IServer.BanIp
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  name: BanIp
+  nameWithType: IServer.BanIp
+  fullName: Alibi.Plugins.API.IServer.BanIp
+- uid: System.Net.IPAddress
+  commentId: T:System.Net.IPAddress
+  parent: System.Net
+  isExternal: true
+  name: IPAddress
+  nameWithType: IPAddress
+  fullName: System.Net.IPAddress
+- uid: System.Nullable{System.TimeSpan}
+  commentId: T:System.Nullable{System.TimeSpan}
+  parent: System
+  definition: System.Nullable`1
+  name: TimeSpan?
+  nameWithType: TimeSpan?
+  fullName: System.TimeSpan?
+  spec.csharp:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+  - name: '?'
+- uid: System.Net
+  commentId: N:System.Net
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net
+  nameWithType: System.Net
+  fullName: System.Net
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Alibi.Plugins.API.IServer.BanHwid*
+  commentId: Overload:Alibi.Plugins.API.IServer.BanHwid
+  href: Alibi.Plugins.API.IServer.html#Alibi_Plugins_API_IServer_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__Alibi_Plugins_API_IClient_
+  name: BanHwid
+  nameWithType: IServer.BanHwid
+  fullName: Alibi.Plugins.API.IServer.BanHwid

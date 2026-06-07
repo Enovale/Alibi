@@ -6,21 +6,21 @@ items:
   parent: Alibi.Plugins.API
   children:
   - Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)
-  - Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)
+  - Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)
   - Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
-  - Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
+  - Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
   - Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)
   - Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)
   - Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)
+  - Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
   - Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
-  - Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  - Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
+  - Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
   - Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)
   - Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)
-  - Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
+  - Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
   - Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)
   - Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)
-  - Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
+  - Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
   langs:
   - csharp
   - vb
@@ -32,96 +32,93 @@ items:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IDatabaseManager
     path: ../IDatabaseManager.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nProvides an interface to interact with the internal database. Be careful.\n"
+  summary: Provides an interface to interact with the internal database. Be careful.
   example: []
   syntax:
     content: public interface IDatabaseManager
     content.vb: Public Interface IDatabaseManager
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
-- uid: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.String)
-  id: AddUser(System.String,System.String)
+- uid: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)
+  id: AddUser(System.String,System.Net.IPAddress)
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: AddUser(String, String)
-  nameWithType: IDatabaseManager.AddUser(String, String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.AddUser(System.String, System.String)
+  name: AddUser(string, IPAddress)
+  nameWithType: IDatabaseManager.AddUser(string, IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.AddUser(string, System.Net.IPAddress)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AddUser
     path: ../IDatabaseManager.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nAdd a user to the database, with default info.\n"
+  summary: Add a user to the database, with default info.
   example: []
   syntax:
-    content: bool AddUser(string hwid, string ip)
+    content: bool AddUser(string hwid, IPAddress ip)
     parameters:
     - id: hwid
       type: System.String
       description: The hardware ID of this user
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address of this user
     return:
       type: System.Boolean
       description: Whether or not the user was successfully added to the database.
-    content.vb: Function AddUser(hwid As String, ip As String) As Boolean
+    content.vb: Function AddUser(hwid As String, ip As IPAddress) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.AddUser*
-- uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
-  id: GetHwidsfromIp(System.String)
+  nameWithType.vb: IDatabaseManager.AddUser(String, IPAddress)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.AddUser(String, System.Net.IPAddress)
+  name.vb: AddUser(String, IPAddress)
+- uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
+  id: GetHwidsfromIp(System.Net.IPAddress)
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: GetHwidsfromIp(String)
-  nameWithType: IDatabaseManager.GetHwidsfromIp(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.String)
+  name: GetHwidsfromIp(IPAddress)
+  nameWithType: IDatabaseManager.GetHwidsfromIp(IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetHwidsfromIp
     path: ../IDatabaseManager.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nGet all hardware IDs associated with a given IP Address\n"
+  summary: Get all hardware IDs associated with a given IP Address
   example: []
   syntax:
-    content: string[] GetHwidsfromIp(string ip)
+    content: string[] GetHwidsfromIp(IPAddress ip)
     parameters:
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address to search the database for
     return:
       type: System.String[]
       description: An array of hardware IDs associated with this IP
-    content.vb: Function GetHwidsfromIp(ip As String) As String()
+    content.vb: Function GetHwidsfromIp(ip As IPAddress) As String()
   overload: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*
 - uid: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)
@@ -130,22 +127,22 @@ items:
   langs:
   - csharp
   - vb
-  name: IsHwidBanned(String)
-  nameWithType: IDatabaseManager.IsHwidBanned(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)
+  name: IsHwidBanned(string)
+  nameWithType: IDatabaseManager.IsHwidBanned(string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IsHwidBanned
     path: ../IDatabaseManager.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCheck if a given hardware ID is banned in the database.\n"
+  summary: Check if a given hardware ID is banned in the database.
   example: []
   syntax:
     content: bool IsHwidBanned(string hwid)
@@ -158,76 +155,79 @@ items:
       description: Whether or not this HWID is banned
     content.vb: Function IsHwidBanned(hwid As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned*
-- uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
-  id: IsIpBanned(System.String)
+  nameWithType.vb: IDatabaseManager.IsHwidBanned(String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(String)
+  name.vb: IsHwidBanned(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
+  id: IsIpBanned(System.Net.IPAddress)
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: IsIpBanned(String)
-  nameWithType: IDatabaseManager.IsIpBanned(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.String)
+  name: IsIpBanned(IPAddress)
+  nameWithType: IDatabaseManager.IsIpBanned(IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: IsIpBanned
     path: ../IDatabaseManager.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nCheck if a given IP Address is banned in the database.\n"
+  summary: Check if a given IP Address is banned in the database.
   example: []
   syntax:
-    content: bool IsIpBanned(string ip)
+    content: bool IsIpBanned(IPAddress ip)
     parameters:
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address to check
     return:
       type: System.Boolean
       description: Whether or not this IP Address is banned
-    content.vb: Function IsIpBanned(ip As String) As Boolean
+    content.vb: Function IsIpBanned(ip As IPAddress) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.IsIpBanned*
-- uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
-  id: GetBanReason(System.String)
+- uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
+  id: GetBanReason(System.Net.IPAddress)
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: GetBanReason(String)
-  nameWithType: IDatabaseManager.GetBanReason(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.String)
+  name: GetBanReason(IPAddress)
+  nameWithType: IDatabaseManager.GetBanReason(IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetBanReason
     path: ../IDatabaseManager.cs
-    startLine: 46
+    startLine: 47
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nGets the ban reasoning stored in the database for an IP Address.\n"
-  remarks: "\nThis isn&apos;t available for HWIDs for technical reasons.\n"
+  summary: Gets the ban reasoning stored in the database for an IP Address.
+  remarks: This isn't available for HWIDs for technical reasons.
   example: []
   syntax:
-    content: string GetBanReason(string ip)
+    content: string GetBanReason(IPAddress ip)
     parameters:
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address to search for
     return:
       type: System.String
       description: The reason this IP was banned
-    content.vb: Function GetBanReason(ip As String) As String
+    content.vb: Function GetBanReason(ip As IPAddress) As String
   overload: Alibi.Plugins.API.IDatabaseManager.GetBanReason*
 - uid: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
   commentId: M:Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})
@@ -236,25 +236,28 @@ items:
   langs:
   - csharp
   - vb
-  name: BanHwid(String, String, Nullable<TimeSpan>)
-  nameWithType: IDatabaseManager.BanHwid(String, String, Nullable<TimeSpan>)
-  fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable<System.TimeSpan>)
+  name: BanHwid(string, string, TimeSpan?)
+  nameWithType: IDatabaseManager.BanHwid(string, string, TimeSpan?)
+  fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid(string, string, System.TimeSpan?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BanHwid
     path: ../IDatabaseManager.cs
-    startLine: 55
+    startLine: 56
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRegisters a ban for an HWID in the database. This won&apos;t take effect\nuntil the player rejoins the server. Instead use IClient.BanHwid\n"
+  summary: >-
+    Registers a ban for an HWID in the database. This won't take effect
+
+    until the player rejoins the server. Instead use IClient.BanHwid
   example: []
   syntax:
-    content: void BanHwid(string hwid, string reason, TimeSpan? expireTime = default(TimeSpan? ))
+    content: void BanHwid(string hwid, string reason, TimeSpan? expireTime = null)
     parameters:
     - id: hwid
       type: System.String
@@ -267,39 +270,42 @@ items:
       description: When to let this ban expire (null if indefinite)
     content.vb: Sub BanHwid(hwid As String, reason As String, expireTime As TimeSpan? = Nothing)
   overload: Alibi.Plugins.API.IDatabaseManager.BanHwid*
-  nameWithType.vb: IDatabaseManager.BanHwid(String, String, Nullable(Of TimeSpan))
-  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String, System.String, System.Nullable(Of System.TimeSpan))
-  name.vb: BanHwid(String, String, Nullable(Of TimeSpan))
-- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
-  id: BanIp(System.String,System.String,System.Nullable{System.TimeSpan})
+  nameWithType.vb: IDatabaseManager.BanHwid(String, String, TimeSpan?)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanHwid(String, String, System.TimeSpan?)
+  name.vb: BanHwid(String, String, TimeSpan?)
+- uid: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
+  id: BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: BanIp(String, String, Nullable<TimeSpan>)
-  nameWithType: IDatabaseManager.BanIp(String, String, Nullable<TimeSpan>)
-  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable<System.TimeSpan>)
+  name: BanIp(IPAddress, string, TimeSpan?)
+  nameWithType: IDatabaseManager.BanIp(IPAddress, string, TimeSpan?)
+  fullName: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress, string, System.TimeSpan?)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: BanIp
     path: ../IDatabaseManager.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRegisters a ban for an IP in the database. This won&apos;t take effect\nuntil the player rejoins the server. Instead use IClient.BanIP\n"
-  remarks: "\nTry to never use this ban method as it is insecure. Use HWID banning whenever possible.\n"
+  summary: >-
+    Registers a ban for an IP in the database. This won't take effect
+
+    until the player rejoins the server. Instead use IClient.BanIP
+  remarks: Try to never use this ban method as it is insecure. Use HWID banning whenever possible.
   example: []
   syntax:
-    content: void BanIp(string ip, string reason, TimeSpan? expireTime = default(TimeSpan? ))
+    content: void BanIp(IPAddress ip, string reason, TimeSpan? expireTime = null)
     parameters:
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address to ban
     - id: reason
       type: System.String
@@ -307,11 +313,11 @@ items:
     - id: expireTime
       type: System.Nullable{System.TimeSpan}
       description: When to let this  ban expire (null if indefinite)
-    content.vb: Sub BanIp(ip As String, reason As String, expireTime As TimeSpan? = Nothing)
+    content.vb: Sub BanIp(ip As IPAddress, reason As String, expireTime As TimeSpan? = Nothing)
   overload: Alibi.Plugins.API.IDatabaseManager.BanIp*
-  nameWithType.vb: IDatabaseManager.BanIp(String, String, Nullable(Of TimeSpan))
-  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.String, System.String, System.Nullable(Of System.TimeSpan))
-  name.vb: BanIp(String, String, Nullable(Of TimeSpan))
+  nameWithType.vb: IDatabaseManager.BanIp(IPAddress, String, TimeSpan?)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress, String, System.TimeSpan?)
+  name.vb: BanIp(IPAddress, String, TimeSpan?)
 - uid: Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)
   id: UnbanHwid(System.String)
@@ -319,22 +325,22 @@ items:
   langs:
   - csharp
   - vb
-  name: UnbanHwid(String)
-  nameWithType: IDatabaseManager.UnbanHwid(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)
+  name: UnbanHwid(string)
+  nameWithType: IDatabaseManager.UnbanHwid(string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanHwid(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: UnbanHwid
     path: ../IDatabaseManager.cs
-    startLine: 73
+    startLine: 74
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nLifts a ban for an HWID in the database.\n"
+  summary: Lifts a ban for an HWID in the database.
   example: []
   syntax:
     content: void UnbanHwid(string hwid)
@@ -344,37 +350,40 @@ items:
       description: The Hardware ID to unban
     content.vb: Sub UnbanHwid(hwid As String)
   overload: Alibi.Plugins.API.IDatabaseManager.UnbanHwid*
-- uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
-  commentId: M:Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
-  id: UnbanIp(System.String)
+  nameWithType.vb: IDatabaseManager.UnbanHwid(String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.UnbanHwid(String)
+  name.vb: UnbanHwid(String)
+- uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
+  commentId: M:Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
+  id: UnbanIp(System.Net.IPAddress)
   parent: Alibi.Plugins.API.IDatabaseManager
   langs:
   - csharp
   - vb
-  name: UnbanIp(String)
-  nameWithType: IDatabaseManager.UnbanIp(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.String)
+  name: UnbanIp(IPAddress)
+  nameWithType: IDatabaseManager.UnbanIp(IPAddress)
+  fullName: Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: UnbanIp
     path: ../IDatabaseManager.cs
-    startLine: 79
+    startLine: 80
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nLifts a ban for an IP Address in the database.\n"
+  summary: Lifts a ban for an IP Address in the database.
   example: []
   syntax:
-    content: void UnbanIp(string ip)
+    content: void UnbanIp(IPAddress ip)
     parameters:
     - id: ip
-      type: System.String
+      type: System.Net.IPAddress
       description: The IP Address to unban
-    content.vb: Sub UnbanIp(ip As String)
+    content.vb: Sub UnbanIp(ip As IPAddress)
   overload: Alibi.Plugins.API.IDatabaseManager.UnbanIp*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
   commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
@@ -391,21 +400,21 @@ items:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetBannedHwids
     path: ../IDatabaseManager.cs
-    startLine: 85
+    startLine: 86
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nGets a list of every banned Hardware ID in the database.\n"
+  summary: Gets a list of every banned Hardware ID in the database.
   example: []
   syntax:
     content: string[] GetBannedHwids()
     return:
       type: System.String[]
       description: An array of HWIDs that are banned in the database
-    content.vb: Function GetBannedHwids As String()
+    content.vb: Function GetBannedHwids() As String()
   overload: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids*
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)
@@ -414,22 +423,22 @@ items:
   langs:
   - csharp
   - vb
-  name: GetBanExpiration(String)
-  nameWithType: IDatabaseManager.GetBanExpiration(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)
+  name: GetBanExpiration(string)
+  nameWithType: IDatabaseManager.GetBanExpiration(string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetBanExpiration
     path: ../IDatabaseManager.cs
-    startLine: 92
+    startLine: 93
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nFetches when an HWID will be unbanned.\n"
+  summary: Fetches when an HWID will be unbanned.
   example: []
   syntax:
     content: DateTime? GetBanExpiration(string hwid)
@@ -442,6 +451,9 @@ items:
       description: A DateTime representing when this ban will expire.
     content.vb: Function GetBanExpiration(hwid As String) As Date?
   overload: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration*
+  nameWithType.vb: IDatabaseManager.GetBanExpiration(String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(String)
+  name.vb: GetBanExpiration(String)
 - uid: Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)
   id: AddLogin(System.String,System.String,System.Int32)
@@ -449,23 +461,26 @@ items:
   langs:
   - csharp
   - vb
-  name: AddLogin(String, String, Int32)
-  nameWithType: IDatabaseManager.AddLogin(String, String, Int32)
-  fullName: Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String, System.String, System.Int32)
+  name: AddLogin(string, string, int)
+  nameWithType: IDatabaseManager.AddLogin(string, string, int)
+  fullName: Alibi.Plugins.API.IDatabaseManager.AddLogin(string, string, int)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: AddLogin
     path: ../IDatabaseManager.cs
-    startLine: 105
+    startLine: 106
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nRegisters an account with higher permissions in the database.\n"
-  remarks: "\nPasswords are stored as a BCrypt hash in the database\nand the plain text version is immediately thrown away.\n"
+  summary: Registers an account with higher permissions in the database.
+  remarks: >-
+    Passwords are stored as a BCrypt hash in the database
+
+    and the plain text version is immediately thrown away.
   example: []
   syntax:
     content: bool AddLogin(string username, string password, int perms)
@@ -484,6 +499,9 @@ items:
       description: Whether or not this operation was successful
     content.vb: Function AddLogin(username As String, password As String, perms As Integer) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.AddLogin*
+  nameWithType.vb: IDatabaseManager.AddLogin(String, String, Integer)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.AddLogin(String, String, Integer)
+  name.vb: AddLogin(String, String, Integer)
 - uid: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)
   id: ChangeLoginPermissions(System.String,System.Int32)
@@ -491,22 +509,22 @@ items:
   langs:
   - csharp
   - vb
-  name: ChangeLoginPermissions(String, Int32)
-  nameWithType: IDatabaseManager.ChangeLoginPermissions(String, Int32)
-  fullName: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String, System.Int32)
+  name: ChangeLoginPermissions(string, int)
+  nameWithType: IDatabaseManager.ChangeLoginPermissions(string, int)
+  fullName: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(string, int)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: ChangeLoginPermissions
     path: ../IDatabaseManager.cs
-    startLine: 113
+    startLine: 114
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nChange the permission level of a given login in the database.\n"
+  summary: Change the permission level of a given login in the database.
   example: []
   syntax:
     content: bool ChangeLoginPermissions(string username, int perms)
@@ -522,6 +540,9 @@ items:
       description: Whether or not this operation was successful
     content.vb: Function ChangeLoginPermissions(username As String, perms As Integer) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions*
+  nameWithType.vb: IDatabaseManager.ChangeLoginPermissions(String, Integer)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(String, Integer)
+  name.vb: ChangeLoginPermissions(String, Integer)
 - uid: Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)
   id: RemoveLogin(System.String)
@@ -529,23 +550,28 @@ items:
   langs:
   - csharp
   - vb
-  name: RemoveLogin(String)
-  nameWithType: IDatabaseManager.RemoveLogin(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)
+  name: RemoveLogin(string)
+  nameWithType: IDatabaseManager.RemoveLogin(string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.RemoveLogin(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: RemoveLogin
     path: ../IDatabaseManager.cs
-    startLine: 125
+    startLine: 126
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nDeletes a login registered in the database.\n"
-  remarks: "\nDoing this will NOT log out players that already used this login.\nDo not use this as a token revocation system of sorts, unless you\nalso find those logged in users and log them out.\n"
+  summary: Deletes a login registered in the database.
+  remarks: >-
+    Doing this will NOT log out players that already used this login.
+
+    Do not use this as a token revocation system of sorts, unless you
+
+    also find those logged in users and log them out.
   example: []
   syntax:
     content: bool RemoveLogin(string username)
@@ -558,6 +584,9 @@ items:
       description: Whether or not this operation was successful
     content.vb: Function RemoveLogin(username As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.RemoveLogin*
+  nameWithType.vb: IDatabaseManager.RemoveLogin(String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.RemoveLogin(String)
+  name.vb: RemoveLogin(String)
 - uid: Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)
   id: CheckCredentials(System.String,System.String)
@@ -565,22 +594,22 @@ items:
   langs:
   - csharp
   - vb
-  name: CheckCredentials(String, String)
-  nameWithType: IDatabaseManager.CheckCredentials(String, String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String, System.String)
+  name: CheckCredentials(string, string)
+  nameWithType: IDatabaseManager.CheckCredentials(string, string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.CheckCredentials(string, string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: CheckCredentials
     path: ../IDatabaseManager.cs
-    startLine: 133
+    startLine: 134
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nChecks if the given username and password matches the one registered in the database.\n"
+  summary: Checks if the given username and password matches the one registered in the database.
   example: []
   syntax:
     content: bool CheckCredentials(string username, string password)
@@ -596,6 +625,9 @@ items:
       description: Whether or not the authentication was successful
     content.vb: Function CheckCredentials(username As String, password As String) As Boolean
   overload: Alibi.Plugins.API.IDatabaseManager.CheckCredentials*
+  nameWithType.vb: IDatabaseManager.CheckCredentials(String, String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.CheckCredentials(String, String)
+  name.vb: CheckCredentials(String, String)
 - uid: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)
   commentId: M:Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)
   id: GetPermissionLevel(System.String)
@@ -603,22 +635,22 @@ items:
   langs:
   - csharp
   - vb
-  name: GetPermissionLevel(String)
-  nameWithType: IDatabaseManager.GetPermissionLevel(String)
-  fullName: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)
+  name: GetPermissionLevel(string)
+  nameWithType: IDatabaseManager.GetPermissionLevel(string)
+  fullName: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(string)
   type: Method
   source:
     remote:
       path: Alibi.Plugins.API/IDatabaseManager.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: GetPermissionLevel
     path: ../IDatabaseManager.cs
-    startLine: 140
+    startLine: 141
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nReturns the permission level of a given login.\n"
+  summary: Returns the permission level of a given login.
   example: []
   syntax:
     content: int GetPermissionLevel(string username)
@@ -631,14 +663,43 @@ items:
       description: What permission level they have
     content.vb: Function GetPermissionLevel(username As String) As Integer
   overload: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel*
+  nameWithType.vb: IDatabaseManager.GetPermissionLevel(String)
+  fullName.vb: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(String)
+  name.vb: GetPermissionLevel(String)
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.IDatabaseManager.AddUser*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.AddUser
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_Net_IPAddress_
   name: AddUser
   nameWithType: IDatabaseManager.AddUser
   fullName: Alibi.Plugins.API.IDatabaseManager.AddUser
@@ -646,70 +707,110 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Net.IPAddress
+  commentId: T:System.Net.IPAddress
+  parent: System.Net
+  isExternal: true
+  name: IPAddress
+  nameWithType: IPAddress
+  fullName: System.Net.IPAddress
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Net
+  commentId: N:System.Net
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net
+  nameWithType: System.Net
+  fullName: System.Net
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
 - uid: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_Net_IPAddress_
   name: GetHwidsfromIp
   nameWithType: IDatabaseManager.GetHwidsfromIp
   fullName: Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp
 - uid: System.String[]
   isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
   nameWithType.vb: String()
-  fullName.vb: System.String()
+  fullName.vb: String()
   name.vb: String()
   spec.csharp:
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.IsHwidBanned
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_
   name: IsHwidBanned
   nameWithType: IDatabaseManager.IsHwidBanned
   fullName: Alibi.Plugins.API.IDatabaseManager.IsHwidBanned
 - uid: Alibi.Plugins.API.IDatabaseManager.IsIpBanned*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.IsIpBanned
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_Net_IPAddress_
   name: IsIpBanned
   nameWithType: IDatabaseManager.IsIpBanned
   fullName: Alibi.Plugins.API.IDatabaseManager.IsIpBanned
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanReason*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.GetBanReason
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_Net_IPAddress_
   name: GetBanReason
   nameWithType: IDatabaseManager.GetBanReason
   fullName: Alibi.Plugins.API.IDatabaseManager.GetBanReason
 - uid: Alibi.Plugins.API.IDatabaseManager.BanHwid*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.BanHwid
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__
   name: BanHwid
   nameWithType: IDatabaseManager.BanHwid
   fullName: Alibi.Plugins.API.IDatabaseManager.BanHwid
@@ -717,46 +818,19 @@ references:
   commentId: T:System.Nullable{System.TimeSpan}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<TimeSpan>
-  nameWithType: Nullable<TimeSpan>
-  fullName: System.Nullable<System.TimeSpan>
-  nameWithType.vb: Nullable(Of TimeSpan)
-  fullName.vb: System.Nullable(Of System.TimeSpan)
-  name.vb: Nullable(Of TimeSpan)
+  name: TimeSpan?
+  nameWithType: TimeSpan?
+  fullName: System.TimeSpan?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.TimeSpan
     name: TimeSpan
-    nameWithType: TimeSpan
-    fullName: System.TimeSpan
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.TimeSpan
     name: TimeSpan
-    nameWithType: TimeSpan
-    fullName: System.TimeSpan
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: '?'
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
@@ -769,55 +843,46 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Alibi.Plugins.API.IDatabaseManager.BanIp*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.BanIp
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__
   name: BanIp
   nameWithType: IDatabaseManager.BanIp
   fullName: Alibi.Plugins.API.IDatabaseManager.BanIp
 - uid: Alibi.Plugins.API.IDatabaseManager.UnbanHwid*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.UnbanHwid
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_
   name: UnbanHwid
   nameWithType: IDatabaseManager.UnbanHwid
   fullName: Alibi.Plugins.API.IDatabaseManager.UnbanHwid
 - uid: Alibi.Plugins.API.IDatabaseManager.UnbanIp*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.UnbanIp
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_Net_IPAddress_
   name: UnbanIp
   nameWithType: IDatabaseManager.UnbanIp
   fullName: Alibi.Plugins.API.IDatabaseManager.UnbanIp
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBannedHwids
   name: GetBannedHwids
   nameWithType: IDatabaseManager.GetBannedHwids
   fullName: Alibi.Plugins.API.IDatabaseManager.GetBannedHwids
 - uid: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.GetBanExpiration
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_
   name: GetBanExpiration
   nameWithType: IDatabaseManager.GetBanExpiration
   fullName: Alibi.Plugins.API.IDatabaseManager.GetBanExpiration
@@ -825,48 +890,25 @@ references:
   commentId: T:System.Nullable{System.DateTime}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<DateTime>
-  nameWithType: Nullable<DateTime>
-  fullName: System.Nullable<System.DateTime>
-  nameWithType.vb: Nullable(Of DateTime)
-  fullName.vb: System.Nullable(Of System.DateTime)
-  name.vb: Nullable(Of DateTime)
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.DateTime
     name: DateTime
-    nameWithType: DateTime
-    fullName: System.DateTime
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.DateTime
-    name: DateTime
-    nameWithType: DateTime
-    fullName: System.DateTime
+    name: Date
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: '?'
 - uid: Alibi.Plugins.API.IDatabaseManager.AddLogin*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.AddLogin
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_
   name: AddLogin
   nameWithType: IDatabaseManager.AddLogin
   fullName: Alibi.Plugins.API.IDatabaseManager.AddLogin
@@ -874,26 +916,33 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_
   name: ChangeLoginPermissions
   nameWithType: IDatabaseManager.ChangeLoginPermissions
   fullName: Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions
 - uid: Alibi.Plugins.API.IDatabaseManager.RemoveLogin*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.RemoveLogin
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_
   name: RemoveLogin
   nameWithType: IDatabaseManager.RemoveLogin
   fullName: Alibi.Plugins.API.IDatabaseManager.RemoveLogin
 - uid: Alibi.Plugins.API.IDatabaseManager.CheckCredentials*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.CheckCredentials
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_
   name: CheckCredentials
   nameWithType: IDatabaseManager.CheckCredentials
   fullName: Alibi.Plugins.API.IDatabaseManager.CheckCredentials
 - uid: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel*
   commentId: Overload:Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel
+  href: Alibi.Plugins.API.IDatabaseManager.html#Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_
   name: GetPermissionLevel
   nameWithType: IDatabaseManager.GetPermissionLevel
   fullName: Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel

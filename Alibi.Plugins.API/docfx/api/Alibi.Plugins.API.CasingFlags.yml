@@ -1,0 +1,267 @@
+### YamlMime:ManagedReference
+items:
+- uid: Alibi.Plugins.API.CasingFlags
+  commentId: T:Alibi.Plugins.API.CasingFlags
+  id: CasingFlags
+  parent: Alibi.Plugins.API
+  children:
+  - Alibi.Plugins.API.CasingFlags.CaseManager
+  - Alibi.Plugins.API.CasingFlags.Defense
+  - Alibi.Plugins.API.CasingFlags.Judge
+  - Alibi.Plugins.API.CasingFlags.Jury
+  - Alibi.Plugins.API.CasingFlags.None
+  - Alibi.Plugins.API.CasingFlags.Prosecutor
+  - Alibi.Plugins.API.CasingFlags.Stenographer
+  langs:
+  - csharp
+  - vb
+  name: CasingFlags
+  nameWithType: CasingFlags
+  fullName: Alibi.Plugins.API.CasingFlags
+  type: Enum
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: CasingFlags
+    path: ../CasingFlags.cs
+    startLine: 7
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Flags representing a client's casing preferences (See SETCASE# and CASEA#)
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum CasingFlags
+    content.vb: >-
+      <Flags>
+
+      Public Enum CasingFlags
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: Alibi.Plugins.API.CasingFlags.None
+  commentId: F:Alibi.Plugins.API.CasingFlags.None
+  id: None
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: CasingFlags.None
+  fullName: Alibi.Plugins.API.CasingFlags.None
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: None
+    path: ../CasingFlags.cs
+    startLine: 10
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: None = 0
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.CaseManager
+  commentId: F:Alibi.Plugins.API.CasingFlags.CaseManager
+  id: CaseManager
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: CaseManager
+  nameWithType: CasingFlags.CaseManager
+  fullName: Alibi.Plugins.API.CasingFlags.CaseManager
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: CaseManager
+    path: ../CasingFlags.cs
+    startLine: 11
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: CaseManager = 1
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.Defense
+  commentId: F:Alibi.Plugins.API.CasingFlags.Defense
+  id: Defense
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: Defense
+  nameWithType: CasingFlags.Defense
+  fullName: Alibi.Plugins.API.CasingFlags.Defense
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: Defense
+    path: ../CasingFlags.cs
+    startLine: 12
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Defense = 2
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.Prosecutor
+  commentId: F:Alibi.Plugins.API.CasingFlags.Prosecutor
+  id: Prosecutor
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: Prosecutor
+  nameWithType: CasingFlags.Prosecutor
+  fullName: Alibi.Plugins.API.CasingFlags.Prosecutor
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: Prosecutor
+    path: ../CasingFlags.cs
+    startLine: 13
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Prosecutor = 4
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.Judge
+  commentId: F:Alibi.Plugins.API.CasingFlags.Judge
+  id: Judge
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: Judge
+  nameWithType: CasingFlags.Judge
+  fullName: Alibi.Plugins.API.CasingFlags.Judge
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: Judge
+    path: ../CasingFlags.cs
+    startLine: 14
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Judge = 8
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.Jury
+  commentId: F:Alibi.Plugins.API.CasingFlags.Jury
+  id: Jury
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: Jury
+  nameWithType: CasingFlags.Jury
+  fullName: Alibi.Plugins.API.CasingFlags.Jury
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: Jury
+    path: ../CasingFlags.cs
+    startLine: 15
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Jury = 16
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+- uid: Alibi.Plugins.API.CasingFlags.Stenographer
+  commentId: F:Alibi.Plugins.API.CasingFlags.Stenographer
+  id: Stenographer
+  parent: Alibi.Plugins.API.CasingFlags
+  langs:
+  - csharp
+  - vb
+  name: Stenographer
+  nameWithType: CasingFlags.Stenographer
+  fullName: Alibi.Plugins.API.CasingFlags.Stenographer
+  type: Field
+  source:
+    remote:
+      path: Alibi.Plugins.API/CasingFlags.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: Stenographer
+    path: ../CasingFlags.cs
+    startLine: 16
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  syntax:
+    content: Stenographer = 32
+    return:
+      type: Alibi.Plugins.API.CasingFlags
+references:
+- uid: Alibi.Plugins.API
+  commentId: N:Alibi.Plugins.API
+  href: Alibi.html
+  name: Alibi.Plugins.API
+  nameWithType: Alibi.Plugins.API
+  fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+- uid: Alibi.Plugins.API.CasingFlags
+  commentId: T:Alibi.Plugins.API.CasingFlags
+  parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.CasingFlags.html
+  name: CasingFlags
+  nameWithType: CasingFlags
+  fullName: Alibi.Plugins.API.CasingFlags

@@ -21,26 +21,31 @@ items:
 references:
 - uid: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
   commentId: T:Alibi.Plugins.API.Attributes.AdminOnlyAttribute
+  href: Alibi.Plugins.API.Attributes.AdminOnlyAttribute.html
   name: AdminOnlyAttribute
   nameWithType: AdminOnlyAttribute
   fullName: Alibi.Plugins.API.Attributes.AdminOnlyAttribute
 - uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
   commentId: T:Alibi.Plugins.API.Attributes.CommandHandlerAttribute
+  href: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.html
   name: CommandHandlerAttribute
   nameWithType: CommandHandlerAttribute
   fullName: Alibi.Plugins.API.Attributes.CommandHandlerAttribute
 - uid: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
   commentId: T:Alibi.Plugins.API.Attributes.MessageHandlerAttribute
+  href: Alibi.Plugins.API.Attributes.MessageHandlerAttribute.html
   name: MessageHandlerAttribute
   nameWithType: MessageHandlerAttribute
   fullName: Alibi.Plugins.API.Attributes.MessageHandlerAttribute
 - uid: Alibi.Plugins.API.Attributes.ModOnlyAttribute
   commentId: T:Alibi.Plugins.API.Attributes.ModOnlyAttribute
+  href: Alibi.Plugins.API.Attributes.ModOnlyAttribute.html
   name: ModOnlyAttribute
   nameWithType: ModOnlyAttribute
   fullName: Alibi.Plugins.API.Attributes.ModOnlyAttribute
 - uid: Alibi.Plugins.API.Attributes.RequireStateAttribute
   commentId: T:Alibi.Plugins.API.Attributes.RequireStateAttribute
+  href: Alibi.Plugins.API.Attributes.RequireStateAttribute.html
   name: RequireStateAttribute
   nameWithType: RequireStateAttribute
   fullName: Alibi.Plugins.API.Attributes.RequireStateAttribute

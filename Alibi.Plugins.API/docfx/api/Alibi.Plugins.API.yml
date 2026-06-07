@@ -7,6 +7,7 @@ items:
   - Alibi.Plugins.API.AOPacket
   - Alibi.Plugins.API.AreaUpdateType
   - Alibi.Plugins.API.AuthType
+  - Alibi.Plugins.API.CasingFlags
   - Alibi.Plugins.API.ClientState
   - Alibi.Plugins.API.Handler
   - Alibi.Plugins.API.IArea
@@ -33,97 +34,145 @@ references:
 - uid: Alibi.Plugins.API.AOPacket
   commentId: T:Alibi.Plugins.API.AOPacket
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AOPacket.html
   name: AOPacket
   nameWithType: AOPacket
   fullName: Alibi.Plugins.API.AOPacket
 - uid: Alibi.Plugins.API.AreaUpdateType
   commentId: T:Alibi.Plugins.API.AreaUpdateType
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.AreaUpdateType.html
   name: AreaUpdateType
   nameWithType: AreaUpdateType
   fullName: Alibi.Plugins.API.AreaUpdateType
 - uid: Alibi.Plugins.API.AuthType
   commentId: T:Alibi.Plugins.API.AuthType
+  href: Alibi.Plugins.API.AuthType.html
   name: AuthType
   nameWithType: AuthType
   fullName: Alibi.Plugins.API.AuthType
+- uid: Alibi.Plugins.API.CasingFlags
+  commentId: T:Alibi.Plugins.API.CasingFlags
+  parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.CasingFlags.html
+  name: CasingFlags
+  nameWithType: CasingFlags
+  fullName: Alibi.Plugins.API.CasingFlags
 - uid: Alibi.Plugins.API.ClientState
   commentId: T:Alibi.Plugins.API.ClientState
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.ClientState.html
   name: ClientState
   nameWithType: ClientState
   fullName: Alibi.Plugins.API.ClientState
 - uid: Alibi.Plugins.API.Handler
   commentId: T:Alibi.Plugins.API.Handler
+  href: Alibi.Plugins.API.Handler.html
   name: Handler
   nameWithType: Handler
   fullName: Alibi.Plugins.API.Handler
 - uid: Alibi.Plugins.API.IArea
   commentId: T:Alibi.Plugins.API.IArea
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IArea.html
   name: IArea
   nameWithType: IArea
   fullName: Alibi.Plugins.API.IArea
 - uid: Alibi.Plugins.API.IClient
   commentId: T:Alibi.Plugins.API.IClient
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IClient.html
   name: IClient
   nameWithType: IClient
   fullName: Alibi.Plugins.API.IClient
 - uid: Alibi.Plugins.API.IConfiguration
   commentId: T:Alibi.Plugins.API.IConfiguration
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IConfiguration.html
   name: IConfiguration
   nameWithType: IConfiguration
   fullName: Alibi.Plugins.API.IConfiguration
 - uid: Alibi.Plugins.API.IDatabaseManager
   commentId: T:Alibi.Plugins.API.IDatabaseManager
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IDatabaseManager.html
   name: IDatabaseManager
   nameWithType: IDatabaseManager
   fullName: Alibi.Plugins.API.IDatabaseManager
 - uid: Alibi.Plugins.API.IEvidence
   commentId: T:Alibi.Plugins.API.IEvidence
+  href: Alibi.Plugins.API.IEvidence.html
   name: IEvidence
   nameWithType: IEvidence
   fullName: Alibi.Plugins.API.IEvidence
 - uid: Alibi.Plugins.API.IPluginManager
   commentId: T:Alibi.Plugins.API.IPluginManager
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IPluginManager.html
   name: IPluginManager
   nameWithType: IPluginManager
   fullName: Alibi.Plugins.API.IPluginManager
 - uid: Alibi.Plugins.API.IServer
   commentId: T:Alibi.Plugins.API.IServer
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.IServer.html
   name: IServer
   nameWithType: IServer
   fullName: Alibi.Plugins.API.IServer
 - uid: Alibi.Plugins.API.ISession
   commentId: T:Alibi.Plugins.API.ISession
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.ISession.html
   name: ISession
   nameWithType: ISession
   fullName: Alibi.Plugins.API.ISession
 - uid: Alibi.Plugins.API.LogSeverity
   commentId: T:Alibi.Plugins.API.LogSeverity
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.LogSeverity.html
   name: LogSeverity
   nameWithType: LogSeverity
   fullName: Alibi.Plugins.API.LogSeverity
 - uid: Alibi.Plugins.API.Plugin
   commentId: T:Alibi.Plugins.API.Plugin
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.Plugin.html
   name: Plugin
   nameWithType: Plugin
   fullName: Alibi.Plugins.API.Plugin
 - uid: Alibi.Plugins.API.StringExtensions
   commentId: T:Alibi.Plugins.API.StringExtensions
+  href: Alibi.Plugins.API.StringExtensions.html
   name: StringExtensions
   nameWithType: StringExtensions
   fullName: Alibi.Plugins.API.StringExtensions
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html

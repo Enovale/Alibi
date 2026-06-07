@@ -20,24 +20,18 @@ items:
     remote:
       path: Alibi.Plugins.API/LogSeverity.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: LogSeverity
     path: ../LogSeverity.cs
     startLine: 5
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: "\nHow severe a log is, lol.\n"
+  summary: How severe a log is, lol.
   example: []
   syntax:
     content: public enum LogSeverity
     content.vb: Public Enum LogSeverity
-  modifiers.csharp:
-  - public
-  - enum
-  modifiers.vb:
-  - Public
-  - Enum
 - uid: Alibi.Plugins.API.LogSeverity.Info
   commentId: F:Alibi.Plugins.API.LogSeverity.Info
   id: Info
@@ -53,7 +47,7 @@ items:
     remote:
       path: Alibi.Plugins.API/LogSeverity.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Info
     path: ../LogSeverity.cs
     startLine: 7
@@ -64,12 +58,6 @@ items:
     content: Info = 0
     return:
       type: Alibi.Plugins.API.LogSeverity
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.LogSeverity.Special
   commentId: F:Alibi.Plugins.API.LogSeverity.Special
   id: Special
@@ -85,7 +73,7 @@ items:
     remote:
       path: Alibi.Plugins.API/LogSeverity.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Special
     path: ../LogSeverity.cs
     startLine: 8
@@ -96,12 +84,6 @@ items:
     content: Special = 1
     return:
       type: Alibi.Plugins.API.LogSeverity
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.LogSeverity.Warning
   commentId: F:Alibi.Plugins.API.LogSeverity.Warning
   id: Warning
@@ -117,7 +99,7 @@ items:
     remote:
       path: Alibi.Plugins.API/LogSeverity.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Warning
     path: ../LogSeverity.cs
     startLine: 9
@@ -128,12 +110,6 @@ items:
     content: Warning = 2
     return:
       type: Alibi.Plugins.API.LogSeverity
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: Alibi.Plugins.API.LogSeverity.Error
   commentId: F:Alibi.Plugins.API.LogSeverity.Error
   id: Error
@@ -149,7 +125,7 @@ items:
     remote:
       path: Alibi.Plugins.API/LogSeverity.cs
       branch: main
-      repo: https://github.com/Enova/Alibi.git
+      repo: https://github.com/Enovale/Alibi.git
     id: Error
     path: ../LogSeverity.cs
     startLine: 10
@@ -160,21 +136,41 @@ items:
     content: Error = 3
     return:
       type: Alibi.Plugins.API.LogSeverity
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: Alibi.Plugins.API
   commentId: N:Alibi.Plugins.API
+  href: Alibi.html
   name: Alibi.Plugins.API
   nameWithType: Alibi.Plugins.API
   fullName: Alibi.Plugins.API
+  spec.csharp:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
+  spec.vb:
+  - uid: Alibi
+    name: Alibi
+    href: Alibi.html
+  - name: .
+  - uid: Alibi.Plugins
+    name: Plugins
+    href: Alibi.Plugins.html
+  - name: .
+  - uid: Alibi.Plugins.API
+    name: API
+    href: Alibi.Plugins.API.html
 - uid: Alibi.Plugins.API.LogSeverity
   commentId: T:Alibi.Plugins.API.LogSeverity
   parent: Alibi.Plugins.API
+  href: Alibi.Plugins.API.LogSeverity.html
   name: LogSeverity
   nameWithType: LogSeverity
   fullName: Alibi.Plugins.API.LogSeverity
