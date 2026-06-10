@@ -50,7 +50,7 @@ namespace Alibi.Plugins
                     continue;
                 
                 Server.Logger.Log(LogSeverity.Special,
-                    $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}");
+                    $"[PluginLoader] Loading plugin: {Path.GetFileNameWithoutExtension(path)}", true);
                 Assembly asm;
                 try
                 {
@@ -72,7 +72,7 @@ namespace Alibi.Plugins
                 {
                     Server.Logger.Log(LogSeverity.Error,
                         $"[PluginLoader] Could not find a plugin type in {asm.GetName().Name}, " +
-                        $"did you implement the Plugin base?");
+                        $"did you implement the Plugin base?", true);
                     continue;
                 }
 
@@ -91,6 +91,8 @@ namespace Alibi.Plugins
                 try
                 {
                     _registry.RegisterPlugin(instance);
+                    Server.Logger.Log(LogSeverity.Info,
+                        $"[PluginLoader] Successfully loaded plugin: {pluginType.Name}");
                 }
                 catch (Exception e)
                 {

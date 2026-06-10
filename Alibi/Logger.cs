@@ -10,7 +10,7 @@ namespace Alibi
     public class Logger
     {
         public const string LogsFolder = "Logs";
-        private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new Queue<Tuple<LogSeverity, string>>();
+        private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new();
         private readonly Queue<string> _logBuffer;
 
         private readonly Server _server;
@@ -26,20 +26,22 @@ namespace Alibi
         {
             while (true)
             {
-                if (_consoleLogQueue.TryDequeue(out var log))
+                Task.Delay(100).Wait();
+                if (!_consoleLogQueue.TryDequeue(out var log))
+                    continue;
+                
+                Console.ForegroundColor = log.Item1 switch
                 {
-                    Console.ForegroundColor = log.Item1 switch
-                    {
-                        LogSeverity.Info => ConsoleColor.White,
-                        LogSeverity.Special => ConsoleColor.Cyan,
-                        LogSeverity.Warning => ConsoleColor.Yellow,
-                        LogSeverity.Error => ConsoleColor.Red,
-                        _ => Console.ForegroundColor
-                    };
-                    Console.WriteLine(log.Item2);
-                    Console.ResetColor();
-                }
+                    LogSeverity.Info => ConsoleColor.White,
+                    LogSeverity.Special => ConsoleColor.Cyan,
+                    LogSeverity.Warning => ConsoleColor.Yellow,
+                    LogSeverity.Error => ConsoleColor.Red,
+                    _ => Console.ForegroundColor
+                };
+                Console.WriteLine(log.Item2);
+                Console.ResetColor();
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
         /// <summary>
