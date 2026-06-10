@@ -6,9 +6,8 @@ Here be server usage instructions, plugin maker instructions, and various other 
 - If you wanna make some plugins, first check out the article on [Making Plugins](./articles/plugins.md), then check out the [Api Documentation](./api/index.md) for help while you're working.
 
 ### [About Alibi](./articles/about.md)
-(My English class skills came out for this one, needs it's own article)
 
 ### About Me
-I'm a hobbyist, student dev that goes by [Enova](https://github.com/Enova). I primarily work in C# as i'm most comfortable with it and understand how to best use it, but I also dabble in Node, Py, Lua, Haxe, and other stuff.
+I'm a hobbyist dev that goes by [Enova](https://github.com/Enovale). I primarily work in C# as i'm most comfortable with it and understand how to best use it, but I also dabble in Node, Py, Lua, Haxe, and other stuff.
 
 I made Alibi because I hosted an AO2 server for 2-odd years and frankly **really hated it**. And that was due in no small part to the honestly terrible server software. Tsuserver3, while being the most popular server for the game, is incredibly rough around the edges to say the least, and is wide open to exploits, slowdown, crashes, and QoL issues. I set out to create exactly the opposite of these frustrations when I made Alibi.

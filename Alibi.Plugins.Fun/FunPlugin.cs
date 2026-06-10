@@ -10,7 +10,7 @@ namespace Alibi.Plugins.Fun
 {
     public class FunPlugin : Plugin
     {
-        public sealed override string ID => "com.elijahzawesome.Fun";
+        public sealed override string ID => "com.enovale.Fun";
         public sealed override string Name => "Fun";
 
         public static readonly Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();

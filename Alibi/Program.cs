@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -39,7 +38,7 @@ namespace Alibi
 
         private static string GetRealProcessDirectory()
         {
-            var execPath = Process.GetCurrentProcess().MainModule!.FileName!;
+            var execPath = Environment.ProcessPath!;
             return execPath.EndsWith("dotnet.exe") || execPath.EndsWith("dotnet")
                 ? Environment.CurrentDirectory
                 : Path.GetDirectoryName(execPath)!;
