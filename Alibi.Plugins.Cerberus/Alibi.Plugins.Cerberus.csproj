@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
-        <LangVersion>8</LangVersion>
+        <LangVersion>latest</LangVersion>
         <AssemblyVersion>1.0</AssemblyVersion>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>bin\Debug\</OutputPath>
+    <PropertyGroup Condition=" '$(_IsPublishing)' == 'True' ">
+        <OutputPath>Plugins\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,8 +15,8 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Condition="'$(OS)' == 'Windows_NT'" Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\net5.0\Plugins\&quot; /S /Y"/>
-        <Exec Condition="'$(OS)' == 'UNIX'" Command="mkdir -p &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot; &amp;&amp; cp -rf &quot;$(TargetPath)&quot; &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/net5.0/Plugins/&quot;"/>
+        <Exec Condition="'$(OS)' == 'Windows_NT'" Command="XCOPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\$(SolutionName)\bin\$(ConfigurationName)\$(TargetFramework)\Plugins\&quot; /S /Y"/>
+        <Exec Condition="'$(OS)' == 'UNIX'" Command="mkdir -p &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/$(TargetFramework)/Plugins/&quot; &amp;&amp; cp -rf &quot;$(TargetPath)&quot; &quot;$(SolutionDir)/$(SolutionName)/bin/$(ConfigurationName)/$(TargetFramework)/Plugins/&quot;"/>
     </Target>
 
 </Project>

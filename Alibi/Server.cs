@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -25,10 +24,10 @@ namespace Alibi
     {
         public static Server Instance;
 
-        public const string PluginFolder = "Plugins";
+        public static readonly string PluginFolder = Environment.GetEnvironmentVariable("ALIBI_PLUGIN_PATH") ?? "Plugins";
         public const string PluginDepsFolder = "Dependencies";
-        public const string ConfigFolder = "Config";
-        public static readonly string ProcessPath = Process.GetCurrentProcess().MainModule!.FileName!;
+        public static readonly string ConfigFolder = Environment.GetEnvironmentVariable("ALIBI_CONFIG_PATH") ?? "Config";
+        public static readonly string ProcessPath = Environment.ProcessPath!;
         public static readonly string ConfigPath = Path.Combine(ConfigFolder, "config.json");
         public static readonly string AreasPath = Path.Combine(ConfigFolder, "areas.json");
         public static readonly string MusicPath = Path.Combine(ConfigFolder, "music.txt");
@@ -57,7 +56,7 @@ namespace Alibi
         {
             Instance = this;
             ServerConfiguration = config;
-            Version asmVersion = Assembly.GetExecutingAssembly().GetName().Version!;
+            var asmVersion = Assembly.GetExecutingAssembly().GetName().Version!;
             Version = $"{asmVersion.Major}.{asmVersion.Minor}.{asmVersion.Build}";
             Logger = new Logger(this);
             Logger.Log(LogSeverity.Special, $" Server starting up running version {Version}...");
@@ -143,7 +142,7 @@ namespace Alibi
         public void Broadcast(AOPacket message)
         {
             var clientQueue = new Queue<IClient>(ClientsConnected);
-            while (clientQueue.Any())
+            while (clientQueue.Count > 0)
             {
                 var client = clientQueue.Dequeue();
                 if (client.Connected)
@@ -153,7 +152,7 @@ namespace Alibi
 
         public void BroadcastOocMessage(string message)
         {
-            AOPacket msgPacket = new AOPacket("CT", "ServerRef", message, "1");
+            var msgPacket = new AOPacket("CT", "ServerRef", message, "1");
             Broadcast(msgPacket);
             Logger.OocMessageLog(message, null, msgPacket.Objects[0]);
         }
@@ -169,9 +168,7 @@ namespace Alibi
             if (oocSearch != null)
                 return oocSearch;
             var charSearch = ClientsConnected.FirstOrDefault(c => c.CharacterName!.ToLower() == str.ToLower()) ?? null;
-            if (charSearch != null)
-                return charSearch;
-            return null;
+            return charSearch;
         }
 
         public void BanIp(IPAddress ip, string reason, TimeSpan? expireDate = null, IClient? banner = null)
@@ -329,7 +326,7 @@ namespace Alibi
                 {
                     Logger.Log(LogSeverity.Warning, " Checking for corpses and discarding...", true);
                     var clientQueue = new Queue<Client>(ClientsConnected.Cast<Client>());
-                    while (clientQueue.Any())
+                    while (clientQueue.Count > 0)
                     {
                         var client = clientQueue.Dequeue();
                         if (client.LastAlive.AddSeconds(ServerConfiguration.TimeoutSeconds) < DateTime.UtcNow)

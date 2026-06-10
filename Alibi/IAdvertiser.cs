@@ -1,5 +1,3 @@
-using System.Net;
-
 namespace Alibi
 {
     internal interface IAdvertiser

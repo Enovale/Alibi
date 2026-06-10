@@ -13,7 +13,7 @@
 		<Version>0.8.0</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageVersion>0.8.0</PackageVersion>
-		<LangVersion>8</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<AssemblyVersion>0.8.0</AssemblyVersion>
 	</PropertyGroup>
 

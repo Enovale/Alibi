@@ -75,7 +75,7 @@ namespace Alibi.Plugins.Webhook
                 decodedMessage = decodedMessage.Replace("%ip", caller.IpAddress.ToString());
                 decodedMessage = decodedMessage.Replace("%hwid", caller.HardwareId ?? "");
                 decodedMessage = decodedMessage.Replace("%lsm", caller.LastSentMessage ?? "");
-                _hook.SendMessage(decodedMessage);
+                _ = _hook.SendMessage(decodedMessage);
             }
 
             return true;
@@ -93,7 +93,7 @@ namespace Alibi.Plugins.Webhook
                 decodedMessage = decodedMessage.Replace("%ip", client.IpAddress.ToString());
                 decodedMessage = decodedMessage.Replace("%hwid", client.HardwareId ?? "");
                 decodedMessage = decodedMessage.Replace("%lsm", client.LastSentMessage ?? "");
-                _hook.SendMessage(decodedMessage);
+                _ = _hook.SendMessage(decodedMessage);
             }
 
             return true;

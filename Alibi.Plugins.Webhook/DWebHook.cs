@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Net;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Alibi.Plugins.Webhook
 {
@@ -10,26 +11,29 @@ namespace Alibi.Plugins.Webhook
         public string Username { get; set; }
         public string AvatarUrl { get; set; }
 
-        private static readonly NameValueCollection DiscordValues = new NameValueCollection();
+        private static readonly Dictionary<string, string> DiscordValues = new();
 
-        private readonly WebClient _dWebClient;
+        private readonly HttpClient _dWebClient;
 
         public DWebHook(string url = "")
         {
             WebHook = url;
-            _dWebClient = new WebClient();
+            _dWebClient = new HttpClient();
         }
 
-        public void SendMessage(string msgSend)
+        public async Task SendMessage(string msgSend)
         {
             if (string.IsNullOrWhiteSpace(WebHook))
                 return;
+            
             DiscordValues.Clear();
             DiscordValues.Add("username", Username);
             DiscordValues.Add("avatar_url", AvatarUrl);
             DiscordValues.Add("content", msgSend);
 
-            _dWebClient.UploadValues(WebHook, DiscordValues);
+            using var postContent = new FormUrlEncodedContent(DiscordValues);
+            using var response = await _dWebClient.PostAsync(WebHook, postContent);
+            response.EnsureSuccessStatusCode(); // Throw if httpcode is an error
         }
 
         public void Dispose()

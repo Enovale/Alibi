@@ -38,7 +38,7 @@ namespace Alibi
 
         private static string GetRealProcessDirectory()
         {
-            var execPath = Environment.ProcessPath!;
+            var execPath = Server.ProcessPath;
             return execPath.EndsWith("dotnet.exe") || execPath.EndsWith("dotnet")
                 ? Environment.CurrentDirectory
                 : Path.GetDirectoryName(execPath)!;
