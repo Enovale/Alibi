@@ -1,7 +1,7 @@
 # Alibi
-[![License: MIT](https://img.shields.io/github/license/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE) [![Fork This Repo](https://img.shields.io/github/forks/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE) [![Star This Repo](https://img.shields.io/github/stars/ElijahZAwesome/Alibi)](https://github.com/ElijahZAwesome/Alibi/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Fork This Repo](https://img.shields.io/github/forks/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Star This Repo](https://img.shields.io/github/stars/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1913dc611b664376a11c84c4e1c2861a)](https://www.codacy.com/gh/ElijahZAwesome/Alibi/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ElijahZAwesome/Alibi&amp;utm_campaign=Badge_Grade) [![Build status](https://ci.appveyor.com/api/projects/status/dknw39du3emv19y3?svg=true)](https://ci.appveyor.com/project/ElijahZAwesome/alibi)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1913dc611b664376a11c84c4e1c2861a)](https://www.codacy.com/gh/Enovale/Alibi/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Enovale/Alibi&amp;utm_campaign=Badge_Grade) [![Build status](https://ci.appveyor.com/api/projects/status/dknw39du3emv19y3?svg=true)](https://ci.appveyor.com/project/Enovale/alibi)
 
 Attorney Online 2 Server Implementation in C# .NET Core
  
@@ -28,7 +28,7 @@ Linux/Unix:
 
 # Usage
 To run the most basic possible server, all you have to do is download the latest 
-[Release](https://github.com/ElijahZAwesome/Alibi/releases/).
+[Release](https://github.com/Enovale/Alibi/releases/).
 It will make the needed config files for you and set up defaults for you.
 
 Double click or run this in the console (currently no command line arguments):
@@ -38,7 +38,7 @@ Alibi
 ```
 
 # Documentation:
-You can go to the [documentation](https://elijahzawesome.github.io/Alibi) page if you wanna find out how to use the server, make plugins, and the various other articles ~~ill eventually make~~. However, this page is still WIP, so don't expect a full tutorial.
+You can go to the [documentation](https://enovale.github.io/Alibi) page if you wanna find out how to use the server, make plugins, and the various other articles ~~ill eventually make~~. However, this page is still WIP, so don't expect a full tutorial.
 
 # Plugins
 

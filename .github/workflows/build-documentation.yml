@@ -15,7 +15,7 @@ jobs:
     steps:
     # Checkout all repos
     - name: Checkout repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v6
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@main
@@ -33,7 +33,7 @@ jobs:
         docfx build Alibi.Plugins.API/docfx/docfx.json
       
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v7
       with:
         name: docs
         path: Alibi.Plugins.API/docfx/_site
@@ -43,10 +43,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v6
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v1
+        id: downloadStep
+        uses: actions/download-artifact@v8
         with:
           name: docs
 
@@ -54,4 +55,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: "docs"
+          folder: ${{ steps.downloadStep.outputs.download-path }}

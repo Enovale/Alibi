@@ -15,7 +15,7 @@ namespace Alibi.Plugins.Cerberus
 {
     public class MainPlugin : Plugin
     {
-        public sealed override string ID => "com.elijahzawesome.Cerberus";
+        public sealed override string ID => "com.enovale.Cerberus";
         public sealed override string Name => "Cerberus";
 
         public readonly CerberusConfiguration Config;

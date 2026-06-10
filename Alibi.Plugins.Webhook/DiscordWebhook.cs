@@ -9,7 +9,7 @@ namespace Alibi.Plugins.Webhook
 {
     public class DiscordWebhook : Plugin
     {
-        public override string ID => "com.elijahzawesome.DiscordWebhook";
+        public override string ID => "com.enovale.DiscordWebhook";
         public override string Name => "DiscordWebhook";
 
         public WebhookConfig Configuration { get; }

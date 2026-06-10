@@ -12,4 +12,4 @@ Alibi also is very easy to maintain because everything is designed to be as plug
 
 # Contributing
 
-It's also worth noting that I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is ElijahZAwesome#6933.
+It's also worth noting that I am **always** open to issues, pull requests, debugging specific issues in private, whatever. I could really use it, actually. My Discord is `enovale`.
