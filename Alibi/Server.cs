@@ -79,7 +79,7 @@ namespace Alibi
             {
                 Logger.Log(LogSeverity.Warning,
                     " At least one area is required to start the server, writing default area...");
-                readAreas = new[] {new Area()};
+                readAreas = [new Area()];
                 File.WriteAllText(AreasPath, JsonConvert.SerializeObject(readAreas, Formatting.Indented));
             }
 
@@ -117,7 +117,7 @@ namespace Alibi
         {
             EnsureConfigFiles();
             MusicList = File.ReadAllLines(MusicPath);
-            if (MusicList[0].Contains("."))
+            if (MusicList[0].Contains('.'))
             {
                 var tmp = MusicList.ToList();
                 tmp.Insert(0, "==Music==");
@@ -379,7 +379,6 @@ namespace Alibi
             _advertiser.Stop();
             _wsProxy.Stop();
             Logger.Dump();
-            Program.ResetEvent.Set();
             Dispose();
         }
     }

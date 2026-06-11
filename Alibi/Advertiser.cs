@@ -21,12 +21,14 @@ namespace Alibi
         {
             Server.Logger.Log(LogSeverity.Info, $"[Advertiser] Attempting to send heartbeat...", true);
             var server = Server.Instance;
-            var json = new Heartbeat(
-                server.ServerConfiguration.Port,
-                server.ServerConfiguration.WebsocketPort,
-                server.ConnectedPlayers,
-                server.ServerConfiguration.ServerName,
-                server.ServerConfiguration.ServerDescription);
+            var json = new
+            {
+                port = server.ServerConfiguration.Port,
+                ws_port = server.ServerConfiguration.WebsocketPort,
+                players = server.ConnectedPlayers,
+                name = server.ServerConfiguration.ServerName,
+                description = server.ServerConfiguration.ServerDescription
+            };
             var response = await _client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(json)));
             response.EnsureSuccessStatusCode();
         } 
@@ -60,7 +62,5 @@ namespace Alibi
         {
             _cts.Cancel();
         }
-
-        private record Heartbeat(int port, int ws_port, int players, string name, string description);
     }
 }

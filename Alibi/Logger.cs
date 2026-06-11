@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 using Alibi.Plugins.API;
 
 namespace Alibi
@@ -10,7 +9,6 @@ namespace Alibi
     public class Logger
     {
         public const string LogsFolder = "Logs";
-        private readonly Queue<Tuple<LogSeverity, string>> _consoleLogQueue = new();
         private readonly Queue<string> _logBuffer;
 
         private readonly Server _server;
@@ -19,29 +17,6 @@ namespace Alibi
         {
             _server = server;
             _logBuffer = new Queue<string>(_server.ServerConfiguration.LogBufferSize);
-            Task.Run(PrintLogs);
-        }
-
-        private void PrintLogs()
-        {
-            while (true)
-            {
-                Task.Delay(100).Wait();
-                if (!_consoleLogQueue.TryDequeue(out var log))
-                    continue;
-                
-                Console.ForegroundColor = log.Item1 switch
-                {
-                    LogSeverity.Info => ConsoleColor.White,
-                    LogSeverity.Special => ConsoleColor.Cyan,
-                    LogSeverity.Warning => ConsoleColor.Yellow,
-                    LogSeverity.Error => ConsoleColor.Red,
-                    _ => Console.ForegroundColor
-                };
-                Console.WriteLine(log.Item2);
-                Console.ResetColor();
-            }
-            // ReSharper disable once FunctionNeverReturns
         }
 
         /// <summary>
@@ -69,7 +44,16 @@ namespace Alibi
                 _logBuffer.Dequeue();
 
             _logBuffer.Enqueue(log);
-            _consoleLogQueue.Enqueue(new Tuple<LogSeverity, string>(severity, log));
+            Console.ForegroundColor = severity switch
+            {
+                LogSeverity.Info => ConsoleColor.White,
+                LogSeverity.Special => ConsoleColor.Cyan,
+                LogSeverity.Warning => ConsoleColor.Yellow,
+                LogSeverity.Error => ConsoleColor.Red,
+                _ => Console.ForegroundColor
+            };
+            Console.WriteLine(log);
+            Console.ResetColor();
         }
 
         public void IcMessageLog(string message, IArea area, IClient client)

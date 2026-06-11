@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 
@@ -10,14 +9,11 @@ namespace Alibi
 {
     internal static class Program
     {
-        internal static readonly ManualResetEvent ResetEvent;
-
         private static readonly Server _server;
 
         static Program()
         {
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-            ResetEvent = new ManualResetEvent(false);
             Environment.CurrentDirectory = GetRealProcessDirectory();
             if (!File.Exists(Server.ConfigPath) || new FileInfo(Server.ConfigPath).Length <= 0)
                 new Configuration().SaveToFile(Server.ConfigPath);
@@ -26,14 +22,14 @@ namespace Alibi
             _server.Start();
         }
 
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             AppDomain.CurrentDomain.ProcessExit += ExitProgram;
             Console.CancelKeyPress += ExitProgram;
             AppDomain.CurrentDomain.UnhandledException += ExitProgram;
             TaskScheduler.UnobservedTaskException += ExitProgram;
 
-            ResetEvent.WaitOne();
+            await Task.Delay(-1);
         }
 
         private static string GetRealProcessDirectory()
