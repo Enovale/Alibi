@@ -19,6 +19,8 @@ namespace Alibi
         public IPAddress BoundIpAddress { get; internal set; } = IPAddress.Parse("0.0.0.0");
         public int Port { get; internal set; } = 27016;
         public int WebsocketPort { get; internal set; } = 27017;
+        public bool ReverseProxyEnabled { get; internal set; } = false;
+        public bool CloudflareEnabled { get; internal set; } = false;
         public string MasterServerAddress { get; internal set; } = "https://servers.aceattorneyonline.com/servers";
         public int LogBufferSize { get; internal set; } = 500;
         public bool VerboseLogs { get; internal set; } = false;
