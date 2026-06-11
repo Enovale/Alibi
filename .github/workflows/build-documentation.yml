@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-docs:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     # Checkout all repos
@@ -23,36 +23,21 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Setup DocFX
-      uses: crazy-max/ghaction-chocolatey@v1
-      with:
-        args: install docfx
+      run: dotnet tool install -g docfx
+      
+    - name: Restore projects
+      run: dotnet restore .
 
     - name: Build docs
+      continue-on-error: false
       run: |
         docfx metadata Alibi.Plugins.API/docfx/docfx.json
         docfx build Alibi.Plugins.API/docfx/docfx.json
-      
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v7
+        
+    - name: Publish docs
+      if: github.event_name == 'push'
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        name: docs
-        path: Alibi.Plugins.API/docfx/_site
-
-  deploy-docs:
-    needs: [build-docs] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Download Artifacts
-        id: downloadStep
-        uses: actions/download-artifact@v8
-        with:
-          name: docs
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: ${{ steps.downloadStep.outputs.download-path }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: Alibi.Plugins.API/docfx/_site
+        force_orphan: true
