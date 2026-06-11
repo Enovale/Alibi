@@ -1,0 +1,498 @@
+{
+  "source_base_path": "/home/runner/work/Alibi/Alibi/Alibi.Plugins.API/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AOPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AOPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.AOPacket",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.AOPacket.yml\" sourcestartlinenumber=\"1\">Class to create packets to send and receive from clients</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AreaUpdateType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AreaUpdateType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.AreaUpdateType",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.AreaUpdateType.yml\" sourcestartlinenumber=\"1\">Specifies which information to update about an area.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.AdminOnlyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.AdminOnlyAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes.AdminOnlyAttribute",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Attributes.AdminOnlyAttribute.yml\" sourcestartlinenumber=\"1\">Makes sure a command can oly be run as an admin user.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.CommandHandlerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.CommandHandlerAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes.CommandHandlerAttribute",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Attributes.CommandHandlerAttribute.yml\" sourcestartlinenumber=\"1\">Specifies a command to register in the server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.MessageHandlerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.MessageHandlerAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes.MessageHandlerAttribute",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Attributes.MessageHandlerAttribute.yml\" sourcestartlinenumber=\"1\">Specifies a packet handler to register in the server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.ModOnlyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.ModOnlyAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes.ModOnlyAttribute",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Attributes.ModOnlyAttribute.yml\" sourcestartlinenumber=\"1\">Specifies a command that can only be run by moderators.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.RequireStateAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.RequireStateAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes.RequireStateAttribute",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Attributes.RequireStateAttribute.yml\" sourcestartlinenumber=\"1\">Specifies that a message handler requires the client to be in a specific state in order to process.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Attributes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Attributes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.AuthType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.AuthType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.AuthType",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.AuthType.yml\" sourcestartlinenumber=\"1\">Contains constants for player authentication levels</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.CasingFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.CasingFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.CasingFlags",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.CasingFlags.yml\" sourcestartlinenumber=\"1\">Flags representing a client's casing preferences (See SETCASE# and CASEA#)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.ClientState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.ClientState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.ClientState",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.ClientState.yml\" sourcestartlinenumber=\"1\">Represents the protocol state of a client.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.CommandException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.CommandException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Exceptions.CommandException",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Exceptions.CommandException.yml\" sourcestartlinenumber=\"1\">Exception meaning a command failed to execute in the server.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.IcValidationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.IcValidationException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Exceptions.IcValidationException",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Exceptions.IcValidationException.yml\" sourcestartlinenumber=\"1\">Exception meaning an Ic message failed to be verified. This usually means\nimproper data was sent, or the message contains something disallowed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Exceptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Exceptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Handler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Handler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Handler",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Handler.yml\" sourcestartlinenumber=\"1\">Specifies a handler for commands, or packets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IArea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IArea.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IArea",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IArea.yml\" sourcestartlinenumber=\"1\">An area in the server</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IClient",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IClient.yml\" sourcestartlinenumber=\"1\">Represents a client connected to the server (not necessarily an identified player).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IConfiguration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IConfiguration",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IConfiguration.yml\" sourcestartlinenumber=\"1\">Represents the server configuration on disk.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IDatabaseManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IDatabaseManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IDatabaseManager",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IDatabaseManager.yml\" sourcestartlinenumber=\"1\">Provides an interface to interact with the internal database. Be careful.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IEvidence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IEvidence.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IEvidence",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IEvidence.yml\" sourcestartlinenumber=\"1\">Represents a piece of evidence in the server.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IPluginManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IPluginManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IPluginManager",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IPluginManager.yml\" sourcestartlinenumber=\"1\">Provides an interface to the internal plugin manager.\nUse this to interface with other plugins, or to get\npaths to configuration information, and log errors.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.IServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.IServer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.IServer",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.IServer.yml\" sourcestartlinenumber=\"1\">Represents the main server object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.ISession.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.ISession.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.ISession",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.ISession.yml\" sourcestartlinenumber=\"1\">Represents the underlying TCP/Websocket session for a client.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.LogSeverity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.LogSeverity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.LogSeverity",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.LogSeverity.yml\" sourcestartlinenumber=\"1\">How severe a log is, lol.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.Plugin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.Plugin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.Plugin",
+      "Summary": "<p sourcefile=\"api/Alibi.Plugins.API.Plugin.yml\" sourcestartlinenumber=\"1\">Represents a generic plugin for Alibi. Requires ID and Name to be overwritten.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.StringExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API.StringExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Alibi.Plugins.API.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Alibi.Plugins.API.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Alibi.Plugins.API",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/about.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/about.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/configuration.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/configuration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting_started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting_started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/plugins.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/plugins.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

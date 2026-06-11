@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface IDatabaseManager </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface IDatabaseManager ">
+    
+    <meta name="description" content="Provides an interface to interact with the internal database. Be careful.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Alibi.Plugins.API.IDatabaseManager">
+
+
+
+  <h1 id="Alibi_Plugins_API_IDatabaseManager" data-uid="Alibi.Plugins.API.IDatabaseManager" class="text-break">Interface IDatabaseManager</h1>
+  <div class="markdown level0 summary"><p>Provides an interface to interact with the internal database. Be careful.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Alibi.html">Alibi</a>.<a class="xref" href="Alibi.Plugins.html">Plugins</a>.<a class="xref" href="Alibi.Plugins.API.html">API</a></h6>
+  <h6><strong>Assembly</strong>: Alibi.Plugins.API.dll</h6>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDatabaseManager</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L107">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_AddLogin_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddLogin*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddLogin(System.String,System.String,System.Int32)">AddLogin(string, string, int)</h4>
+  <div class="markdown level1 summary"><p>Registers an account with higher permissions in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AddLogin(string username, string password, int perms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The username this player will use to login</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>The password this player will use to login</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">perms</span></td>
+        <td><p>What permissions this account has, refer to AuthType</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_AddLogin_System_String_System_String_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Passwords are stored as a BCrypt hash in the database
+and the plain text version is immediately thrown away.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_Net_IPAddress_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.AddUser(System.String%2CSystem.Net.IPAddress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L17">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_AddUser_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddUser*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_AddUser_System_String_System_Net_IPAddress_" data-uid="Alibi.Plugins.API.IDatabaseManager.AddUser(System.String,System.Net.IPAddress)">AddUser(string, IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Add a user to the database, with default info.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AddUser(string hwid, IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hwid</span></td>
+        <td><p>The hardware ID of this user</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address of this user</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not the user was successfully added to the database.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L57">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_BanHwid_" data-uid="Alibi.Plugins.API.IDatabaseManager.BanHwid*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_BanHwid_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="Alibi.Plugins.API.IDatabaseManager.BanHwid(System.String,System.String,System.Nullable{System.TimeSpan})">BanHwid(string, string, TimeSpan?)</h4>
+  <div class="markdown level1 summary"><p>Registers a ban for an HWID in the database. This won't take effect
+until the player rejoins the server. Instead use IClient.BanHwid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BanHwid(string hwid, string reason, TimeSpan? expireTime = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hwid</span></td>
+        <td><p>The HWID to ban</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>Why they were banned</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span>?</td>
+        <td><span class="parametername">expireTime</span></td>
+        <td><p>When to let this ban expire (null if indefinite)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress%2CSystem.String%2CSystem.Nullable%7BSystem.TimeSpan%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L69">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_BanIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.BanIp*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan__" data-uid="Alibi.Plugins.API.IDatabaseManager.BanIp(System.Net.IPAddress,System.String,System.Nullable{System.TimeSpan})">BanIp(IPAddress, string, TimeSpan?)</h4>
+  <div class="markdown level1 summary"><p>Registers a ban for an IP in the database. This won't take effect
+until the player rejoins the server. Instead use IClient.BanIP</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BanIp(IPAddress ip, string reason, TimeSpan? expireTime = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address to ban</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>Why they are being banned</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span>?</td>
+        <td><span class="parametername">expireTime</span></td>
+        <td><p>When to let this  ban expire (null if indefinite)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_BanIp_System_Net_IPAddress_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Try to never use this ban method as it is insecure. Use HWID banning whenever possible.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L115">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_" data-uid="Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_ChangeLoginPermissions_System_String_System_Int32_" data-uid="Alibi.Plugins.API.IDatabaseManager.ChangeLoginPermissions(System.String,System.Int32)">ChangeLoginPermissions(string, int)</h4>
+  <div class="markdown level1 summary"><p>Change the permission level of a given login in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ChangeLoginPermissions(string username, int perms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The login username to change permissions of</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">perms</span></td>
+        <td><p>The permissions to change the login to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L135">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_CheckCredentials_" data-uid="Alibi.Plugins.API.IDatabaseManager.CheckCredentials*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_CheckCredentials_System_String_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.CheckCredentials(System.String,System.String)">CheckCredentials(string, string)</h4>
+  <div class="markdown level1 summary"><p>Checks if the given username and password matches the one registered in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CheckCredentials(string username, string password)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The username to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>The password to check (in plaintext)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not the authentication was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L94">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanExpiration*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBanExpiration_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanExpiration(System.String)">GetBanExpiration(string)</h4>
+  <div class="markdown level1 summary"><p>Fetches when an HWID will be unbanned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime? GetBanExpiration(string hwid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hwid</span></td>
+        <td><p>The HWID to search for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span>?</td>
+        <td><p>A DateTime representing when this ban will expire.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_Net_IPAddress_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L48">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanReason*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_Net_IPAddress_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBanReason(System.Net.IPAddress)">GetBanReason(IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Gets the ban reasoning stored in the database for an IP Address.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetBanReason(IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address to search for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The reason this IP was banned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_GetBanReason_System_Net_IPAddress__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This isn't available for HWIDs for technical reasons.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetBannedHwids.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetBannedHwids%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L87">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_GetBannedHwids_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBannedHwids*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_GetBannedHwids" data-uid="Alibi.Plugins.API.IDatabaseManager.GetBannedHwids">GetBannedHwids()</h4>
+  <div class="markdown level1 summary"><p>Gets a list of every banned Hardware ID in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string[] GetBannedHwids()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><p>An array of HWIDs that are banned in the database</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_Net_IPAddress_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L24">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_GetHwidsfromIp_System_Net_IPAddress_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetHwidsfromIp(System.Net.IPAddress)">GetHwidsfromIp(IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Get all hardware IDs associated with a given IP Address</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string[] GetHwidsfromIp(IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address to search the database for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><p>An array of hardware IDs associated with this IP</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L142">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_GetPermissionLevel_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.GetPermissionLevel(System.String)">GetPermissionLevel(string)</h4>
+  <div class="markdown level1 summary"><p>Returns the permission level of a given login.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetPermissionLevel(string username)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The login to check</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>What permission level they have</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L31">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsHwidBanned*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_IsHwidBanned_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsHwidBanned(System.String)">IsHwidBanned(string)</h4>
+  <div class="markdown level1 summary"><p>Check if a given hardware ID is banned in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsHwidBanned(string hwid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hwid</span></td>
+        <td><p>The hardware ID to search for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not this HWID is banned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_Net_IPAddress_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L38">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_IsIpBanned_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsIpBanned*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_IsIpBanned_System_Net_IPAddress_" data-uid="Alibi.Plugins.API.IDatabaseManager.IsIpBanned(System.Net.IPAddress)">IsIpBanned(IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Check if a given IP Address is banned in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsIpBanned(IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address to check</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not this IP Address is banned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L127">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_" data-uid="Alibi.Plugins.API.IDatabaseManager.RemoveLogin*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.RemoveLogin(System.String)">RemoveLogin(string)</h4>
+  <div class="markdown level1 summary"><p>Deletes a login registered in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveLogin(string username)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">username</span></td>
+        <td><p>The login to delete</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether or not this operation was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Alibi_Plugins_API_IDatabaseManager_RemoveLogin_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Doing this will NOT log out players that already used this login.
+Do not use this as a token revocation system of sorts, unless you
+also find those logged in users and log them out.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L75">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_UnbanHwid_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanHwid*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_UnbanHwid_System_String_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanHwid(System.String)">UnbanHwid(string)</h4>
+  <div class="markdown level1 summary"><p>Lifts a ban for an HWID in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UnbanHwid(string hwid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hwid</span></td>
+        <td><p>The Hardware ID to unban</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_Net_IPAddress_.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L81">View Source</a>
+  </span>
+  <a id="Alibi_Plugins_API_IDatabaseManager_UnbanIp_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanIp*"></a>
+  <h4 id="Alibi_Plugins_API_IDatabaseManager_UnbanIp_System_Net_IPAddress_" data-uid="Alibi.Plugins.API.IDatabaseManager.UnbanIp(System.Net.IPAddress)">UnbanIp(IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Lifts a ban for an IP Address in the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UnbanIp(IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IPAddress</span></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p>The IP Address to unban</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Enovale/Alibi/new/main/apiSpec/new?filename=Alibi_Plugins_API_IDatabaseManager.md&amp;value=---%0Auid%3A%20Alibi.Plugins.API.IDatabaseManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Enovale/Alibi/blob/main/Alibi.Plugins.API/IDatabaseManager.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
