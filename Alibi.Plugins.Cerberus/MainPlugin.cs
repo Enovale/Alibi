@@ -1,15 +1,11 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Attributes;
-
-#pragma warning disable 8618
 
 namespace Alibi.Plugins.Cerberus
 {
@@ -27,11 +23,12 @@ namespace Alibi.Plugins.Cerberus
         public MainPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
         {
             var configPath = Path.Combine(pluginManager.GetConfigFolder(ID), "config.json");
+            Config = new();
             if (!File.Exists(configPath) || new FileInfo(configPath).Length <= 0)
-                File.WriteAllText(configPath, JsonSerializer.Serialize(new CerberusConfiguration(),
-                    new JsonSerializerOptions {WriteIndented = true}));
+                WriteConfig(configPath);
 
             Config = JsonSerializer.Deserialize<CerberusConfiguration>(File.ReadAllText(configPath))!;
+            WriteConfig(configPath);
 
             _clientDict = new Dictionary<IClient, MuteInfo>();
             foreach (var client in server.ClientsConnected)
@@ -42,10 +39,16 @@ namespace Alibi.Plugins.Cerberus
             foreach (var area in server.Areas)
                 _silencedAreas.Add(area, false);
 
-            MutedClientsCheck();
+            _ = MutedClientsCheck();
         }
 
-        private async void MutedClientsCheck()
+        private void WriteConfig(string configPath)
+        {
+            File.WriteAllText(configPath, JsonSerializer.Serialize(Config,
+                new JsonSerializerOptions {WriteIndented = true}));
+        }
+
+        private async Task MutedClientsCheck()
         {
             while (true)
             {
@@ -80,6 +83,7 @@ namespace Alibi.Plugins.Cerberus
 
                 await Task.Delay(1000);
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
         public override void OnPlayerJoined(IClient client)
@@ -88,27 +92,15 @@ namespace Alibi.Plugins.Cerberus
             _lastOocMsgDict[client] = null;
         }
 
-        private string StripZalgo(string message)
-        {
-            if (!Config.StripZalgo)
-                return message;
-            StringBuilder sb = new StringBuilder();
-            foreach (var c in message.Normalize(NormalizationForm.FormC))
-                if (char.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                    sb.Append(c);
-
-            return sb.ToString();
-        }
-
         public override bool OnIcMessage(IClient client, ref string message)
         {
+            message = message.LimitDiacritics(Config.DiacriticLimit);
             if (_silencedAreas[client.Area!] && client.Auth < AuthType.MODERATOR)
             {
                 client.SendOocMessage("Thy room has been silenced. Hush, mortal, whilst the gods speaketh.");
                 return false;
             }
 
-            message = StripZalgo(message);
             if (Config.IcMuteLengthInSeconds < 0 || Config.MaxIcMessagesPerSecond < 0)
                 return true;
             if (_clientDict[client].IcMuted)
@@ -137,13 +129,13 @@ namespace Alibi.Plugins.Cerberus
 
         public override bool OnOocMessage(IClient client, ref string message)
         {
+            message = message.LimitDiacritics(Config.DiacriticLimit);
             if (_lastOocMsgDict[client] != null && _lastOocMsgDict[client] == message.Trim())
             {
                 client.SendOocMessage("Cannot double-post in OOC.");
                 return false;
             }
 
-            message = StripZalgo(message);
             _lastOocMsgDict[client] = message.Trim();
             if (Config.OocMuteLengthInSeconds < 0 || Config.MaxOocMessagesPerSecond < 0)
                 return true;

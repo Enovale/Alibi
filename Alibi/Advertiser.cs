@@ -21,8 +21,10 @@ namespace Alibi
         {
             Server.Logger.Log(LogSeverity.Info, "[Advertiser] Attempting to send heartbeat...", true);
             var server = Server.Instance;
+            var hostname = server.ServerConfiguration.AdvertiseHostname?.Trim();
             var json = new
             {
+                ip = string.IsNullOrEmpty(hostname) ? null : hostname,
                 port = server.ServerConfiguration.Port,
                 wss_port = server.ServerConfiguration.ReverseProxyEnabled ? server.ServerConfiguration.WebsocketPort : (int?)null,
                 ws_port = server.ServerConfiguration.CloudflareEnabled ? 80 : server.ServerConfiguration.WebsocketPort,

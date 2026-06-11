@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Alibi.Plugins.API;
 using Alibi.Plugins.API.Exceptions;
@@ -42,16 +43,19 @@ namespace Alibi.Protocol
             // Nothing should break if this isn't an existing emote
             validatedObjects.Add(packet.Objects[3]);
 
-            // Make sure message is sanitized(eventually) and prevent double messages
-            // TODO: Sanitization and zalgo cleaning
+            // Make sure message is sanitized and prevent double messages
             var sentMessage = packet.Objects[4];
             sentMessage = Regex.Replace(sentMessage, @"\s+", " ");
-            if (!server.ServerConfiguration.AllowDoublePostsIfDifferentAnim && sentMessage == client.LastSentMessage)
-                throw new IcValidationException("Cannot double post.");
-            if (server.ServerConfiguration.AllowDoublePostsIfDifferentAnim
-                && sentMessage == client.LastSentMessage
-                && client.StoredEmote == packet.Objects[3])
-                throw new IcValidationException("Cannot double-post without changing animation.");
+            switch (server.ServerConfiguration.AllowDoublePostsIfDifferentAnim)
+            {
+                case false when sentMessage == client.LastSentMessage:
+                    throw new IcValidationException("Cannot double post.");
+                case true
+                    when sentMessage == client.LastSentMessage
+                         && client.StoredEmote == packet.Objects[3]:
+                    throw new IcValidationException("Cannot double-post without changing animation.");
+            }
+
             client.LastSentMessage = sentMessage;
             validatedObjects.Add(sentMessage);
             internalClient.StoredEmote = packet.Objects[3];
@@ -91,10 +95,7 @@ namespace Alibi.Protocol
             // Make sure evidence exists
             var moddedEvidenceId = Math.Max(0,
                 Math.Min(client.Area.EvidenceList.Count, packet.Objects[11].ToIntOrZero() - 1));
-            if (client.Area.EvidenceList.Count == 0)
-                validatedObjects.Add("0");
-            else
-                validatedObjects.Add(moddedEvidenceId.ToString());
+            validatedObjects.Add(client.Area.EvidenceList.Count == 0 ? "0" : moddedEvidenceId.ToString());
 
             // Make sure flip is 1 or 0
             var flip = packet.Objects[12].ToIntOrZero();
@@ -105,13 +106,13 @@ namespace Alibi.Protocol
 
             // Make sure realization is 1 or 0 
             var realization = packet.Objects[13].ToIntOrZero();
-            if (realization == 0 || realization == 1)
+            if (realization is 0 or 1)
                 validatedObjects.Add(realization.ToString());
             else
                 throw new IcValidationException("Realization is invalid.");
 
             // Make sure chat color is valid
-            var allowedColors = "012345678";
+            const string allowedColors = "012345678";
             if (!allowedColors.Contains(packet.Objects[14]))
                 throw new IcValidationException("Chat color invalid.");
             validatedObjects.Add(packet.Objects[14]);
@@ -132,17 +133,16 @@ namespace Alibi.Protocol
                 var paired = false;
                 // Other's name, emote, offset, and flip
                 string[] otherData = {"-1", "-1", "-1", "-1"};
-                foreach (var otherClient in client.ServerRef.ClientsConnected)
-                    if (otherClient.PairingWith == client.Character &&
-                        otherClient.Character == pair[0].ToIntOrZero() &&
-                        otherClient.Area == client.Area)
-                    {
-                        otherData[0] = server.CharactersList[pair[0].ToIntOrZero()];
-                        otherData[1] = otherClient.StoredEmote;
-                        otherData[2] = otherClient.StoredOffset.ToString();
-                        otherData[3] = otherClient.StoredFlip ? "1" : "0";
-                        paired = true;
-                    }
+                foreach (var otherClient in client.ServerRef.ClientsConnected.Where(otherClient => otherClient.PairingWith == client.Character &&
+                             otherClient.Character == pair[0].ToIntOrZero() &&
+                             otherClient.Area == client.Area))
+                {
+                    otherData[0] = server.CharactersList[pair[0].ToIntOrZero()];
+                    otherData[1] = otherClient.StoredEmote;
+                    otherData[2] = otherClient.StoredOffset.ToString();
+                    otherData[3] = otherClient.StoredFlip ? "1" : "0";
+                    paired = true;
+                }
 
                 var pairStr = paired ? packet.Objects[16] : "-1";
                 validatedObjects.Add(pairStr);

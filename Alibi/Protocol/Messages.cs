@@ -332,7 +332,7 @@ namespace Alibi.Protocol
                     throw new IcValidationException("Message was too long.");
 
                 client.Area!.Broadcast(validPacket);
-                Server.Logger.IcMessageLog(packet.Objects[4], client.Area, client);
+                Server.Logger.IcMessageLog(validPacket.Objects[4], client.Area, client);
             }
             catch (IcValidationException e)
             {
@@ -352,9 +352,9 @@ namespace Alibi.Protocol
             var message = packet.Objects[1];
 
             ((Client) client).OocName = packet.Objects[0];
-            if (message.StartsWith("/"))
+            if (message.StartsWith('/'))
             {
-                var command = message.Substring(1).Split(" ").First().Trim();
+                var command = message[1..].Split(" ").First().Trim();
                 var arguments = new List<string>(message.Split(" ", StringSplitOptions.RemoveEmptyEntries).Skip(1));
 
                 CommandHandler.HandleCommand(client, command, arguments.ToArray());

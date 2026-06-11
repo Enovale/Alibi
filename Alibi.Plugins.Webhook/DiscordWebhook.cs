@@ -22,15 +22,16 @@ namespace Alibi.Plugins.Webhook
         {
             var configFile = Path.Combine(pluginManager.GetConfigFolder(ID), "config.json");
 
+            Configuration = new();
             if (!File.Exists(configFile) || string.IsNullOrWhiteSpace(File.ReadAllText(configFile)))
             {
-                File.WriteAllText(configFile,
-                    JsonSerializer.Serialize(new WebhookConfig(), new JsonSerializerOptions {WriteIndented = true}));
+                WriteConfig(configFile);
                 Log(LogSeverity.Error, "No config found. Check this mod's config JSON and add the needed values.");
                 return;
             }
 
             Configuration = JsonSerializer.Deserialize<WebhookConfig>(File.ReadAllText(configFile));
+            WriteConfig(configFile);
             
             if (Configuration.WebhookUrl == null || Configuration.Username == null || Configuration.ModMessage == null)
             {
@@ -47,6 +48,12 @@ namespace Alibi.Plugins.Webhook
             _validConfig = true;
 
             Log(LogSeverity.Info, "Discord Webhook loaded.");
+        }
+
+        private void WriteConfig(string configFile)
+        {
+            File.WriteAllText(configFile,
+                JsonSerializer.Serialize(Configuration, new JsonSerializerOptions {WriteIndented = true}));
         }
 
         [ModOnly]
