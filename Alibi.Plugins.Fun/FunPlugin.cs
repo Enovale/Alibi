@@ -13,8 +13,8 @@ namespace Alibi.Plugins.Fun
         public sealed override string ID => "com.enovale.Fun";
         public sealed override string Name => "Fun";
 
-        public static readonly Dictionary<IClient, bool> Disemvoweled = new Dictionary<IClient, bool>();
-        public static readonly Dictionary<IClient, bool> Shaken = new Dictionary<IClient, bool>();
+        public static readonly Dictionary<IClient, bool> Disemvoweled = new();
+        public static readonly Dictionary<IClient, bool> Shaken = new();
         public static string EightBallConfigPath;
 
         public FunPlugin(IServer server, IPluginManager pluginManager) : base(server, pluginManager)
@@ -33,15 +33,14 @@ namespace Alibi.Plugins.Fun
             if (Disemvoweled[client])
             {
                 string[] vowels = { "A", "E", "I", "O", "U", "Y" };
-                foreach (var vowel in vowels)
-                    message = message.Replace(vowel, "", true, CultureInfo.InvariantCulture);
+                message = vowels.Aggregate(message, (current, vowel) => current.Replace(vowel, "", true, CultureInfo.InvariantCulture));
             }
 
-            if (Shaken[client])
-            {
-                var words = message.Split(' ');
-                message = string.Join(' ', words.OrderBy(w => Commands.Rand.Next()));
-            }
+            if (!Shaken[client])
+                return true;
+            
+            var words = message.Split(' ');
+            message = string.Join(' ', words.OrderBy(w => Commands.Rand.Next()));
 
             return true;
         }

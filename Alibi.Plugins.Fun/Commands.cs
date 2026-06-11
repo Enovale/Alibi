@@ -8,7 +8,7 @@ namespace Alibi.Plugins.Fun
 {
     public static class Commands
     {
-        public static readonly Random Rand = new Random();
+        public static readonly Random Rand = new();
 
         private static string GetRoll(int max, int times)
         {
@@ -24,12 +24,21 @@ namespace Alibi.Plugins.Fun
         {
             var maximum = 6;
             var rolls = 1;
-            if (args.Length == 1)
-                if (int.TryParse(args[0], out var rollTest))
-                    rolls = Math.Min(10, rollTest);
-            if (args.Length >= 2)
-                if (int.TryParse(args[1], out var maxTest))
-                    maximum = maxTest;
+            switch (args.Length)
+            {
+                case 1:
+                {
+                    if (int.TryParse(args[0], out var rollTest))
+                        rolls = Math.Min(10, rollTest);
+                    break;
+                }
+                case >= 2:
+                {
+                    if (int.TryParse(args[1], out var maxTest))
+                        maximum = maxTest;
+                    break;
+                }
+            }
 
             client.Area!.BroadcastOocMessage(GetRoll(maximum, rolls));
         }
@@ -39,12 +48,21 @@ namespace Alibi.Plugins.Fun
         {
             var maximum = 6;
             var rolls = 1;
-            if (args.Length == 1)
-                if (int.TryParse(args[0], out var rollTest))
-                    rolls = Math.Min(10, rollTest);
-            if (args.Length >= 2)
-                if (int.TryParse(args[1], out var maxTest))
-                    maximum = maxTest;
+            switch (args.Length)
+            {
+                case 1:
+                {
+                    if (int.TryParse(args[0], out var rollTest))
+                        rolls = Math.Min(10, rollTest);
+                    break;
+                }
+                case >= 2:
+                {
+                    if (int.TryParse(args[1], out var maxTest))
+                        maximum = maxTest;
+                    break;
+                }
+            }
 
             client.SendOocMessage(GetRoll(maximum, rolls));
         }
@@ -61,8 +79,7 @@ namespace Alibi.Plugins.Fun
             if (args.Length <= 0)
                 throw new CommandException("Usage: /8ball <question>");
             var question = string.Join(' ', args);
-            question = question.Substring(0,
-                Math.Min(question.Length, client.ServerRef.ServerConfiguration.MaxMessageSize));
+            question = question[..Math.Min(question.Length, client.ServerRef.ServerConfiguration.MaxMessageSize)];
             client.Area!.Broadcast(new AOPacket("CT", client.OocName, question));
             client.Area!.BroadcastOocMessage(Fun.EightBall.Responses[Rand.Next(Fun.EightBall.Responses.Length - 1)],
                 "8Ball");

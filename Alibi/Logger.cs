@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Alibi.Plugins.API;
 
 namespace Alibi
 {
-    public class Logger
+    public class Logger : IDisposable
     {
         public const string LogsFolder = "Logs";
         private readonly Queue<string> _logBuffer;
+        private readonly CancellationTokenSource _fileWriterToken = new();
 
         private readonly Server _server;
 
@@ -17,6 +20,32 @@ namespace Alibi
         {
             _server = server;
             _logBuffer = new Queue<string>(_server.ServerConfiguration.LogBufferSize);
+            
+            _ = WriteFileLogLoop(_fileWriterToken.Token);
+        }
+
+        private async Task WriteFileLogLoop(CancellationToken token)
+        {
+            await using var writer = File.CreateText(Path.Combine(LogsFolder, $"server_{DateTime.Now:dd-M_HH-mm}.log"));
+            while (!token.IsCancellationRequested)
+            {
+                await WriteFile(writer, token);
+                try
+                {
+                    await Task.Delay(1000, token);
+                }
+                catch (TaskCanceledException)
+                {
+                    await WriteFile(writer, token);
+                }
+            }
+        }
+
+        private async Task WriteFile(StreamWriter writer, CancellationToken token)
+        {
+            while (_logBuffer.Count > 0)
+                await writer.WriteLineAsync(_logBuffer.Dequeue());
+            await writer.FlushAsync(token);
         }
 
         /// <summary>
@@ -69,21 +98,12 @@ namespace Alibi
             Log(LogSeverity.Info, $"[OC][{areaName}][{person}] {message}");
         }
 
-        public bool Dump()
+        public void Dispose()
         {
-            if (!Directory.Exists(LogsFolder))
-                Directory.CreateDirectory(LogsFolder);
-
-            if (_logBuffer.Count == 0)
-                return false;
-
-            var logDump = File.CreateText(Path.Combine(LogsFolder, $"server_{DateTime.Now:dd-M_HH-mm}.log"));
-            while (_logBuffer.Count > 0)
-                logDump.WriteLine(_logBuffer.Dequeue());
-            logDump.Flush();
-            logDump.Close();
-
-            return true;
+            Log(LogSeverity.Info, "Stopping logger...", true);
+            _fileWriterToken?.Cancel();
+            _fileWriterToken?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

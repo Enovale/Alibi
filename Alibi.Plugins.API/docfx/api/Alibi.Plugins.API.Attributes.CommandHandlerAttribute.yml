@@ -23,7 +23,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: CommandHandlerAttribute
     path: ../Attributes/CommandHandlerAttribute.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
@@ -33,9 +33,13 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Method)]
 
+      [MeansImplicitUse]
+
       public class CommandHandlerAttribute : Attribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Method)>
+
+      <MeansImplicitUse>
 
       Public Class CommandHandlerAttribute Inherits Attribute
   inheritance:
@@ -47,6 +51,9 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 64
+  - type: JetBrains.Annotations.MeansImplicitUseAttribute
+    ctor: JetBrains.Annotations.MeansImplicitUseAttribute.#ctor
+    arguments: []
 - uid: Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
   commentId: P:Alibi.Plugins.API.Attributes.CommandHandlerAttribute.Command
   id: Command
@@ -65,7 +72,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: Command
     path: ../Attributes/CommandHandlerAttribute.cs
-    startLine: 10
+    startLine: 12
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
@@ -94,7 +101,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: ShortDesc
     path: ../Attributes/CommandHandlerAttribute.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
@@ -123,7 +130,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: Override
     path: ../Attributes/CommandHandlerAttribute.cs
-    startLine: 12
+    startLine: 14
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes
@@ -152,7 +159,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: .ctor
     path: ../Attributes/CommandHandlerAttribute.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API.Attributes

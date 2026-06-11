@@ -9,7 +9,7 @@ namespace Alibi.Plugins.Fun
         public static readonly string[] Responses;
 
         private static readonly string[] _defaultResponses =
-        {
+        [
             "As I see it, yes.",
             "Ask again later.",
             "Better not tell you now.",
@@ -30,7 +30,7 @@ namespace Alibi.Plugins.Fun
             "Yes.",
             "Yes – definitely.",
             "You may rely on it."
-        };
+        ];
 
         static EightBall()
         {

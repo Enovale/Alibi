@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace Alibi.Plugins.API.Attributes
 {
@@ -6,6 +7,7 @@ namespace Alibi.Plugins.API.Attributes
     /// Specifies a packet handler to register in the server
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
+    [MeansImplicitUse]
     public class MessageHandlerAttribute : Attribute
     {
         public string MessageName { get; }

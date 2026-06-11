@@ -1,7 +1,8 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
+﻿using System;
 
 namespace Alibi.Plugins.Webhook
 {
+    [Serializable]
     public class WebhookConfig
     {
         public string WebhookUrl { get; set; }

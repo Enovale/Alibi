@@ -6,9 +6,11 @@ items:
   parent: Alibi.Plugins.API
   children:
   - Alibi.Plugins.API.IConfiguration.Advertise
+  - Alibi.Plugins.API.IConfiguration.AdvertiseHostname
   - Alibi.Plugins.API.IConfiguration.AllowDoublePostsIfDifferentAnim
   - Alibi.Plugins.API.IConfiguration.AssetUrl
   - Alibi.Plugins.API.IConfiguration.BoundIpAddress
+  - Alibi.Plugins.API.IConfiguration.CloudflareEnabled
   - Alibi.Plugins.API.IConfiguration.FeatureList
   - Alibi.Plugins.API.IConfiguration.LogBufferSize
   - Alibi.Plugins.API.IConfiguration.MasterServerAddress
@@ -22,6 +24,7 @@ items:
   - Alibi.Plugins.API.IConfiguration.RateLimit
   - Alibi.Plugins.API.IConfiguration.RateLimitBanLength
   - Alibi.Plugins.API.IConfiguration.RateLimitResetTime
+  - Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
   - Alibi.Plugins.API.IConfiguration.ServerDescription
   - Alibi.Plugins.API.IConfiguration.ServerName
   - Alibi.Plugins.API.IConfiguration.TimeoutSeconds
@@ -229,7 +232,7 @@ items:
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
-  summary: The port that all native clients will connect to. (Cannot be the same as the Websocket Port)
+  summary: The port that TCP clients will connect to. (Cannot be the same as the Websocket Port)
   example: []
   syntax:
     content: int Port { get; }
@@ -261,7 +264,7 @@ items:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
   summary: >-
-    The port that all websocket clients (WebAO) clients will connect to
+    The port that ws/wss clients will connect to
 
     (Cannot be the same as the Native Port)
   example: []
@@ -403,6 +406,106 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property Advertise As Boolean
   overload: Alibi.Plugins.API.IConfiguration.Advertise*
+- uid: Alibi.Plugins.API.IConfiguration.AdvertiseHostname
+  commentId: P:Alibi.Plugins.API.IConfiguration.AdvertiseHostname
+  id: AdvertiseHostname
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: AdvertiseHostname
+  nameWithType: IConfiguration.AdvertiseHostname
+  fullName: Alibi.Plugins.API.IConfiguration.AdvertiseHostname
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: AdvertiseHostname
+    path: ../IConfiguration.cs
+    startLine: 73
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: >-
+    Advertise a custom IP or domain name
+
+    <remarks>
+
+    An empty or null value will result in no custom IP being sent.
+
+    </remarks>
+  example: []
+  syntax:
+    content: string AdvertiseHostname { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property AdvertiseHostname As String
+  overload: Alibi.Plugins.API.IConfiguration.AdvertiseHostname*
+- uid: Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
+  commentId: P:Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
+  id: ReverseProxyEnabled
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: ReverseProxyEnabled
+  nameWithType: IConfiguration.ReverseProxyEnabled
+  fullName: Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: ReverseProxyEnabled
+    path: ../IConfiguration.cs
+    startLine: 78
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Advertise support for WSS because we are behind a reverse proxy.
+  example: []
+  syntax:
+    content: bool ReverseProxyEnabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property ReverseProxyEnabled As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled*
+- uid: Alibi.Plugins.API.IConfiguration.CloudflareEnabled
+  commentId: P:Alibi.Plugins.API.IConfiguration.CloudflareEnabled
+  id: CloudflareEnabled
+  parent: Alibi.Plugins.API.IConfiguration
+  langs:
+  - csharp
+  - vb
+  name: CloudflareEnabled
+  nameWithType: IConfiguration.CloudflareEnabled
+  fullName: Alibi.Plugins.API.IConfiguration.CloudflareEnabled
+  type: Property
+  source:
+    remote:
+      path: Alibi.Plugins.API/IConfiguration.cs
+      branch: main
+      repo: https://github.com/Enovale/Alibi.git
+    id: CloudflareEnabled
+    path: ../IConfiguration.cs
+    startLine: 83
+  assemblies:
+  - Alibi.Plugins.API
+  namespace: Alibi.Plugins.API
+  summary: Advertise port 80 instead of the real ws port to support Cloudflare Tunnels
+  example: []
+  syntax:
+    content: bool CloudflareEnabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property CloudflareEnabled As Boolean
+  overload: Alibi.Plugins.API.IConfiguration.CloudflareEnabled*
 - uid: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
   commentId: P:Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
   id: UseOldAdvertiser
@@ -421,7 +524,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: UseOldAdvertiser
     path: ../IConfiguration.cs
-    startLine: 73
+    startLine: 91
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -453,7 +556,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: AllowDoublePostsIfDifferentAnim
     path: ../IConfiguration.cs
-    startLine: 79
+    startLine: 97
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -487,7 +590,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: MaxPlayers
     path: ../IConfiguration.cs
-    startLine: 84
+    startLine: 102
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -518,7 +621,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: MaxMultiClients
     path: ../IConfiguration.cs
-    startLine: 89
+    startLine: 107
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -549,7 +652,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: MaxClientsOnOneNetwork
     path: ../IConfiguration.cs
-    startLine: 94
+    startLine: 112
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -580,7 +683,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: TimeoutSeconds
     path: ../IConfiguration.cs
-    startLine: 99
+    startLine: 117
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -611,7 +714,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: MaxMessageSize
     path: ../IConfiguration.cs
-    startLine: 108
+    startLine: 126
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -646,7 +749,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: MaxShownameSize
     path: ../IConfiguration.cs
-    startLine: 116
+    startLine: 134
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -678,7 +781,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: RateLimit
     path: ../IConfiguration.cs
-    startLine: 121
+    startLine: 139
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -709,7 +812,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: RateLimitResetTime
     path: ../IConfiguration.cs
-    startLine: 126
+    startLine: 144
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -740,7 +843,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: RateLimitBanLength
     path: ../IConfiguration.cs
-    startLine: 131
+    startLine: 149
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -771,7 +874,7 @@ items:
       repo: https://github.com/Enovale/Alibi.git
     id: FeatureList
     path: ../IConfiguration.cs
-    startLine: 140
+    startLine: 158
   assemblies:
   - Alibi.Plugins.API
   namespace: Alibi.Plugins.API
@@ -956,6 +1059,24 @@ references:
   name: Advertise
   nameWithType: IConfiguration.Advertise
   fullName: Alibi.Plugins.API.IConfiguration.Advertise
+- uid: Alibi.Plugins.API.IConfiguration.AdvertiseHostname*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.AdvertiseHostname
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_AdvertiseHostname
+  name: AdvertiseHostname
+  nameWithType: IConfiguration.AdvertiseHostname
+  fullName: Alibi.Plugins.API.IConfiguration.AdvertiseHostname
+- uid: Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_ReverseProxyEnabled
+  name: ReverseProxyEnabled
+  nameWithType: IConfiguration.ReverseProxyEnabled
+  fullName: Alibi.Plugins.API.IConfiguration.ReverseProxyEnabled
+- uid: Alibi.Plugins.API.IConfiguration.CloudflareEnabled*
+  commentId: Overload:Alibi.Plugins.API.IConfiguration.CloudflareEnabled
+  href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_CloudflareEnabled
+  name: CloudflareEnabled
+  nameWithType: IConfiguration.CloudflareEnabled
+  fullName: Alibi.Plugins.API.IConfiguration.CloudflareEnabled
 - uid: Alibi.Plugins.API.IConfiguration.UseOldAdvertiser*
   commentId: Overload:Alibi.Plugins.API.IConfiguration.UseOldAdvertiser
   href: Alibi.Plugins.API.IConfiguration.html#Alibi_Plugins_API_IConfiguration_UseOldAdvertiser

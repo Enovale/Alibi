@@ -38,16 +38,6 @@ namespace Alibi.Plugins.API
         /// (Cannot be the same as the Native Port)
         /// </summary>
         int WebsocketPort { get; }
-        
-        /// <summary>
-        /// Advertise support for WSS because we are behind a reverse proxy.
-        /// </summary>
-        bool ReverseProxyEnabled { get; }
-
-        /// <summary>
-        /// Advertise port 80 instead of the real ws port to support Cloudflare Tunnels
-        /// </summary>
-        bool CloudflareEnabled { get; }
 
         /// <summary>
         /// The address of the AO2 masterserver that this server advertises to.
@@ -74,6 +64,24 @@ namespace Alibi.Plugins.API
         /// not be visible. Unless debugging, this should always be true.
         /// </remarks>
         bool Advertise { get; }
+        
+        /// <summary>
+        /// Advertise a custom IP or domain name
+        /// <remarks>
+        /// An empty or null value will result in no custom IP being sent.
+        /// </remarks>
+        /// </summary>
+        string AdvertiseHostname { get; }
+        
+        /// <summary>
+        /// Advertise support for WSS because we are behind a reverse proxy.
+        /// </summary>
+        bool ReverseProxyEnabled { get; }
+
+        /// <summary>
+        /// Advertise port 80 instead of the real ws port to support Cloudflare Tunnels
+        /// </summary>
+        bool CloudflareEnabled { get; }
 
         /// <summary>
         /// Use the old advertiser protocol?

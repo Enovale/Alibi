@@ -342,7 +342,7 @@ namespace Alibi
             }
             catch (OperationCanceledException)
             {
-                Logger.Log(LogSeverity.Warning, " Stopping corpse checker...", true);
+                Logger.Log(LogSeverity.Info, " Stopping corpse checker...", true);
             }
         }
 
@@ -362,7 +362,7 @@ namespace Alibi
             }
             catch (OperationCanceledException)
             {
-                Logger.Log(LogSeverity.Warning, " Stopping expired ban checker...", true);
+                Logger.Log(LogSeverity.Info, " Stopping expired ban checker...", true);
             }
         }
 
@@ -378,7 +378,7 @@ namespace Alibi
             _cancelTasksToken.Dispose();
             _advertiser.Stop();
             _wsProxy.Stop();
-            Logger.Dump();
+            Logger.Dispose();
             Dispose();
         }
     }
