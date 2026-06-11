@@ -29,15 +29,25 @@ namespace Alibi.Plugins.API
         IPAddress BoundIpAddress { get; }
 
         /// <summary>
-        /// The port that all native clients will connect to. (Cannot be the same as the Websocket Port)
+        /// The port that TCP clients will connect to. (Cannot be the same as the Websocket Port)
         /// </summary>
         int Port { get; }
 
         /// <summary>
-        /// The port that all websocket clients (WebAO) clients will connect to
+        /// The port that ws/wss clients will connect to
         /// (Cannot be the same as the Native Port)
         /// </summary>
         int WebsocketPort { get; }
+        
+        /// <summary>
+        /// Advertise support for WSS because we are behind a reverse proxy.
+        /// </summary>
+        bool ReverseProxyEnabled { get; }
+
+        /// <summary>
+        /// Advertise port 80 instead of the real ws port to support Cloudflare Tunnels
+        /// </summary>
+        bool CloudflareEnabled { get; }
 
         /// <summary>
         /// The address of the AO2 masterserver that this server advertises to.

@@ -59,7 +59,7 @@ namespace Alibi
             var asmVersion = Assembly.GetExecutingAssembly().GetName().Version!;
             Version = $"{asmVersion.Major}.{asmVersion.Minor}.{asmVersion.Build}";
             Logger = new Logger(this);
-            Logger.Log(LogSeverity.Special, $" Server starting up running version {Version}...");
+            Logger.Log(LogSeverity.Info, $" Server starting up running version {Version}...");
             Database = new DatabaseManager();
             if (Database.CheckCredentials("admin", "ChangeThis"))
                 Logger.Log(LogSeverity.Warning,
