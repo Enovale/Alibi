@@ -1,5 +1,5 @@
 # Alibi
-[![License: MIT](https://img.shields.io/github/license/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Fork This Repo](https://img.shields.io/github/forks/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Star This Repo](https://img.shields.io/github/stars/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE)
+[![License: AGPL3](https://img.shields.io/github/license/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Fork This Repo](https://img.shields.io/github/forks/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE) [![Star This Repo](https://img.shields.io/github/stars/Enovale/Alibi)](https://github.com/Enovale/Alibi/blob/main/LICENSE)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1913dc611b664376a11c84c4e1c2861a)](https://www.codacy.com/gh/Enovale/Alibi/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Enovale/Alibi&amp;utm_campaign=Badge_Grade) [![Build status](https://ci.appveyor.com/api/projects/status/dknw39du3emv19y3?svg=true)](https://ci.appveyor.com/project/Enovale/alibi)
 
